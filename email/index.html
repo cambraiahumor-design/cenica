@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Templates de E-mail — Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:      #0F0A1A;
+  --curtain:   #1E0A3C;
+  --spotlight: #D4863A;
+  --gold:      #E8C86A;
+  --cream:     #F5EFE6;
+  --muted:     #8B7FA0;
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: #E4DFD9; min-height: 100vh; }
+
+/* ── INTERFACE ── */
+.interface {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: var(--void);
+  padding: 32px 0;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 240px;
+  overflow-y: auto;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 0 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 24px;
+}
+
+.sidebar-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+
+.sidebar-sub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 24px;
+  margin-bottom: 8px;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background .15s;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover { background: rgba(255,255,255,.04); }
+
+.nav-item.active {
+  background: rgba(212,134,58,.1);
+  border-left-color: var(--spotlight);
+}
+
+.nav-item-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.nav-item.active .nav-item-title { color: var(--gold); }
+
+.nav-item-desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px 24px 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.copy-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, var(--spotlight), var(--gold));
+  color: var(--void);
+  font-weight: 700;
+  font-size: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: .05em;
+  transition: opacity .2s;
+}
+
+.copy-btn:hover { opacity: .9; }
+
+/* CONTENT AREA */
+.content {
+  margin-left: 240px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.content-header {
+  width: 100%;
+  max-width: 640px;
+}
+
+.content-header h1 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--void);
+  margin-bottom: 4px;
+}
+
+.content-header p {
+  font-size: 14px;
+  color: #6B5F78;
+}
+
+/* EMAIL PREVIEW WRAPPER */
+.email-wrapper {
+  width: 100%;
+  max-width: 640px;
+  display: none;
+}
+
+.email-wrapper.active { display: block; }
+
+.email-meta {
+  background: white;
+  border-radius: 12px 12px 0 0;
+  padding: 20px 24px;
+  border-bottom: 1px solid #E8E4E0;
+  font-size: 13px;
+  color: #5C5068;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.email-meta div { display: flex; gap: 8px; }
+.email-meta strong { color: var(--void); min-width: 60px; }
+.email-meta span { color: #4A4258; }
+
+/* ── EMAIL BODY (inline-safe styles reproduced with classes for preview) ── */
+.email-body {
+  background: #F0EBE5;
+  padding: 32px 24px;
+  border-radius: 0 0 12px 12px;
+  font-family: Arial, sans-serif;
+}
+
+.em {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header */
+.em-header {
+  background: #0F0A1A;
+  border-radius: 12px 12px 0 0;
+  padding: 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.em-logo-c {
+  display: inline-block;
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, #2A0A50, #0F0A1A);
+  border-radius: 14px;
+  line-height: 56px;
+  font-family: 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: #E8C86A;
+  margin-bottom: 14px;
+  border: 2px solid rgba(212,134,58,.4);
+}
+
+.em-brand {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: 26px;
+  color: #F5EFE6;
+  letter-spacing: .04em;
+  margin-bottom: 4px;
+}
+
+.em-tagline {
+  font-size: 12px;
+  color: #8B7FA0;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* body */
+.em-body {
+  background: #FDFAF6;
+  padding: 44px 40px;
+}
+
+.em-salutation {
+  font-size: 16px;
+  color: #0F0A1A;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.em-text {
+  font-size: 15px;
+  color: #4A4258;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.em-highlight {
+  background: linear-gradient(90deg, rgba(212,134,58,.1), rgba(232,200,106,.06));
+  border-left: 3px solid #D4863A;
+  border-radius: 0 10px 10px 0;
+  padding: 18px 24px;
+  margin: 28px 0;
+  font-size: 15px;
+  color: #3A2E4A;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.em-list {
+  margin: 0 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.em-list li {
+  font-size: 14px;
+  color: #4A4258;
+  padding: 8px 0 8px 24px;
+  position: relative;
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.em-list li::before {
+  content: '▸';
+  color: #D4863A;
+  position: absolute;
+  left: 0;
+  font-size: 13px;
+}
+
+.em-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,134,58,.3), transparent);
+  margin: 28px 0;
+}
+
+.em-cta-wrap { text-align: center; margin: 36px 0; }
+
+.em-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #D4863A, #E8C86A);
+  color: #0F0A1A;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+
+.em-sign {
+  margin-top: 36px;
+  font-size: 14px;
+  color: #4A4258;
+  line-height: 1.8;
+}
+
+.em-sign strong { color: #0F0A1A; font-size: 15px; }
+.em-sign em { color: #D4863A; font-style: normal; }
+
+/* footer */
+.em-footer {
+  background: #0F0A1A;
+  border-radius: 0 0 12px 12px;
+  padding: 24px 40px;
+  text-align: center;
+}
+
+.em-footer-brand {
+  font-family: 'Times New Roman', serif;
+  font-size: 16px;
+  color: #F5EFE6;
+  margin-bottom: 8px;
+}
+
+.em-footer-links {
+  font-size: 12px;
+  color: #8B7FA0;
+  margin-bottom: 12px;
+}
+
+.em-footer-links a {
+  color: #D4863A;
+  text-decoration: none;
+}
+
+.em-footer-unsubscribe {
+  font-size: 11px;
+  color: #5C5068;
+}
+
+/* ── CHIPS ── */
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 640px;
+  width: 100%;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background: white;
+  color: #4A4258;
+  border: 1px solid rgba(0,0,0,.1);
+  cursor: pointer;
+  transition: all .15s;
+}
+
+.chip:hover, .chip.active {
+  background: var(--void);
+  color: var(--cream);
+  border-color: var(--void);
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  background: var(--void);
+  color: var(--cream);
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid rgba(212,134,58,.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  transform: translateY(80px);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  z-index: 999;
+}
+
+.toast.show { transform: translateY(0); }
+
+@media (max-width: 720px) {
+  .interface { grid-template-columns: 1fr; }
+  .sidebar { position: relative; width: 100%; height: auto; }
+  .content { margin-left: 0; padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="interface">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">Cênica</div>
+      <div class="sidebar-sub">Templates de E-mail</div>
+    </div>
+
+    <div class="sidebar-label">Modelos</div>
+
+    <div class="nav-item active" onclick="show(0, this)">
+      <div class="nav-item-title">Apresentação Fria</div>
+      <div class="nav-item-desc">Primeiro contato com empresa</div>
+    </div>
+
+    <div class="nav-item" onclick="show(1, this)">
+      <div class="nav-item-title">Envio da Proposta</div>
+      <div class="nav-item-desc">Acompanha o PDF da proposta</div>
+    </div>
+
+    <div class="nav-item" onclick="show(2, this)">
+      <div class="nav-item-title">Follow-up</div>
+      <div class="nav-item-desc">Retorno sem resposta</div>
+    </div>
+
+    <div class="nav-item" onclick="show(3, this)">
+      <div class="nav-item-title">Pós-treinamento</div>
+      <div class="nav-item-desc">E-mail de encerramento</div>
+    </div>
+
+    <div class="nav-item" onclick="show(4, this)">
+      <div class="nav-item-title">Assinatura de E-mail</div>
+      <div class="nav-item-desc">Assinatura HTML profissional</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="copy-btn" onclick="copyHTML()">Copiar HTML do e-mail</button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <div class="content-header">
+      <h1 id="page-title">E-mail de Apresentação</h1>
+      <p id="page-desc">Primeiro contato com o RH ou líder de uma empresa. Tom humano, direto, sem pitch agressivo.</p>
+    </div>
+
+    <!-- ① APRESENTAÇÃO FRIA -->
+    <div class="email-wrapper active" id="email-0">
+      <div class="email-meta">
+        <div><strong>Para:</strong><span>[nome]@empresa.com.br</span></div>
+        <div><strong>De:</strong><span>seunome@cenica.com.br</span></div>
+        <div><strong>Assunto:</strong><span>Uma ideia diferente para desenvolver seu time, [Nome]</span></div>
+      </div>
+      <div class="email-body">
+        <div class="em">
+          <div class="em-header">
+            <div class="em-logo-c">C</div>
+            <div class="em-brand">Cênica</div>
+            <div class="em-tagline">Escola de Desenvolvimento Humano</div>
+          </div>
+          <div class="em-body">
+            <div class="em-salutation">Olá, [Nome] 👋</div>
+            <p class="em-text">
+              Eu sei que você recebe vários e-mails de empresas de treinamento por semana. Por isso vou ser direto: a Cênica é diferente — e quero te mostrar por quê em 3 linhas.
+            </p>
+            <div class="em-highlight">
+              "A maioria dos treinamentos ensina sobre comunicação, liderança e trabalho em equipe. A Cênica coloca seu time para praticar essas habilidades — usando técnicas teatrais como metodologia."
+            </div>
+            <p class="em-text">
+              Teatro não como entretenimento. Como laboratório. Improviso, performance e presença como ferramentas para desenvolver as soft skills que mais impactam resultado de equipe.
+            </p>
+            <p class="em-text">Os resultados que vemos com frequência:</p>
+            <ul class="em-list">
+              <li>Times que se comunicam melhor em menos de 2 dias de imersão</li>
+              <li>Líderes que descobrem um jeito novo de influenciar sem impor</li>
+              <li>93% dos participantes relatam mudança comportamental real pós-programa</li>
+            </ul>
+            <div class="em-divider"></div>
+            <p class="em-text">
+              Nada de slides e apostilas. Nada de role-play forçado.<br>
+              Aprendizado que fica no corpo — não só na memória.
+            </p>
+            <p class="em-text">
+              Posso te mostrar como funcionaria para o seu contexto em uma conversa de 20 minutos?
+            </p>
+            <div class="em-cta-wrap">
+              <a href="#" class="em-cta">Quero ver como funciona →</a>
+            </div>
+            <div class="em-sign">
+              Até logo,<br><br>
+              <strong>[Seu Nome]</strong><br>
+              <em>Cênica</em> · Escola de Desenvolvimento Humano<br>
+              📱 (11) 9 9999-9999 · cenica.com.br
+            </div>
+          </div>
+          <div class="em-footer">
+            <div class="em-footer-brand">Cênica</div>
+            <div class="em-footer-links">
+              <a href="#">cenica.com.br</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a>
+            </div>
+            <div class="em-footer-unsubscribe">Você recebeu este e-mail porque tem perfil relevante para nossos programas.<br>
+            <a href="#" style="color:#5C5068">Descadastrar</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② ENVIO DA PROPOSTA -->
+    <div class="email-wrapper" id="email-1">
+      <div class="email-meta">
+        <div><strong>Para:</strong><span>[nome]@empresa.com.br</span></div>
+        <div><strong>De:</strong><span>seunome@cenica.com.br</span></div>
+        <div><strong>Assunto:</strong><span>Proposta Cênica para [Nome da Empresa] — [Programa]</span></div>
+        <div><strong>Anexo:</strong><span>📎 Proposta_Cenica_[Empresa]_2026.pdf</span></div>
+      </div>
+      <div class="email-body">
+        <div class="em">
+          <div class="em-header">
+            <div class="em-logo-c">C</div>
+            <div class="em-brand">Cênica</div>
+            <div class="em-tagline">Escola de Desenvolvimento Humano</div>
+          </div>
+          <div class="em-body">
+            <div class="em-salutation">Olá, [Nome]!</div>
+            <p class="em-text">
+              Foi ótimo conversar com você hoje. Como combinado, segue em anexo a proposta completa para o programa <strong>[nome do programa]</strong> para o time de <strong>[área/empresa]</strong>.
+            </p>
+            <p class="em-text">
+              Dentro da proposta você vai encontrar:
+            </p>
+            <ul class="em-list">
+              <li>Nossa metodologia explicada passo a passo</li>
+              <li>Estrutura detalhada do programa proposto</li>
+              <li>Como medimos os resultados (antes e depois)</li>
+              <li>Investimento e condições</li>
+              <li>Próximos passos para começarmos</li>
+            </ul>
+            <div class="em-highlight">
+              Um lembrete do que conversamos: o programa está desenhado para [objetivo específico do cliente]. A data que identificamos como ideal para começar é [data].
+            </div>
+            <div class="em-divider"></div>
+            <p class="em-text">
+              Estou disponível para esclarecer qualquer dúvida esta semana. Se preferir já alinhar os próximos passos, é só me chamar no WhatsApp abaixo.
+            </p>
+            <div class="em-cta-wrap">
+              <a href="#" class="em-cta">Falar pelo WhatsApp →</a>
+            </div>
+            <div class="em-sign">
+              Um abraço,<br><br>
+              <strong>[Seu Nome]</strong><br>
+              <em>Cênica</em> · Escola de Desenvolvimento Humano<br>
+              📱 (11) 9 9999-9999 · cenica.com.br
+            </div>
+          </div>
+          <div class="em-footer">
+            <div class="em-footer-brand">Cênica</div>
+            <div class="em-footer-links">
+              <a href="#">cenica.com.br</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a>
+            </div>
+            <div class="em-footer-unsubscribe">© 2026 Cênica Escola de Desenvolvimento Humano</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ FOLLOW-UP -->
+    <div class="email-wrapper" id="email-2">
+      <div class="email-meta">
+        <div><strong>Para:</strong><span>[nome]@empresa.com.br</span></div>
+        <div><strong>De:</strong><span>seunome@cenica.com.br</span></div>
+        <div><strong>Assunto:</strong><span>Re: Proposta Cênica · ainda faz sentido, [Nome]?</span></div>
+      </div>
+      <div class="email-body">
+        <div class="em">
+          <div class="em-header">
+            <div class="em-logo-c">C</div>
+            <div class="em-brand">Cênica</div>
+            <div class="em-tagline">Escola de Desenvolvimento Humano</div>
+          </div>
+          <div class="em-body">
+            <div class="em-salutation">Oi, [Nome].</div>
+            <p class="em-text">
+              Passei aqui para dar um oi. Sei que a rotina de RH é intensa, então não quero pressionar — só verificar se a proposta que te enviei ainda está no radar.
+            </p>
+            <p class="em-text">
+              Se ficou alguma dúvida, ou se o contexto mudou desde que conversamos, pode me falar à vontade. Se não for o momento certo, tudo bem também — fico feliz em retomar quando fizer mais sentido.
+            </p>
+            <div class="em-highlight">
+              "A Cênica não fecha contrato porque a proposta ficou bonita. Fechamos porque o cliente está convicto de que essa transformação vai impactar de verdade o time dele."
+            </div>
+            <p class="em-text">
+              Se quiser uma conversa rápida de 15 minutos para alinhar qualquer ponto antes de decidir, é só me chamar. Zero compromisso.
+            </p>
+            <div class="em-cta-wrap">
+              <a href="#" class="em-cta">Retomar a conversa →</a>
+            </div>
+            <p class="em-text" style="font-size:13px;color:#8B7FA0;text-align:center">
+              Se não for o momento certo, sem problema. É só me avisar e encerro por aqui com respeito. 🙂
+            </p>
+            <div class="em-sign">
+              Abraço,<br><br>
+              <strong>[Seu Nome]</strong><br>
+              <em>Cênica</em> · Escola de Desenvolvimento Humano<br>
+              📱 (11) 9 9999-9999 · cenica.com.br
+            </div>
+          </div>
+          <div class="em-footer">
+            <div class="em-footer-brand">Cênica</div>
+            <div class="em-footer-links">
+              <a href="#">cenica.com.br</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a>
+            </div>
+            <div class="em-footer-unsubscribe">© 2026 Cênica Escola de Desenvolvimento Humano</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ PÓS-TREINAMENTO -->
+    <div class="email-wrapper" id="email-3">
+      <div class="email-meta">
+        <div><strong>Para:</strong><span>[nome]@empresa.com.br</span></div>
+        <div><strong>De:</strong><span>seunome@cenica.com.br</span></div>
+        <div><strong>Assunto:</strong><span>[Empresa] · o que vem depois do palco</span></div>
+        <div><strong>Anexo:</strong><span>📎 Relatorio_Impacto_[Empresa]_Cenica.pdf</span></div>
+      </div>
+      <div class="email-body">
+        <div class="em">
+          <div class="em-header">
+            <div class="em-logo-c">C</div>
+            <div class="em-brand">Cênica</div>
+            <div class="em-tagline">Escola de Desenvolvimento Humano</div>
+          </div>
+          <div class="em-body">
+            <div class="em-salutation">Olá, [Nome]!</div>
+            <p class="em-text">
+              Que programa incrível foi esse com o time de vocês. Saímos de lá com a certeza de que algo de verdade aconteceu em cena — e fora dela também.
+            </p>
+            <p class="em-text">
+              Como prometido, segue em anexo o <strong>Relatório de Impacto</strong> do programa <strong>[nome do programa]</strong>. Nele você vai encontrar:
+            </p>
+            <ul class="em-list">
+              <li>Métricas coletadas antes e depois do programa</li>
+              <li>Principais aprendizados observados por habilidade</li>
+              <li>Depoimentos anônimos dos participantes</li>
+              <li>Recomendações de continuidade para os próximos 90 dias</li>
+            </ul>
+            <div class="em-highlight">
+              "O programa acabou. A transformação está só começando. Tudo que foi praticado em cena agora precisa de espaço para se consolidar no dia a dia."
+            </div>
+            <p class="em-text">
+              Estamos à disposição pelos próximos <strong>30 dias</strong> para apoiar qualquer dúvida sobre a aplicação prática dos aprendizados. É só nos chamar.
+            </p>
+            <div class="em-divider"></div>
+            <p class="em-text">
+              E se quiser conversar sobre uma jornada de continuidade para o time — adoraríamos construir isso com vocês.
+            </p>
+            <div class="em-cta-wrap">
+              <a href="#" class="em-cta">Agendar conversa de continuidade →</a>
+            </div>
+            <div class="em-sign">
+              Com muito carinho,<br><br>
+              <strong>[Seu Nome]</strong><br>
+              <em>Cênica</em> · Escola de Desenvolvimento Humano<br>
+              📱 (11) 9 9999-9999 · cenica.com.br
+            </div>
+          </div>
+          <div class="em-footer">
+            <div class="em-footer-brand">Cênica</div>
+            <div class="em-footer-links">
+              <a href="#">cenica.com.br</a> · <a href="#">Instagram</a> · <a href="#">LinkedIn</a>
+            </div>
+            <div class="em-footer-unsubscribe">© 2026 Cênica Escola de Desenvolvimento Humano</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ ASSINATURA -->
+    <div class="email-wrapper" id="email-4">
+      <div class="email-meta">
+        <div><strong>Tipo:</strong><span>Assinatura de e-mail HTML · cole no Gmail / Outlook</span></div>
+      </div>
+      <div class="email-body" style="background:#F0EBE5;padding:32px">
+
+        <!-- ASSINATURA PREVIEW -->
+        <div style="background:white;padding:24px;border-radius:12px;margin-bottom:24px">
+          <p style="font-size:12px;color:#8B7FA0;margin-bottom:16px;font-family:sans-serif">Prévia da assinatura:</p>
+          <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,sans-serif">
+            <tr>
+              <td style="padding-right:20px;vertical-align:top;border-right:2px solid #D4863A">
+                <div style="width:52px;height:52px;background:linear-gradient(135deg,#2A0A50,#0F0A1A);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Times New Roman',serif;font-size:28px;font-weight:bold;color:#E8C86A;text-align:center;line-height:52px">C</div>
+              </td>
+              <td style="padding-left:20px;vertical-align:top">
+                <div style="font-size:15px;font-weight:700;color:#0F0A1A;margin-bottom:2px">[Seu Nome]</div>
+                <div style="font-size:12px;color:#D4863A;margin-bottom:8px;font-weight:600">[Cargo] · Cênica</div>
+                <div style="font-size:12px;color:#6B5F78;line-height:1.8">
+                  📱 (11) 9 9999-9999<br>
+                  ✉️ seunome@cenica.com.br<br>
+                  🌐 <a href="#" style="color:#D4863A;text-decoration:none">cenica.com.br</a>
+                </div>
+                <div style="margin-top:10px;font-size:10px;color:#0F0A1A;font-style:italic;border-top:1px solid #E8E4E0;padding-top:8px">
+                  "O palco como laboratório de transformação."
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- INSTRUÇÃO -->
+        <div style="background:rgba(212,134,58,.1);border-left:3px solid #D4863A;border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:20px;font-size:13px;color:#4A4258;line-height:1.7;font-family:sans-serif">
+          <strong style="color:#0F0A1A">Como instalar no Gmail:</strong><br>
+          Configurações → Ver todos os ajustes → Geral → Assinatura → Criar nova → Cole o código HTML abaixo (ative "modo de edição de HTML" no Gmail)
+        </div>
+
+        <div id="sig-code" style="background:#0F0A1A;border-radius:10px;padding:20px;font-size:12px;color:#8B7FA0;font-family:'Courier New',monospace;line-height:1.6;white-space:pre-wrap;word-break:break-all">&lt;table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,sans-serif"&gt;
+  &lt;tr&gt;
+    &lt;td style="padding-right:20px;vertical-align:top;border-right:2px solid #D4863A"&gt;
+      &lt;div style="width:52px;height:52px;background:#0F0A1A;border-radius:12px;font-family:Georgia,serif;font-size:28px;font-weight:bold;color:#E8C86A;text-align:center;line-height:52px"&gt;C&lt;/div&gt;
+    &lt;/td&gt;
+    &lt;td style="padding-left:20px;vertical-align:top"&gt;
+      &lt;div style="font-size:15px;font-weight:700;color:#0F0A1A"&gt;[Seu Nome]&lt;/div&gt;
+      &lt;div style="font-size:12px;color:#D4863A;margin-bottom:8px;font-weight:600"&gt;[Cargo] · Cênica&lt;/div&gt;
+      &lt;div style="font-size:12px;color:#6B5F78;line-height:1.8"&gt;
+        📱 (11) 9 9999-9999&lt;br&gt;
+        ✉️ seunome@cenica.com.br&lt;br&gt;
+        🌐 &lt;a href="https://cenica.com.br" style="color:#D4863A;text-decoration:none"&gt;cenica.com.br&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div style="margin-top:10px;font-size:10px;color:#5C5068;font-style:italic;border-top:1px solid #E8E4E0;padding-top:8px"&gt;
+        "O palco como laboratório de transformação."
+      &lt;/div&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+        <button onclick="copySig()" style="margin-top:12px;padding:10px 24px;background:linear-gradient(135deg,#D4863A,#E8C86A);color:#0F0A1A;font-weight:700;font-size:13px;border:none;border-radius:8px;cursor:pointer;font-family:sans-serif">Copiar código da assinatura</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const emails = [
+  { title: 'E-mail de Apresentação', desc: 'Primeiro contato com o RH ou líder de uma empresa. Tom humano, direto, sem pitch agressivo.' },
+  { title: 'Envio da Proposta', desc: 'Enviado junto com o PDF da proposta após a conversa inicial. Personalizado com o nome da empresa.' },
+  { title: 'Follow-up', desc: 'Enviado 5–7 dias após a proposta sem resposta. Tom leve, sem pressão, deixa a porta aberta.' },
+  { title: 'Pós-treinamento', desc: 'Enviado 24–48h após o programa com o relatório de impacto. Abre conversa de continuidade.' },
+  { title: 'Assinatura de E-mail', desc: 'Assinatura HTML para usar no Gmail ou Outlook. Inclui logo, cargo, contatos e tagline da marca.' },
+];
+
+function show(idx, el) {
+  document.querySelectorAll('.email-wrapper').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('email-' + idx).classList.add('active');
+  el.classList.add('active');
+  document.getElementById('page-title').textContent = emails[idx].title;
+  document.getElementById('page-desc').textContent = emails[idx].desc;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function copyHTML() {
+  const active = document.querySelector('.email-wrapper.active .em');
+  if (!active) return;
+  const html = active.outerHTML;
+  navigator.clipboard.writeText(html).then(() => showToast('HTML copiado! ✓'));
+}
+
+function copySig() {
+  const code = document.getElementById('sig-code').textContent;
+  navigator.clipboard.writeText(code).then(() => showToast('Código da assinatura copiado! ✓'));
+}
+</script>
+</body>
+</html>

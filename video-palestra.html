@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<title>Video Palestra</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 540px; height: 960px; overflow: hidden; background: #000; }
+
+.scene {
+  width: 540px; height: 960px;
+  background: #04000A;
+  position: relative; overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── PHOTO ── */
+.photo-wrap {
+  position: absolute; inset: 0; z-index: 1;
+  animation: kenBurns 14s ease-out forwards;
+}
+@keyframes kenBurns {
+  0%   { transform: scale(1.12) translateX(30px); }
+  100% { transform: scale(1.0)  translateX(0px); }
+}
+.photo {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  opacity: 0;
+  animation: photoReveal 2s ease-out 0.5s forwards;
+}
+@keyframes photoReveal { to { opacity: .55; } }
+
+/* ── OVERLAYS ── */
+.overlay-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  height: 70%; background: linear-gradient(to top, #04000A 30%, rgba(4,0,10,.6) 65%, transparent 100%);
+}
+.overlay-top {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+  height: 25%; background: linear-gradient(to bottom, rgba(4,0,10,.7) 0%, transparent 100%);
+}
+
+/* ── VERTICAL LINES ── */
+.lines {
+  position: absolute; inset: 0; z-index: 2;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0, transparent 26px,
+    rgba(255,255,255,.018) 26px, rgba(255,255,255,.018) 27px);
+}
+
+/* ── SPOTLIGHT ── */
+.beam {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 800px; z-index: 2;
+  background: linear-gradient(to bottom, rgba(212,134,58,.18) 0%, transparent 65%);
+  clip-path: polygon(28% 0%, 72% 0%, 94% 100%, 6% 100%);
+  opacity: 0;
+  animation: beamIn 2s ease-out 1s forwards, beamPulse 4s ease-in-out 3s infinite;
+}
+@keyframes beamIn    { to { opacity: 1; } }
+@keyframes beamPulse { 0%,100%{ opacity:.7 } 50%{ opacity:1 } }
+
+/* ── GLOW ORBS ── */
+.orb1 {
+  position: absolute; top: -100px; right: -100px; z-index: 2;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,134,58,.15) 0%, transparent 65%);
+  animation: orbPulse 5s ease-in-out infinite;
+}
+.orb2 {
+  position: absolute; bottom: -60px; left: -60px; z-index: 2;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,20,80,.2) 0%, transparent 65%);
+  animation: orbPulse 6s ease-in-out 1s infinite reverse;
+}
+@keyframes orbPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+
+/* ── PARTICLES ── */
+.particles { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.particle {
+  position: absolute;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: #D4863A; opacity: 0;
+  animation: particleFloat linear infinite;
+}
+@keyframes particleFloat {
+  0%   { transform: translateY(0)   scale(0); opacity: 0; }
+  10%  { opacity: .8; transform: translateY(-20px)  scale(1); }
+  90%  { opacity: .3; }
+  100% { transform: translateY(-300px) scale(0.3); opacity: 0; }
+}
+
+/* ── DIVIDER LINE ── */
+.divider-anim {
+  position: absolute; left: 44px; z-index: 10;
+  height: 2px; background: linear-gradient(90deg, #D4863A, #E8C86A, transparent);
+  width: 0; opacity: 0;
+  animation: lineGrow 1s ease-out 3.5s forwards;
+}
+@keyframes lineGrow { to { width: 220px; opacity: 1; } }
+
+/* ── CONTENT ── */
+.content {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; flex-direction: column;
+  padding: 56px 44px 52px;
+}
+
+/* TOP */
+.top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.625rem; font-weight: 700; color: #D4863A;
+  opacity: 0; transform: translateX(-20px);
+  animation: slideRight .8s ease-out .3s forwards;
+}
+.tag-live {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(180,0,40,.25); border: 1px solid rgba(220,30,60,.5);
+  color: #FF9999; font-size: .7rem; font-weight: 800;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 50px;
+  opacity: 0; transform: translateX(20px);
+  animation: slideLeft .8s ease-out .5s forwards;
+}
+.dot-red {
+  width: 7px; height: 7px; border-radius: 50%; background: #FF6680;
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+/* MIDDLE */
+.middle { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 28px; }
+
+.pre {
+  font-size: .7rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: rgba(245,239,230,.4);
+  margin-bottom: 10px;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp .6s ease-out 2s forwards;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 700; line-height: 1.05;
+  color: #F5EFE6; margin-bottom: 6px;
+  opacity: 0; transform: translateY(40px);
+  animation: fadeUp .9s cubic-bezier(.2,.8,.2,1) 2.3s forwards;
+}
+.title em { color: #D4863A; font-style: italic; }
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-style: italic;
+  color: rgba(245,239,230,.42); margin-bottom: 40px;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp .7s ease-out 2.8s forwards;
+}
+
+/* details */
+.details {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 32px;
+}
+.det {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px; padding: 14px 16px;
+  opacity: 0; transform: translateY(20px);
+}
+.det:nth-child(1){ animation: fadeUp .7s ease-out 3.2s forwards; }
+.det:nth-child(2){ animation: fadeUp .7s ease-out 3.4s forwards; }
+.det:nth-child(3){ animation: fadeUp .7s ease-out 3.6s forwards; }
+.det:nth-child(4){ animation: fadeUp .7s ease-out 3.8s forwards; }
+.det-icon { font-size: 1.375rem; flex-shrink: 0; }
+.det-label { font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,239,230,.3); margin-bottom: 2px; }
+.det-val { font-size: .88rem; font-weight: 700; color: #F5EFE6; line-height: 1.2; }
+.det-val em { color: #D4863A; font-style: normal; }
+
+/* bottom */
+.bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  opacity: 0; transform: translateY(16px);
+  animation: fadeUp .7s ease-out 4.2s forwards;
+}
+.prices { display: flex; gap: 10px; }
+.price-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .75rem; font-weight: 800; padding: 8px 16px; border-radius: 50px;
+}
+.price-inteira { background: linear-gradient(135deg,#D4863A,#E8C86A); color: #0F0A1A; }
+.price-meia {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  color: rgba(245,239,230,.7);
+}
+.vagas {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(180,0,40,.2); border: 1px solid rgba(220,30,60,.4);
+  color: #FF9999; font-size: .68rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; padding: 7px 16px; border-radius: 50px;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp    { to { opacity:1; transform:translateY(0); } }
+@keyframes slideRight{ to { opacity:1; transform:translateX(0); } }
+@keyframes slideLeft { to { opacity:1; transform:translateX(0); } }
+@keyframes blink     { 0%,100%{opacity:1} 50%{opacity:.2} }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="orb1"></div>
+  <div class="orb2"></div>
+  <div class="lines"></div>
+
+  <div class="photo-wrap">
+    <img class="photo" src="joao-cambraia.jpg" alt="João Cambraia"/>
+  </div>
+
+  <div class="overlay-bottom"></div>
+  <div class="overlay-top"></div>
+  <div class="beam"></div>
+
+  <!-- Partículas -->
+  <div class="particles" id="particles"></div>
+
+  <div class="divider-anim" style="bottom:310px"></div>
+
+  <div class="content">
+    <div class="top">
+      <div class="brand">Cênica</div>
+      <div class="tag-live"><span class="dot-red"></span> Ingressos à venda</div>
+    </div>
+    <div class="middle">
+      <div class="pre">Palestra · João Cambraia</div>
+      <h1 class="title">O Manual<br>do <em>Humano</em></h1>
+      <p class="subtitle">Como o teatro revela o que os treinamentos escondem</p>
+      <div class="details">
+        <div class="det"><div class="det-icon">📅</div><div><div class="det-label">Data</div><div class="det-val"><em>22 de Maio</em> · 2026</div></div></div>
+        <div class="det"><div class="det-icon">🕗</div><div><div class="det-label">Horário</div><div class="det-val"><em>20h00</em> · Portas 19h30</div></div></div>
+        <div class="det"><div class="det-icon">🎭</div><div><div class="det-label">Local</div><div class="det-val">Teatro <em>Torquato Neto</em></div></div></div>
+        <div class="det"><div class="det-icon">📍</div><div><div class="det-label">Cidade</div><div class="det-val"><em>Teresina</em> · Piauí</div></div></div>
+      </div>
+      <div class="bottom">
+        <div class="prices">
+          <div class="price-tag price-inteira">🎟 R$ 150 inteira</div>
+          <div class="price-tag price-meia">R$ 75 meia</div>
+        </div>
+        <div class="vagas"><span class="dot-red"></span> Vagas limitadas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Gera partículas douradas flutuando
+const container = document.getElementById('particles');
+for (let i = 0; i < 28; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left   = (10 + Math.random() * 80) + '%';
+  p.style.bottom = (Math.random() * 40) + '%';
+  p.style.width  = (2 + Math.random() * 3) + 'px';
+  p.style.height = p.style.width;
+  p.style.animationDuration  = (4 + Math.random() * 6) + 's';
+  p.style.animationDelay     = (Math.random() * 8) + 's';
+  p.style.opacity = Math.random() * 0.6 + 0.2;
+  container.appendChild(p);
+}
+</script>
+</body>
+</html>

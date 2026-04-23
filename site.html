@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Cênica — Escola de desenvolvimento humano com técnicas teatrais. Palestra e curso com João Cambraia."/>
+<title>Cênica — O palco onde você pratica quem você quer ser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root {
+  --void:#0F0A1A; --curtain:#1E0A3C; --spot:#D4863A; --gold:#E8C86A;
+  --cream:#F5EFE6; --warm:#FDFAF6; --rose:#7A2B4A;
+  --t-dark:#1C1018; --t-mid:#4A3A52; --t-light:#8A7A92;
+  --fd:'Playfair Display',Georgia,serif; --fb:'DM Sans',sans-serif;
+  --r:16px; --max:1140px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--fb);background:var(--warm);color:var(--t-dark);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ── LAYOUT ── */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+@media(max-width:768px){section{padding:64px 0}}
+
+/* ── TYPE ── */
+.display{font-family:var(--fd);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+.lead{font-size:1.125rem;line-height:1.75;color:var(--t-mid)}
+.label{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-weight:700;border-radius:50px;transition:all .25s cubic-bezier(.34,1.56,.64,1);cursor:pointer;border:none;text-align:center;white-space:nowrap;letter-spacing:.02em;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15) 0%,transparent 60%);opacity:0;transition:opacity .2s}
+.btn:hover::after{opacity:1}
+
+@keyframes pulse-glow{0%,100%{box-shadow:0 6px 24px rgba(212,134,58,.5),0 0 0 0 rgba(212,134,58,.4)}50%{box-shadow:0 10px 36px rgba(212,134,58,.7),0 0 0 8px rgba(212,134,58,.0)}}
+.btn-primary{background:linear-gradient(135deg,#E8803A 0%,var(--spot) 40%,var(--gold) 100%);color:var(--void);padding:15px 36px;font-size:1rem;box-shadow:0 6px 28px rgba(212,134,58,.5),inset 0 1px 0 rgba(255,255,255,.2);text-shadow:0 1px 0 rgba(255,255,255,.15);animation:pulse-glow 2.5s ease-in-out infinite}
+.btn-primary:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 40px rgba(212,134,58,.7),inset 0 1px 0 rgba(255,255,255,.2);animation:none}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--cream);padding:14px 32px;font-size:.9375rem;border:1.5px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(232,200,106,.08);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,200,106,.2)}
+
+.btn-outline-dark{background:transparent;color:var(--t-dark);padding:14px 32px;font-size:.9375rem;border:2px solid rgba(212,134,58,.4)}
+.btn-outline-dark:hover{border-color:var(--spot);color:var(--spot);background:rgba(212,134,58,.06);transform:translateY(-2px)}
+
+.btn-lg{padding:20px 48px;font-size:1.125rem}
+.btn-sm{padding:10px 24px;font-size:.875rem}
+
+/* ── ANNOUNCEMENT BAR ── */
+.announce-bar{background:linear-gradient(90deg,#8B0000 0%,#A0152A 40%,#8B0000 100%);padding:10px 0;text-align:center;position:relative;z-index:101}
+.announce-bar-inner{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.announce-urgent{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:4px}
+.announce-text{color:rgba(255,255,255,.9);font-size:.875rem;font-weight:600}
+.announce-text strong{color:#fff}
+.announce-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#8B0000;font-size:.8rem;font-weight:800;padding:6px 16px;border-radius:50px;letter-spacing:.04em;transition:all .2s;white-space:nowrap}
+.announce-btn:hover{background:var(--gold);color:var(--void);transform:scale(1.04)}
+@media(max-width:600px){.announce-text{display:none}}
+
+/* ── EVENTO ── */
+.evento-bg{background:linear-gradient(160deg,#0A0014 0%,#1A0030 50%,#0D0020 100%);padding:80px 0;position:relative;overflow:hidden}
+.evento-bg::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(180,0,40,.2),transparent 65%);pointer-events:none}
+.evento-bg::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.1),transparent 65%);pointer-events:none}
+.evento-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+@media(max-width:900px){.evento-inner{grid-template-columns:1fr;gap:48px}}
+.evento-label{display:inline-flex;align-items:center;gap:8px;background:rgba(180,0,40,.25);border:1px solid rgba(220,30,60,.5);color:#FF6680;padding:7px 18px;border-radius:50px;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.evento-dot{width:7px;height:7px;border-radius:50%;background:#FF6680;animation:blink 1.4s ease-in-out infinite;flex-shrink:0}
+.evento-title{font-family:var(--fd);font-size:clamp(2rem,4vw,3.25rem);color:var(--cream);margin-bottom:8px;line-height:1.15}
+.evento-subtitle{font-family:var(--fd);font-size:1.25rem;font-style:italic;color:var(--spot);margin-bottom:32px}
+.evento-details{display:flex;flex-direction:column;gap:16px;margin-bottom:36px}
+.evento-detail{display:flex;align-items:center;gap:14px}
+.evento-detail-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0}
+.evento-detail-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,239,230,.35);margin-bottom:2px}
+.evento-detail-val{font-size:1rem;font-weight:600;color:var(--cream)}
+.evento-actions{display:flex;gap:12px;flex-wrap:wrap}
+.evento-vagas{display:flex;align-items:center;gap:12px;background:rgba(180,0,40,.2);border:1px solid rgba(220,30,60,.4);border-radius:12px;padding:14px 20px;margin-top:16px}
+.evento-vagas-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;min-width:80px}
+.evento-vagas-bar{height:100%;width:78%;background:linear-gradient(90deg,#FF6680,#FF2244);border-radius:3px}
+.evento-vagas-text{font-size:.8125rem;color:rgba(245,239,230,.6);white-space:nowrap}
+.evento-vagas-text strong{color:#FF6680}
+.evento-ticket{background:rgba(245,239,230,.04);border:1px solid rgba(212,134,58,.25);border-radius:20px;padding:36px}
+.evento-ticket-title{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.evento-ticket-sub{font-size:.875rem;color:rgba(245,239,230,.5);margin-bottom:28px}
+.ticket-options{display:flex;flex-direction:column;gap:12px}
+.ticket-opt{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 20px;transition:border-color .2s}
+.ticket-opt:hover{border-color:rgba(212,134,58,.3)}
+.ticket-opt-icon{font-size:1.375rem;flex-shrink:0}
+.ticket-opt-name{font-weight:700;color:var(--cream);font-size:.9375rem;margin-bottom:2px}
+.ticket-opt-sub{font-size:.8rem;color:rgba(245,239,230,.4)}
+.ticket-opt-action{margin-left:auto}
+.btn-ticket-pix{background:rgba(212,134,58,.15);border:1px solid rgba(212,134,58,.35);color:var(--gold);font-size:.8rem;font-weight:700;padding:6px 14px;border-radius:50px;cursor:pointer;font-family:var(--fb);transition:all .2s}
+.btn-ticket-pix:hover{background:rgba(212,134,58,.3)}
+.btn-ticket-pix.copied{background:rgba(100,200,100,.15);border-color:rgba(100,200,100,.4);color:#7ef07e}
+.ticket-mp-btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00b1ea,#009ee3);color:#fff;font-size:.8rem;font-weight:700;padding:6px 14px;border-radius:50px;transition:all .2s}
+.ticket-mp-btn:hover{filter:brightness(1.1);transform:scale(1.03)}
+
+/* ── NAV ── */
+.nav{position:fixed;top:40px;left:0;right:0;z-index:100;padding:16px 0;transition:background .3s,box-shadow .3s}
+.nav.scrolled{background:rgba(15,10,26,.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--spot);text-decoration:none}
+.nav-links{list-style:none;display:flex;gap:32px}
+.nav-links a{color:rgba(245,239,230,.7);font-size:.9375rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{display:flex;gap:12px}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-hamburger span{width:24px;height:2px;background:var(--cream);border-radius:2px;transition:all .3s}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .nav.open .nav-links{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(15,10,26,.98);padding:24px;gap:20px;border-top:1px solid rgba(255,255,255,.06)}
+  .nav.open .nav-cta{display:flex;position:absolute;top:calc(100% + 160px);left:0;right:0;padding:0 24px;flex-direction:column;background:rgba(15,10,26,.98);padding:16px 24px 24px}
+}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(160deg,var(--void) 0%,#140830 60%,var(--curtain) 100%);position:relative;overflow:hidden;padding-top:120px}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.12) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,var(--warm));pointer-events:none}
+.hero-photo{width:100%;border-radius:20px;object-fit:cover;object-position:top center;max-height:480px;border:1px solid rgba(212,134,58,.15)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2;padding:80px 0}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:48px;padding:48px 0}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,134,58,.12);border:1px solid rgba(212,134,58,.3);color:var(--spot);padding:8px 16px;border-radius:50px;font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+.hero-title{font-size:clamp(2.5rem,5vw,3.75rem);color:var(--cream);margin-bottom:20px}
+.hero-title em{color:var(--spot);font-style:italic}
+.hero-sub{color:rgba(245,239,230,.7);font-size:1.125rem;line-height:1.75;margin-bottom:36px;max-width:520px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+.hero-stat{display:flex;flex-direction:column}
+.hero-stat-val{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:var(--spot)}
+.hero-stat-lbl{font-size:.8125rem;color:rgba(245,239,230,.5);margin-top:2px}
+.hero-visual{position:relative}
+.hero-card{background:linear-gradient(145deg,rgba(30,10,60,.8),rgba(15,10,26,.9));border:1px solid rgba(212,134,58,.2);border-radius:20px;padding:40px;backdrop-filter:blur(12px)}
+.hero-card-quote{font-family:var(--fd);font-size:1.375rem;font-style:italic;color:var(--cream);line-height:1.5;margin-bottom:24px}
+.hero-card-quote em{color:var(--gold)}
+.hero-card-author{display:flex;align-items:center;gap:14px}
+.hero-card-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--spot),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.125rem;font-weight:700;color:var(--void);flex-shrink:0}
+.hero-card-name{font-weight:600;color:var(--cream);font-size:.9375rem}
+.hero-card-role{font-size:.8125rem;color:rgba(245,239,230,.5);margin-top:2px}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(245,239,230,.3);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ── SECTION HEADERS ── */
+.section-header{text-align:center;max-width:720px;margin:0 auto 64px}
+.section-tag{display:inline-block;color:var(--spot);margin-bottom:12px}
+.section-title{font-size:clamp(2rem,4vw,3rem);margin-top:8px;margin-bottom:16px}
+.section-desc{font-size:1.0625rem;color:var(--t-mid);line-height:1.75}
+
+/* ── VIDEO FEATURE ── */
+.vf{margin:48px auto 0;max-width:720px}
+.vf-label{display:inline-flex;align-items:center;gap:8px;background:rgba(212,134,58,.12);border:1px solid rgba(212,134,58,.3);color:var(--spot);padding:6px 16px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.vf-label-dark{background:rgba(245,239,230,.08);border-color:rgba(245,239,230,.15);color:var(--cream)}
+.vf-caption{font-family:var(--fd);font-size:1.125rem;font-style:italic;margin-bottom:20px;line-height:1.5}
+.vf-caption-light{color:var(--t-dark)}
+.vf-caption-dark{color:rgba(245,239,230,.8)}
+.vf-wrap{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.35);border:1px solid rgba(212,134,58,.2)}
+.vf-wrap video{width:100%;display:block;background:#000}
+
+/* ── DIVIDER ── */
+.divider{display:flex;align-items:center;gap:16px;margin:0 0 64px}
+.divider-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,134,58,.25),transparent)}
+.divider-dot{color:var(--spot);opacity:.4;font-size:1rem}
+
+/* ── PROBLEMA ── */
+.problema-bg{background:var(--cream)}
+.problema-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+.problema-card{background:var(--warm);border-radius:var(--r);padding:32px;border-left:3px solid transparent;transition:border-color .2s,box-shadow .2s}
+.problema-card:hover{border-left-color:var(--spot);box-shadow:0 8px 32px rgba(212,134,58,.1)}
+.problema-icon{font-size:2rem;margin-bottom:16px}
+.problema-title{font-family:var(--fd);font-size:1.125rem;font-weight:700;color:var(--t-dark);margin-bottom:10px}
+.problema-text{font-size:.9375rem;color:var(--t-mid);line-height:1.7}
+
+/* ── PALESTRA ── */
+.palestra-bg{background:linear-gradient(160deg,var(--void),var(--curtain))}
+.palestra-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+@media(max-width:900px){.palestra-inner{grid-template-columns:1fr;gap:48px}}
+.palestra-tag{color:var(--gold);margin-bottom:12px}
+.palestra-title{font-size:clamp(2rem,4vw,3rem);color:var(--cream);margin-bottom:8px}
+.palestra-subtitle{font-family:var(--fd);font-size:1.25rem;font-style:italic;color:var(--spot);margin-bottom:24px}
+.palestra-desc{color:rgba(245,239,230,.72);font-size:1.0625rem;line-height:1.8;margin-bottom:32px}
+.palestra-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+.palestra-list li{display:flex;gap:14px;align-items:flex-start;color:rgba(245,239,230,.8);font-size:.9375rem;line-height:1.6}
+.palestra-list li::before{content:'▸';color:var(--spot);flex-shrink:0;margin-top:2px}
+.palestra-info{display:flex;flex-direction:column;gap:20px}
+.palestra-card{background:rgba(245,239,230,.05);border:1px solid rgba(212,134,58,.2);border-radius:var(--r);padding:28px}
+.palestra-card-title{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--gold);margin-bottom:16px}
+.info-row{display:flex;gap:16px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.info-row:last-child{border-bottom:none}
+.info-icon{font-size:1.25rem;flex-shrink:0;margin-top:2px}
+.info-label{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,239,230,.4);margin-bottom:3px}
+.info-value{font-size:.9375rem;color:var(--cream)}
+.palestra-cta{background:linear-gradient(135deg,rgba(212,134,58,.15),rgba(232,200,106,.1));border:1px solid rgba(212,134,58,.25);border-radius:var(--r);padding:28px;text-align:center}
+.palestra-cta p{color:rgba(245,239,230,.6);font-size:.875rem;margin-top:14px}
+
+/* ── MÉTODO ── */
+.metodo-bg{background:var(--warm)}
+.metodo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+@media(max-width:900px){.metodo-grid{grid-template-columns:1fr}}
+.metodo-step{position:relative;padding:36px 32px;background:var(--cream);border-radius:var(--r);transition:transform .2s,box-shadow .2s}
+.metodo-step:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(212,134,58,.12)}
+.metodo-num{font-family:var(--fd);font-size:4rem;font-weight:700;color:var(--spot);opacity:.15;position:absolute;top:16px;right:24px;line-height:1}
+.metodo-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,rgba(212,134,58,.15),rgba(232,200,106,.1));border:1px solid rgba(212,134,58,.25);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px}
+.metodo-title{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--t-dark);margin-bottom:10px}
+.metodo-text{font-size:.9375rem;color:var(--t-mid);line-height:1.7}
+
+/* ── CURSO (MODULOS) ── */
+.curso-bg{background:var(--cream)}
+.curso-header{text-align:center;margin-bottom:24px}
+.curso-tag-top{color:var(--spot);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:12px}
+.curso-main-title{font-size:clamp(2rem,4vw,3rem);color:var(--t-dark);margin-bottom:16px}
+.curso-main-desc{font-size:1.0625rem;color:var(--t-mid);line-height:1.8;max-width:680px;margin:0 auto 48px}
+
+/* ── MODULE CARDS GRID ── */
+.modulos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:32px}
+@media(max-width:768px){.modulos-grid{grid-template-columns:1fr}}
+
+.modulo-card{border-radius:20px;overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s;cursor:default}
+.modulo-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,.35)}
+.modulo-card-inner{padding:40px 36px 36px;min-height:360px;display:flex;flex-direction:column;position:relative;z-index:1}
+
+/* Individual module colors */
+.modulo-card--01{background:linear-gradient(145deg,#1E3A5F 0%,#0D1F33 100%)}
+.modulo-card--02{background:linear-gradient(145deg,#D4863A 0%,#8A4A10 100%)}
+.modulo-card--03{background:linear-gradient(145deg,#4A1942 0%,#250D21 100%)}
+.modulo-card--04{background:linear-gradient(145deg,#1A3A2A 0%,#0A1C13 100%)}
+.modulo-card--05{background:linear-gradient(145deg,#3A1A00 0%,#1C0D00 100%)}
+
+.modulo-card-num{font-family:var(--fd);font-size:6rem;font-weight:700;color:rgba(255,255,255,.07);position:absolute;top:12px;right:24px;line-height:1;pointer-events:none;user-select:none}
+.modulo-card-icon{font-size:2.5rem;margin-bottom:16px;display:block}
+.modulo-card-title{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.2}
+.modulo-card-subtitle{font-family:var(--fd);font-style:italic;color:rgba(255,255,255,.6);font-size:1rem;margin-bottom:20px}
+.modulo-card-desc{color:rgba(255,255,255,.75);font-size:.9375rem;line-height:1.7;margin-bottom:20px;flex:1}
+.modulo-card-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.modulo-card-bullets li{display:flex;gap:10px;align-items:flex-start;color:rgba(255,255,255,.7);font-size:.875rem;line-height:1.5}
+.modulo-card-bullets li::before{content:'▸';color:rgba(255,255,255,.45);flex-shrink:0;margin-top:2px}
+.modulo-card-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;flex-wrap:wrap;gap:12px}
+.modulo-price-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 16px;border-radius:50px;font-size:.875rem;font-weight:700;letter-spacing:.02em;backdrop-filter:blur(4px)}
+.btn-modulo{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:11px 22px;font-size:.875rem;font-weight:600;border-radius:50px;cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.btn-modulo:hover{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.5)}
+
+/* ── TURMAS ── */
+.turmas-section{background:var(--void);padding:80px 0}
+.turmas-header{text-align:center;margin-bottom:56px}
+.turmas-inicio{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(212,134,58,.15),rgba(232,200,106,.1));border:1px solid rgba(212,134,58,.3);border-radius:50px;padding:10px 24px;margin-bottom:20px}
+.turmas-inicio-icon{font-size:1.25rem}
+.turmas-inicio-text{font-size:.875rem;font-weight:600;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.turmas-title{font-family:var(--fd);font-size:clamp(1.75rem,3vw,2.5rem);color:var(--cream);margin-bottom:12px}
+.turmas-sub{color:rgba(245,239,230,.55);font-size:1rem;line-height:1.7;max-width:560px;margin:0 auto}
+.turmas-aviso{display:flex;align-items:flex-start;gap:14px;background:rgba(212,134,58,.08);border:1px solid rgba(212,134,58,.2);border-radius:12px;padding:18px 24px;max-width:680px;margin:0 auto 56px}
+.turmas-aviso-icon{font-size:1.25rem;flex-shrink:0;margin-top:2px}
+.turmas-aviso-text{font-size:.9rem;color:rgba(245,239,230,.7);line-height:1.65}
+.turmas-aviso-text strong{color:var(--gold);display:block;margin-bottom:3px}
+.turmas-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:768px){.turmas-grid{grid-template-columns:1fr}}
+.cidade-card{border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.cidade-header{padding:28px 32px;display:flex;align-items:center;gap:16px}
+.cidade-header--teresina{background:linear-gradient(135deg,#1A0840,#0F0A1A)}
+.cidade-header--fortaleza{background:linear-gradient(135deg,#0A2040,#0F0A1A)}
+.cidade-flag{font-size:2rem;flex-shrink:0}
+.cidade-nome{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--cream)}
+.cidade-estado{font-size:.8125rem;color:rgba(245,239,230,.4);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.cidade-body{background:rgba(245,239,230,.03);padding:24px 32px}
+.turno-list{display:flex;flex-direction:column;gap:12px}
+.turno-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:16px 20px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:border-color .2s}
+.turno-item:hover{border-color:rgba(212,134,58,.25)}
+.turno-icon{font-size:1.375rem;width:36px;text-align:center}
+.turno-info{}
+.turno-nome{font-weight:600;color:var(--cream);font-size:.9375rem;margin-bottom:3px}
+.turno-horario{font-size:.8125rem;color:rgba(245,239,230,.45)}
+.turno-vagas{text-align:right}
+.vagas-badge{display:inline-block;padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.05em}
+.vagas-forming{background:rgba(232,200,106,.12);color:var(--gold);border:1px solid rgba(232,200,106,.25)}
+.cidade-footer{padding:20px 32px;border-top:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.02)}
+.cidade-inicio-date{display:flex;align-items:center;gap:10px;color:rgba(245,239,230,.6);font-size:.875rem}
+.cidade-inicio-date strong{color:var(--spot)}
+
+/* ── PROGRAMA COMPLETO CARD ── */
+.programa-completo-card{background:linear-gradient(145deg,var(--void) 0%,var(--curtain) 100%);border-radius:20px;padding:48px;border:1px solid rgba(212,134,58,.25);position:relative;overflow:hidden;margin-top:8px}
+.programa-completo-card::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.12),transparent 70%);pointer-events:none}
+.programa-badge-best{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--spot),var(--gold));color:var(--void);padding:6px 16px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.programa-completo-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:768px){.programa-completo-inner{grid-template-columns:1fr;gap:32px}}
+.programa-completo-title{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--cream);margin-bottom:8px}
+.programa-completo-sub{color:rgba(245,239,230,.6);font-size:1rem;line-height:1.7;margin-bottom:24px}
+.programa-modulos-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.programa-modulos-list li{display:flex;align-items:center;gap:12px;color:rgba(245,239,230,.8);font-size:.9375rem}
+.programa-modulos-list li .pm-icon{font-size:1.125rem;flex-shrink:0}
+.programa-cta-side{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+@media(max-width:768px){.programa-cta-side{align-items:flex-start}}
+.programa-price-block{margin-bottom:4px}
+.programa-price-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,239,230,.4);margin-bottom:4px}
+.programa-price-val{font-family:var(--fd);font-size:3rem;font-weight:700;color:var(--gold);line-height:1}
+.programa-price-obs{font-size:.875rem;color:rgba(245,239,230,.45);margin-top:6px}
+.btn-programa{background:linear-gradient(135deg,var(--spot),var(--gold));color:var(--void);padding:16px 36px;font-size:1rem;font-weight:700;border-radius:50px;border:none;cursor:pointer;font-family:var(--fb);transition:all .2s;box-shadow:0 6px 24px rgba(212,134,58,.35);display:inline-flex;align-items:center;gap:8px}
+.btn-programa:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,134,58,.5)}
+
+/* ── PROMOÇÃO INDICAÇÃO ── */
+.promo-strip{background:linear-gradient(135deg,#2A0A50 0%,var(--curtain) 50%,#1A0840 100%);position:relative;overflow:hidden;padding:72px 0}
+.promo-strip::before{content:'';position:absolute;top:-120px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.18),transparent 70%);pointer-events:none}
+.promo-strip::after{content:'';position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(232,200,106,.1),transparent 70%);pointer-events:none}
+.promo-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
+@media(max-width:768px){.promo-inner{grid-template-columns:1fr;gap:40px}}
+.promo-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,134,58,.2);border:1px solid rgba(212,134,58,.5);color:var(--gold);padding:7px 18px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+.promo-title{font-family:var(--fd);font-size:clamp(1.75rem,3.5vw,2.75rem);color:var(--cream);margin-bottom:16px;line-height:1.2}
+.promo-title em{color:var(--spot);font-style:italic}
+.promo-desc{color:rgba(245,239,230,.65);font-size:1.0625rem;line-height:1.75;margin-bottom:32px}
+.promo-cards{display:flex;flex-direction:column;gap:14px}
+.promo-card{display:flex;align-items:center;gap:16px;background:rgba(245,239,230,.05);border:1px solid rgba(212,134,58,.2);border-radius:14px;padding:18px 22px}
+.promo-card-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--spot),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.promo-card-text strong{display:block;color:var(--cream);font-size:.9375rem;font-weight:700;margin-bottom:3px}
+.promo-card-text span{color:rgba(245,239,230,.5);font-size:.8375rem}
+.promo-highlight{background:linear-gradient(135deg,rgba(212,134,58,.15),rgba(232,200,106,.08));border:1px solid rgba(232,200,106,.3);border-radius:20px;padding:40px;text-align:center}
+.promo-percent{font-family:var(--fd);font-size:5rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--spot),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.promo-percent-label{font-family:var(--fd);font-size:1.25rem;color:var(--cream);margin-bottom:6px}
+.promo-percent-sub{font-size:.875rem;color:rgba(245,239,230,.5);line-height:1.5}
+
+/* ── PACOTES EMPRESARIAIS ── */
+.pacotes-bg{background:var(--cream);padding:96px 0}
+.pacotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:0}
+@media(max-width:900px){.pacotes-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
+.pacote-card{background:var(--warm);border-radius:20px;padding:36px 32px;border:1.5px solid rgba(28,16,24,.08);display:flex;flex-direction:column;gap:0;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.pacote-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(212,134,58,.12);border-color:rgba(212,134,58,.3)}
+.pacote-card--destaque{border-color:rgba(212,134,58,.4);background:linear-gradient(160deg,var(--void),#200A3A);box-shadow:0 12px 40px rgba(212,134,58,.2)}
+.pacote-card--destaque:hover{box-shadow:0 24px 60px rgba(212,134,58,.35)}
+.pacote-badge-top{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--spot),var(--gold));color:var(--void);font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:50px}
+.pacote-icon{font-size:2.25rem;margin-bottom:20px}
+.pacote-size{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot);margin-bottom:8px}
+.pacote-size--light{color:var(--gold)}
+.pacote-name{font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:10px;color:var(--t-dark)}
+.pacote-name--light{color:var(--cream)}
+.pacote-desc{font-size:.9375rem;color:var(--t-mid);line-height:1.65;margin-bottom:24px}
+.pacote-desc--light{color:rgba(245,239,230,.6)}
+.pacote-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;flex:1}
+.pacote-features li{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--t-mid);line-height:1.5}
+.pacote-features--light li{color:rgba(245,239,230,.7)}
+.pacote-features li::before{content:'✓';color:var(--spot);font-weight:700;flex-shrink:0;margin-top:1px}
+.pacote-cta{margin-top:auto;display:block;text-align:center;padding:14px 24px;border-radius:50px;font-weight:700;font-family:var(--fb);font-size:.9375rem;transition:all .2s;cursor:pointer;border:none}
+.pacote-cta--dark{background:transparent;border:1.5px solid rgba(28,16,24,.2);color:var(--t-dark)}
+.pacote-cta--dark:hover{border-color:var(--spot);color:var(--spot);background:rgba(212,134,58,.06)}
+.pacote-cta--primary{background:linear-gradient(135deg,#E8803A,var(--spot),var(--gold));color:var(--void);box-shadow:0 6px 24px rgba(212,134,58,.45);animation:pulse-glow 2.5s ease-in-out infinite}
+.pacote-cta--primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(212,134,58,.6);animation:none}
+
+/* ── CALENDÁRIO DE MÓDULOS ── */
+.cal-grid{display:flex;flex-direction:column;gap:0;margin:0 auto;max-width:860px}
+.cal-row{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:0;position:relative;padding:0}
+.cal-row:not(:last-child) .cal-line{position:absolute;left:31px;top:72px;bottom:-16px;width:2px;background:linear-gradient(to bottom,rgba(212,134,58,.4),rgba(212,134,58,.1));z-index:0}
+.cal-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(212,134,58,.15),rgba(232,200,106,.08));border:2px solid rgba(212,134,58,.35);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.125rem;font-weight:700;color:var(--gold);flex-shrink:0;position:relative;z-index:1;transition:all .3s}
+.cal-row:hover .cal-num{background:linear-gradient(135deg,rgba(212,134,58,.3),rgba(232,200,106,.15));border-color:var(--gold);transform:scale(1.05)}
+.cal-body{background:rgba(245,239,230,.04);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:20px 28px;margin:8px 0 8px 20px;transition:border-color .25s,background .25s}
+.cal-row:hover .cal-body{border-color:rgba(212,134,58,.25);background:rgba(245,239,230,.06)}
+.cal-modulo-name{font-family:var(--fd);font-size:1.125rem;font-weight:700;color:var(--cream);margin-bottom:6px}
+.cal-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.cal-date{display:inline-flex;align-items:center;gap:6px;background:rgba(212,134,58,.12);border:1px solid rgba(212,134,58,.25);color:var(--gold);font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:50px;letter-spacing:.04em}
+.cal-cities{font-size:.8375rem;color:rgba(245,239,230,.45)}
+.cal-note{font-size:.75rem;color:rgba(232,200,106,.55);font-style:italic;margin-top:4px}
+.cal-status{flex-shrink:0;margin-left:20px}
+
+/* ── SOBRE ── */
+.sobre-bg{background:linear-gradient(160deg,var(--void),#200A3A)}
+.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:900px){.sobre-inner{grid-template-columns:1fr;gap:48px}}
+.sobre-visual{position:relative}
+.sobre-frame{background:linear-gradient(145deg,rgba(212,134,58,.12),rgba(232,200,106,.06));border:1px solid rgba(212,134,58,.2);border-radius:20px;padding:40px;text-align:center}
+.sobre-avatar{width:160px;height:160px;border-radius:50%;object-fit:cover;object-position:top center;margin:0 auto 20px;border:3px solid rgba(212,134,58,.4);display:block}
+.sobre-name{font-family:var(--fd);font-size:1.5rem;color:var(--cream);margin-bottom:6px}
+.sobre-role{font-size:.875rem;color:var(--spot);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.sobre-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.badge{padding:6px 14px;border-radius:50px;font-size:.75rem;font-weight:600}
+.badge-dark{background:rgba(255,255,255,.06);color:rgba(245,239,230,.6);border:1px solid rgba(255,255,255,.1)}
+.sobre-tag{color:var(--gold);margin-bottom:12px}
+.sobre-title{font-size:clamp(1.75rem,3.5vw,2.75rem);color:var(--cream);margin-bottom:20px}
+.sobre-desc{color:rgba(245,239,230,.7);font-size:1.0625rem;line-height:1.8;margin-bottom:20px}
+.sobre-quote{font-family:var(--fd);font-size:1.25rem;font-style:italic;color:var(--gold);line-height:1.5;border-left:3px solid var(--spot);padding-left:20px;margin-top:28px}
+
+/* ── DEPOIMENTOS ── */
+.dep-bg{background:var(--warm)}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:900px){.dep-grid{grid-template-columns:1fr}}
+.dep-card{background:var(--cream);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:16px;transition:transform .2s,box-shadow .2s}
+.dep-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,134,58,.1)}
+.dep-stars{color:var(--spot);font-size:1rem;letter-spacing:2px}
+.dep-text{font-family:var(--fd);font-size:1.0625rem;font-style:italic;color:var(--t-dark);line-height:1.6;flex:1}
+.dep-author{display:flex;gap:12px;align-items:center;margin-top:auto;padding-top:16px;border-top:1px solid rgba(28,16,24,.08)}
+.dep-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--spot),var(--gold));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;color:var(--void);flex-shrink:0}
+.dep-name{font-weight:600;font-size:.9375rem;color:var(--t-dark)}
+.dep-role{font-size:.8125rem;color:var(--t-light)}
+
+/* ── EMPRESAS ── */
+.emp-bg{background:var(--cream)}
+.emp-inner{text-align:center}
+.emp-title{font-size:.875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--t-light);margin-bottom:40px}
+.emp-logos{display:flex;flex-wrap:wrap;gap:32px;justify-content:center;align-items:center}
+.emp-logo{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--t-light);opacity:.5;transition:opacity .2s}
+.emp-logo:hover{opacity:.9}
+
+/* ── FAQ ── */
+.faq-bg{background:var(--warm)}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+.faq-item{border-radius:12px;overflow:hidden}
+.faq-q{width:100%;background:var(--cream);border:none;padding:20px 24px;text-align:left;font-family:var(--fb);font-size:1rem;font-weight:600;color:var(--t-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:background .2s}
+.faq-q:hover{background:#EDE6DB}
+.faq-q.open{background:var(--void);color:var(--cream)}
+.faq-chevron{flex-shrink:0;transition:transform .3s;color:var(--spot)}
+.faq-q.open .faq-chevron{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-a.open{max-height:400px;padding:0 24px 20px}
+.faq-a-inner{background:var(--void);padding:20px 24px;border-radius:0 0 12px 12px;color:rgba(245,239,230,.75);font-size:.9375rem;line-height:1.75}
+
+/* ── CTA FINAL ── */
+.cta-bg{background:linear-gradient(145deg,var(--void),var(--curtain));position:relative;overflow:hidden}
+.cta-bg::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.1),transparent 70%);pointer-events:none}
+.cta-inner{text-align:center;position:relative;z-index:2;max-width:640px;margin:0 auto}
+.cta-title{font-size:clamp(2rem,4vw,3rem);color:var(--cream);margin-bottom:20px}
+.cta-title em{color:var(--spot);font-style:italic}
+.cta-sub{color:rgba(245,239,230,.65);font-size:1.0625rem;line-height:1.75;margin-bottom:40px}
+.cta-options{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.cta-note{font-size:.875rem;color:rgba(245,239,230,.4)}
+
+/* ── FOOTER ── */
+footer{background:var(--void);padding:64px 0 32px;border-top:1px solid rgba(255,255,255,.04)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:32px}}
+.footer-brand{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:var(--spot);margin-bottom:12px}
+.footer-tagline{font-size:.9375rem;color:rgba(245,239,230,.45);line-height:1.7;max-width:300px}
+.footer-heading{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,230,.3);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.9375rem;color:rgba(245,239,230,.5);transition:color .2s}
+.footer-links a:hover{color:var(--spot)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid rgba(255,255,255,.04);gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:.8125rem;color:rgba(245,239,230,.25)}
+.footer-social{display:flex;gap:16px}
+.footer-social a{font-size:.8125rem;color:rgba(245,239,230,.35);transition:color .2s}
+.footer-social a:hover{color:var(--spot)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
+
+/* ══════════════════════════════════════════
+   MODAL SYSTEM
+══════════════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.modal-backdrop{position:absolute;inset:0;background:rgba(10,6,20,.85);backdrop-filter:blur(12px)}
+.modal-box{position:relative;z-index:1;background:var(--warm);border-radius:24px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.5);transform:translateY(20px) scale(.97);transition:transform .3s}
+.modal-overlay.active .modal-box{transform:translateY(0) scale(1)}
+
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:28px 32px 0;margin-bottom:8px}
+.modal-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--t-dark)}
+.modal-close{width:36px;height:36px;border-radius:50%;background:rgba(28,16,24,.06);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--t-mid);transition:background .2s;font-size:1.125rem;flex-shrink:0}
+.modal-close:hover{background:rgba(28,16,24,.12)}
+
+/* Progress bar */
+.modal-progress{padding:0 32px;margin-bottom:24px}
+.modal-steps-bar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.modal-step-dot{width:8px;height:8px;border-radius:50%;background:rgba(28,16,24,.15);transition:background .3s,transform .3s;flex-shrink:0}
+.modal-step-dot.active{background:var(--spot);transform:scale(1.4)}
+.modal-step-dot.done{background:var(--spot);opacity:.5}
+.modal-step-line{flex:1;height:2px;background:rgba(28,16,24,.08);border-radius:2px;position:relative;overflow:hidden}
+.modal-step-line-fill{position:absolute;top:0;left:0;height:100%;background:var(--spot);border-radius:2px;transition:width .4s}
+.modal-steps-label{font-size:.75rem;color:var(--t-light);font-weight:500}
+
+.modal-body{padding:0 32px 32px}
+
+/* Steps */
+.modal-step{display:none}
+.modal-step.active{display:block}
+
+/* Module checkboxes */
+.modulo-checks{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.modulo-check-item{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:2px solid rgba(28,16,24,.1);cursor:pointer;transition:border-color .2s,background .2s;user-select:none}
+.modulo-check-item:hover{border-color:rgba(212,134,58,.4);background:rgba(212,134,58,.04)}
+.modulo-check-item.selected{border-color:var(--spot);background:rgba(212,134,58,.08)}
+.modulo-check-item input[type=checkbox]{display:none}
+.check-box{width:20px;height:20px;border-radius:6px;border:2px solid rgba(28,16,24,.2);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.modulo-check-item.selected .check-box{background:var(--spot);border-color:var(--spot)}
+.check-box-tick{color:#fff;font-size:.75rem;opacity:0;transition:opacity .15s}
+.modulo-check-item.selected .check-box-tick{opacity:1}
+.check-icon{font-size:1.25rem;flex-shrink:0}
+.check-label{flex:1}
+.check-name{font-weight:600;font-size:.9375rem;color:var(--t-dark)}
+.check-price{font-size:.8125rem;color:var(--t-light);margin-top:2px}
+
+/* Programa completo check */
+.programa-check-item{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;border:2px solid rgba(212,134,58,.3);background:linear-gradient(135deg,rgba(15,10,26,.04),rgba(30,10,60,.06));cursor:pointer;user-select:none;transition:border-color .2s,background .2s;margin-bottom:20px}
+.programa-check-item.selected{border-color:var(--spot);background:rgba(212,134,58,.1)}
+.programa-check-item input[type=checkbox]{display:none}
+
+/* City selection */
+.city-section{margin-bottom:20px}
+.city-label{font-size:.8125rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t-light);margin-bottom:12px;display:block}
+.city-radios{display:flex;gap:12px;flex-wrap:wrap}
+.city-radio-item{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:50px;border:2px solid rgba(28,16,24,.1);cursor:pointer;transition:all .2s;user-select:none;font-weight:600;font-size:.9375rem;color:var(--t-mid)}
+.city-radio-item:hover{border-color:rgba(212,134,58,.4)}
+.city-radio-item.selected{border-color:var(--spot);color:var(--spot);background:rgba(212,134,58,.06)}
+.city-radio-item input[type=radio]{display:none}
+.city-radio-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(28,16,24,.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.city-radio-item.selected .city-radio-dot{border-color:var(--spot)}
+.city-radio-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--spot);opacity:0;transition:opacity .2s}
+.city-radio-item.selected .city-radio-dot::after{opacity:1}
+
+/* Total counter */
+.modal-total{display:flex;justify-content:space-between;align-items:center;background:var(--void);color:var(--cream);border-radius:12px;padding:16px 20px;margin-bottom:24px}
+.modal-total-label{font-size:.875rem;font-weight:500;color:rgba(245,239,230,.65)}
+.modal-total-val{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--gold)}
+
+/* Form inputs */
+.form-group{margin-bottom:18px}
+.form-label{display:block;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t-light);margin-bottom:8px}
+.form-input{width:100%;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(28,16,24,.12);background:#fff;font-family:var(--fb);font-size:.9375rem;color:var(--t-dark);transition:border-color .2s,box-shadow .2s;outline:none}
+.form-input:focus{border-color:var(--spot);box-shadow:0 0 0 3px rgba(212,134,58,.12)}
+.form-textarea{resize:vertical;min-height:80px}
+.form-input::placeholder{color:rgba(74,58,82,.35)}
+
+/* Payment step */
+.payment-section{margin-bottom:24px}
+.payment-title{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--t-dark);margin-bottom:6px}
+.payment-sub{font-size:.9375rem;color:var(--t-mid);line-height:1.6;margin-bottom:20px}
+.payment-options{display:flex;flex-direction:column;gap:12px}
+.payment-option{border:1.5px solid rgba(28,16,24,.1);border-radius:12px;padding:20px;transition:border-color .2s}
+.payment-option:hover{border-color:rgba(212,134,58,.3)}
+.payment-option-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.payment-option-icon{font-size:1.5rem}
+.payment-option-name{font-weight:700;font-size:1rem;color:var(--t-dark)}
+.payment-option-sub{font-size:.8125rem;color:var(--t-light)}
+.pix-key-box{display:flex;align-items:center;gap:10px;background:rgba(28,16,24,.04);border-radius:8px;padding:12px 16px}
+.pix-key{font-family:monospace;font-size:1rem;font-weight:600;color:var(--t-dark);flex:1}
+.btn-copy{background:var(--spot);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:.8125rem;font-weight:700;cursor:pointer;font-family:var(--fb);transition:background .2s;white-space:nowrap}
+.btn-copy:hover{background:#c07030}
+.btn-copy.copied{background:#2a7a3a}
+.payment-note{font-size:.8125rem;color:var(--t-light);line-height:1.6;margin-top:16px;padding-top:16px;border-top:1px solid rgba(28,16,24,.08)}
+.payment-note strong{color:var(--t-dark)}
+
+/* Modal nav buttons */
+.modal-nav{display:flex;gap:12px;margin-top:8px}
+.modal-nav .btn-back{background:transparent;border:1.5px solid rgba(28,16,24,.15);color:var(--t-mid);padding:12px 24px;border-radius:50px;font-family:var(--fb);font-size:.9375rem;font-weight:600;cursor:pointer;transition:all .2s}
+.modal-nav .btn-back:hover{border-color:var(--spot);color:var(--spot)}
+.modal-nav .btn-next{flex:1;background:linear-gradient(135deg,#E8803A 0%,var(--spot) 40%,var(--gold) 100%);color:var(--void);padding:16px 28px;border-radius:50px;font-family:var(--fb);font-size:1rem;font-weight:800;cursor:pointer;border:none;transition:all .25s cubic-bezier(.34,1.56,.64,1);box-shadow:0 6px 24px rgba(212,134,58,.5),inset 0 1px 0 rgba(255,255,255,.2);letter-spacing:.02em;animation:pulse-glow 2.5s ease-in-out infinite}
+.modal-nav .btn-next:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 36px rgba(212,134,58,.65);animation:none}
+.modal-nav .btn-next:active{transform:scale(.97)}
+
+/* Section divider within modal */
+.modal-section-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t-light);margin-bottom:12px;display:block}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);z-index:2000;background:var(--void);color:var(--cream);padding:14px 24px;border-radius:50px;font-size:.9375rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.4);border:1px solid rgba(212,134,58,.3);opacity:0;pointer-events:none;transition:all .35s;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-check{color:var(--spot);margin-right:6px}
+
+/* Guarantee box */
+.curso-guarantee{display:flex;gap:14px;align-items:flex-start;background:rgba(212,134,58,.08);border:1px solid rgba(212,134,58,.2);border-radius:12px;padding:20px;margin-top:28px}
+.curso-guarantee-icon{font-size:1.5rem;flex-shrink:0}
+.curso-guarantee-text{font-size:.875rem;color:var(--t-mid);line-height:1.6}
+.curso-guarantee-text strong{color:var(--t-dark);display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <div class="wrap">
+    <div class="announce-bar-inner">
+      <span class="announce-urgent">🔴 Últimas vagas</span>
+      <span class="announce-text"><strong>Palestra · 22 de maio · Teatro Torquato Neto · Teresina · 20h</strong></span>
+      <a href="#evento" class="announce-btn">Garantir ingresso →</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Cênica</a>
+      <ul class="nav-links">
+        <li><a href="#evento" style="color:#FF9999;font-weight:700">🎭 22 Mai</a></li>
+        <li><a href="#palestra">Palestra</a></li>
+        <li><a href="#curso">Curso</a></li>
+        <li><a href="#empresas">Empresas</a></li>
+        <li><a href="#turmas">Turmas</a></li>
+        <li><a href="#sobre">João Cambraia</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#palestra" class="btn btn-ghost btn-sm">Palestra</a>
+        <button onclick="openModal()" class="btn btn-primary btn-sm">Quero o Curso</button>
+      </div>
+      <div class="nav-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Desenvolvimento Humano · Técnicas Teatrais
+        </div>
+        <h1 class="display hero-title reveal">
+          O palco onde você pratica<br><em>quem você quer ser.</em>
+        </h1>
+        <p class="hero-sub reveal reveal-d1">
+          Técnicas teatrais para desenvolver liderança, presença e comunicação. Para profissionais e equipes que querem mudança real — não mais um treinamento que se esquece na semana seguinte.
+        </p>
+        <div class="hero-actions reveal reveal-d2">
+          <a href="#palestra" class="btn btn-primary btn-lg">Ver a Palestra</a>
+          <a href="#curso" class="btn btn-ghost btn-lg">Conhecer o Curso</a>
+        </div>
+        <div class="hero-stats reveal reveal-d3">
+          <div class="hero-stat">
+            <span class="hero-stat-val">300+</span>
+            <span class="hero-stat-lbl">profissionais formados</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">2</span>
+            <span class="hero-stat-lbl">cidades: Teresina e Fortaleza</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-val">5</span>
+            <span class="hero-stat-lbl">módulos práticos</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal reveal-d2">
+        <img src="joao-cambraia.jpg" alt="João Cambraia — Fundador da Cênica" class="hero-photo"/>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  </div>
+</section>
+
+<!-- EVENTO -->
+<section class="evento-bg" id="evento">
+  <div class="wrap">
+    <div class="evento-inner">
+
+      <div>
+        <div class="evento-label">
+          <span class="evento-dot"></span>
+          Ingresso à venda · Vagas acabando
+        </div>
+        <h2 class="evento-title">O Manual do Humano</h2>
+        <p class="evento-subtitle">A palestra que vai mudar como você se vê e como os outros te veem.</p>
+
+        <div class="evento-details reveal">
+          <div class="evento-detail">
+            <div class="evento-detail-icon">📅</div>
+            <div>
+              <div class="evento-detail-label">Data</div>
+              <div class="evento-detail-val">22 de maio de 2026 · Sexta-feira</div>
+            </div>
+          </div>
+          <div class="evento-detail">
+            <div class="evento-detail-icon">🕗</div>
+            <div>
+              <div class="evento-detail-label">Horário</div>
+              <div class="evento-detail-val">20h00 (abertura das portas às 19h30)</div>
+            </div>
+          </div>
+          <div class="evento-detail">
+            <div class="evento-detail-icon">🎭</div>
+            <div>
+              <div class="evento-detail-label">Local</div>
+              <div class="evento-detail-val">Teatro Torquato Neto · Teresina, PI</div>
+            </div>
+          </div>
+          <div class="evento-detail">
+            <div class="evento-detail-icon">🎤</div>
+            <div>
+              <div class="evento-detail-label">Palestrante</div>
+              <div class="evento-detail-val">João Cambraia — Fundador da Cênica</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="evento-vagas reveal">
+          <div class="evento-vagas-bar-wrap">
+            <div class="evento-vagas-bar"></div>
+          </div>
+          <div class="evento-vagas-text"><strong>Quase esgotado!</strong> Poucas vagas disponíveis</div>
+        </div>
+      </div>
+
+      <div class="evento-ticket reveal reveal-d1">
+        <div class="evento-ticket-title">Garanta seu ingresso</div>
+        <div class="evento-ticket-sub">Escolha a forma de pagamento e confirme sua presença agora.</div>
+        <div class="ticket-options">
+
+          <div class="ticket-opt">
+            <div class="ticket-opt-icon">📱</div>
+            <div>
+              <div class="ticket-opt-name">PIX</div>
+              <div class="ticket-opt-sub">Pagamento instantâneo · Chave: 85997041061</div>
+            </div>
+            <div class="ticket-opt-action">
+              <button class="btn-ticket-pix" id="btnPixEvento" onclick="copiarPixEvento()">Copiar chave</button>
+            </div>
+          </div>
+
+          <div class="ticket-opt">
+            <div class="ticket-opt-icon">💳</div>
+            <div>
+              <div class="ticket-opt-name">Cartão de Crédito</div>
+              <div class="ticket-opt-sub">Parcelamento disponível</div>
+            </div>
+            <div class="ticket-opt-action">
+              <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener" class="ticket-mp-btn">
+                Pagar
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="ticket-opt">
+            <div class="ticket-opt-icon">🏧</div>
+            <div>
+              <div class="ticket-opt-name">Cartão de Débito</div>
+              <div class="ticket-opt-sub">Via Mercado Pago</div>
+            </div>
+            <div class="ticket-opt-action">
+              <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener" class="ticket-mp-btn">
+                Pagar
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <p style="font-size:.8rem;color:rgba(245,239,230,.35);margin-top:20px;line-height:1.6">Após o pagamento, envie o comprovante para <strong style="color:rgba(245,239,230,.6)">(85) 99704-1061</strong> via WhatsApp para confirmar sua vaga.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema-bg" id="problema">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="label section-tag">Por que treinamentos convencionais falham</span>
+      <h2 class="display section-title">Você já foi em um treinamento que esqueceu na semana seguinte?</h2>
+      <p class="section-desc">A maioria dos programas de desenvolvimento ensina teoria. O corpo aprende pela prática. Essa é a diferença.</p>
+    </div>
+    <!-- VIDEO 1 -->
+    <div class="vf reveal">
+      <span class="vf-label">▶ Assista</span>
+      <p class="vf-caption vf-caption-light">"Você sente que está fazendo tudo certo... mas algo ainda trava."</p>
+      <div class="vf-wrap">
+        <video controls preload="metadata" poster="">
+          <source src="voce-sente.mp4" type="video/mp4"/>
+          Seu navegador não suporta vídeo HTML5.
+        </video>
+      </div>
+    </div>
+
+    <div class="problema-grid">
+      <div class="problema-card reveal reveal-d1">
+        <div class="problema-icon">📋</div>
+        <h3 class="problema-title">Conteúdo sem corpo</h3>
+        <p class="problema-text">Slides, frameworks e apostilas não mudam comportamento. A mudança acontece quando você pratica em situação real — com pressão, feedback e repetição.</p>
+      </div>
+      <div class="problema-card reveal reveal-d2">
+        <div class="problema-icon">🎭</div>
+        <h3 class="problema-title">Presença ignorada</h3>
+        <p class="problema-text">Nenhum treinamento corporativo ensina presença. E é exatamente isso que separa quem tem autoridade de quem apenas tem competência técnica.</p>
+      </div>
+      <div class="problema-card reveal reveal-d3">
+        <div class="problema-icon">🔁</div>
+        <h3 class="problema-title">Resultado zero na segunda-feira</h3>
+        <p class="problema-text">Sem prática contínua e contextualizada, o que foi aprendido na sexta-feira some no fim de semana. A Cênica foi construída para mudar isso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PALESTRA -->
+<section class="palestra-bg" id="palestra">
+  <div class="wrap">
+    <div class="palestra-inner">
+      <div>
+        <span class="label palestra-tag reveal">Palestra</span>
+        <h2 class="display palestra-title reveal">O Manual do Humano</h2>
+        <p class="palestra-subtitle reveal reveal-d1">Como o teatro revela o que os treinamentos escondem</p>
+        <p class="palestra-desc reveal reveal-d1">Uma palestra provocativa e prática sobre presença, comunicação e liderança. João Cambraia usa a lógica do teatro para revelar por que você é mais capaz do que imagina — e o que está te impedindo de mostrar isso.</p>
+        <ul class="palestra-list reveal reveal-d2">
+          <li>Por que a maioria das pessoas subestima sua própria capacidade de comunicar</li>
+          <li>As 3 técnicas teatrais que transformam qualquer profissional em presença</li>
+          <li>A diferença entre saber e incorporar — e como treinar isso no trabalho</li>
+          <li>Como criar espaço psicológico seguro para equipes se expressarem de verdade</li>
+          <li>O erro que líderes cometem ao tentar "parecer" em vez de "ser"</li>
+        </ul>
+        <div class="reveal reveal-d3">
+          <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20palestra%20O%20Manual%20do%20Humano" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Contratar a Palestra</a>
+        </div>
+      </div>
+      <div class="palestra-info">
+        <div class="palestra-card reveal reveal-d1">
+          <h3 class="palestra-card-title">Detalhes da Palestra</h3>
+          <div class="info-row">
+            <span class="info-icon">⏱</span>
+            <div>
+              <div class="info-label">Duração</div>
+              <div class="info-value">60 a 90 minutos + Q&A</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">👥</span>
+            <div>
+              <div class="info-label">Público</div>
+              <div class="info-value">Equipes, líderes, conferências, eventos corporativos</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <div>
+              <div class="info-label">Formato</div>
+              <div class="info-value">Presencial ou Online</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">🎯</span>
+            <div>
+              <div class="info-label">Resultado</div>
+              <div class="info-value">Engajamento real, reflexão prática, mudança percebida no dia</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">💰</span>
+            <div>
+              <div class="info-label">Investimento</div>
+              <div class="info-value">A negociar · <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20quero%20saber%20sobre%20os%20valores%20da%20palestra%20O%20Manual%20do%20Humano" target="_blank" rel="noopener" style="color:var(--spot);text-decoration:underline;text-underline-offset:3px">Fale conosco</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="palestra-cta reveal reveal-d2">
+          <p style="font-size:.8125rem;color:rgba(245,239,230,.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Também disponível como</p>
+          <p style="font-family:var(--fd);font-size:1.25rem;color:var(--cream);margin-bottom:8px">Workshop Imersivo</p>
+          <p style="font-size:.9375rem;color:rgba(245,239,230,.6);line-height:1.6;margin-bottom:20px">3 a 6 horas de prática intensa. Equipes saem com mudança real de comportamento.</p>
+          <a href="https://wa.me/5585997041061?text=Interesse%20no%20Workshop%20Imersivo%20C%C3%AAnica" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center">Saber mais sobre o Workshop</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="metodo-bg" id="metodo">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="label section-tag">O Método Cênica</span>
+      <h2 class="display section-title">Três atos. Uma jornada.</h2>
+      <p class="section-desc">Cada técnica teatral tem uma aplicação direta no seu desenvolvimento profissional. Não é improviso sem propósito — é método com rigor de ofício.</p>
+    </div>
+    <div class="metodo-grid">
+      <div class="metodo-step reveal reveal-d1">
+        <div class="metodo-num">01</div>
+        <div class="metodo-icon">🔍</div>
+        <h3 class="metodo-title">Revelar</h3>
+        <p class="metodo-text">Identificamos padrões de comportamento que limitam sua presença e comunicação. O que você já faz bem sem perceber. O que trava você sem que saiba.</p>
+      </div>
+      <div class="metodo-step reveal reveal-d2">
+        <div class="metodo-num">02</div>
+        <div class="metodo-icon">🎭</div>
+        <h3 class="metodo-title">Praticar</h3>
+        <p class="metodo-text">Técnicas teatrais como improviso, escuta ativa corporal e trabalho de presença. Você pratica em contexto seguro — com erro, feedback e repetição.</p>
+      </div>
+      <div class="metodo-step reveal reveal-d3">
+        <div class="metodo-num">03</div>
+        <div class="metodo-icon">⚡</div>
+        <h3 class="metodo-title">Incorporar</h3>
+        <p class="metodo-text">O novo comportamento se instala no corpo, não na cabeça. Você sai com algo que funciona na segunda-feira — não apenas na sala de treinamento.</p>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="vf reveal" style="margin-top:64px">
+      <span class="vf-label">▶ Assista</span>
+      <p class="vf-caption vf-caption-light">"Ser bom na parte técnica não é mais o suficiente."</p>
+      <div class="vf-wrap">
+        <video controls preload="metadata">
+          <source src="ser-bom-tecnica.mp4" type="video/mp4"/>
+          Seu navegador não suporta vídeo HTML5.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSO -->
+<section class="curso-bg" id="curso">
+  <div class="wrap">
+    <div class="curso-header reveal">
+      <span class="curso-tag-top">Curso</span>
+      <h2 class="display curso-main-title">Cênica — Programa de Desenvolvimento</h2>
+      <p class="curso-main-desc">Um programa de 5 módulos que usa técnicas teatrais para transformar como você se comunica, lidera e colabora. Cada módulo é uma imersão prática — sem slides, sem teoria vazia. Faça avulso ou o programa completo.</p>
+    </div>
+
+    <!-- MODULE CARDS GRID -->
+    <div class="modulos-grid">
+
+      <!-- Módulo 01 — Empatia -->
+      <div class="modulo-card modulo-card--01 reveal reveal-d1">
+        <div class="modulo-card-inner">
+          <span class="modulo-card-num">01</span>
+          <span class="modulo-card-icon">🤝</span>
+          <h3 class="modulo-card-title">Empatia</h3>
+          <p class="modulo-card-subtitle">A base de toda relação verdadeira</p>
+          <p class="modulo-card-desc">Desenvolver a capacidade de sentir e compreender o outro é o ponto de partida de qualquer liderança real. Sem empatia, a comunicação é ruído. Com ela, tudo muda.</p>
+          <ul class="modulo-card-bullets">
+            <li>Escuta ativa — ouvir o que não foi dito</li>
+            <li>Como criar conexão genuína sob pressão</li>
+            <li>Técnicas de perspectiva para resolver conflitos</li>
+          </ul>
+          <div class="modulo-card-footer">
+            <span class="modulo-price-badge">R$ 200</span>
+            <button class="btn-modulo" onclick="openModal('01')">Inscrever neste módulo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 02 — Comunicação -->
+      <div class="modulo-card modulo-card--02 reveal reveal-d2">
+        <div class="modulo-card-inner">
+          <span class="modulo-card-num">02</span>
+          <span class="modulo-card-icon">🎙</span>
+          <h3 class="modulo-card-title">Comunicação</h3>
+          <p class="modulo-card-subtitle">Presença, clareza e impacto real</p>
+          <p class="modulo-card-desc">Como fazer o que você quer dizer chegar de verdade — no corpo, na voz, na palavra. Não é sobre falar mais, é sobre comunicar melhor. A diferença entre ser ouvido e ser ignorado.</p>
+          <ul class="modulo-card-bullets">
+            <li>Presença vocal e linguagem corporal</li>
+            <li>Estrutura narrativa para apresentações de impacto</li>
+            <li>Gestão do nervosismo e da ansiedade em cena</li>
+          </ul>
+          <div class="modulo-card-footer">
+            <span class="modulo-price-badge">R$ 200</span>
+            <button class="btn-modulo" onclick="openModal('02')">Inscrever neste módulo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 03 — Inteligência Emocional -->
+      <div class="modulo-card modulo-card--03 reveal reveal-d1">
+        <div class="modulo-card-inner">
+          <span class="modulo-card-num">03</span>
+          <span class="modulo-card-icon">🧠</span>
+          <h3 class="modulo-card-title">Inteligência Emocional</h3>
+          <p class="modulo-card-subtitle">Lidere a si mesmo antes de liderar outros</p>
+          <p class="modulo-card-desc">Reconhecer e regular emoções em situações de pressão é a competência mais valorizada no trabalho — e a menos treinada. A liderança começa de dentro para fora.</p>
+          <ul class="modulo-card-bullets">
+            <li>Identificação de gatilhos emocionais em tempo real</li>
+            <li>Técnicas de regulação em situações de conflito</li>
+            <li>Como transformar vulnerabilidade em autoridade</li>
+          </ul>
+          <div class="modulo-card-footer">
+            <span class="modulo-price-badge">R$ 200</span>
+            <button class="btn-modulo" onclick="openModal('03')">Inscrever neste módulo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 04 — Trabalho em Equipe -->
+      <div class="modulo-card modulo-card--04 reveal reveal-d2">
+        <div class="modulo-card-inner">
+          <span class="modulo-card-num">04</span>
+          <span class="modulo-card-icon">🎭</span>
+          <h3 class="modulo-card-title">Trabalho em Equipe</h3>
+          <p class="modulo-card-subtitle">Ninguém faz cena sozinho</p>
+          <p class="modulo-card-desc">O palco ensina que resultados extraordinários nascem da co-criação. Prática intensa de escuta, confiança e colaboração — as mesmas habilidades que separam equipes medianas de equipes excepcionais.</p>
+          <ul class="modulo-card-bullets">
+            <li>Dinâmicas de confiança e segurança psicológica</li>
+            <li>Exercícios de escuta e resposta coletiva</li>
+            <li>Construção de identidade de equipe</li>
+          </ul>
+          <div class="modulo-card-footer">
+            <span class="modulo-price-badge">R$ 200</span>
+            <button class="btn-modulo" onclick="openModal('04')">Inscrever neste módulo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 05 — Criatividade -->
+      <div class="modulo-card modulo-card--05 reveal reveal-d2" style="grid-column:1/-1;max-width:calc(50% - 14px);justify-self:center">
+        <div class="modulo-card-inner">
+          <span class="modulo-card-num">05</span>
+          <span class="modulo-card-icon">✦</span>
+          <h3 class="modulo-card-title">Criatividade</h3>
+          <p class="modulo-card-subtitle">Improvise com método e confiança</p>
+          <p class="modulo-card-desc">Destrave o improviso. Aprenda a criar soluções e respostas no calor do momento — com confiança e método. Criatividade não é talento, é prática.</p>
+          <ul class="modulo-card-bullets">
+            <li>Técnicas de improviso aplicadas a reuniões e negociações</li>
+            <li>Como gerar ideias sob pressão e prazo</li>
+            <li>Desbloqueio do medo de errar e experimentar</li>
+          </ul>
+          <div class="modulo-card-footer">
+            <span class="modulo-price-badge">R$ 200</span>
+            <button class="btn-modulo" onclick="openModal('05')">Inscrever neste módulo</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- END MODULE CARDS -->
+
+    <!-- PROGRAMA COMPLETO -->
+    <div class="programa-completo-card reveal">
+      <span class="programa-badge-best">⭐ Melhor escolha</span>
+      <div class="programa-completo-inner">
+        <div>
+          <h3 class="programa-completo-title">Programa Completo Cênica</h3>
+          <p class="programa-completo-sub">Os 5 módulos em uma jornada de transformação contínua. Turma presencial em Teresina e Fortaleza — máximo 12 pessoas por turma.</p>
+          <ul class="programa-modulos-list">
+            <li><span class="pm-icon">🤝</span> Módulo 01 — Empatia</li>
+            <li><span class="pm-icon">🎙</span> Módulo 02 — Comunicação</li>
+            <li><span class="pm-icon">🧠</span> Módulo 03 — Inteligência Emocional</li>
+            <li><span class="pm-icon">🎭</span> Módulo 04 — Trabalho em Equipe</li>
+            <li><span class="pm-icon">✦</span> Módulo 05 — Criatividade</li>
+          </ul>
+        </div>
+        <div class="programa-cta-side">
+          <div class="programa-price-block">
+            <div class="programa-price-label">Investimento total</div>
+            <div class="programa-price-val">R$&nbsp;1.000</div>
+            <div class="programa-price-obs">5 módulos × R$ 200 · turma reduzida</div>
+          </div>
+          <button class="btn-programa" onclick="openModal('completo')">
+            Inscrever no Programa Completo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <div class="curso-guarantee" style="margin-top:0">
+            <span class="curso-guarantee-icon">🛡</span>
+            <div class="curso-guarantee-text">
+              <strong>Garantia de 7 dias</strong>
+              Se após o primeiro encontro você sentir que não é para você, devolvemos 100% do valor.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END PROGRAMA COMPLETO -->
+
+  </div>
+</section>
+
+<!-- PROMOÇÃO INDICAÇÃO -->
+<section class="promo-strip" id="promocao">
+  <div class="wrap">
+    <div class="promo-inner">
+      <div>
+        <span class="promo-badge">🎁 Promoção</span>
+        <h2 class="display promo-title">Indique um amigo.<br>Os dois ganham <em>10% de desconto.</em></h2>
+        <p class="promo-desc">Acreditamos que o crescimento é mais poderoso quando acontece em comunidade. Por isso, quando você traz alguém, a Cênica recompensa os dois — porque a jornada é melhor junto.</p>
+        <div class="promo-cards">
+          <div class="promo-card">
+            <div class="promo-card-icon">👤</div>
+            <div class="promo-card-text">
+              <strong>Quem indica</strong>
+              <span>Recebe 10% de desconto na sua matrícula ou próximo módulo</span>
+            </div>
+          </div>
+          <div class="promo-card">
+            <div class="promo-card-icon">🤝</div>
+            <div class="promo-card-text">
+              <strong>Quem é indicado</strong>
+              <span>Já entra com 10% de desconto garantido na inscrição</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20promo%C3%A7%C3%A3o%20de%20indica%C3%A7%C3%A3o%20da%20C%C3%AAnica" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Indicar e garantir desconto</a>
+        </div>
+      </div>
+      <div class="promo-highlight reveal">
+        <div class="promo-percent">10%</div>
+        <div class="promo-percent-label">de desconto para os dois</div>
+        <div class="promo-percent-sub">Válido para qualquer módulo<br>ou programa completo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACOTES EMPRESARIAIS -->
+<section class="pacotes-bg" id="empresas">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="label section-tag">Para empresas</span>
+      <h2 class="display section-title">Leve a Cênica para sua equipe</h2>
+      <p class="section-desc">Desenvolvemos propostas personalizadas para cada porte de empresa. Da startup ao grande grupo, criamos um formato que respeita a sua realidade e gera resultados reais no comportamento da equipe.</p>
+    </div>
+    <div class="pacotes-grid">
+
+      <!-- PEQUENA -->
+      <div class="pacote-card reveal reveal-d1">
+        <div class="pacote-icon">🌱</div>
+        <div class="pacote-size">Pequena empresa</div>
+        <div class="pacote-name">Semente</div>
+        <div class="pacote-desc">Ideal para startups, MEIs e equipes menores que querem investir em pessoas desde cedo.</div>
+        <ul class="pacote-features">
+          <li>Até 10 participantes</li>
+          <li>1 ou 2 módulos à escolha</li>
+          <li>Formato concentrado (fins de semana)</li>
+          <li>Certificado de participação</li>
+          <li>Suporte pós-módulo via WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20pacote%20C%C3%AAnica%20para%20pequena%20empresa" target="_blank" rel="noopener" class="pacote-cta pacote-cta--dark">Solicitar cotação</a>
+      </div>
+
+      <!-- MÉDIA -->
+      <div class="pacote-card pacote-card--destaque reveal reveal-d2">
+        <span class="pacote-badge-top">Mais procurado</span>
+        <div class="pacote-icon">🔥</div>
+        <div class="pacote-size pacote-size--light">Média empresa</div>
+        <div class="pacote-name pacote-name--light">Palco</div>
+        <div class="pacote-desc pacote-desc--light">Para empresas em crescimento que querem um programa contínuo e transformação cultural real.</div>
+        <ul class="pacote-features pacote-features--light">
+          <li>10 a 50 participantes</li>
+          <li>Programa completo (5 módulos)</li>
+          <li>Turmas exclusivas para a empresa</li>
+          <li>Relatório de evolução por participante</li>
+          <li>1 workshop extra de aplicação prática</li>
+          <li>Suporte de acompanhamento mensal</li>
+        </ul>
+        <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20pacote%20C%C3%AAnica%20para%20m%C3%A9dia%20empresa" target="_blank" rel="noopener" class="pacote-cta pacote-cta--primary">Solicitar cotação</a>
+      </div>
+
+      <!-- GRANDE -->
+      <div class="pacote-card reveal reveal-d3">
+        <div class="pacote-icon">🏛</div>
+        <div class="pacote-size">Grande empresa</div>
+        <div class="pacote-name">Repertório</div>
+        <div class="pacote-desc">Programas de longa duração, múltiplas turmas e integração com a estratégia de RH e cultura organizacional.</div>
+        <ul class="pacote-features">
+          <li>50+ participantes</li>
+          <li>Múltiplas turmas simultâneas</li>
+          <li>Conteúdo adaptado à cultura da empresa</li>
+          <li>Facilitação in-company (na sua sede)</li>
+          <li>Dashboard de acompanhamento de equipe</li>
+          <li>Contrato de parceria anual disponível</li>
+        </ul>
+        <a href="https://wa.me/5585997041061?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20pacote%20C%C3%AAnica%20para%20grande%20empresa" target="_blank" rel="noopener" class="pacote-cta pacote-cta--dark">Solicitar cotação</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TURMAS -->
+<section class="turmas-section" id="turmas">
+  <div class="wrap">
+    <div class="turmas-header reveal">
+      <div class="turmas-inicio">
+        <span class="turmas-inicio-icon">📅</span>
+        <span class="turmas-inicio-text">Calendário 2026 — Teresina &amp; Fortaleza</span>
+      </div>
+      <h2 class="display turmas-title">5 módulos. 5 meses. Duas cidades.</h2>
+      <p class="turmas-sub">Cada módulo começa na primeira segunda-feira do mês. As datas foram calculadas respeitando os feriados nacionais. Garanta sua vaga e já reserve o seu horário.</p>
+    </div>
+
+    <div class="turmas-aviso reveal">
+      <span class="turmas-aviso-icon">⚡</span>
+      <div class="turmas-aviso-text">
+        <strong>Turmas por formação de grupo</strong>
+        As aulas começam conforme o calendário — desde que a turma esteja formada. Vagas limitadas a 12 pessoas por turno para garantir a qualidade da prática.
+      </div>
+    </div>
+
+    <!-- CALENDÁRIO DE MÓDULOS -->
+    <div class="cal-grid reveal">
+
+      <div class="cal-row">
+        <div class="cal-line"></div>
+        <div class="cal-num">01</div>
+        <div class="cal-body">
+          <div class="cal-modulo-name">Empatia</div>
+          <div class="cal-meta">
+            <span class="cal-date">📅 01 de junho de 2026</span>
+            <span class="cal-cities">🌵 Teresina &nbsp;·&nbsp; 🌊 Fortaleza</span>
+            <span class="vagas-badge vagas-forming">Formando turma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-line"></div>
+        <div class="cal-num">02</div>
+        <div class="cal-body">
+          <div class="cal-modulo-name">Comunicação</div>
+          <div class="cal-meta">
+            <span class="cal-date">📅 06 de julho de 2026</span>
+            <span class="cal-cities">🌵 Teresina &nbsp;·&nbsp; 🌊 Fortaleza</span>
+            <span class="vagas-badge vagas-forming">Formando turma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-line"></div>
+        <div class="cal-num">03</div>
+        <div class="cal-body">
+          <div class="cal-modulo-name">Inteligência Emocional</div>
+          <div class="cal-meta">
+            <span class="cal-date">📅 03 de agosto de 2026</span>
+            <span class="cal-cities">🌵 Teresina &nbsp;·&nbsp; 🌊 Fortaleza</span>
+            <span class="vagas-badge vagas-forming">Formando turma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-line"></div>
+        <div class="cal-num">04</div>
+        <div class="cal-body">
+          <div class="cal-modulo-name">Trabalho em Equipe</div>
+          <div class="cal-meta">
+            <span class="cal-date">📅 14 de setembro de 2026</span>
+            <span class="cal-cities">🌵 Teresina &nbsp;·&nbsp; 🌊 Fortaleza</span>
+            <span class="vagas-badge vagas-forming">Formando turma</span>
+          </div>
+          <div class="cal-note">* Dia 07/09 é feriado nacional (Independência) — módulo inicia na segunda-feira seguinte</div>
+        </div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-num">05</div>
+        <div class="cal-body">
+          <div class="cal-modulo-name">Criatividade</div>
+          <div class="cal-meta">
+            <span class="cal-date">📅 05 de outubro de 2026</span>
+            <span class="cal-cities">🌵 Teresina &nbsp;·&nbsp; 🌊 Fortaleza</span>
+            <span class="vagas-badge vagas-forming">Formando turma</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TURNOS -->
+    <div style="margin-top:56px">
+      <p style="text-align:center;color:rgba(245,239,230,.45);font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px">Escolha seu turno em cada cidade</p>
+      <div class="turmas-grid">
+
+        <div class="cidade-card reveal reveal-d1">
+          <div class="cidade-header cidade-header--teresina">
+            <span class="cidade-flag">🌵</span>
+            <div>
+              <div class="cidade-nome">Teresina</div>
+              <div class="cidade-estado">Piauí · PI</div>
+            </div>
+          </div>
+          <div class="cidade-body">
+            <div class="turno-list">
+              <div class="turno-item">
+                <span class="turno-icon">🌅</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Manhã</div>
+                  <div class="turno-horario">08h00 às 10h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+              <div class="turno-item">
+                <span class="turno-icon">☀️</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Tarde</div>
+                  <div class="turno-horario">14h00 às 16h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+              <div class="turno-item">
+                <span class="turno-icon">🌙</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Noite</div>
+                  <div class="turno-horario">19h00 às 21h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cidade-footer">
+            <div class="cidade-inicio-date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Módulo 1 começa: <strong>01 de junho de 2026</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="cidade-card reveal reveal-d2">
+          <div class="cidade-header cidade-header--fortaleza">
+            <span class="cidade-flag">🌊</span>
+            <div>
+              <div class="cidade-nome">Fortaleza</div>
+              <div class="cidade-estado">Ceará · CE</div>
+            </div>
+          </div>
+          <div class="cidade-body">
+            <div class="turno-list">
+              <div class="turno-item">
+                <span class="turno-icon">🌅</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Manhã</div>
+                  <div class="turno-horario">08h00 às 10h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+              <div class="turno-item">
+                <span class="turno-icon">☀️</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Tarde</div>
+                  <div class="turno-horario">14h00 às 16h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+              <div class="turno-item">
+                <span class="turno-icon">🌙</span>
+                <div class="turno-info">
+                  <div class="turno-nome">Turma Noite</div>
+                  <div class="turno-horario">19h00 às 21h00 · Seg. a Sex.</div>
+                </div>
+                <div class="turno-vagas"><span class="vagas-badge vagas-forming">Formando turma</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cidade-footer">
+            <div class="cidade-inicio-date">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Módulo 1 começa: <strong>01 de junho de 2026</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre-bg" id="sobre">
+  <div class="wrap">
+    <div class="sobre-inner">
+      <div class="sobre-visual reveal">
+        <div class="sobre-frame">
+          <img src="joao-cambraia.jpg" alt="João Cambraia" class="sobre-avatar"/>
+          <div class="sobre-name">João Cambraia</div>
+          <div class="sobre-role">Fundador · Facilitador</div>
+          <div class="sobre-badges">
+            <span class="badge badge-dark">Teatro</span>
+            <span class="badge badge-dark">Desenvolvimento Humano</span>
+            <span class="badge badge-dark">Liderança</span>
+            <span class="badge badge-dark">Comunicação</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="label sobre-tag reveal">Quem está no palco</span>
+        <h2 class="display sobre-title reveal">Facilitador, não palestrante. Praticante, não teórico.</h2>
+        <p class="sobre-desc reveal reveal-d1">João Cambraia combina formação teatral com anos de experiência em desenvolvimento humano. Ele não ensina comunicação por slides — ele cria espaços onde as pessoas praticam de verdade.</p>
+        <p class="sobre-desc reveal reveal-d1">Já facilitou centenas de horas de prática para profissionais de diferentes áreas, com uma convicção: todo mundo já tem o que precisa. Falta espaço seguro para praticar.</p>
+        <blockquote class="sobre-quote reveal reveal-d2">
+          "Antes de entrar em cena, a gente ensaia.<br>A sua vida profissional merece o mesmo."
+        </blockquote>
+
+        <!-- VIDEO 3 -->
+        <div class="vf reveal reveal-d3" style="margin-top:40px;max-width:100%">
+          <span class="vf-label vf-label-dark">▶ Assista</span>
+          <p class="vf-caption vf-caption-dark">"João conquista tudo — e pode te mostrar como."</p>
+          <div class="vf-wrap">
+            <video controls preload="metadata">
+              <source src="joao-conquistam-tudo.mp4" type="video/mp4"/>
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="dep-bg" id="depoimentos">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="label section-tag">O que dizem os alunos</span>
+      <h2 class="display section-title">O palco transforma. Os resultados provam.</h2>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card reveal reveal-d1">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Nunca pensei que um 'curso de teatro' fosse mudar minha forma de liderar equipes. Saí com ferramentas que uso toda semana."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">M</div>
+          <div>
+            <div class="dep-name">Mariana S.</div>
+            <div class="dep-role">Gerente de Produto · São Paulo</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal reveal-d2">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"A palestra sacudiu nossa equipe inteira. O João tem um jeito de provocar reflexão sem ser pesado — as pessoas saíram querendo mudar."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">R</div>
+          <div>
+            <div class="dep-name">Rafael T.</div>
+            <div class="dep-role">Diretor de RH · Empresa de Tecnologia</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card reveal reveal-d3">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-text">"Eu era daquelas pessoas que travava em apresentações. Depois do programa Cênica, eu me candidatei para fazer um pitch para a diretoria. E fui bem."</p>
+        <div class="dep-author">
+          <div class="dep-avatar">C</div>
+          <div>
+            <div class="dep-name">Camila P.</div>
+            <div class="dep-role">Analista Sênior · Finanças</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS -->
+<section class="emp-bg">
+  <div class="wrap">
+    <div class="emp-inner">
+      <p class="emp-title">Para profissionais de empresas como</p>
+      <div class="emp-logos">
+        <span class="emp-logo">Ambev</span>
+        <span class="emp-logo">Magazine Luiza</span>
+        <span class="emp-logo">Nubank</span>
+        <span class="emp-logo">Itaú</span>
+        <span class="emp-logo">TOTVS</span>
+        <span class="emp-logo">Embraer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-bg" id="faq">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="label section-tag">Dúvidas frequentes</span>
+      <h2 class="display section-title">Perguntas que todo mundo faz</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Preciso ter experiência com teatro?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Não. A maioria dos alunos nunca pisou num palco. O teatro aqui é ferramenta, não fim. Você vai usar técnicas teatrais para desenvolver habilidades profissionais — não vai virar ator.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          O curso é presencial ou online?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">O Programa Cênica é presencial, com turmas em Teresina (PI) e Fortaleza (CE). Presença física é fundamental — não dá para praticar corpo e voz por videoconferência com a mesma profundidade. A palestra pode ser online.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Qual o perfil de quem participa?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Profissionais em cargos de liderança ou que querem crescer na carreira. Pessoas que sentem que sua comunicação e presença não traduzem o que têm de melhor. Não importa a área — o que une os alunos é querer se comunicar e liderar melhor.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Como funciona a contratação da palestra para empresa?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Entre em contato pelo WhatsApp ou e-mail. Fazemos uma conversa de 30 minutos para entender o contexto da sua empresa, o evento e o público — e aí personalizamos o conteúdo. Atendemos eventos de 20 a 1.000+ pessoas.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quando é a próxima turma?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">As aulas têm início previsto para <strong>01 de junho de 2026</strong>, nas cidades de Teresina (PI) e Fortaleza (CE), com turmas nos períodos da manhã, tarde e noite. As turmas só começam quando atingirem o número mínimo de alunos — máximo 12 por turma. Garanta sua vaga com antecedência.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          E se eu não gostar do programa?
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Garantia de 7 dias. Se após o primeiro encontro você sentir que não é para você, devolvemos 100% do valor. Sem questionamentos, sem burocracia. Acreditamos que a decisão precisa ser tomada com liberdade.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-bg" id="contato">
+  <div class="wrap">
+    <div class="cta-inner">
+      <div class="reveal">
+        <span class="label" style="color:var(--spot);display:block;margin-bottom:16px">O palco está pronto</span>
+        <h2 class="display cta-title">Você já é capaz.<br>Falta <em>praticar quem você quer ser.</em></h2>
+        <p class="cta-sub">Escolha o próximo passo. Sem pressão, sem pitch. Uma conversa de 30 minutos é suficiente para saber se faz sentido para você.</p>
+        <div class="cta-options">
+          <button onclick="openModal()" class="btn btn-primary btn-lg">Quero o Curso</button>
+          <a href="https://wa.me/5585997041061?text=Tenho%20interesse%20na%20Palestra%20O%20Manual%20do%20Humano" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Contratar Palestra</a>
+        </div>
+        <p class="cta-note">Resposta em até 24h · Sem compromisso · @cenica.escola</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Cênica</div>
+        <p class="footer-tagline">Escola de desenvolvimento humano com técnicas teatrais. O palco onde você pratica quem você quer ser.</p>
+      </div>
+      <div>
+        <p class="footer-heading">Links</p>
+        <ul class="footer-links">
+          <li><a href="#palestra">Palestra</a></li>
+          <li><a href="#curso">Curso</a></li>
+          <li><a href="#metodo">Método</a></li>
+          <li><a href="#sobre">João Cambraia</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Contato</p>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/5585997041061" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://instagram.com/cenica.escola" target="_blank" rel="noopener">@cenica.escola</a></li>
+          <li><a href="mailto:contato@cenica.com.br">contato@cenica.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Cênica. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/cenica.escola" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/5585997041061" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     MODAL DE INSCRIÇÃO
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="inscricaoModal">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Garantir minha vaga</h2>
+      <button class="modal-close" onclick="closeModal()" aria-label="Fechar">&times;</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="modal-progress">
+      <div class="modal-steps-bar">
+        <div class="modal-step-dot active" id="dot1"></div>
+        <div class="modal-step-line"><div class="modal-step-line-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="modal-step-dot" id="dot2"></div>
+        <div class="modal-step-line"><div class="modal-step-line-fill" id="progressFill2" style="width:0%"></div></div>
+        <div class="modal-step-dot" id="dot3"></div>
+      </div>
+      <div class="modal-steps-label" id="stepsLabel">Passo 1 de 3 — Escolha dos módulos</div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- STEP 1: Escolha do módulo + cidade -->
+      <div class="modal-step active" id="step1">
+        <span class="modal-section-label">Selecione os módulos</span>
+        <div class="modulo-checks" id="moduloChecks">
+          <label class="modulo-check-item" data-modulo="01" data-preco="200">
+            <input type="checkbox" value="01"/>
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <span class="check-icon">🤝</span>
+            <div class="check-label">
+              <div class="check-name">Módulo 01 — Empatia</div>
+              <div class="check-price">R$ 200</div>
+            </div>
+          </label>
+          <label class="modulo-check-item" data-modulo="02" data-preco="200">
+            <input type="checkbox" value="02"/>
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <span class="check-icon">🎙</span>
+            <div class="check-label">
+              <div class="check-name">Módulo 02 — Comunicação</div>
+              <div class="check-price">R$ 200</div>
+            </div>
+          </label>
+          <label class="modulo-check-item" data-modulo="03" data-preco="200">
+            <input type="checkbox" value="03"/>
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <span class="check-icon">🧠</span>
+            <div class="check-label">
+              <div class="check-name">Módulo 03 — Inteligência Emocional</div>
+              <div class="check-price">R$ 200</div>
+            </div>
+          </label>
+          <label class="modulo-check-item" data-modulo="04" data-preco="200">
+            <input type="checkbox" value="04"/>
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <span class="check-icon">🎭</span>
+            <div class="check-label">
+              <div class="check-name">Módulo 04 — Trabalho em Equipe</div>
+              <div class="check-price">R$ 200</div>
+            </div>
+          </label>
+          <label class="modulo-check-item" data-modulo="05" data-preco="200">
+            <input type="checkbox" value="05"/>
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <span class="check-icon">✦</span>
+            <div class="check-label">
+              <div class="check-name">Módulo 05 — Criatividade</div>
+              <div class="check-price">R$ 200</div>
+            </div>
+          </label>
+        </div>
+
+        <label class="programa-check-item" id="programaCompleto" data-tipo="completo">
+          <input type="checkbox" id="checkCompleto"/>
+          <div class="check-box"><span class="check-box-tick">✓</span></div>
+          <span class="check-icon">⭐</span>
+          <div class="check-label">
+            <div class="check-name" style="color:var(--t-dark);font-size:1rem">Programa Completo — todos os 5 módulos</div>
+            <div class="check-price" style="color:var(--spot);font-weight:700">R$ 1.000</div>
+          </div>
+        </label>
+
+        <div class="city-section">
+          <span class="city-label">Cidade</span>
+          <div class="city-radios">
+            <label class="city-radio-item" id="radioTeresina">
+              <input type="radio" name="cidade" value="Teresina"/>
+              <div class="city-radio-dot"></div>
+              🌵 Teresina · PI
+            </label>
+            <label class="city-radio-item" id="radioFortaleza">
+              <input type="radio" name="cidade" value="Fortaleza"/>
+              <div class="city-radio-dot"></div>
+              🌊 Fortaleza · CE
+            </label>
+          </div>
+        </div>
+
+        <div class="city-section">
+          <span class="city-label">Turno preferido</span>
+          <div class="city-radios">
+            <label class="city-radio-item" id="radioManha">
+              <input type="radio" name="turno" value="Manhã (08h–10h)"/>
+              <div class="city-radio-dot"></div>
+              🌅 Manhã
+            </label>
+            <label class="city-radio-item" id="radioTarde">
+              <input type="radio" name="turno" value="Tarde (14h–16h)"/>
+              <div class="city-radio-dot"></div>
+              ☀️ Tarde
+            </label>
+            <label class="city-radio-item" id="radioNoite">
+              <input type="radio" name="turno" value="Noite (19h–21h)"/>
+              <div class="city-radio-dot"></div>
+              🌙 Noite
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-total">
+          <span class="modal-total-label">Total selecionado</span>
+          <span class="modal-total-val" id="totalDisplay">R$ 0</span>
+        </div>
+
+        <div class="modal-nav">
+          <button class="btn-next" onclick="goToStep2()">Continuar →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Seus dados -->
+      <div class="modal-step" id="step2">
+        <div class="form-group">
+          <label class="form-label" for="inputNome">Nome completo</label>
+          <input class="form-input" type="text" id="inputNome" placeholder="Como você se chama?"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputWpp">WhatsApp</label>
+          <input class="form-input" type="tel" id="inputWpp" placeholder="(85) 99999-9999" maxlength="16"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputEmail">E-mail</label>
+          <input class="form-input" type="email" id="inputEmail" placeholder="seu@email.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inputMsg">Mensagem (opcional)</label>
+          <textarea class="form-input form-textarea" id="inputMsg" placeholder="Alguma dúvida ou contexto que queira compartilhar..."></textarea>
+        </div>
+        <div class="modal-nav">
+          <button class="btn-back" onclick="goToStep1()">← Voltar</button>
+          <button class="btn-next" onclick="confirmarInscricao()">Confirmar inscrição</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Pagamento -->
+      <div class="modal-step" id="step3">
+        <div class="payment-section">
+          <h3 class="payment-title">Como pagar</h3>
+          <p class="payment-sub">Escolha a forma de pagamento e envie o comprovante pelo WhatsApp para confirmar sua vaga.</p>
+          <div class="payment-options">
+
+            <!-- PIX -->
+            <div class="payment-option">
+              <div class="payment-option-header">
+                <span class="payment-option-icon">📱</span>
+                <div>
+                  <div class="payment-option-name">PIX</div>
+                  <div class="payment-option-sub">Pagamento instantâneo</div>
+                </div>
+              </div>
+              <div class="pix-key-box">
+                <span class="pix-key">85997041061</span>
+                <button class="btn-copy" id="btnCopy" onclick="copiarPix()">Copiar chave</button>
+              </div>
+            </div>
+
+            <!-- Mercado Pago -->
+            <div class="payment-option">
+              <div class="payment-option-header">
+                <span class="payment-option-icon">💳</span>
+                <div>
+                  <div class="payment-option-name">Mercado Pago</div>
+                  <div class="payment-option-sub">Cartão, boleto ou Pix pelo app</div>
+                </div>
+              </div>
+              <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener" class="btn-modulo" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00b1ea,#009ee3);border-color:transparent;color:#fff">
+                Pagar via Mercado Pago
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+
+          </div>
+          <p class="payment-note"><strong>Próximo passo:</strong> Após o pagamento, envie o comprovante pelo WhatsApp para <strong>(85) 99704-1061</strong>. João entrará em contato para confirmar sua vaga e compartilhar os detalhes da turma.</p>
+
+          <button onclick="enviarWhatsApp()" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px;gap:10px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.989.574 3.842 1.563 5.408L2.046 22l4.703-1.49A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18a7.962 7.962 0 0 1-4.073-1.115l-.292-.173-3.03.96.913-3.045-.19-.313A7.944 7.944 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+            Enviar comprovante pelo WhatsApp
+          </button>
+        </div>
+        <div class="modal-nav">
+          <button class="btn-next" onclick="closeModal()">Fechar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-check">✓</span>
+  <span id="toastMsg">Inscrição enviada! João entrará em contato.</span>
+</div>
+
+<script>
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+document.getElementById('hamburger').addEventListener('click', () => {
+  nav.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a, .nav-cta a').forEach(a => {
+  a.addEventListener('click', () => nav.classList.remove('open'));
+});
+
+/* ── REVEAL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── FAQ ── */
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+}
+
+/* ══════════════════════════════════════════
+   MODAL SYSTEM
+══════════════════════════════════════════ */
+const moduloNames = {
+  '01': 'Empatia',
+  '02': 'Comunicação',
+  '03': 'Inteligência Emocional',
+  '04': 'Trabalho em Equipe',
+  '05': 'Criatividade'
+};
+
+function openModal(preselect) {
+  // Reset state first
+  resetModal();
+
+  // Pre-select if module or completo passed
+  if (preselect === 'completo') {
+    setCompleto(true);
+  } else if (preselect && preselect !== undefined) {
+    // Pre-select specific module
+    const items = document.querySelectorAll('.modulo-check-item');
+    items.forEach(item => {
+      if (item.dataset.modulo === preselect) {
+        item.classList.add('selected');
+        item.querySelector('input').checked = true;
+      }
+    });
+    updateTotal();
+  }
+
+  document.getElementById('inscricaoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  goToStepUI(1);
+}
+
+function closeModal() {
+  document.getElementById('inscricaoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function resetModal() {
+  // Uncheck all modules
+  document.querySelectorAll('.modulo-check-item').forEach(item => {
+    item.classList.remove('selected');
+    item.querySelector('input').checked = false;
+  });
+  // Uncheck completo
+  setCompleto(false);
+  // Unselect city
+  document.querySelectorAll('.city-radio-item').forEach(r => r.classList.remove('selected'));
+  document.querySelectorAll('input[name="cidade"]').forEach(r => r.checked = false);
+  // Clear form
+  ['inputNome','inputWpp','inputEmail','inputMsg'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  updateTotal();
+}
+
+// Module checkboxes
+document.querySelectorAll('.modulo-check-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    const cb = this.querySelector('input');
+    const checked = !cb.checked;
+    cb.checked = checked;
+    this.classList.toggle('selected', checked);
+    // If selecting individual, deselect "completo"
+    if (checked) setCompleto(false);
+    updateTotal();
+  });
+});
+
+// Programa completo checkbox
+document.getElementById('programaCompleto').addEventListener('click', function() {
+  const cb = document.getElementById('checkCompleto');
+  const nowChecked = !cb.checked;
+  setCompleto(nowChecked);
+  updateTotal();
+});
+
+function setCompleto(state) {
+  const cb = document.getElementById('checkCompleto');
+  const label = document.getElementById('programaCompleto');
+  cb.checked = state;
+  label.classList.toggle('selected', state);
+  if (state) {
+    // Deselect individual modules
+    document.querySelectorAll('.modulo-check-item').forEach(item => {
+      item.classList.remove('selected');
+      item.querySelector('input').checked = false;
+    });
+  }
+}
+
+function updateTotal() {
+  const completo = document.getElementById('checkCompleto').checked;
+  let total = 0;
+  if (completo) {
+    total = 1000;
+  } else {
+    document.querySelectorAll('.modulo-check-item.selected').forEach(item => {
+      total += parseInt(item.dataset.preco, 10);
+    });
+  }
+  document.getElementById('totalDisplay').textContent = 'R$ ' + total.toLocaleString('pt-BR');
+}
+
+// City radios — only deselect within the same radio group (name attribute)
+document.querySelectorAll('.city-radio-item').forEach(item => {
+  item.addEventListener('click', function() {
+    const input = this.querySelector('input');
+    const groupName = input.name;
+    document.querySelectorAll(`.city-radio-item input[name="${groupName}"]`).forEach(r => {
+      r.closest('.city-radio-item').classList.remove('selected');
+    });
+    this.classList.add('selected');
+    input.checked = true;
+  });
+});
+
+// WhatsApp mask
+document.getElementById('inputWpp').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g, '');
+  if (v.length > 11) v = v.slice(0,11);
+  if (v.length > 7) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+  else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+  else if (v.length > 0) v = '(' + v;
+  this.value = v;
+});
+
+/* ── STEP NAVIGATION ── */
+function goToStepUI(step) {
+  document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + step).classList.add('active');
+
+  // Update dots
+  const dots = [document.getElementById('dot1'), document.getElementById('dot2'), document.getElementById('dot3')];
+  dots.forEach((d, i) => {
+    d.classList.remove('active','done');
+    if (i + 1 === step) d.classList.add('active');
+    else if (i + 1 < step) d.classList.add('done');
+  });
+
+  // Progress fill
+  const pct = step === 1 ? 0 : step === 2 ? 50 : 100;
+  document.getElementById('progressFill').style.width = (step >= 2 ? '100%' : '0%');
+  document.getElementById('progressFill2').style.width = (step >= 3 ? '100%' : '0%');
+
+  const labels = ['Passo 1 de 3 — Escolha dos módulos', 'Passo 2 de 3 — Seus dados', 'Passo 3 de 3 — Pagamento'];
+  document.getElementById('stepsLabel').textContent = labels[step - 1];
+}
+
+function goToStep1() { goToStepUI(1); }
+
+function goToStep2() {
+  const completo = document.getElementById('checkCompleto').checked;
+  const selected = document.querySelectorAll('.modulo-check-item.selected');
+  if (!completo && selected.length === 0) {
+    showToastMsg('Selecione ao menos um módulo.', 2500);
+    return;
+  }
+  const cidade = document.querySelector('input[name="cidade"]:checked');
+  if (!cidade) {
+    showToastMsg('Selecione uma cidade para continuar.', 2500);
+    return;
+  }
+  goToStepUI(2);
+}
+
+function confirmarInscricao() {
+  const nome = document.getElementById('inputNome').value.trim();
+  const wpp = document.getElementById('inputWpp').value.trim();
+  const email = document.getElementById('inputEmail').value.trim();
+
+  if (!nome) { showToastMsg('Por favor, informe seu nome.', 2500); return; }
+  if (!wpp) { showToastMsg('Por favor, informe seu WhatsApp.', 2500); return; }
+  if (!email) { showToastMsg('Por favor, informe seu e-mail.', 2500); return; }
+
+  // Build modulos list
+  const completo = document.getElementById('checkCompleto').checked;
+  let modulosStr = '';
+  if (completo) {
+    modulosStr = 'Programa Completo (todos os 5 módulos)';
+  } else {
+    const sel = [];
+    document.querySelectorAll('.modulo-check-item.selected').forEach(item => {
+      sel.push('Módulo ' + item.dataset.modulo + ' — ' + moduloNames[item.dataset.modulo]);
+    });
+    modulosStr = sel.join(', ');
+  }
+
+  const cidade = document.querySelector('input[name="cidade"]:checked');
+  const cidadeStr = cidade ? cidade.value : '';
+
+  const turno = document.querySelector('input[name="turno"]:checked');
+  const turnoStr = turno ? turno.value : 'A definir';
+
+  const total = document.getElementById('totalDisplay').textContent;
+  const msg = document.getElementById('inputMsg').value.trim();
+
+  // Store data for WhatsApp confirmation button in step 3
+  let texto = `Olá! Quero me inscrever na Cênica.\n\nNome: ${nome}\nMódulo(s): ${modulosStr}\nCidade: ${cidadeStr}\nTurno: ${turnoStr}\nEmail: ${email}\nTotal: ${total}\nInício previsto: 01 de junho de 2026`;
+  if (msg) texto += `\nMensagem: ${msg}`;
+  window._cenicaWppUrl = 'https://wa.me/5585997041061?text=' + encodeURIComponent(texto);
+
+  goToStepUI(3);
+}
+
+function copiarPixEvento() {
+  const chave = '85997041061';
+  const btn = document.getElementById('btnPixEvento');
+  const copy = () => {
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar chave'; btn.classList.remove('copied'); }, 2500);
+  };
+  navigator.clipboard.writeText(chave).then(copy).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = chave; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    copy();
+  });
+}
+
+function enviarWhatsApp() {
+  if (window._cenicaWppUrl) window.open(window._cenicaWppUrl, '_blank');
+}
+
+/* ── TOAST ── */
+function showToastMsg(msg, duration) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg || 'Inscrição enviada! João entrará em contato.';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), duration || 4000);
+}
+
+/* ── PIX COPY ── */
+function copiarPix() {
+  navigator.clipboard.writeText('85997041061').then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar chave';
+      btn.classList.remove('copied');
+    }, 2500);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = '85997041061';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById('btnCopy');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copiar chave';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+/* ── CLOSE ON ESC ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ── MODULE 05 responsive fix ── */
+function fixModulo05() {
+  const card = document.querySelector('.modulo-card--05');
+  if (!card) return;
+  if (window.innerWidth <= 768) {
+    card.style.maxWidth = '100%';
+    card.style.gridColumn = '';
+    card.style.justifySelf = '';
+  } else {
+    card.style.maxWidth = 'calc(50% - 14px)';
+    card.style.gridColumn = '1 / -1';
+    card.style.justifySelf = 'center';
+  }
+}
+window.addEventListener('resize', fixModulo05);
+fixModulo05();
+</script>
+</body>
+</html>

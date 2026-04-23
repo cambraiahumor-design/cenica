@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campanha Publicitária — Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#0F0A1A; --curtain:#1E0A3C; --spot:#D4863A;
+  --gold:#E8C86A; --cream:#F5EFE6; --warm:#FDFAF6; --muted:#8B7FA0;
+  --fd:'Playfair Display',serif; --fb:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--fb);background:#D5D0CA;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--void);padding:13px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.07)}
+.tb-brand{font-family:var(--fd);font-size:17px;color:var(--cream)}
+.tb-sub{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.tb-right{display:flex;gap:8px}
+.btn{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:none;letter-spacing:.04em;transition:all .2s}
+.btn-o{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,.2)}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.btn-f{background:linear-gradient(135deg,var(--spot),var(--gold));color:var(--void);font-weight:700}
+.btn-f:hover{box-shadow:0 4px 16px rgba(212,134,58,.4)}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:256px 1fr;flex:1}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--void);overflow-y:auto;border-right:1px solid rgba(255,255,255,.06)}
+.sb-section{padding:20px 0 8px}
+.sb-label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:0 18px;margin-bottom:8px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 18px;cursor:pointer;transition:background .15s;border-left:3px solid transparent}
+.nav-item:hover{background:rgba(255,255,255,.04)}
+.nav-item.active{background:rgba(212,134,58,.1);border-left-color:var(--spot)}
+.ni-thumb{width:38px;height:38px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px}
+.ni-title{font-size:12px;font-weight:500;color:var(--cream);line-height:1.3}
+.nav-item.active .ni-title{color:var(--gold)}
+.ni-size{font-size:10px;color:var(--muted)}
+
+/* ── MAIN ── */
+.main{overflow-y:auto;padding:36px 40px;display:flex;flex-direction:column;align-items:center;gap:28px}
+.piece-header{width:100%;max-width:680px}
+.piece-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--spot);margin-bottom:4px}
+.piece-title{font-family:var(--fd);font-size:22px;color:var(--void);margin-bottom:4px}
+.piece-hint{font-size:13px;color:#6B5F78;line-height:1.5}
+
+/* ── PRINT FRAME ── */
+.print-wrap{width:100%;max-width:680px;background:white;box-shadow:0 20px 64px rgba(0,0,0,.22);border-radius:4px;overflow:hidden;position:relative}
+.piece{display:none}.piece.active{display:block}
+
+/* ── PRINT ACTIONS ── */
+.print-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:680px;width:100%}
+
+/* ═══════════════════════════════════════════
+   PEÇA 1 — CARTAZ CORPORATIVO (A4 portrait)
+═══════════════════════════════════════════ */
+.cartaz-corp{
+  aspect-ratio:210/297;
+  background:var(--void);
+  position:relative;
+  overflow:hidden;
+  font-family:var(--fb);
+  display:flex;
+  flex-direction:column;
+}
+.cc-spotlight{position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;height:100%;background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(212,134,58,.28) 0%,transparent 65%);pointer-events:none}
+.cc-ray{position:absolute;top:0;left:50%;transform:translateX(-50%);width:2px;height:45%;background:linear-gradient(to bottom,rgba(212,134,58,.55),transparent);pointer-events:none}
+.cc-dot{position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:var(--spot);box-shadow:0 0 16px var(--spot);pointer-events:none}
+.cc-top-bar{display:flex;align-items:center;justify-content:space-between;padding:3.5% 6%;border-bottom:1px solid rgba(255,255,255,.08);position:relative;z-index:1}
+.cc-brand{font-family:var(--fd);font-size:clamp(14px,2.5vw,22px);color:var(--cream);letter-spacing:.04em}
+.cc-tag{font-size:clamp(7px,1.1vw,9px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot);background:rgba(212,134,58,.12);padding:4px 10px;border-radius:20px;border:1px solid rgba(212,134,58,.3)}
+.cc-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:5% 8%;position:relative;z-index:1}
+.cc-eyebrow{font-size:clamp(7px,1.1vw,9px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--spot);margin-bottom:3%}
+.cc-headline{font-family:var(--fd);font-size:clamp(18px,3.8vw,36px);color:var(--warm);line-height:1.15;margin-bottom:4%;font-weight:700}
+.cc-headline em{color:var(--gold);font-style:italic}
+.cc-sub{font-size:clamp(8px,1.3vw,11px);color:var(--muted);line-height:1.65;max-width:80%;margin-bottom:5%}
+.cc-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--spot),var(--gold));border-radius:2px;margin-bottom:5%}
+.cc-programs{display:flex;flex-direction:column;gap:1.5%}
+.cc-program{display:flex;align-items:center;gap:3%;padding:2.5% 3%;background:rgba(255,255,255,.05);border-radius:8px;border-left:2px solid var(--spot)}
+.cc-prog-icon{font-size:clamp(10px,1.8vw,16px);flex-shrink:0}
+.cc-prog-name{font-size:clamp(7px,1.2vw,10px);font-weight:700;color:var(--cream);display:block}
+.cc-prog-desc{font-size:clamp(6px,1vw,8px);color:var(--muted);display:block;margin-top:1px}
+.cc-bottom{padding:3.5% 8%;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.cc-cta-block{}
+.cc-cta-label{font-size:clamp(6px,.9vw,8px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--spot);margin-bottom:2px}
+.cc-cta-text{font-family:var(--fd);font-size:clamp(9px,1.6vw,14px);color:var(--warm)}
+.cc-qr{width:clamp(36px,7%,56px);height:clamp(36px,7%,56px);background:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#333;text-align:center;padding:3px;font-weight:600;line-height:1.3}
+
+/* ═══════════════════════════════════════════
+   PEÇA 2 — CARTAZ B2C / EVENTO (A4 portrait)
+═══════════════════════════════════════════ */
+.cartaz-bc{
+  aspect-ratio:210/297;
+  background:var(--cream);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.cb-top{background:var(--void);padding:3.5% 6% 5%;position:relative;overflow:hidden;flex-shrink:0}
+.cb-top-ray{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:100%;background:linear-gradient(to bottom,rgba(212,134,58,.5),transparent);pointer-events:none}
+.cb-top-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:70%;height:100%;background:radial-gradient(ellipse,rgba(212,134,58,.2),transparent 70%);pointer-events:none}
+.cb-logo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4%;position:relative;z-index:1}
+.cb-brand-name{font-family:var(--fd);font-size:clamp(14px,2.5vw,22px);color:var(--cream)}
+.cb-brand-tag{font-size:clamp(6px,.9vw,8px);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.cb-hero-text{position:relative;z-index:1}
+.cb-preheadline{font-size:clamp(7px,1.1vw,9px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--spot);margin-bottom:2%}
+.cb-headline{font-family:var(--fd);font-size:clamp(16px,3.2vw,30px);color:var(--warm);line-height:1.2;font-weight:700}
+.cb-headline em{color:var(--gold);font-style:italic}
+.cb-body{flex:1;padding:4% 6%;display:flex;flex-direction:column;justify-content:space-between}
+.cb-quote{font-family:var(--fd);font-style:italic;font-size:clamp(9px,1.6vw,14px);color:var(--void);line-height:1.5;border-left:2px solid var(--spot);padding-left:4%;margin-bottom:4%}
+.cb-skills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2%}
+.cb-skill{background:white;border-radius:8px;padding:3% 2%;text-align:center;border:1px solid rgba(0,0,0,.07)}
+.cb-skill-icon{font-size:clamp(9px,1.6vw,14px);margin-bottom:2px;display:block}
+.cb-skill-name{font-size:clamp(5.5px,.9vw,7.5px);font-weight:700;color:var(--void);display:block;letter-spacing:.02em}
+.cb-footer{padding:3% 6% 3.5%;background:var(--void);display:flex;align-items:center;justify-content:space-between}
+.cb-cta-main{font-family:var(--fd);font-size:clamp(8px,1.4vw,12px);color:var(--warm);margin-bottom:2px}
+.cb-cta-sub{font-size:clamp(6px,.9vw,8px);color:var(--muted);letter-spacing:.06em}
+.cb-handles{display:flex;flex-direction:column;gap:2px;text-align:right}
+.cb-handle{font-size:clamp(6px,.9vw,8px);color:var(--spot)}
+.cb-info-row{display:flex;gap:4%;margin-bottom:4%}
+.cb-info-card{flex:1;background:rgba(15,10,26,.06);border-radius:8px;padding:3%;border:1px solid rgba(15,10,26,.1)}
+.cb-info-label{font-size:clamp(5.5px,.9vw,7.5px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--spot);margin-bottom:3px}
+.cb-info-val{font-family:var(--fd);font-size:clamp(8px,1.4vw,12px);color:var(--void);font-weight:700}
+
+/* ═══════════════════════════════════════════
+   PEÇA 3 — PANFLETO FRENTE (A5 landscape)
+═══════════════════════════════════════════ */
+.flyer-front{
+  aspect-ratio:210/148;
+  background:var(--void);
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.ff-left{padding:6% 5% 6% 6%;display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:1}
+.ff-glow{position:absolute;top:0;left:0;width:50%;height:100%;background:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(212,134,58,.2),transparent 70%);pointer-events:none}
+.ff-ray{position:absolute;top:0;left:30%;width:1px;height:100%;background:linear-gradient(to bottom,rgba(212,134,58,.4),transparent);pointer-events:none}
+.ff-brand{font-family:var(--fd);font-size:clamp(12px,2.2vw,18px);color:var(--cream);margin-bottom:6%}
+.ff-eyebrow{font-size:clamp(6px,1vw,8px);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--spot);margin-bottom:3%}
+.ff-headline{font-family:var(--fd);font-size:clamp(13px,2.6vw,22px);color:var(--warm);line-height:1.2;font-weight:700;margin-bottom:4%}
+.ff-headline em{color:var(--gold);font-style:italic}
+.ff-body{font-size:clamp(6.5px,1.1vw,9px);color:var(--muted);line-height:1.7;margin-bottom:4%}
+.ff-cta-pill{display:inline-block;padding:2% 5%;background:linear-gradient(135deg,var(--spot),var(--gold));color:var(--void);font-weight:700;font-size:clamp(6px,1vw,8px);border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
+.ff-right{background:linear-gradient(145deg,#1A0535,#2C1060);padding:6% 6% 6% 5%;display:flex;flex-direction:column;justify-content:center;gap:3%;position:relative;z-index:1;border-left:1px solid rgba(255,255,255,.06)}
+.ff-right-title{font-size:clamp(6px,.9vw,8px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4%}
+.ff-program{padding:3%;background:rgba(255,255,255,.05);border-radius:6px;border-left:2px solid var(--spot);margin-bottom:2%}
+.ff-prog-name{font-size:clamp(7px,1.2vw,10px);font-weight:700;color:var(--cream);display:block;margin-bottom:1px}
+.ff-prog-info{font-size:clamp(5.5px,.9vw,7.5px);color:var(--muted)}
+.ff-divider{height:1px;background:rgba(255,255,255,.08);margin:2% 0}
+.ff-contact{display:flex;flex-direction:column;gap:1.5%}
+.ff-contact-item{font-size:clamp(5.5px,.9vw,7.5px);color:var(--muted);display:flex;align-items:center;gap:2%}
+.ff-contact-item strong{color:var(--cream)}
+
+/* ═══════════════════════════════════════════
+   PEÇA 4 — PANFLETO VERSO (A5 landscape)
+═══════════════════════════════════════════ */
+.flyer-back{
+  aspect-ratio:210/148;
+  background:var(--cream);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  padding:5% 6%;
+}
+.fb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4%;padding-bottom:3%;border-bottom:1px solid rgba(15,10,26,.1)}
+.fb-brand{font-family:var(--fd);font-size:clamp(10px,1.8vw,15px);color:var(--void)}
+.fb-tagline{font-size:clamp(6px,.9vw,7.5px);color:var(--spot);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.fb-body{flex:1;display:grid;grid-template-columns:1.2fr 1fr;gap:4%}
+.fb-left{}
+.fb-section-title{font-family:var(--fd);font-size:clamp(9px,1.5vw,13px);color:var(--void);margin-bottom:3%;font-weight:700}
+.fb-section-title em{color:var(--spot);font-style:italic}
+.fb-steps{display:flex;flex-direction:column;gap:2%}
+.fb-step{display:flex;gap:3%;align-items:flex-start}
+.fb-step-num{width:clamp(14px,2.2vw,18px);height:clamp(14px,2.2vw,18px);border-radius:50%;background:linear-gradient(135deg,var(--spot),var(--gold));display:flex;align-items:center;justify-content:center;font-size:clamp(5px,.8vw,7px);font-weight:700;color:var(--void);flex-shrink:0;margin-top:1px}
+.fb-step-text{font-size:clamp(6px,1vw,8px);color:#3D3249;line-height:1.6}
+.fb-step-text strong{color:var(--void);display:block;margin-bottom:1px}
+.fb-right{}
+.fb-testimonial{background:var(--void);border-radius:8px;padding:4%;margin-bottom:3%}
+.fb-quote-mark{font-family:var(--fd);font-size:clamp(14px,2.2vw,20px);color:var(--spot);opacity:.6;line-height:1;display:block;margin-bottom:2%}
+.fb-quote-text{font-size:clamp(6px,1vw,8px);color:var(--muted);line-height:1.7;font-style:italic;margin-bottom:3%}
+.fb-quote-author strong{font-size:clamp(6px,1vw,8px);color:var(--cream);display:block}
+.fb-quote-author span{font-size:clamp(5px,.8vw,7px);color:var(--muted)}
+.fb-metric-row{display:flex;gap:3%}
+.fb-metric{flex:1;background:white;border-radius:6px;padding:3% 2%;text-align:center;border:1px solid rgba(0,0,0,.07)}
+.fb-metric-num{font-family:var(--fd);font-size:clamp(10px,1.8vw,16px);font-weight:700;color:var(--spot);display:block;line-height:1}
+.fb-metric-label{font-size:clamp(5px,.7vw,6.5px);color:#5C5068;display:block;margin-top:2px;line-height:1.3}
+.fb-footer{margin-top:3%;padding-top:3%;border-top:1px solid rgba(15,10,26,.1);display:flex;align-items:center;justify-content:space-between}
+.fb-contacts{display:flex;gap:4%}
+.fb-contact{font-size:clamp(5.5px,.9vw,7.5px);color:#3D3249}
+.fb-contact strong{color:var(--void);display:block}
+.fb-badge{padding:2% 4%;background:linear-gradient(135deg,var(--void),var(--curtain));border-radius:6px}
+.fb-badge-text{font-family:var(--fd);font-size:clamp(6px,1vw,8px);color:var(--gold);text-align:right;font-style:italic}
+
+/* ═══════════════════════════════════════════
+   PEÇA 5 — CONVITE (A5 square / 148×148 aprox)
+═══════════════════════════════════════════ */
+.convite{
+  aspect-ratio:1/1;
+  background:var(--void);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.conv-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(212,134,58,.25) 0%,transparent 65%);pointer-events:none}
+.conv-bg2{position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 80% 100%,rgba(30,10,60,.8),transparent 70%);pointer-events:none}
+.conv-ray{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:50%;background:linear-gradient(to bottom,rgba(212,134,58,.6),transparent);pointer-events:none}
+.conv-dot{position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--spot);box-shadow:0 0 12px var(--spot);pointer-events:none}
+.conv-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:7%}
+.conv-top{display:flex;align-items:center;justify-content:space-between}
+.conv-brand{font-family:var(--fd);font-size:clamp(13px,2.2vw,18px);color:var(--cream)}
+.conv-tag{font-size:clamp(6px,.9vw,7.5px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot)}
+.conv-center{text-align:center}
+.conv-you{font-size:clamp(7px,1.1vw,9px);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:3%}
+.conv-invited{font-family:var(--fd);font-size:clamp(14px,2.6vw,22px);color:var(--warm);line-height:1.1;margin-bottom:3%;font-weight:700}
+.conv-invited em{color:var(--gold);font-style:italic}
+.conv-divider{width:36px;height:2px;background:linear-gradient(90deg,var(--spot),var(--gold));border-radius:2px;margin:0 auto 3%}
+.conv-event-name{font-family:var(--fd);font-style:italic;font-size:clamp(16px,3vw,26px);color:var(--gold);margin-bottom:2%}
+.conv-event-sub{font-size:clamp(7px,1.1vw,9px);color:var(--muted);line-height:1.6;max-width:75%;margin:0 auto}
+.conv-details{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3%}
+.conv-detail{background:rgba(255,255,255,.06);border-radius:8px;padding:4% 3%;text-align:center;border:1px solid rgba(255,255,255,.08)}
+.conv-detail-label{font-size:clamp(5px,.8vw,7px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot);display:block;margin-bottom:3px}
+.conv-detail-val{font-family:var(--fd);font-size:clamp(7px,1.2vw,10px);color:var(--cream);display:block;font-weight:600}
+.conv-bottom{display:flex;align-items:center;justify-content:space-between}
+.conv-rsvp{font-size:clamp(6px,.9vw,7.5px);color:var(--muted);line-height:1.6}
+.conv-rsvp strong{color:var(--cream);font-weight:600;display:block}
+.conv-seats{display:flex;flex-direction:column;align-items:flex-end}
+.conv-seats-num{font-family:var(--fd);font-size:clamp(20px,3.5vw,32px);color:var(--spot);line-height:1}
+.conv-seats-label{font-size:clamp(5.5px,.8vw,7px);color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--void);color:var(--cream);padding:12px 22px;border-radius:50px;font-size:13px;font-weight:500;border:1px solid rgba(212,134,58,.3);box-shadow:0 8px 32px rgba(0,0,0,.3);transform:translateY(64px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:999}
+.toast.show{transform:translateY(0)}
+
+/* ── PRINT ── */
+@media print{
+  .topbar,.sidebar,.print-actions,.piece-header{display:none!important}
+  body{background:white}
+  .layout{display:block}
+  .main{padding:0}
+  .piece.active .print-wrap{box-shadow:none;border-radius:0}
+  .print-wrap{max-width:100%!important;width:100%!important}
+}
+@media(max-width:700px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-item{min-width:160px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><div class="tb-brand">Cênica</div><div class="tb-sub">Campanha Publicitária</div></div>
+  <div class="tb-right">
+    <button class="btn btn-o" onclick="window.print()">🖨️ Imprimir / PDF</button>
+    <button class="btn btn-f" onclick="showToast('Selecione a peça e use Imprimir → Salvar como PDF para exportar')">Como exportar?</button>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-section">
+    <div class="sb-label">Cartazes</div>
+    <div class="nav-item active" onclick="show('p1',this)">
+      <div class="ni-thumb" style="background:linear-gradient(135deg,#0F0A1A,#1A0535)">📢</div>
+      <div><div class="ni-title">Cartaz Corporativo</div><div class="ni-size">A4 · B2B / RH</div></div>
+    </div>
+    <div class="nav-item" onclick="show('p2',this)">
+      <div class="ni-thumb" style="background:linear-gradient(135deg,#F5EFE6,#E8C86A)">🎭</div>
+      <div><div class="ni-title">Cartaz Pessoal</div><div class="ni-size">A4 · B2C / Evento</div></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">Panfleto</div>
+    <div class="nav-item" onclick="show('p3',this)">
+      <div class="ni-thumb" style="background:linear-gradient(135deg,#0F0A1A,#1E0A3C)">▶</div>
+      <div><div class="ni-title">Panfleto · Frente</div><div class="ni-size">A5 paisagem</div></div>
+    </div>
+    <div class="nav-item" onclick="show('p4',this)">
+      <div class="ni-thumb" style="background:linear-gradient(135deg,#F5EFE6,#EDE6DB)">◀</div>
+      <div><div class="ni-title">Panfleto · Verso</div><div class="ni-size">A5 paisagem</div></div>
+    </div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">Convite</div>
+    <div class="nav-item" onclick="show('p5',this)">
+      <div class="ni-thumb" style="background:linear-gradient(135deg,#1E0A3C,#0F0A1A)">✉️</div>
+      <div><div class="ni-title">Convite de Workshop</div><div class="ni-size">Quadrado · Digital/Print</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="piece-header">
+    <div class="piece-label" id="p-label">Cartaz 01 de 02</div>
+    <h2 class="piece-title" id="p-title">Cartaz Corporativo — B2B</h2>
+    <p class="piece-hint" id="p-hint">Formato A4 vertical · Ideal para quadros de aviso, recepções corporativas e envio digital para RH. Imprima em papel couchê 170g para melhor resultado.</p>
+  </div>
+
+  <!-- ① CARTAZ CORPORATIVO -->
+  <div class="piece active" id="p1">
+    <div class="print-wrap">
+      <div class="cartaz-corp">
+        <div class="cc-spotlight"></div>
+        <div class="cc-ray"></div>
+        <div class="cc-dot"></div>
+
+        <div class="cc-top-bar">
+          <span class="cc-brand">Cênica</span>
+          <span class="cc-tag">Escola de Desenvolvimento Humano</span>
+        </div>
+
+        <div class="cc-body">
+          <div>
+            <div class="cc-eyebrow">Para líderes e equipes</div>
+            <h1 class="cc-headline">
+              Sua equipe sabe trabalhar.<br>
+              Mas sabe <em>colaborar de verdade</em>?
+            </h1>
+            <p class="cc-sub">
+              A Cênica usa técnicas teatrais — improviso, performance e presença — para desenvolver as soft skills que definem equipes de alta performance. Não teoria. Prática real. Transformação mensurável.
+            </p>
+            <div class="cc-divider"></div>
+          </div>
+
+          <div>
+            <div style="font-size:clamp(6px,.9vw,8px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--spot);margin-bottom:2%">Nossos programas</div>
+            <div class="cc-programs">
+              <div class="cc-program">
+                <span class="cc-prog-icon">🎭</span>
+                <div>
+                  <span class="cc-prog-name">Programa Intensivo de Equipes</span>
+                  <span class="cc-prog-desc">2 dias · 8 a 30 participantes · In-company</span>
+                </div>
+              </div>
+              <div class="cc-program">
+                <span class="cc-prog-icon">👁️</span>
+                <div>
+                  <span class="cc-prog-name">Jornada de Liderança</span>
+                  <span class="cc-prog-desc">6 encontros · Trimestral · Até 20 líderes</span>
+                </div>
+              </div>
+              <div class="cc-program">
+                <span class="cc-prog-icon">⚡</span>
+                <div>
+                  <span class="cc-prog-name">Workshop Express</span>
+                  <span class="cc-prog-desc">4 horas · Até 60 pessoas · Ideal para kick-offs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:3%;padding:2.5% 3%;background:rgba(232,200,106,.08);border-radius:8px;border:1px solid rgba(232,200,106,.2)">
+            <span style="font-size:clamp(7px,1.1vw,9px);color:var(--gold);font-family:var(--fd);font-style:italic;line-height:1.5;display:block">"93% dos participantes relatam mudança comportamental real após os programas."</span>
+          </div>
+        </div>
+
+        <div class="cc-bottom">
+          <div class="cc-cta-block">
+            <div class="cc-cta-label">Agende uma conversa gratuita</div>
+            <div class="cc-cta-text">cenica.com.br · @cenica.escola</div>
+            <div style="font-size:clamp(6px,.9vw,7.5px);color:var(--muted);margin-top:2px">(11) 9 9999-9999 · contato@cenica.com.br</div>
+          </div>
+          <div class="cc-qr">QR<br>Code<br>aqui</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② CARTAZ B2C -->
+  <div class="piece" id="p2">
+    <div class="print-wrap">
+      <div class="cartaz-bc">
+        <div class="cb-top">
+          <div class="cb-top-ray"></div>
+          <div class="cb-top-glow"></div>
+          <div class="cb-logo-row">
+            <div>
+              <div class="cb-brand-name">Cênica</div>
+              <div class="cb-brand-tag">Escola de Desenvolvimento Humano</div>
+            </div>
+            <div style="width:clamp(28px,5vw,42px);height:clamp(28px,5vw,42px);background:linear-gradient(135deg,#2A0A50,#0F0A1A);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:clamp(14px,2.5vw,22px);font-weight:700;color:#E8C86A;border:1px solid rgba(212,134,58,.4)">C</div>
+          </div>
+          <div class="cb-hero-text">
+            <div class="cb-preheadline">Você já é capaz</div>
+            <h1 class="cb-headline">
+              Falta espaço seguro<br>para praticar quem<br>você <em>quer ser.</em>
+            </h1>
+          </div>
+        </div>
+
+        <div class="cb-body">
+          <div>
+            <p class="cb-quote">
+              "A Cênica usa técnicas teatrais para desenvolver soft skills de verdade — na prática, no corpo, de um jeito que o aprendizado fica."
+            </p>
+            <div class="cb-info-row">
+              <div class="cb-info-card">
+                <div class="cb-info-label">Modalidade</div>
+                <div class="cb-info-val">Presencial<br>& Online</div>
+              </div>
+              <div class="cb-info-card">
+                <div class="cb-info-label">Para quem</div>
+                <div class="cb-info-val">Profissionais<br>& Equipes</div>
+              </div>
+              <div class="cb-info-card">
+                <div class="cb-info-label">Próxima turma</div>
+                <div class="cb-info-val">[Mês]<br>[Ano]</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size:clamp(6px,.9vw,8px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot);margin-bottom:2%">O que você vai desenvolver</div>
+            <div class="cb-skills">
+              <div class="cb-skill"><span class="cb-skill-icon">👁️</span><span class="cb-skill-name">Liderança</span></div>
+              <div class="cb-skill"><span class="cb-skill-icon">🗣️</span><span class="cb-skill-name">Comunicação</span></div>
+              <div class="cb-skill"><span class="cb-skill-icon">🤝</span><span class="cb-skill-name">Trabalho em equipe</span></div>
+              <div class="cb-skill"><span class="cb-skill-icon">💡</span><span class="cb-skill-name">Int. Emocional</span></div>
+              <div class="cb-skill"><span class="cb-skill-icon">✨</span><span class="cb-skill-name">Criatividade</span></div>
+              <div class="cb-skill"><span class="cb-skill-icon">⚡</span><span class="cb-skill-name">Proatividade</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cb-footer">
+          <div>
+            <div class="cb-cta-main">Comece sua transformação</div>
+            <div class="cb-cta-sub">cenica.com.br · vagas limitadas</div>
+          </div>
+          <div class="cb-handles">
+            <div class="cb-handle">@cenica.escola</div>
+            <div style="font-size:clamp(6px,.9vw,7.5px);color:var(--muted)">(11) 9 9999-9999</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ PANFLETO FRENTE -->
+  <div class="piece" id="p3">
+    <div class="print-wrap">
+      <div class="flyer-front">
+        <div class="ff-glow"></div>
+        <div class="ff-ray"></div>
+
+        <div class="ff-left">
+          <div class="ff-brand">Cênica</div>
+          <div>
+            <div class="ff-eyebrow">A escola que usa o palco</div>
+            <h2 class="ff-headline">
+              O palco como<br><em>laboratório de<br>transformação.</em>
+            </h2>
+            <p class="ff-body">
+              Técnicas teatrais para desenvolver as soft skills mais valorizadas no mercado — de um jeito que o aprendizado fica no corpo, não só no caderno.
+            </p>
+            <span class="ff-cta-pill">Conheça os programas →</span>
+          </div>
+          <div style="font-size:clamp(5.5px,.9vw,7.5px);color:var(--muted)">cenica.com.br · @cenica.escola</div>
+        </div>
+
+        <div class="ff-right">
+          <div class="ff-right-title">Programas disponíveis</div>
+
+          <div class="ff-program">
+            <span class="ff-prog-name">🎭 Programa Intensivo de Equipes</span>
+            <span class="ff-prog-info">2 dias · 8–30 pessoas · In-company ou em estúdio</span>
+          </div>
+          <div class="ff-program">
+            <span class="ff-prog-name">👁️ Jornada de Liderança</span>
+            <span class="ff-prog-info">6 encontros · Trimestral · Até 20 líderes</span>
+          </div>
+          <div class="ff-program">
+            <span class="ff-prog-name">⚡ Workshop Express</span>
+            <span class="ff-prog-info">4 horas · Até 60 pessoas · Kick-offs e convenções</span>
+          </div>
+          <div class="ff-program">
+            <span class="ff-prog-name">✨ Turmas Abertas — B2C</span>
+            <span class="ff-prog-info">Para profissionais · Turmas mensais</span>
+          </div>
+
+          <div class="ff-divider"></div>
+
+          <div style="font-size:clamp(5.5px,.9vw,8px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2%">Fale conosco</div>
+          <div class="ff-contact">
+            <div class="ff-contact-item"><strong>📱</strong> (11) 9 9999-9999</div>
+            <div class="ff-contact-item"><strong>✉️</strong> contato@cenica.com.br</div>
+            <div class="ff-contact-item"><strong>🌐</strong> cenica.com.br</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ PANFLETO VERSO -->
+  <div class="piece" id="p4">
+    <div class="print-wrap">
+      <div class="flyer-back">
+        <div class="fb-header">
+          <div class="fb-brand">Cênica</div>
+          <div class="fb-tagline">Como funciona · 5 passos</div>
+        </div>
+
+        <div class="fb-body">
+          <div class="fb-left">
+            <h3 class="fb-section-title">Do diagnóstico ao <em>impacto</em>.</h3>
+            <div class="fb-steps">
+              <div class="fb-step">
+                <div class="fb-step-num">1</div>
+                <div class="fb-step-text"><strong>Conversa gratuita (30 min)</strong>Entendemos seus desafios e objetivos sem compromisso.</div>
+              </div>
+              <div class="fb-step">
+                <div class="fb-step-num">2</div>
+                <div class="fb-step-text"><strong>Diagnóstico</strong>Mapeamos os gaps de soft skills do time ou dos participantes.</div>
+              </div>
+              <div class="fb-step">
+                <div class="fb-step-num">3</div>
+                <div class="fb-step-text"><strong>Design do programa</strong>Criamos um programa 100% customizado para seu contexto.</div>
+              </div>
+              <div class="fb-step">
+                <div class="fb-step-num">4</div>
+                <div class="fb-step-text"><strong>Experiência Cênica</strong>Aplicamos com facilitadores especializados em teatro e desenvolvimento humano.</div>
+              </div>
+              <div class="fb-step">
+                <div class="fb-step-num">5</div>
+                <div class="fb-step-text"><strong>Relatório de impacto</strong>Entregamos métricas e próximos passos recomendados.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fb-right">
+            <div class="fb-testimonial">
+              <span class="fb-quote-mark">"</span>
+              <p class="fb-quote-text">Em dois dias, minha equipe se comunicou melhor do que em meses de reuniões. A metodologia da Cênica é surpreendentemente eficaz.</p>
+              <div class="fb-quote-author">
+                <strong>Ana Paula Rodrigues</strong>
+                <span>Head de RH · Empresa de Tecnologia</span>
+              </div>
+            </div>
+            <div class="fb-metric-row">
+              <div class="fb-metric">
+                <span class="fb-metric-num">93%</span>
+                <span class="fb-metric-label">mudança comportamental</span>
+              </div>
+              <div class="fb-metric">
+                <span class="fb-metric-num">4.9</span>
+                <span class="fb-metric-label">avaliação média</span>
+              </div>
+              <div class="fb-metric">
+                <span class="fb-metric-num">100%</span>
+                <span class="fb-metric-label">recomendam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fb-footer">
+          <div class="fb-contacts">
+            <div class="fb-contact"><strong>cenica.com.br</strong>Site oficial</div>
+            <div class="fb-contact"><strong>(11) 9 9999-9999</strong>WhatsApp</div>
+            <div class="fb-contact"><strong>@cenica.escola</strong>Instagram</div>
+          </div>
+          <div class="fb-badge">
+            <div class="fb-badge-text">"Você já é capaz.<br>Falta espaço para praticar."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ CONVITE -->
+  <div class="piece" id="p5">
+    <div class="print-wrap" style="max-width:480px;margin:0 auto">
+      <div class="convite">
+        <div class="conv-bg"></div>
+        <div class="conv-bg2"></div>
+        <div class="conv-ray"></div>
+        <div class="conv-dot"></div>
+
+        <div class="conv-inner">
+          <div class="conv-top">
+            <div class="conv-brand">Cênica</div>
+            <div class="conv-tag">Escola de Desenvolvimento Humano</div>
+          </div>
+
+          <div class="conv-center">
+            <div class="conv-you">Você está convidado a</div>
+            <div class="conv-invited">Uma tarde no <em>palco</em></div>
+            <div class="conv-divider"></div>
+            <div class="conv-event-name">Workshop Aberto</div>
+            <p class="conv-event-sub">Uma experiência de improviso, presença e comunicação para quem quer se desenvolver de dentro para fora.</p>
+          </div>
+
+          <div class="conv-details">
+            <div class="conv-detail">
+              <span class="conv-detail-label">Data</span>
+              <span class="conv-detail-val">[Dia]<br>[Mês]</span>
+            </div>
+            <div class="conv-detail">
+              <span class="conv-detail-label">Horário</span>
+              <span class="conv-detail-val">14h–18h</span>
+            </div>
+            <div class="conv-detail">
+              <span class="conv-detail-label">Local</span>
+              <span class="conv-detail-val">[Espaço]<br>[Cidade]</span>
+            </div>
+          </div>
+
+          <div class="conv-bottom">
+            <div class="conv-rsvp">
+              <strong>Confirme sua presença</strong>
+              (11) 9 9999-9999<br>
+              cenica.com.br/workshop
+            </div>
+            <div class="conv-seats">
+              <span class="conv-seats-num">20</span>
+              <span class="conv-seats-label">vagas<br>limitadas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="print-actions">
+    <button class="btn btn-o" onclick="window.print()">🖨️ Imprimir esta peça</button>
+    <button class="btn btn-o" onclick="showToast('Dica: Imprima em papel couchê 150–170g para cartazes e panfletos')">💡 Dica de impressão</button>
+    <button class="btn btn-f" onclick="showToast('Abra no Chrome → Imprimir → Destino: Salvar como PDF → Sem margens')">📥 Exportar como PDF</button>
+  </div>
+
+</main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const meta = {
+  p1:{ label:'Cartaz 01 de 02', title:'Cartaz Corporativo — B2B', hint:'Formato A4 vertical · Ideal para quadros de aviso, recepções e envio digital para RH. Imprima em papel couchê 170g.' },
+  p2:{ label:'Cartaz 02 de 02', title:'Cartaz Pessoal / Evento — B2C', hint:'Formato A4 vertical · Para divulgação em academias, coworkings, faculdades e redes sociais. Fundo claro ideal para impressão econômica.' },
+  p3:{ label:'Panfleto · Frente', title:'Panfleto A5 — Frente', hint:'Formato A5 paisagem (210×148mm) · Imprima frente e verso no mesmo papel. Couchê 115g para resultado profissional.' },
+  p4:{ label:'Panfleto · Verso', title:'Panfleto A5 — Verso', hint:'Formato A5 paisagem (210×148mm) · Verso do panfleto com processo, depoimento e métricas. Imprime junto com a frente.' },
+  p5:{ label:'Convite de Workshop', title:'Convite de Workshop — Evento', hint:'Formato quadrado 148×148mm · Ideal para WhatsApp, Instagram Stories e impressão em papel especial 250g para distribuição presencial.' }
+};
+
+function show(id, el) {
+  document.querySelectorAll('.piece').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+  const m = meta[id];
+  document.getElementById('p-label').textContent = m.label;
+  document.getElementById('p-title').textContent = m.title;
+  document.getElementById('p-hint').textContent = m.hint;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>

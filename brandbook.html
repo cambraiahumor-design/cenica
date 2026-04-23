@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cênica Brand Book 2025 — Documento completo de identidade da marca." />
+  <title>Cênica — Brand Book 2025</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Brand Book specific overrides */
+    body { background: var(--cream); }
+
+    .bb-section { scroll-margin-top: 72px; }
+
+    @media (min-width: 1024px) {
+      .bb-section { scroll-margin-top: 0; }
+    }
+
+    /* Inline sections need full width on mobile */
+    .bb-main { min-height: 100vh; }
+
+    /* Top bar for mobile nav */
+    .bb-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: rgba(15, 10, 26, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(245,239,230,0.08);
+    }
+
+    @media (min-width: 1024px) {
+      .bb-topbar { display: none; }
+    }
+
+    .bb-topbar-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--spotlight);
+    }
+
+    .bb-topbar-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,239,230,0.4);
+    }
+
+    /* Hero numbers for type scale */
+    .type-h1 { font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--text-dark); }
+    .type-h2 { font-family: var(--font-display); font-size: 2.25rem; font-weight: 700; color: var(--text-dark); }
+    .type-h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--text-dark); }
+    .type-body { font-family: var(--font-body); font-size: 1rem; font-weight: 400; color: var(--text-mid); }
+    .type-small { font-family: var(--font-body); font-size: 0.875rem; font-weight: 400; color: var(--text-mid); }
+    .type-label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); }
+
+    /* Minimum space guide for logo */
+    .logo-space-guide {
+      position: relative;
+      display: inline-block;
+      padding: 32px;
+      border: 1px dashed rgba(212,134,58,0.35);
+    }
+
+    .logo-guide-lines::before,
+    .logo-guide-lines::after {
+      content: 'X';
+      position: absolute;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: rgba(212,134,58,0.5);
+      font-family: monospace;
+    }
+
+    .logo-guide-lines::before { top: 8px; left: 8px; }
+    .logo-guide-lines::after { bottom: 8px; right: 8px; }
+
+    /* Stat box */
+    .stat-box {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 20px;
+      background: rgba(212,134,58,0.08);
+      border: 1px solid rgba(212,134,58,0.2);
+      border-radius: 12px;
+    }
+
+    .stat-box-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--spotlight);
+    }
+
+    .stat-box-label {
+      font-size: 0.8125rem;
+      color: var(--text-mid);
+    }
+
+    /* Divider decoration */
+    .bb-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-block: 48px;
+    }
+
+    .bb-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,134,58,0.3), transparent);
+    }
+
+    .bb-divider-symbol {
+      color: var(--spotlight);
+      opacity: 0.4;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile top bar -->
+  <div class="bb-topbar" aria-hidden="true">
+    <span class="bb-topbar-logo">Cênica</span>
+    <span class="bb-topbar-title">Brand Book 2025</span>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="bb-nav" aria-label="Navegação do Brand Book">
+    <a href="#cover" class="bb-nav-logo" aria-label="Cênica Brand Book — Início">Cênica</a>
+    <nav>
+      <ul class="bb-nav-list" role="list">
+        <li class="bb-nav-item"><a href="#sobre"><span class="bb-nav-num">01</span> Sobre a Marca</a></li>
+        <li class="bb-nav-item"><a href="#brand-truth"><span class="bb-nav-num">02</span> Brand Truth</a></li>
+        <li class="bb-nav-item"><a href="#posicionamento"><span class="bb-nav-num">03</span> Posicionamento</a></li>
+        <li class="bb-nav-item"><a href="#arquetipo"><span class="bb-nav-num">04</span> Arquétipo</a></li>
+        <li class="bb-nav-item"><a href="#personalidade"><span class="bb-nav-num">05</span> Personalidade</a></li>
+        <li class="bb-nav-item"><a href="#tom"><span class="bb-nav-num">06</span> Tom de Voz</a></li>
+        <li class="bb-nav-item"><a href="#cores"><span class="bb-nav-num">07</span> Paleta de Cores</a></li>
+        <li class="bb-nav-item"><a href="#tipografia"><span class="bb-nav-num">08</span> Tipografia</a></li>
+        <li class="bb-nav-item"><a href="#logo"><span class="bb-nav-num">09</span> Logo</a></li>
+        <li class="bb-nav-item"><a href="#aplicacoes"><span class="bb-nav-num">10</span> Aplicações</a></li>
+        <li class="bb-nav-item"><a href="#evitar"><span class="bb-nav-num">11</span> O Que Evitar</a></li>
+        <li class="bb-nav-item"><a href="#landing"><span class="bb-nav-num">12</span> Landing Page</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="bb-main">
+
+    <!-- ============================================================
+         COVER
+         ============================================================ -->
+    <section class="bb-cover" id="cover" aria-labelledby="cover-title">
+      <div class="bb-cover-light" aria-hidden="true"></div>
+      <div style="position: relative; z-index: 2; text-align: center;">
+        <span class="bb-brand-name" id="cover-title" aria-label="Cênica">Cênica</span>
+        <span class="bb-brand-sub">Brand Book</span>
+        <span class="bb-cover-year">2025</span>
+      </div>
+      <a class="bb-scroll-arrow" href="#sobre" aria-label="Rolar para o conteúdo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         01 — SOBRE A MARCA
+         ============================================================ -->
+    <section class="bb-section bb-section-warm" id="sobre" aria-labelledby="sobre-heading">
+      <div class="container">
+        <span class="bb-section-label">01 — Sobre a Marca</span>
+        <h2 class="bb-section-title display" id="sobre-heading">Quem somos</h2>
+
+        <p class="manifesto-text">
+          A Cênica nasceu de uma crença simples: comportamento muda pelo corpo, não pelo slide. Por isso usamos o que atores sabem há séculos — o poder do palco como laboratório de transformação — para desenvolver as habilidades que definem carreiras e equipes.
+        </p>
+        <p class="manifesto-text" style="margin-top: 20px;">
+          Não somos uma escola de teatro. Somos uma escola de desenvolvimento humano que usa o teatro como ferramenta mais poderosa que existe para mudar comportamento de verdade.
+        </p>
+
+        <div class="manifesto-data">
+          <div class="manifesto-datum">
+            <span class="manifesto-datum-value">2025</span>
+            <span class="manifesto-datum-label">Fundação</span>
+          </div>
+          <div class="manifesto-datum">
+            <span class="manifesto-datum-value">B2B + B2C</span>
+            <span class="manifesto-datum-label">Público</span>
+          </div>
+          <div class="manifesto-datum">
+            <span class="manifesto-datum-value">Teatral</span>
+            <span class="manifesto-datum-label">Método</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 — BRAND TRUTH
+         ============================================================ -->
+    <section class="bb-section bb-section-dark" id="brand-truth" aria-labelledby="truth-heading">
+      <div class="container">
+        <span class="bb-section-label">02 — Brand Truth</span>
+        <p class="label text-light-opacity" style="margin-top: 8px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem;">A verdade central da marca</p>
+
+        <blockquote class="bb-quote" id="truth-heading">
+          "Você já é capaz.<br>Falta espaço seguro<br>para praticar quem<br>você quer ser."
+        </blockquote>
+
+        <div style="max-width: 640px;">
+          <p style="color: rgba(245,239,230,0.65); font-size: 1.0625rem; line-height: 1.8;">
+            Esta verdade ancora toda a comunicação da Cênica. Ela diz ao cliente que o problema não é falta de talento — é falta de prática em contexto seguro. A transformação já existe dentro da pessoa. O papel da Cênica é criar o espaço onde ela pode emergir.
+          </p>
+          <p style="color: rgba(245,239,230,0.65); font-size: 1.0625rem; line-height: 1.8; margin-top: 16px;">
+            Ela também elimina a condescendência de "eu vou te ensinar algo que você não sabe" — o tom é de parceria, não de expertise superior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 — POSICIONAMENTO
+         ============================================================ -->
+    <section class="bb-section bb-section-cream" id="posicionamento" aria-labelledby="pos-heading">
+      <div class="container">
+        <span class="bb-section-label">03 — Posicionamento</span>
+        <p class="label" style="color: var(--text-light); margin-top: 8px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem;">Onde vivemos no mercado</p>
+        <h2 class="bb-section-title display" id="pos-heading">
+          "A única escola que usa o palco como laboratório de transformação."
+        </h2>
+
+        <div class="positioning-grid" style="margin-bottom: 48px;">
+          <div class="positioning-card">
+            <p class="pos-type">Para Empresas (B2B)</p>
+            <h3 class="pos-headline">Desenvolvimento comportamental com impacto mensurável</h3>
+            <p class="pos-desc">Workshops e programas customizados que mudam como equipes se comunicam, lideram e colaboram — com método rigoroso e resultados percebidos em dias, não meses.</p>
+          </div>
+          <div class="positioning-card">
+            <p class="pos-type">Para Profissionais (B2C)</p>
+            <h3 class="pos-headline">O espaço seguro para praticar quem você quer ser</h3>
+            <p class="pos-desc">Uma jornada de desenvolvimento pessoal que usa técnicas teatrais para transformar como você se comunica, lidera e se apresenta no mundo profissional.</p>
+          </div>
+        </div>
+
+        <h3 class="display" style="font-size: 1.375rem; margin-bottom: 20px; color: var(--text-dark);">Diferencial competitivo</h3>
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check-mark" aria-hidden="true">✓</div>
+            <span><strong>Método com rigor</strong> — não improviso sem propósito. Cada técnica teatral tem uma aplicação comportamental clara e mensurável.</span>
+          </div>
+          <div class="check-item">
+            <div class="check-mark" aria-hidden="true">✓</div>
+            <span><strong>Prática real</strong> — comportamento muda quando o corpo pratica, não quando a cabeça lê sobre. Aí está nossa vantagem.</span>
+          </div>
+          <div class="check-item">
+            <div class="check-mark" aria-hidden="true">✓</div>
+            <span><strong>Humano, não corporativo</strong> — o tom e a abordagem são próximos, artesanais, individuais — o oposto do treinamento em massa.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 — ARQUÉTIPO
+         ============================================================ -->
+    <section class="bb-section bb-section-curtain" id="arquetipo" aria-labelledby="arq-heading">
+      <div class="container">
+        <span class="bb-section-label">04 — Arquétipo</span>
+        <p style="color: rgba(245,239,230,0.5); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px;">A alma da marca</p>
+        <h2 class="bb-section-title display text-cream" id="arq-heading">Mago + Criador</h2>
+
+        <div class="archetype-grid" style="margin-bottom: 40px;">
+          <div class="archetype-card">
+            <div class="archetype-icon" aria-hidden="true">✦</div>
+            <h3 class="archetype-name">Mago</h3>
+            <p class="archetype-role">Arquétipo Primário</p>
+            <p class="archetype-desc">
+              O Mago opera transformação através de processos que parecem invisíveis mas são profundamente metodológicos. Ele não faz truques — ele conhece as leis do comportamento humano e as usa. A Cênica é Maga porque transforma quem você é, não apenas o que você sabe.
+            </p>
+          </div>
+          <div class="archetype-card">
+            <div class="archetype-icon" aria-hidden="true">◈</div>
+            <h3 class="archetype-name">Criador</h3>
+            <p class="archetype-role">Arquétipo Secundário</p>
+            <p class="archetype-desc">
+              O Criador ancora a magia com craft e método artístico. Ele tem rigor de ofício — como um ator que ensaia centenas de vezes antes da estreia. A Cênica é Criadora porque o método tem forma, textura e cuidado artesanal.
+            </p>
+          </div>
+        </div>
+
+        <div style="background: rgba(122,43,74,0.15); border: 1px solid rgba(122,43,74,0.25); border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+          <p style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px;">Sombra — O que evitar</p>
+          <p style="color: rgba(245,239,230,0.65); font-size: 0.9375rem; line-height: 1.7;">
+            Manipulação emocional, promessas de transformação mágica instantânea, uso do teatro como truque de entretenimento sem profundidade. O Mago desonesto promete mais do que entrega. A Cênica deve sempre mostrar o processo, nunca só o resultado.
+          </p>
+        </div>
+
+        <div>
+          <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,239,230,0.4); margin-bottom: 12px;">Marcas de referência</p>
+          <div class="ref-brands">
+            <span class="ref-brand">Apple</span>
+            <span class="ref-brand">Disney</span>
+            <span class="ref-brand">Adobe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 — PERSONALIDADE
+         ============================================================ -->
+    <section class="bb-section bb-section-warm" id="personalidade" aria-labelledby="pers-heading">
+      <div class="container">
+        <span class="bb-section-label">05 — Personalidade</span>
+        <h2 class="bb-section-title display" id="pers-heading">Como a marca se comporta</h2>
+
+        <div class="personality-grid">
+          <div class="personality-card">
+            <h3 class="personality-trait">Transformadora</h3>
+            <p class="personality-desc">Não apenas informa — muda quem você é. Cada interação tem intenção de impacto, não de impressão.</p>
+          </div>
+          <div class="personality-card">
+            <h3 class="personality-trait">Presente</h3>
+            <p class="personality-desc">Atenção total ao ser humano à frente. Não generaliza. Não serializa. Enxerga a pessoa, não o cliente.</p>
+          </div>
+          <div class="personality-card">
+            <h3 class="personality-trait">Corajosa</h3>
+            <p class="personality-desc">Propõe o desconfortável com cuidado. Não foge do difícil. Convida para o desafio que importa.</p>
+          </div>
+          <div class="personality-card">
+            <h3 class="personality-trait">Artesanal</h3>
+            <p class="personality-desc">O método tem rigor de craft. Cada detalhe importa — da comunicação ao design ao conteúdo dos workshops.</p>
+          </div>
+          <div class="personality-card">
+            <h3 class="personality-trait">Cúmplice</h3>
+            <p class="personality-desc">Do lado do aluno, não acima. Parceira no processo. Celebra o erro como parte do caminho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         06 — TOM DE VOZ
+         ============================================================ -->
+    <section class="bb-section bb-section-dark" id="tom" aria-labelledby="tom-heading">
+      <div class="container">
+        <span class="bb-section-label">06 — Tom de Voz</span>
+        <h2 class="bb-section-title display text-cream" id="tom-heading">Como falamos</h2>
+
+        <div class="tone-scale" style="margin-bottom: 56px;">
+          <div class="tone-row">
+            <div class="tone-labels">
+              <span>Formal</span>
+              <span>Casual</span>
+            </div>
+            <div class="tone-bar-track">
+              <div class="tone-bar-fill" style="width: 40%;"></div>
+              <div class="tone-dot" style="left: 40%;"></div>
+            </div>
+          </div>
+          <div class="tone-row">
+            <div class="tone-labels">
+              <span>Sério</span>
+              <span>Lúdico</span>
+            </div>
+            <div class="tone-bar-track">
+              <div class="tone-bar-fill" style="width: 50%;"></div>
+              <div class="tone-dot" style="left: 50%;"></div>
+            </div>
+          </div>
+          <div class="tone-row">
+            <div class="tone-labels">
+              <span>Respeitoso</span>
+              <span>Irreverente</span>
+            </div>
+            <div class="tone-bar-track">
+              <div class="tone-bar-fill" style="width: 30%;"></div>
+              <div class="tone-dot" style="left: 30%;"></div>
+            </div>
+          </div>
+          <div class="tone-row">
+            <div class="tone-labels">
+              <span>Entusiasmado</span>
+              <span>Direto</span>
+            </div>
+            <div class="tone-bar-track">
+              <div class="tone-bar-fill" style="width: 60%;"></div>
+              <div class="tone-dot" style="left: 60%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="color: var(--cream); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 20px;">Falamos assim</h3>
+        <div class="voice-examples" style="margin-bottom: 48px;">
+          <div class="voice-card-yes">
+            <p class="voice-label voice-label-yes">Sim</p>
+            <p class="voice-text">"Comportamento não muda na cabeça. Muda no corpo. Por isso a gente pratica de verdade."</p>
+          </div>
+          <div class="voice-card-yes">
+            <p class="voice-label voice-label-yes">Sim</p>
+            <p class="voice-text">"Antes de entrar em cena, a gente ensaia. A sua vida profissional merece o mesmo."</p>
+          </div>
+          <div class="voice-card-yes">
+            <p class="voice-label voice-label-yes">Sim</p>
+            <p class="voice-text">"30 minutos de conversa. Sem pitch. Sem compromisso. Com propósito."</p>
+          </div>
+        </div>
+
+        <h3 style="color: var(--cream); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 20px;">Nunca dizemos</h3>
+        <div class="voice-examples">
+          <div class="voice-card-no">
+            <p class="voice-label voice-label-no">Não</p>
+            <p class="voice-text">"Soluções inovadoras e disruptivas para o desenvolvimento de competências organizacionais."</p>
+          </div>
+          <div class="voice-card-no">
+            <p class="voice-label voice-label-no">Não</p>
+            <p class="voice-text">"Resultados comprovados cientificamente com metodologia patenteada de alta performance."</p>
+          </div>
+          <div class="voice-card-no">
+            <p class="voice-label voice-label-no">Não</p>
+            <p class="voice-text">"Transforme-se AGORA! Últimas vagas! Não perca essa oportunidade ÚNICA!"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         07 — PALETA DE CORES
+         ============================================================ -->
+    <section class="bb-section bb-section-cream" id="cores" aria-labelledby="cores-heading">
+      <div class="container">
+        <span class="bb-section-label">07 — Paleta de Cores</span>
+        <h2 class="bb-section-title display" id="cores-heading">As cores do palco</h2>
+
+        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px;">Cores Primárias</h3>
+        <div class="palette-grid" style="margin-bottom: 40px;">
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Void #0F0A1A">
+            <div class="color-swatch" style="background: #0F0A1A;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Void / Palco</p>
+              <p class="color-hex">#0F0A1A</p>
+              <p class="color-use">Fundo escuro primário. Profundidade, mistério.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Curtain #1E0A3C">
+            <div class="color-swatch" style="background: #1E0A3C;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Curtain / Veludo</p>
+              <p class="color-hex">#1E0A3C</p>
+              <p class="color-use">Segundo escuro. Riqueza, textura.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Spotlight #D4863A">
+            <div class="color-swatch" style="background: #D4863A;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Spotlight / Holofote</p>
+              <p class="color-hex">#D4863A</p>
+              <p class="color-use">Acento primário. CTAs, destaques, ação.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Gold #E8C86A">
+            <div class="color-swatch" style="background: #E8C86A;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Gold / Luz</p>
+              <p class="color-hex">#E8C86A</p>
+              <p class="color-use">Acento secundário. Gradientes, brilho sutil.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px;">Cores de Suporte</h3>
+        <div class="palette-grid" style="margin-bottom: 40px;">
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Cream #F5EFE6">
+            <div class="color-swatch" style="background: #F5EFE6; border: 1px solid rgba(0,0,0,0.06);">
+              <div class="color-swatch-copied" style="color: var(--text-dark);">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Cream / Off-white</p>
+              <p class="color-hex">#F5EFE6</p>
+              <p class="color-use">Fundo claro primário. Leveza, respiração.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Warm White #FDFAF6">
+            <div class="color-swatch" style="background: #FDFAF6; border: 1px solid rgba(0,0,0,0.06);">
+              <div class="color-swatch-copied" style="color: var(--text-dark);">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Warm White</p>
+              <p class="color-hex">#FDFAF6</p>
+              <p class="color-use">Fundo neutro quente. Cards, superfícies.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Rose #7A2B4A">
+            <div class="color-swatch" style="background: #7A2B4A;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Rose / Teatral</p>
+              <p class="color-hex">#7A2B4A</p>
+              <p class="color-use">Acento terciário. Erros, alertas, contraste.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px;">Cores de Texto</h3>
+        <div class="palette-grid" style="margin-bottom: 48px;">
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Text Dark #1C1018">
+            <div class="color-swatch" style="background: #1C1018;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Text Dark</p>
+              <p class="color-hex">#1C1018</p>
+              <p class="color-use">Texto principal. Headlines em fundo claro.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Text Mid #4A3A52">
+            <div class="color-swatch" style="background: #4A3A52;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Text Mid</p>
+              <p class="color-hex">#4A3A52</p>
+              <p class="color-use">Texto secundário. Parágrafos, descrições.</p>
+            </div>
+          </div>
+
+          <div class="color-card" role="button" tabindex="0" aria-label="Copiar cor Text Light #8A7A92">
+            <div class="color-swatch" style="background: #8A7A92;">
+              <div class="color-swatch-copied">Copiar</div>
+            </div>
+            <div class="color-info">
+              <p class="color-name">Text Light</p>
+              <p class="color-hex">#8A7A92</p>
+              <p class="color-use">Texto suave. Metadados, legendas.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <h3 style="font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-light); margin-bottom: 20px;">Combinações Recomendadas</h3>
+        <div class="combo-examples">
+          <div class="combo-card">
+            <div class="combo-preview" style="background: #0F0A1A; color: #D4863A;">Cênica</div>
+            <div class="combo-info">Void + Spotlight — CTAs, hero sections</div>
+          </div>
+          <div class="combo-card">
+            <div class="combo-preview" style="background: #F5EFE6; color: #1C1018;">Cênica</div>
+            <div class="combo-info">Cream + Text Dark — corpo de texto, seções claras</div>
+          </div>
+          <div class="combo-card">
+            <div class="combo-preview" style="background: #1E0A3C; color: #E8C86A;">Cênica</div>
+            <div class="combo-info">Curtain + Gold — destaques especiais, quotes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         08 — TIPOGRAFIA
+         ============================================================ -->
+    <section class="bb-section bb-section-warm" id="tipografia" aria-labelledby="tipo-heading">
+      <div class="container">
+        <span class="bb-section-label">08 — Tipografia</span>
+        <h2 class="bb-section-title display" id="tipo-heading">As fontes da marca</h2>
+
+        <!-- Playfair Display -->
+        <div class="type-specimen">
+          <p class="type-specimen-name">Playfair Display — Display / Títulos</p>
+
+          <div class="type-alphabet" style="font-family: 'Playfair Display', Georgia, serif; color: var(--text-dark);">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz<br>
+            0123456789 · Áàãâé · &amp; ! ?
+          </div>
+
+          <div class="type-weights">
+            <p class="type-weight-sample" style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 1.5rem;">Regular 400 — O palco onde você pratica</p>
+            <p class="type-weight-sample" style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.5rem;">SemiBold 600 — O palco onde você pratica</p>
+            <p class="type-weight-sample" style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem;">Bold 700 — O palco onde você pratica</p>
+          </div>
+
+          <div style="background: var(--cream); border-radius: 12px; padding: 20px; margin-top: 16px;">
+            <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px;">Usos</p>
+            <p style="color: var(--text-mid); font-size: 0.9375rem;">Headlines · Taglines · Quotes · Pull quotes · Display large · Nomes e títulos de seção</p>
+          </div>
+        </div>
+
+        <div class="bb-divider" aria-hidden="true">
+          <div class="bb-divider-line"></div>
+          <span class="bb-divider-symbol">◆</span>
+          <div class="bb-divider-line"></div>
+        </div>
+
+        <!-- DM Sans -->
+        <div class="type-specimen">
+          <p class="type-specimen-name">DM Sans — Body / Interface</p>
+
+          <div class="type-alphabet" style="font-family: 'DM Sans', sans-serif; color: var(--text-dark);">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz<br>
+            0123456789 · Áàãâé · &amp; ! ?
+          </div>
+
+          <div class="type-weights">
+            <p class="type-weight-sample" style="font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 1.25rem;">Light 300 — Técnicas teatrais para desenvolvimento humano</p>
+            <p class="type-weight-sample" style="font-family: 'DM Sans', sans-serif; font-weight: 400; font-size: 1.25rem;">Regular 400 — Técnicas teatrais para desenvolvimento humano</p>
+            <p class="type-weight-sample" style="font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1.25rem;">Medium 500 — Técnicas teatrais para desenvolvimento humano</p>
+            <p class="type-weight-sample" style="font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1.25rem;">SemiBold 600 — Técnicas teatrais para desenvolvimento humano</p>
+          </div>
+
+          <div style="background: var(--cream); border-radius: 12px; padding: 20px; margin-top: 16px;">
+            <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px;">Usos</p>
+            <p style="color: var(--text-mid); font-size: 0.9375rem;">Corpo de texto · Labels · UI · Navegação · Botões · Legendas · Metadados</p>
+          </div>
+        </div>
+
+        <div class="bb-divider" aria-hidden="true">
+          <div class="bb-divider-line"></div>
+          <span class="bb-divider-symbol">◆</span>
+          <div class="bb-divider-line"></div>
+        </div>
+
+        <!-- Type scale -->
+        <h3 style="font-family: var(--font-display); font-size: 1.375rem; margin-bottom: 24px; color: var(--text-dark);">Escala Tipográfica</h3>
+        <div class="type-scale">
+          <div class="scale-item">
+            <span class="scale-label">H1 / 48px</span>
+            <span class="type-h1">O palco onde você pratica</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">H2 / 36px</span>
+            <span class="type-h2">Aprender fazendo</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">H3 / 28px</span>
+            <span class="type-h3">Seis competências. Um método.</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Body / 16px</span>
+            <span class="type-body">Técnicas teatrais para desenvolver liderança, presença e comunicação profissional.</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Small / 14px</span>
+            <span class="type-small">300+ profissionais já passaram pelo palco da Cênica.</span>
+          </div>
+          <div class="scale-item">
+            <span class="scale-label">Label / 12px</span>
+            <span class="type-label">Desenvolvimento Humano com Técnicas Teatrais</span>
+          </div>
+        </div>
+
+        <div style="background: var(--void); border-radius: 16px; padding: 40px; margin-top: 40px;">
+          <p class="label" style="color: var(--spotlight); margin-bottom: 8px;">Hierarquia completa</p>
+          <h1 style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--cream); font-size: 2.5rem; line-height: 1.15; margin-bottom: 12px;">O palco onde você pratica quem você quer ser.</h1>
+          <p style="font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--gold); font-weight: 400; margin-bottom: 20px;">Técnicas teatrais para desenvolvimento real.</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: rgba(245,239,230,0.7); line-height: 1.7; margin-bottom: 16px;">Na Cênica, usamos o poder do palco como laboratório de transformação comportamental. Cada técnica teatral tem uma aplicação direta no seu desenvolvimento profissional.</p>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--spotlight);">Desenvolvimento Humano · Método Teatral</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         09 — LOGO
+         ============================================================ -->
+    <section class="bb-section bb-section-dark" id="logo" aria-labelledby="logo-heading">
+      <div class="container">
+        <span class="bb-section-label">09 — Logo</span>
+        <h2 class="bb-section-title display text-cream" id="logo-heading">A marca visual</h2>
+
+        <!-- Logo principal -->
+        <div style="margin-bottom: 40px;">
+          <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,239,230,0.4); margin-bottom: 16px;">Logo Principal — Sobre escuro</p>
+          <div class="logo-display logo-on-dark" style="border: 1px solid rgba(245,239,230,0.08);">
+            <div class="logo-space-guide logo-guide-lines">
+              <span class="logo-mark logo-lg" style="color: var(--spotlight);" aria-label="Cênica">Cênica</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo sobre claro -->
+        <div style="margin-bottom: 40px;">
+          <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,239,230,0.4); margin-bottom: 16px;">Logo — Sobre claro</p>
+          <div class="logo-display logo-on-cream">
+            <div class="logo-space-guide logo-guide-lines" style="border-color: rgba(212,134,58,0.2);">
+              <span class="logo-mark logo-lg" style="color: var(--spotlight);" aria-label="Cênica">Cênica</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo monocromático -->
+        <div style="margin-bottom: 48px;">
+          <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,239,230,0.4); margin-bottom: 16px;">Logo — Monocromático (Cream sobre escuro)</p>
+          <div class="logo-display logo-on-dark" style="border: 1px solid rgba(245,239,230,0.08);">
+            <span class="logo-mark logo-lg" style="color: var(--cream);" aria-label="Cênica">Cênica</span>
+          </div>
+        </div>
+
+        <!-- Tamanhos -->
+        <h3 style="color: var(--cream); font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 24px;">Tamanhos</h3>
+        <div style="display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 48px;">
+          <div style="text-align: center;">
+            <span class="logo-mark" style="color: var(--spotlight); font-size: 3.5rem; display: block;">Cênica</span>
+            <p style="color: rgba(245,239,230,0.35); font-size: 0.75rem; margin-top: 8px;">Display</p>
+          </div>
+          <div style="text-align: center;">
+            <span class="logo-mark" style="color: var(--spotlight); font-size: 2rem; display: block;">Cênica</span>
+            <p style="color: rgba(245,239,230,0.35); font-size: 0.75rem; margin-top: 8px;">Médio</p>
+          </div>
+          <div style="text-align: center;">
+            <span class="logo-mark" style="color: var(--spotlight); font-size: 1.375rem; display: block;">Cênica</span>
+            <p style="color: rgba(245,239,230,0.35); font-size: 0.75rem; margin-top: 8px;">Nav / Footer</p>
+          </div>
+          <div style="text-align: center;">
+            <span class="logo-mark" style="color: var(--spotlight); font-size: 1rem; display: block;">Cênica</span>
+            <p style="color: rgba(245,239,230,0.35); font-size: 0.75rem; margin-top: 8px;">Mínimo (120px digital)</p>
+          </div>
+        </div>
+
+        <!-- Construção CSS -->
+        <div style="background: rgba(245,239,230,0.04); border: 1px solid rgba(245,239,230,0.08); border-radius: 12px; padding: 24px;">
+          <p style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--spotlight); margin-bottom: 12px;">Especificação CSS</p>
+          <code style="font-family: monospace; font-size: 0.875rem; color: rgba(245,239,230,0.6); line-height: 1.8;">
+            font-family: 'Playfair Display', Georgia, serif;<br>
+            font-weight: 700;<br>
+            color: #D4863A; (spotlight)<br>
+            letter-spacing: -0.01em;<br>
+            text-decoration: underline (linha âmbar abaixo, 3px, gradient)
+          </code>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10 — APLICAÇÕES
+         ============================================================ -->
+    <section class="bb-section bb-section-cream" id="aplicacoes" aria-labelledby="app-heading">
+      <div class="container">
+        <span class="bb-section-label">10 — Aplicações</span>
+        <h2 class="bb-section-title display" id="app-heading">Como a marca se expressa</h2>
+
+        <div class="applications-grid">
+
+          <!-- Business Card -->
+          <div>
+            <p class="app-label">Cartão de visita</p>
+            <div class="app-mockup">
+              <div class="mockup-card">
+                <span class="mockup-card-logo" aria-label="Logo Cênica">Cênica</span>
+                <div class="mockup-card-info">
+                  <p class="mockup-card-name">Ana Ferreira</p>
+                  <p class="mockup-card-role">Facilitadora de Desenvolvimento</p>
+                  <p class="mockup-card-email">ana@cenica.com.br</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instagram Post -->
+          <div>
+            <p class="app-label">Post Instagram</p>
+            <div class="app-mockup">
+              <div class="mockup-post">
+                <span class="mockup-post-tag" aria-label="Tag: Desenvolvimento Humano">Desenvolvimento Humano</span>
+                <p class="mockup-post-headline">"O palco está pronto. Falta você entrar."</p>
+                <span class="mockup-post-logo" aria-label="Logo Cênica">Cênica</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Signature -->
+          <div>
+            <p class="app-label">Assinatura de Email</p>
+            <div class="app-mockup">
+              <div class="mockup-email">
+                <p class="mockup-email-name">Ana Ferreira</p>
+                <p class="mockup-email-role">Facilitadora de Desenvolvimento Humano</p>
+                <p class="mockup-email-brand">Cênica</p>
+                <p class="mockup-email-link">cenica.com.br · (11) 99999-0000</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Name Badge -->
+          <div>
+            <p class="app-label">Crachá de Evento</p>
+            <div class="app-mockup">
+              <div class="mockup-badge">
+                <p class="mockup-badge-event">Cênica Workshop</p>
+                <p class="mockup-badge-name">Ana Ferreira</p>
+                <p class="mockup-badge-role">Participante</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proposal Cover -->
+          <div>
+            <p class="app-label">Capa de Proposta</p>
+            <div class="app-mockup">
+              <div style="background: linear-gradient(160deg, var(--void), var(--curtain)); padding: 32px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+                <span style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 700; color: var(--spotlight);">Cênica</span>
+                <div>
+                  <p style="font-size: 0.6875rem; color: rgba(245,239,230,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;">Proposta de Programa</p>
+                  <p style="font-family: var(--font-display); font-size: 1.0625rem; color: var(--cream); line-height: 1.3;">Liderança e Comunicação<br>para Equipes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         11 — O QUE EVITAR
+         ============================================================ -->
+    <section class="bb-section bb-section-dark" id="evitar" aria-labelledby="evitar-heading">
+      <div class="container">
+        <span class="bb-section-label">11 — O Que Evitar</span>
+        <p style="color: rgba(245,239,230,0.45); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px;">Proteção da marca</p>
+        <h2 class="bb-section-title display text-cream" id="evitar-heading">Guardiões da identidade</h2>
+
+        <div class="avoid-grid">
+
+          <div>
+            <div class="avoid-row">
+              <div class="avoid-no">
+                <p class="avoid-tag avoid-tag-no">Não</p>
+                <p class="avoid-text">Cores frias e corporativas — azul Royal, cinza corporativo, verde bancário.</p>
+              </div>
+              <div class="avoid-yes">
+                <p class="avoid-tag avoid-tag-yes">Sim</p>
+                <p class="avoid-text">Paleta teatral quente — void, spotlight, gold, curtain.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="avoid-row">
+              <div class="avoid-no">
+                <p class="avoid-tag avoid-tag-no">Não</p>
+                <p class="avoid-text">Jargão corporativo: "soluções", "sinergias", "alta performance", "disruptivo".</p>
+              </div>
+              <div class="avoid-yes">
+                <p class="avoid-tag avoid-tag-yes">Sim</p>
+                <p class="avoid-text">Linguagem humana e direta: "prática", "mudança real", "você", "fazer".</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="avoid-row">
+              <div class="avoid-no">
+                <p class="avoid-tag avoid-tag-no">Não</p>
+                <p class="avoid-text">Foto de banco genérica — pessoas de terno sorrindo apontando para gráficos.</p>
+              </div>
+              <div class="avoid-yes">
+                <p class="avoid-tag avoid-tag-yes">Sim</p>
+                <p class="avoid-text">Pessoas em ação real, praticando, experimentando, em movimento.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="avoid-row">
+              <div class="avoid-no">
+                <p class="avoid-tag avoid-tag-no">Não</p>
+                <p class="avoid-text">Múltiplos CTAs confusos — "Saiba mais · Compre · Baixe · Fale · Veja".</p>
+              </div>
+              <div class="avoid-yes">
+                <p class="avoid-tag avoid-tag-yes">Sim</p>
+                <p class="avoid-text">Uma ação clara e específica por página ou peça de comunicação.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="avoid-row">
+              <div class="avoid-no">
+                <p class="avoid-tag avoid-tag-no">Não</p>
+                <p class="avoid-text">Prometer magia: "Transforme-se em 24h!" · "Resultados garantidos!"</p>
+              </div>
+              <div class="avoid-yes">
+                <p class="avoid-tag avoid-tag-yes">Sim</p>
+                <p class="avoid-text">Mostrar processo: "Três atos. Uma jornada. Você pratica, erra, refina."</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         12 — LANDING PAGE
+         ============================================================ -->
+    <section class="bb-section bb-section-cream" id="landing" aria-labelledby="landing-heading">
+      <div class="container">
+        <span class="bb-section-label">12 — Landing Page</span>
+        <h2 class="bb-section-title display" id="landing-heading">A presença digital</h2>
+
+        <p style="color: var(--text-mid); font-size: 1.0625rem; line-height: 1.7; max-width: 640px; margin-bottom: 32px;">
+          A landing page principal da Cênica concentra toda a identidade visual e verbal em uma experiência de conversão. Estruturada em 10 seções, cada uma tem uma função narrativa clara — do problema à prova social ao CTA final.
+        </p>
+
+        <div class="iframe-container" style="margin-bottom: 32px;">
+          <iframe
+            src="index.html"
+            title="Cênica Landing Page"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+          ></iframe>
+        </div>
+
+        <a href="index.html" target="_blank" rel="noopener" class="bb-section-ref">
+          Ver landing page completa
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+
+        <div style="display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 40px;">
+          <div style="background: var(--warm-white); border-radius: 12px; padding: 20px; border-left: 3px solid var(--spotlight);">
+            <p style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--spotlight); margin-bottom: 6px;">Estrutura de conversão</p>
+            <p style="font-size: 0.875rem; color: var(--text-mid); line-height: 1.6;">Hero → Problema → Método → Habilidades → Prova → Programas → Processo → FAQ → CTA</p>
+          </div>
+          <div style="background: var(--warm-white); border-radius: 12px; padding: 20px; border-left: 3px solid var(--spotlight);">
+            <p style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--spotlight); margin-bottom: 6px;">CTA principal</p>
+            <p style="font-size: 0.875rem; color: var(--text-mid); line-height: 1.6;">Conversa gratuita de 30 min — baixo atrito, alta intenção, sem compromisso declarado.</p>
+          </div>
+          <div style="background: var(--warm-white); border-radius: 12px; padding: 20px; border-left: 3px solid var(--spotlight);">
+            <p style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--spotlight); margin-bottom: 6px;">Segmentação</p>
+            <p style="font-size: 0.875rem; color: var(--text-mid); line-height: 1.6;">Toggle B2B/B2C permite que empresa e profissional encontrem sua narrativa sem abandonar a página.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER DO BRAND BOOK
+         ============================================================ -->
+    <footer class="bb-footer" role="contentinfo">
+      <div class="bb-footer-logo" aria-label="Cênica">Cênica</div>
+      <div class="bb-footer-info">
+        <p class="bb-footer-line">Cênica Brand Book 2025</p>
+        <p class="bb-footer-line">Documento de uso interno e parceiros</p>
+        <p class="bb-footer-line">Atualizado em Abril de 2025</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

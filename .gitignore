@@ -1,0 +1,8 @@
+node_modules/
+*.mp4
+*.wav
+*.pdf
+brandbook-cenica.pdf
+slides-exportados/
+pitch/
+proposta/

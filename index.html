@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cênica — Escola de Soft Skills com técnicas teatrais. 6 módulos presenciais em Teresina e Fortaleza. Desenvolva empatia, comunicação, liderança e muito mais." />
+  <meta name="theme-color" content="#0F0A1A" />
+  <title>Cênica — Escola de Soft Skills | Teresina e Fortaleza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- EmailJS — envio de e-mail confirmação sem backend -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ── EmailJS — configure com seus IDs após criar conta em emailjs.com ──────
+    const EMAILJS_PUBLIC_KEY  = '5pxMSgyr6_YghsKsg';
+    const EMAILJS_SERVICE_ID  = 'service_ra63ug7';
+    const EMAILJS_TEMPLATE_ID = 'template_gutkwjd';
+    (function(){ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); })();
+  </script>
+  <style>
+    /* ═══════════════════════════════════════════════
+       PAGE-SPECIFIC STYLES
+    ═══════════════════════════════════════════════ */
+
+    /* ── Hero redesign ─────────────────────────────── */
+    .hero { padding-top: 90px; min-height: auto; padding-bottom: 80px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(212,134,58,0.3);
+      background: rgba(212,134,58,0.08);
+      color: var(--gold);
+    }
+
+    /* ── Enrollment card (hero right) ──────────────── */
+    .enroll-card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 24px 80px rgba(15,10,26,0.35);
+      position: relative;
+      z-index: 2;
+    }
+    .enroll-card-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .enroll-card-sub {
+      font-size: 0.8125rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    .enroll-form { display: flex; flex-direction: column; gap: 12px; }
+    .enroll-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid rgba(74,58,82,0.15);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--text-dark);
+      background: white;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .enroll-input:focus { border-color: var(--spotlight); box-shadow: 0 0 0 3px rgba(212,134,58,0.12); }
+    .enroll-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A7A92' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+    .enroll-divider { text-align: center; font-size: 0.75rem; color: var(--text-light); position: relative; }
+    .enroll-divider::before, .enroll-divider::after { content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: rgba(74,58,82,0.12); }
+    .enroll-divider::before { left: 0; } .enroll-divider::after { right: 0; }
+    .enroll-note { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 4px; }
+
+    /* ── Palestra section (destaque) ───────────────── */
+    .palestra-section {
+      background: linear-gradient(135deg, #0a0516 0%, var(--curtain) 45%, #1a0630 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(212,134,58,0.15);
+      border-bottom: 1px solid rgba(212,134,58,0.15);
+    }
+    .palestra-section::before {
+      content: '';
+      position: absolute;
+      left: -100px; top: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(212,134,58,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .palestra-section::after {
+      content: '';
+      position: absolute;
+      right: -80px; bottom: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(ellipse, rgba(100,40,160,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .palestra-section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: rgba(212,134,58,0.15);
+      border: 1px solid rgba(212,134,58,0.35);
+      color: var(--spotlight);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .palestra-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .palestra-section-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .palestra-section-date {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .palestra-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .palestra-section-desc {
+      font-size: 1rem;
+      color: rgba(245,239,230,0.6);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+    .palestra-section-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-bottom: 28px;
+    }
+    .palestra-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.875rem;
+      color: rgba(245,239,230,0.65);
+    }
+    .palestra-detail-item strong { color: var(--cream); }
+    .palestra-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .palestra-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: rgba(245,239,230,0.7);
+      line-height: 1.5;
+    }
+    .palestra-bullet::before {
+      content: '✦';
+      color: var(--spotlight);
+      font-size: 0.75rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Ticket card ────────────────────────────────── */
+    .palestra-ticket-card {
+      background: rgba(245,239,230,0.04);
+      border: 1px solid rgba(212,134,58,0.3);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(12px);
+    }
+    .palestra-ticket-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(160deg, rgba(212,134,58,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .palestra-ticket-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--spotlight);
+      margin-bottom: 16px;
+    }
+    .palestra-ticket-price-block { margin-bottom: 8px; }
+    .palestra-ticket-price-inteira {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .palestra-ticket-price-meia {
+      font-size: 0.9375rem;
+      color: rgba(245,239,230,0.5);
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+    .palestra-ticket-qr {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      padding: 6px;
+      display: block;
+    }
+    .palestra-ticket-qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .palestra-ticket-pix-hint {
+      font-size: 0.75rem;
+      color: rgba(245,239,230,0.4);
+      margin-bottom: 20px;
+    }
+    .palestra-ticket-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: rgba(245,239,230,0.3);
+      margin: 16px 0;
+    }
+    .palestra-ticket-divider::before,
+    .palestra-ticket-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(245,239,230,0.1);
+    }
+    .palestra-ticket-spots {
+      font-size: 0.8125rem;
+      color: rgba(245,239,230,0.4);
+      margin-top: 14px;
+    }
+    .palestra-ticket-spots strong { color: var(--spotlight); }
+
+    /* ── Stats strip ────────────────────────────────── */
+    .stats-strip {
+      background: var(--warm-white);
+      border-bottom: 1px solid rgba(74,58,82,0.08);
+      padding: 20px 0;
+    }
+    .stats-strip-inner {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--spotlight);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-label { font-size: 0.8125rem; color: var(--text-light); }
+
+    /* ── Módulos grid ───────────────────────────────── */
+    .modulos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 860px) { .modulos-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .modulos-grid { grid-template-columns: 1fr; } }
+
+    .modulo-card {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid rgba(74,58,82,0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .modulo-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,10,26,0.1); }
+    .modulo-num {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--spotlight);
+      margin-bottom: 12px;
+    }
+    .modulo-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .modulo-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .modulo-card p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.6; }
+    .modulo-card-accent {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--spotlight), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .modulo-card:hover .modulo-card-accent { transform: scaleX(1); }
+
+    /* ── Currículo accordion ────────────────────────── */
+    .curriculo-item {
+      border: 1px solid rgba(74,58,82,0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+    }
+    .curriculo-item.open { border-color: rgba(212,134,58,0.35); }
+    .curriculo-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+    }
+    .curriculo-num-badge {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(212,134,58,0.1);
+      border: 1px solid rgba(212,134,58,0.25);
+      color: var(--spotlight);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .curriculo-item.open .curriculo-num-badge {
+      background: var(--spotlight);
+      color: white;
+      border-color: var(--spotlight);
+    }
+    .curriculo-trigger-text { flex: 1; }
+    .curriculo-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .curriculo-sub { font-size: 0.8125rem; color: var(--text-light); }
+    .curriculo-chevron {
+      width: 20px; height: 20px;
+      color: var(--text-light);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .curriculo-item.open .curriculo-chevron { transform: rotate(180deg); }
+    .curriculo-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .curriculo-body-inner {
+      padding: 0 24px 24px 76px;
+    }
+    .curriculo-topics {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .curriculo-topics li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    .curriculo-topics li::before {
+      content: '◆';
+      font-size: 0.5rem;
+      color: var(--spotlight);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ── Agenda / Turmas ────────────────────────────── */
+    .turmas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 760px) { .turmas-grid { grid-template-columns: 1fr; } }
+
+    .turma-card {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(245,239,230,0.1);
+    }
+    .turma-header {
+      padding: 24px 28px;
+      background: rgba(245,239,230,0.05);
+      border-bottom: 1px solid rgba(245,239,230,0.08);
+    }
+    .turma-cidade {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--spotlight);
+      margin-bottom: 6px;
+    }
+    .turma-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .turnos {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .turno-pill {
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(212,134,58,0.1);
+      border: 1px solid rgba(212,134,58,0.2);
+      color: var(--gold);
+    }
+    .turma-schedule { padding: 0 28px 24px; }
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(245,239,230,0.06);
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-mod {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(212,134,58,0.1);
+      color: var(--spotlight);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .schedule-nome { font-size: 0.875rem; color: rgba(245,239,230,0.75); font-weight: 500; }
+    .schedule-data { font-size: 0.8125rem; color: rgba(245,239,230,0.4); white-space: nowrap; }
+    .schedule-aviso { font-size: 0.6875rem; color: var(--gold); }
+
+    /* ── Por que Cênica ─────────────────────────────── */
+    .motivos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 860px) { .motivos-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .motivos-grid { grid-template-columns: 1fr; } }
+
+    .motivo-card {
+      background: rgba(245,239,230,0.04);
+      border: 1px solid rgba(245,239,230,0.08);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .motivo-icon { font-size: 1.75rem; margin-bottom: 12px; }
+    .motivo-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .motivo-card p { font-size: 0.8125rem; color: rgba(245,239,230,0.55); line-height: 1.6; }
+
+    /* ── Instrutor ──────────────────────────────────── */
+    .instrutor-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 760px) { .instrutor-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .instrutor-foto {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, var(--curtain), var(--void));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .instrutor-foto img { width: 100%; height: 100%; object-fit: cover; }
+    .instrutor-foto-placeholder {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--spotlight);
+      opacity: 0.3;
+    }
+    .instrutor-nome {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem,3vw,2.25rem);
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .instrutor-cargo { font-size: 0.875rem; color: var(--spotlight); font-weight: 600; margin-bottom: 20px; }
+    .instrutor-bio { font-size: 1rem; color: rgba(245,239,230,0.65); line-height: 1.75; margin-bottom: 24px; }
+    .instrutor-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .instrutor-tag {
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: rgba(245,239,230,0.06);
+      border: 1px solid rgba(245,239,230,0.12);
+      font-size: 0.8125rem;
+      color: rgba(245,239,230,0.6);
+    }
+
+    /* ── Preços ─────────────────────────────────────── */
+    .precos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .precos-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+    .preco-card {
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .preco-card-basic {
+      background: var(--warm-white);
+      border: 1px solid rgba(74,58,82,0.12);
+    }
+    .preco-card-featured {
+      background: linear-gradient(160deg, var(--curtain) 0%, #200b40 100%);
+      border: 1px solid rgba(212,134,58,0.35);
+    }
+    .preco-card-empresas {
+      background: var(--void);
+      border: 1px solid rgba(245,239,230,0.08);
+    }
+    .preco-card-badge {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 99px;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .badge-basic { background: rgba(74,58,82,0.1); color: var(--text-light); }
+    .badge-featured { background: rgba(212,134,58,0.15); color: var(--spotlight); border: 1px solid rgba(212,134,58,0.3); }
+    .badge-best { background: var(--spotlight); color: white; }
+    .badge-empresas { background: rgba(245,239,230,0.08); color: rgba(245,239,230,0.4); border: 1px solid rgba(245,239,230,0.1); }
+    .preco-titulo {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .preco-card-basic .preco-titulo { color: var(--text-dark); }
+    .preco-card-featured .preco-titulo,
+    .preco-card-empresas .preco-titulo { color: var(--cream); }
+    .preco-desc { font-size: 0.875rem; line-height: 1.55; margin-bottom: 20px; }
+    .preco-card-basic .preco-desc { color: var(--text-mid); }
+    .preco-card-featured .preco-desc,
+    .preco-card-empresas .preco-desc { color: rgba(245,239,230,0.55); }
+    .preco-valor {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .preco-card-basic .preco-valor { color: var(--text-dark); }
+    .preco-card-featured .preco-valor { color: var(--gold); }
+    .preco-card-empresas .preco-valor { color: var(--cream); }
+    .preco-sub { font-size: 0.8125rem; margin-bottom: 24px; }
+    .preco-card-basic .preco-sub { color: var(--text-light); }
+    .preco-card-featured .preco-sub,
+    .preco-card-empresas .preco-sub { color: rgba(245,239,230,0.4); }
+    .preco-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .preco-items li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; line-height: 1.4; }
+    .preco-items li::before { content: '✓'; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .preco-card-basic .preco-items li { color: var(--text-mid); }
+    .preco-card-basic .preco-items li::before { color: var(--spotlight); }
+    .preco-card-featured .preco-items li,
+    .preco-card-empresas .preco-items li { color: rgba(245,239,230,0.7); }
+    .preco-card-featured .preco-items li::before { color: var(--gold); }
+    .preco-card-empresas .preco-items li::before { color: var(--spotlight); }
+    .preco-card-featured::before {
+      content: 'Mais escolhido';
+      position: absolute;
+      top: 16px; right: -28px;
+      background: var(--spotlight);
+      color: white;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 40px;
+      transform: rotate(35deg);
+    }
+
+    /* ── Inscrição form ─────────────────────────────── */
+    .inscricao-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 56px;
+      align-items: start;
+    }
+    @media (max-width: 880px) { .inscricao-grid { grid-template-columns: 1fr; } }
+    .inscricao-form-card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 16px 64px rgba(15,10,26,0.2);
+    }
+    .inscricao-form-title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .inscricao-form-sub { font-size: 0.875rem; color: var(--text-light); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field label { font-size: 0.8125rem; font-weight: 600; color: var(--text-dark); }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      padding: 10px 14px;
+      border: 1px solid rgba(74,58,82,0.15);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: var(--text-dark);
+      background: white;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--spotlight);
+      box-shadow: 0 0 0 3px rgba(212,134,58,0.12);
+    }
+    .form-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A7A92' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+    .inscricao-info { display: flex; flex-direction: column; gap: 20px; }
+    .inscricao-info-item { display: flex; gap: 14px; align-items: flex-start; }
+    .inscricao-info-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(212,134,58,0.1);
+      border: 1px solid rgba(212,134,58,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--spotlight);
+      flex-shrink: 0;
+    }
+    .inscricao-info-text strong { display: block; font-size: 0.875rem; color: var(--cream); margin-bottom: 2px; }
+    .inscricao-info-text span { font-size: 0.8125rem; color: rgba(245,239,230,0.5); line-height: 1.5; }
+
+    /* ── Mobile nav menu ────────────────────────────── */
+    .nav-mobile-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-mobile-btn span {
+      display: block;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    @media (max-width: 767px) {
+      .nav-mobile-btn { display: flex; }
+      .nav-links { display: none; }
+    }
+
+    /* ── Depoimentos ────────────────────────────────── */
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 860px) { .depoimentos-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .depoimentos-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════
+       NAVEGAÇÃO
+  ════════════════════════════════════ -->
+  <header class="nav" id="nav" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Navegação principal">
+        <a href="#hero" class="nav-logo" aria-label="Cênica — Início">Cênica</a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#turmas">Turmas</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#instrutor">Instrutor</a></li>
+          <li><a href="#palestra">Palestra</a></li>
+          <li><a href="#inscricao">Inscrição</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="#inscricao" class="btn btn-primary btn-sm">Inscrever-se</a>
+          <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════════════════════
+         HERO
+    ════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-labelledby="hero-heading">
+      <canvas id="hero-particles" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Esquerda: headline + badges -->
+          <div class="hero-content">
+            <div class="hero-badges">
+              <span class="hero-pill">🎭 Técnicas teatrais</span>
+              <span class="hero-pill">📍 Teresina &amp; Fortaleza</span>
+              <span class="hero-pill">6 módulos</span>
+              <span class="hero-pill">3 turnos</span>
+              <span class="hero-pill">Turmas de até 12 pessoas</span>
+            </div>
+
+            <h1 id="hero-heading" class="display hero-title">
+              Soft skills que<br>mudam de verdade.
+            </h1>
+
+            <p class="lead hero-subtitle">
+              A Cênica usa técnicas do teatro profissional para desenvolver as habilidades humanas que mais impactam carreiras — empatia, comunicação, inteligência emocional, trabalho em equipe e criatividade.
+            </p>
+
+            <div class="hero-actions" style="margin-top:32px;">
+              <a href="#inscricao" class="btn btn-primary btn-lg">
+                Garantir minha vaga
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#modulos" class="btn btn-ghost">Ver módulos</a>
+            </div>
+
+            <p class="hero-stat" style="margin-top:28px;">300+ profissionais já passaram pelo palco da Cênica</p>
+          </div>
+
+          <!-- Direita: card de inscrição rápida -->
+          <div class="enroll-card reveal">
+            <p class="enroll-card-title">Quero me inscrever</p>
+            <p class="enroll-card-sub">Preencha e receba as informações completas</p>
+
+            <form class="enroll-form" id="enroll-quick" novalidate>
+              <input class="enroll-input" type="text" placeholder="Seu nome" required autocomplete="name" aria-label="Nome" />
+              <input class="enroll-input" type="email" placeholder="Seu melhor e-mail" required autocomplete="email" aria-label="E-mail" />
+              <input class="enroll-input" type="tel" placeholder="WhatsApp com DDD" autocomplete="tel" aria-label="WhatsApp" />
+
+              <select class="enroll-input enroll-select" aria-label="Cidade">
+                <option value="" disabled selected>Cidade</option>
+                <option>Fortaleza – CE</option>
+                <option>Teresina – PI</option>
+              </select>
+
+              <select class="enroll-input enroll-select" aria-label="Turno preferido">
+                <option value="" disabled selected>Turno preferido</option>
+                <option>Manhã (8h–12h)</option>
+                <option>Tarde (13h–17h)</option>
+                <option>Noite (18h–22h)</option>
+              </select>
+
+              <select class="enroll-input enroll-select" aria-label="Interesse">
+                <option value="" disabled selected>Tenho interesse em…</option>
+                <option>Curso completo (6 módulos)</option>
+                <option>Módulo individual</option>
+                <option>Programa para empresa</option>
+                <option>Palestra 22/mai — Teresina</option>
+              </select>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="justify-content:center;">
+                Ver opções de pagamento
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+
+              <p class="enroll-note">Pagamento seguro. Vaga confirmada na hora.</p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+      <div class="hero-spotlight" aria-hidden="true"></div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PALESTRA — DESTAQUE
+    ════════════════════════════════════ -->
+    <section class="palestra-section" id="palestra" aria-labelledby="palestra-heading">
+      <div class="container">
+        <div class="palestra-section-tag" style="display:inline-flex;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Evento especial · Teresina
+        </div>
+
+        <div class="palestra-section-grid">
+
+          <!-- Esquerda: info do evento -->
+          <div>
+            <p class="palestra-section-date">22 de maio de 2026 &nbsp;·&nbsp; Quinta-feira, 19h</p>
+            <h2 id="palestra-heading" class="palestra-section-title">Manual<br>Humano</h2>
+            <p class="palestra-section-desc">
+              Uma noite de imersão prática sobre comunicação, presença e impacto pessoal — usando as técnicas teatrais que a Cênica aplica em líderes e equipes. Para quem quer se destacar e ser ouvido de verdade.
+            </p>
+
+            <div class="palestra-section-details">
+              <div class="palestra-detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span><strong>Teatro Torquato Neto</strong> · Teresina – PI</span>
+              </div>
+              <div class="palestra-detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Duração: <strong>2h30</strong></span>
+              </div>
+              <div class="palestra-detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>Palestrante: <strong>João Cambraia</strong></span>
+              </div>
+              <div class="palestra-detail-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>
+                <span><strong style="color:var(--spotlight);">Vagas limitadas</strong></span>
+              </div>
+            </div>
+
+            <div class="palestra-bullets">
+              <div class="palestra-bullet">Como usar a voz e o corpo para comunicar com autoridade</div>
+              <div class="palestra-bullet">Técnicas de presença usadas por atores profissionais</div>
+              <div class="palestra-bullet">O poder da escuta ativa em reuniões, vendas e liderança</div>
+              <div class="palestra-bullet">Exercícios práticos que você leva para o dia seguinte</div>
+            </div>
+          </div>
+
+          <!-- Direita: card de ingresso -->
+          <div class="palestra-ticket-card">
+            <p class="palestra-ticket-label">🎟 Ingresso · Palestra</p>
+
+            <!-- Formas de pagamento -->
+            <div style="margin-bottom:18px;">
+              <p style="font-size:0.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,239,230,0.4);margin-bottom:10px;">Formas de pagamento</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">PIX</span>
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">VISA</span>
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">MASTER</span>
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">ELO</span>
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">HIPER</span>
+                <span style="background:rgba(245,239,230,0.08);border:1px solid rgba(245,239,230,0.15);border-radius:6px;padding:4px 10px;font-size:0.75rem;font-weight:700;color:rgba(245,239,230,0.7);letter-spacing:0.04em;">AMEX</span>
+              </div>
+            </div>
+
+            <div class="palestra-ticket-qr">
+              <img src="qrcode-pix-ingresso.png" alt="QR Code PIX para ingresso da palestra" loading="lazy" />
+            </div>
+            <p class="palestra-ticket-pix-hint">PIX — escaneie para pagar</p>
+
+            <div class="palestra-ticket-divider">ou pague com cartão</div>
+
+            <a href="https://link.mercadopago.com.br/palestrasoftskill"
+               target="_blank" rel="noopener"
+               class="btn btn-primary btn-lg"
+               style="width:100%;justify-content:center;margin-bottom:10px;">
+              Inteira — R$ 150
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+
+            <a href="https://link.mercadopago.com.br/palestrasoftskill"
+               target="_blank" rel="noopener"
+               class="btn btn-ghost"
+               style="width:100%;justify-content:center;border-color:rgba(212,134,58,0.4);color:var(--gold);">
+              Meia-entrada — R$ 75
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+
+            <p class="palestra-ticket-spots" style="margin-top:16px;">
+              <strong>⚡ Últimas vagas!</strong> Não deixe para a última hora.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         STATS
+    ════════════════════════════════════ -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-strip-inner">
+          <div class="stat-item">
+            <span class="stat-value stat-counter" data-target="300" data-suffix="+">300+</span>
+            <span class="stat-label">Profissionais formados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">6</span>
+            <span class="stat-label">Módulos especializados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">2</span>
+            <span class="stat-label">Cidades</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Turnos disponíveis</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value stat-counter" data-target="95" data-suffix="%">95%</span>
+            <span class="stat-label">Satisfação dos alunos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════
+         MÓDULOS — VISÃO GERAL
+    ════════════════════════════════════ -->
+    <section class="section bg-cream" id="modulos" aria-labelledby="modulos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:48px;">
+          <span class="label text-spotlight">Programa completo</span>
+          <h2 id="modulos-heading" class="display" style="margin-top:10px;">6 módulos. Uma jornada.</h2>
+          <p class="lead" style="max-width:560px;margin:16px auto 0;">
+            Cada módulo é uma semana intensiva de prática real.
+            Faça módulos separados ou a jornada completa.
+          </p>
+        </div>
+
+        <div class="modulos-grid">
+
+          <div class="modulo-card reveal reveal-delay-1">
+            <p class="modulo-num">Módulo 01</p>
+            <span class="modulo-icon">🎯</span>
+            <h3>Introdução às Soft Skills</h3>
+            <p>Mapeie onde você está e para onde quer ir. Entenda por que o comportamento só muda com prática.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+          <div class="modulo-card reveal reveal-delay-2">
+            <p class="modulo-num">Módulo 02</p>
+            <span class="modulo-icon">❤️</span>
+            <h3>Empatia</h3>
+            <p>Aprenda a ler pessoas, escutar de verdade e criar conexões profissionais que duram.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+          <div class="modulo-card reveal reveal-delay-3">
+            <p class="modulo-num">Módulo 03</p>
+            <span class="modulo-icon">🎤</span>
+            <h3>Comunicação</h3>
+            <p>Voz, corpo, clareza e impacto. Comunique-se com presença em qualquer sala.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+          <div class="modulo-card reveal reveal-delay-1">
+            <p class="modulo-num">Módulo 04</p>
+            <span class="modulo-icon">🧠</span>
+            <h3>Inteligência Emocional</h3>
+            <p>Gerencie suas emoções sob pressão. Tome decisões melhores nos momentos que mais importam.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+          <div class="modulo-card reveal reveal-delay-2">
+            <p class="modulo-num">Módulo 05</p>
+            <span class="modulo-icon">🤝</span>
+            <h3>Trabalho em Equipe</h3>
+            <p>Confiar, improvisar junto e cobrir o colega. Colaboração real que transforma times.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+          <div class="modulo-card reveal reveal-delay-3">
+            <p class="modulo-num">Módulo 06</p>
+            <span class="modulo-icon">💡</span>
+            <h3>Criatividade</h3>
+            <p>Improvise, experimente e resolva problemas fora do roteiro — mesmo quando tudo vai mal.</p>
+            <div class="modulo-card-accent"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         CURRÍCULO DETALHADO
+    ════════════════════════════════════ -->
+    <section class="section bg-warm-white" id="curriculo" aria-labelledby="curriculo-heading">
+      <div class="container">
+        <div class="section-header reveal" style="max-width:600px;margin-bottom:40px;">
+          <span class="label text-spotlight">O que você vai aprender</span>
+          <h2 id="curriculo-heading" class="display" style="margin-top:10px;">Conteúdo de cada módulo</h2>
+        </div>
+
+        <div id="curriculo-list">
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">01</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Introdução às Soft Skills</span>
+                <span class="curriculo-sub">Semana 1 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>O que são soft skills e por que definem carreiras</li>
+                  <li>Autoconhecimento: mapeamento de competências e pontos cegos</li>
+                  <li>Por que a cabeça entende mas o comportamento não muda — e como resolver isso</li>
+                  <li>Introdução ao método teatral no desenvolvimento humano</li>
+                  <li>Exercícios práticos de presença e escuta ativa</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">02</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Empatia</span>
+                <span class="curriculo-sub">Semana 2 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>Escuta ativa — a diferença entre ouvir e compreender</li>
+                  <li>Leitura de emoções e linguagem não-verbal</li>
+                  <li>Exercícios teatrais de troca de perspectiva</li>
+                  <li>Empatia como ferramenta de liderança e negociação</li>
+                  <li>Limites saudáveis: empatia sem se perder</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">03</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Comunicação</span>
+                <span class="curriculo-sub">Semana 3 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>Comunicação verbal, não-verbal e paralinguagem</li>
+                  <li>Técnicas de voz e corpo do ator aplicadas ao ambiente profissional</li>
+                  <li>Clareza e objetividade: dizer mais com menos</li>
+                  <li>Fala em público e apresentações de impacto</li>
+                  <li>Storytelling para convencer e inspirar</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">04</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Inteligência Emocional</span>
+                <span class="curriculo-sub">Semana 4 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>Autoconsciência emocional: reconhecer antes de reagir</li>
+                  <li>Regulação emocional em situações de pressão e conflito</li>
+                  <li>Motivação intrínseca e resiliência</li>
+                  <li>Gestão de conflitos com equilíbrio e clareza</li>
+                  <li>Exercícios teatrais de improvisação sob pressão</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">05</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Trabalho em Equipe</span>
+                <span class="curriculo-sub">Semana 5 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>Confiança como base de equipes de alto desempenho</li>
+                  <li>Improviso coletivo: escutar, responder, construir junto</li>
+                  <li>Papéis, responsabilidades e cobertura mútua</li>
+                  <li>Conflito construtivo — divergir sem destruir</li>
+                  <li>Celebração e feedback como cultura de time</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="curriculo-item" data-curriculo>
+            <button class="curriculo-trigger" aria-expanded="false">
+              <div class="curriculo-num-badge">06</div>
+              <div class="curriculo-trigger-text">
+                <span class="curriculo-title">Criatividade</span>
+                <span class="curriculo-sub">Semana 6 · 20h · Manhã, Tarde ou Noite</span>
+              </div>
+              <svg class="curriculo-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="curriculo-body">
+              <div class="curriculo-body-inner">
+                <ul class="curriculo-topics">
+                  <li>Quebrando o "não sei improvisar" — todo mundo pode</li>
+                  <li>Técnicas de geração de ideias do teatro aplicadas a negócios</li>
+                  <li>Pensar fora do roteiro quando o roteiro acaba</li>
+                  <li>Criatividade como prática diária, não dom</li>
+                  <li>Projeto final: resolução criativa de um desafio real do aluno</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         TURMAS / AGENDA
+    ════════════════════════════════════ -->
+    <section class="section bg-void" id="turmas" aria-labelledby="turmas-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:48px;">
+          <span class="label text-spotlight">Agenda 2026</span>
+          <h2 id="turmas-heading" class="display text-cream" style="margin-top:10px;">Escolha sua cidade e turno</h2>
+          <p style="color:rgba(245,239,230,0.55);font-size:0.9375rem;margin-top:12px;">
+            Seg a Sex · Manhã (8h–12h) · Tarde (13h–17h) · Noite (18h–22h)
+          </p>
+        </div>
+
+        <div class="turmas-grid reveal">
+
+          <!-- FORTALEZA -->
+          <div class="turma-card">
+            <div class="turma-header">
+              <p class="turma-cidade">Fortaleza – CE</p>
+              <h3>2ª semana de cada mês</h3>
+              <div class="turnos">
+                <span class="turno-pill">☀ Manhã 8h–12h</span>
+                <span class="turno-pill">🌤 Tarde 13h–17h</span>
+                <span class="turno-pill">🌙 Noite 18h–22h</span>
+              </div>
+            </div>
+            <div class="turma-schedule">
+              <div class="schedule-row">
+                <div class="schedule-mod">01</div>
+                <div>
+                  <div class="schedule-nome">Introdução às Soft Skills</div>
+                </div>
+                <div class="schedule-data">08–12/mai</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">02</div>
+                <div><div class="schedule-nome">Empatia</div></div>
+                <div class="schedule-data">08–12/jun</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">03</div>
+                <div><div class="schedule-nome">Comunicação</div></div>
+                <div class="schedule-data">13–17/jul</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">04</div>
+                <div><div class="schedule-nome">Inteligência Emocional</div></div>
+                <div class="schedule-data">10–14/ago</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">05</div>
+                <div><div class="schedule-nome">Trabalho em Equipe</div></div>
+                <div class="schedule-data">14–18/set</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">06</div>
+                <div>
+                  <div class="schedule-nome">Criatividade</div>
+                  <div class="schedule-aviso">⚠ início ter (12/out feriado)</div>
+                </div>
+                <div class="schedule-data">13–16/out</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TERESINA -->
+          <div class="turma-card">
+            <div class="turma-header">
+              <p class="turma-cidade">Teresina – PI</p>
+              <h3>1ª semana de cada mês</h3>
+              <div class="turnos">
+                <span class="turno-pill">☀ Manhã 8h–12h</span>
+                <span class="turno-pill">🌤 Tarde 13h–17h</span>
+                <span class="turno-pill">🌙 Noite 18h–22h</span>
+              </div>
+            </div>
+            <div class="turma-schedule">
+              <div class="schedule-row">
+                <div class="schedule-mod">01</div>
+                <div>
+                  <div class="schedule-nome">Introdução às Soft Skills</div>
+                  <div class="schedule-aviso">⚠ recesso qui (04/jun Corpus Christi)</div>
+                </div>
+                <div class="schedule-data">01–05/jun</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">02</div>
+                <div><div class="schedule-nome">Empatia</div></div>
+                <div class="schedule-data">06–10/jul</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">03</div>
+                <div><div class="schedule-nome">Comunicação</div></div>
+                <div class="schedule-data">03–07/ago</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">04</div>
+                <div>
+                  <div class="schedule-nome">Inteligência Emocional</div>
+                  <div class="schedule-aviso">⚠ início ter (07/set feriado)</div>
+                </div>
+                <div class="schedule-data">08–11/set</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">05</div>
+                <div><div class="schedule-nome">Trabalho em Equipe</div></div>
+                <div class="schedule-data">05–09/out</div>
+              </div>
+              <div class="schedule-row">
+                <div class="schedule-mod">06</div>
+                <div>
+                  <div class="schedule-nome">Criatividade</div>
+                  <div class="schedule-aviso">⚠ início ter (02/nov feriado)</div>
+                </div>
+                <div class="schedule-data">03–06/nov</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p style="text-align:center;font-size:0.8125rem;color:rgba(245,239,230,0.3);margin-top:24px;">
+          Módulos podem ser feitos de forma independente, em qualquer ordem, exceto o Módulo 01 que é pré-requisito.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PREÇOS
+    ════════════════════════════════════ -->
+    <section class="section bg-cream" id="precos" aria-labelledby="precos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:48px;">
+          <span class="label text-spotlight">Investimento</span>
+          <h2 id="precos-heading" class="display" style="margin-top:10px;">Escolha seu plano</h2>
+        </div>
+
+        <!-- Planos individuais -->
+        <div class="precos-grid reveal" style="grid-template-columns: repeat(2,1fr); max-width: 760px; margin: 0 auto 64px;">
+
+          <!-- Módulo individual -->
+          <div class="preco-card preco-card-basic">
+            <span class="preco-card-badge badge-basic">Módulo avulso</span>
+            <p class="preco-titulo">Módulo Individual</p>
+            <p class="preco-desc">Escolha o módulo que mais precisa e faça no turno e na cidade que preferir.</p>
+            <p class="preco-valor">R$ 200</p>
+            <p class="preco-sub">Por módulo · 1 semana · 20h</p>
+            <ul class="preco-items">
+              <li>1 módulo à sua escolha</li>
+              <li>Turno: manhã, tarde ou noite</li>
+              <li>Fortaleza ou Teresina</li>
+              <li>Material didático incluso</li>
+              <li>Certificado de participação</li>
+            </ul>
+            <a href="#inscricao" data-interesse="Módulo 01 — Introdução às Soft Skills" class="btn btn-ghost-dark btn-lg btn-matricula" style="width:100%;justify-content:center;">
+              Matricular agora
+            </a>
+          </div>
+
+          <!-- Curso completo -->
+          <div class="preco-card preco-card-featured">
+            <span class="preco-card-badge badge-featured badge-best">Mais escolhido</span>
+            <p class="preco-titulo">Curso Completo</p>
+            <p class="preco-desc">Todos os 6 módulos. A jornada completa de transformação.</p>
+            <p class="preco-valor">R$ 1.200</p>
+            <p style="font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:4px;">ou em até 10×</p>
+            <p class="preco-sub">Curso completo · 6 semanas · 120h</p>
+            <ul class="preco-items">
+              <li>Todos os 6 módulos</li>
+              <li>Turno fixo da sua escolha</li>
+              <li>Fortaleza ou Teresina</li>
+              <li>Material didático incluso</li>
+              <li>Certificado de conclusão</li>
+              <li>Acesso à comunidade Cênica</li>
+              <li>Sessão individual de feedback</li>
+            </ul>
+            <a href="#inscricao" data-interesse="Curso completo (6 módulos)" class="btn btn-primary btn-lg btn-matricula" style="width:100%;justify-content:center;">
+              Matricular agora
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Programa corporativo -->
+        <div class="reveal">
+          <div class="section-header text-center" style="margin-bottom:32px;">
+            <span class="label text-spotlight">Corporativo</span>
+            <h3 class="display" style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--text-dark);margin-top:10px;">Programas para empresas</h3>
+            <p style="font-size:0.9375rem;color:var(--text-mid);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.65;">Formatos customizados para cada porte. Do workshop pontual à imersão trimestral da equipe inteira.</p>
+          </div>
+
+          <div class="precos-grid" style="grid-template-columns:repeat(3,1fr);">
+
+            <!-- Pequenas -->
+            <div class="preco-card preco-card-basic">
+              <span class="preco-card-badge badge-basic">Até 10 colaboradores</span>
+              <p class="preco-titulo">Pequena Empresa</p>
+              <p class="preco-desc">Workshop intensivo de 1 a 2 dias. Ideal para times pequenos que precisam de resultado rápido.</p>
+              <p class="preco-valor" style="font-size:1.5rem;">A consultar</p>
+              <p class="preco-sub">Proposta por demanda · In-company ou na Cênica</p>
+              <ul class="preco-items">
+                <li>1 ou 2 módulos à escolha</li>
+                <li>Workshop de 8h ou 16h</li>
+                <li>Diagnóstico de necessidades</li>
+                <li>Material didático incluso</li>
+                <li>Certificado para todos os participantes</li>
+              </ul>
+              <a href="https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Pequena%20Empresa." target="_blank" rel="noopener" class="btn btn-ghost-dark btn-lg" style="width:100%;justify-content:center;">
+                Falar pelo WhatsApp
+              </a>
+            </div>
+
+            <!-- Médias -->
+            <div class="preco-card preco-card-featured">
+              <span class="preco-card-badge badge-featured">Mais contratado</span>
+              <p class="preco-titulo">Média Empresa</p>
+              <p class="preco-desc">Programa modular de 3 a 6 meses para equipes que querem desenvolvimento contínuo e mensurável.</p>
+              <p class="preco-valor" style="font-size:1.5rem;">A consultar</p>
+              <p class="preco-sub">Proposta por demanda · In-company ou na Cênica</p>
+              <ul class="preco-items">
+                <li>3 a 6 módulos sequenciais</li>
+                <li>Turmas de até 12 por grupo</li>
+                <li>Diagnóstico + planejamento</li>
+                <li>Material didático incluso</li>
+                <li>Relatório de desenvolvimento individual</li>
+                <li>Acompanhamento mensal</li>
+                <li>Suporte pós-programa por 30 dias</li>
+              </ul>
+              <a href="https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Média%20Empresa." target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
+                Falar pelo WhatsApp
+              </a>
+            </div>
+
+            <!-- Grandes -->
+            <div class="preco-card preco-card-empresas">
+              <span class="preco-card-badge badge-empresas">50+ colaboradores</span>
+              <p class="preco-titulo">Grande Empresa</p>
+              <p class="preco-desc">Imersão completa e customizada para múltiplas equipes. Programa trimestral ou anual com facilitação exclusiva.</p>
+              <p class="preco-valor" style="font-size:1.5rem;">A consultar</p>
+              <p class="preco-sub">Proposta executiva · Contrato trimestral ou anual</p>
+              <ul class="preco-items">
+                <li>Programa completo customizado</li>
+                <li>Múltiplas turmas simultâneas</li>
+                <li>Facilitador dedicado à empresa</li>
+                <li>Diagnóstico organizacional</li>
+                <li>Relatório por equipe e por indivíduo</li>
+                <li>Suporte pós-programa por 90 dias</li>
+                <li>Revisão e ajuste trimestral do programa</li>
+              </ul>
+              <a href="https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Grande%20Empresa." target="_blank" rel="noopener" class="btn btn-secondary btn-lg" style="width:100%;justify-content:center;">
+                Falar pelo WhatsApp
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         POR QUE CÊNICA
+    ════════════════════════════════════ -->
+    <section class="section bg-void" id="porquecenica" aria-labelledby="motivos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:48px;">
+          <span class="label text-spotlight">Por que a Cênica</span>
+          <h2 id="motivos-heading" class="display text-cream" style="margin-top:10px;">6 razões para escolher o palco</h2>
+        </div>
+
+        <div class="motivos-grid">
+          <div class="motivo-card reveal reveal-delay-1">
+            <div class="motivo-icon">🎭</div>
+            <h4>Método comprovado</h4>
+            <p>Técnicas teatrais usadas há séculos para moldar comportamento. Não é teoria — é prática viva.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-2">
+            <div class="motivo-icon">👥</div>
+            <h4>Turmas pequenas</h4>
+            <p>No máximo 12 pessoas por turma. Cada aluno recebe atenção real, não uma experiência em massa.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-3">
+            <div class="motivo-icon">🗓</div>
+            <h4>Flexibilidade de turno</h4>
+            <p>Manhã, tarde ou noite. Você escolhe o horário que cabe na sua rotina sem abrir mão da qualidade.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-1">
+            <div class="motivo-icon">🏙</div>
+            <h4>Presença em 2 cidades</h4>
+            <p>Teresina e Fortaleza. Com o mesmo padrão de facilitação e a mesma experiência transformadora.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-2">
+            <div class="motivo-icon">🧩</div>
+            <h4>Modular e flexível</h4>
+            <p>Faça o curso completo ou apenas os módulos que precisa. Monte sua jornada do seu jeito.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-3">
+            <div class="motivo-icon">📈</div>
+            <h4>Resultado no dia seguinte</h4>
+            <p>Comportamento que muda durante o curso — não depois. Você pratica, erra, ajusta e leva para a vida real.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         INSTRUTOR
+    ════════════════════════════════════ -->
+    <section class="section bg-curtain" id="instrutor" aria-labelledby="instrutor-heading">
+      <div class="container">
+        <div class="instrutor-grid reveal">
+
+          <div class="instrutor-foto">
+            <img src="joao-cambraia.jpg" alt="João Cambraia — Fundador da Cênica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="instrutor-foto-placeholder" style="display:none;">JC</div>
+          </div>
+
+          <div>
+            <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Fundador &amp; Facilitador</span>
+            <h2 id="instrutor-heading" class="instrutor-nome">João Cambraia</h2>
+            <p class="instrutor-cargo">Diretor da Cênica · Especialista em Desenvolvimento Humano</p>
+            <p class="instrutor-bio">
+              João Cambraia combina anos de experiência com técnicas teatrais e desenvolvimento humano para criar uma metodologia única: usar o palco como laboratório de transformação comportamental. Fundou a Cênica com a convicção de que toda pessoa já tem dentro de si as habilidades que busca — falta apenas o espaço seguro para praticá-las.
+            </p>
+            <p class="instrutor-bio">
+              Seu método já passou por mais de 300 profissionais em Teresina e Fortaleza, de analistas a diretores, de startups a empresas tradicionais.
+            </p>
+            <div class="instrutor-tags">
+              <span class="instrutor-tag">Teatro aplicado</span>
+              <span class="instrutor-tag">Liderança</span>
+              <span class="instrutor-tag">Comunicação</span>
+              <span class="instrutor-tag">Inteligência emocional</span>
+              <span class="instrutor-tag">Improviso</span>
+              <span class="instrutor-tag">Facilitação de grupos</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         DEPOIMENTOS
+    ════════════════════════════════════ -->
+    <section class="section bg-warm-white" id="depoimentos" aria-labelledby="depoimentos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:40px;">
+          <span class="label text-spotlight">Quem já passou pelo palco</span>
+          <h2 id="depoimentos-heading" class="display" style="margin-top:10px;">Transformações reais</h2>
+        </div>
+
+        <div class="depoimentos-grid">
+          <div class="testimonial-card reveal reveal-delay-1">
+            <span class="testimonial-quote" aria-hidden="true">"</span>
+            <p class="testimonial-text">Nunca imaginei que um exercício de improviso me ensinaria a conduzir reuniões difíceis. Em duas semanas apliquei o que aprendi e minha equipe percebeu a diferença.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">MS</div>
+              <div class="testimonial-author-info">
+                <span class="testimonial-name">Marina Souza</span>
+                <span class="testimonial-role">Gerente de Projetos · Fortaleza</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal reveal-delay-2">
+            <span class="testimonial-quote" aria-hidden="true">"</span>
+            <p class="testimonial-text">Em dois dias de programa, nossa equipe de liderança estava se comunicando de forma completamente diferente. Não é palestra — é transformação vivida.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">CM</div>
+              <div class="testimonial-author-info">
+                <span class="testimonial-name">Carlos Mendes</span>
+                <span class="testimonial-role">Diretor de RH · Teresina</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card reveal reveal-delay-3">
+            <span class="testimonial-quote" aria-hidden="true">"</span>
+            <p class="testimonial-text">Fiz o módulo de Comunicação com medo de falar em público. Hoje apresento para 200 pessoas sem travar. O método da Cênica é o mais eficaz que já vi.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">RL</div>
+              <div class="testimonial-author-info">
+                <span class="testimonial-name">Renata Lima</span>
+                <span class="testimonial-role">Especialista Comercial · Fortaleza</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         FAQ
+    ════════════════════════════════════ -->
+    <section class="section bg-cream" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:40px;">
+          <h2 id="faq-heading" class="display">Perguntas frequentes</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-1">
+              <span class="faq-question">Preciso ter experiência com teatro?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-1"><p class="faq-answer">Não. O método é para profissionais, não para atores. Nenhum conhecimento teatral é necessário — apenas a disposição de praticar.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-2">
+              <span class="faq-question">Posso fazer só alguns módulos?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-2"><p class="faq-answer">Sim. Todos os módulos podem ser feitos de forma individual, exceto o Módulo 01 (Introdução) que é pré-requisito para os demais. Você monta sua jornada conforme sua necessidade.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
+              <span class="faq-question">Posso trocar de turno entre os módulos?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-3"><p class="faq-answer">Sim, desde que haja vaga no turno desejado. Entre em contato com antecedência para verificar disponibilidade.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">
+              <span class="faq-question">Qual a carga horária de cada módulo?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-4"><p class="faq-answer">Cada módulo tem 20 horas (segunda a sexta, 4h por dia). O curso completo totaliza 120 horas presenciais.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-5">
+              <span class="faq-question">A Cênica oferece programas para empresas?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-5"><p class="faq-answer">Sim. Oferecemos programas customizados para pequenas e médias empresas, de workshops de meio dia a programas trimestrais. Tudo desenhado conforme a necessidade real da sua equipe.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-6">
+              <span class="faq-question">Há certificado ao final?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-6"><p class="faq-answer">Sim. Ao concluir cada módulo você recebe um certificado de participação. Ao concluir o curso completo, recebe o certificado de conclusão da Cênica.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         FORMULÁRIO DE INSCRIÇÃO
+    ════════════════════════════════════ -->
+    <section class="section cta-section" id="inscricao" aria-labelledby="inscricao-heading">
+      <div class="container">
+        <div class="inscricao-grid">
+
+          <!-- Info lateral -->
+          <div class="reveal">
+            <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Inscrição</span>
+            <h2 id="inscricao-heading" class="display" style="font-family:'Playfair Display',Georgia,serif;color:var(--cream);font-size:clamp(1.75rem,3.5vw,2.5rem);line-height:1.2;margin-bottom:16px;">
+              O palco está pronto.<br>Falta você entrar.
+            </h2>
+            <p style="color:rgba(245,239,230,0.6);font-size:1rem;line-height:1.7;margin-bottom:40px;">
+              Preencha o formulário e você será direcionado imediatamente para a página de pagamento do produto selecionado.
+            </p>
+
+            <div class="inscricao-info">
+              <div class="inscricao-info-item">
+                <div class="inscricao-info-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <div class="inscricao-info-text">
+                  <strong>Pagamento imediato e seguro</strong>
+                  <span>Após preencher, você é redirecionado direto para o link de pagamento.</span>
+                </div>
+              </div>
+
+              <div class="inscricao-info-item">
+                <div class="inscricao-info-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="inscricao-info-text">
+                  <strong>Vaga garantida na hora</strong>
+                  <span>Sua vaga é confirmada assim que o pagamento é processado. Turmas de até 12 pessoas.</span>
+                </div>
+              </div>
+
+              <div class="inscricao-info-item">
+                <div class="inscricao-info-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="inscricao-info-text">
+                  <strong>Confirmação por e-mail</strong>
+                  <span>Você recebe todos os detalhes da turma no e-mail cadastrado.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulário principal -->
+          <div class="inscricao-form-card reveal reveal-delay-2" id="inscricao-palestra">
+            <p class="inscricao-form-title">Formulário de inscrição</p>
+            <p class="inscricao-form-sub">Preencha os dados e confirme o pagamento para garantir sua vaga.</p>
+
+            <form id="main-form" novalidate style="display:flex;flex-direction:column;gap:14px;">
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="f-nome">Nome completo *</label>
+                  <input id="f-nome" type="text" placeholder="Seu nome" required autocomplete="name" />
+                </div>
+                <div class="form-field">
+                  <label for="f-whats">WhatsApp *</label>
+                  <input id="f-whats" type="tel" placeholder="(85) 99999-0000" required autocomplete="tel" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="f-email">E-mail *</label>
+                <input id="f-email" type="email" placeholder="seu@email.com" required autocomplete="email" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="f-cidade">Cidade *</label>
+                  <select id="f-cidade" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option>Fortaleza – CE</option>
+                    <option>Teresina – PI</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="f-turno">Turno preferido *</label>
+                  <select id="f-turno" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option>Manhã (8h–12h)</option>
+                    <option>Tarde (13h–17h)</option>
+                    <option>Noite (18h–22h)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="f-interesse">Interesse *</label>
+                <select id="f-interesse" required>
+                  <option value="" disabled selected>Selecione o que deseja</option>
+                  <option>Curso completo (6 módulos)</option>
+                  <option>Módulo 01 — Introdução às Soft Skills</option>
+                  <option>Módulo 02 — Empatia</option>
+                  <option>Módulo 03 — Comunicação</option>
+                  <option>Módulo 04 — Inteligência Emocional</option>
+                  <option>Módulo 05 — Trabalho em Equipe</option>
+                  <option>Módulo 06 — Criatividade</option>
+                  <optgroup label="Programa Corporativo">
+                    <option>Empresa Pequena (até 10 colaboradores)</option>
+                    <option>Empresa Média (11–50 colaboradores)</option>
+                    <option>Empresa Grande (50+ colaboradores)</option>
+                  </optgroup>
+                  <option>Palestra 22/mai — Teresina</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="f-empresa">Empresa / cargo <span style="font-weight:400;color:var(--text-light)">(opcional)</span></label>
+                <input id="f-empresa" type="text" placeholder="Ex: Analista de RH — Empresa X" />
+              </div>
+
+              <!-- Resumo do pagamento — aparece ao selecionar o interesse -->
+              <div id="payment-preview" style="display:none;background:rgba(212,134,58,0.07);border:1px solid rgba(212,134,58,0.25);border-radius:12px;padding:16px 18px;">
+                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:8px;">Você está pagando por</p>
+                <p id="preview-interesse" style="font-size:0.9375rem;font-weight:600;color:var(--text-dark);margin-bottom:4px;"></p>
+                <p id="preview-valor" style="font-size:1.375rem;font-weight:700;color:var(--spotlight);"></p>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-top:4px;">
+                Confirmar inscrição e pagar
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+
+              <p style="font-size:0.75rem;color:var(--text-light);text-align:center;">
+                Seus dados são confidenciais e não serão compartilhados.
+              </p>
+            </form>
+
+            <!-- Confirmação de pagamento — aparece após envio do formulário -->
+            <div id="payment-confirm" style="display:none;" role="alert" aria-live="polite">
+              <div style="text-align:center;margin-bottom:24px;">
+                <div style="width:56px;height:56px;border-radius:50%;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--spotlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p style="font-family:'Playfair Display',Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--text-dark);margin-bottom:6px;">Inscrição recebida!</p>
+                <p style="font-size:0.875rem;color:var(--text-mid);line-height:1.6;">Para confirmar sua vaga, efetue o pagamento abaixo.</p>
+              </div>
+
+              <div style="background:rgba(212,134,58,0.06);border:1px solid rgba(212,134,58,0.2);border-radius:12px;padding:16px 18px;margin-bottom:20px;">
+                <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:8px;">Resumo</p>
+                <p id="confirm-interesse" style="font-size:0.9375rem;font-weight:600;color:var(--text-dark);margin-bottom:4px;"></p>
+                <p id="confirm-valor" style="font-size:1.25rem;font-weight:700;color:var(--spotlight);"></p>
+              </div>
+
+              <a id="confirm-pay-btn" href="#" target="_blank" rel="noopener"
+                 class="btn btn-primary btn-lg"
+                 style="width:100%;justify-content:center;margin-bottom:12px;">
+                Confirmar e pagar agora
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+
+              <p style="font-size:0.75rem;color:var(--text-light);text-align:center;">
+                Pagamento processado pelo Mercado Pago. Sua vaga é confirmada após a aprovação.
+              </p>
+
+              <button id="confirm-back-btn" style="background:none;border:none;color:var(--text-light);font-size:0.8125rem;cursor:pointer;margin-top:10px;width:100%;text-align:center;text-decoration:underline;">
+                Voltar e corrigir dados
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner" style="display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:start;text-align:left;">
+
+        <div>
+          <a href="#hero" class="footer-logo" aria-label="Cênica">Cênica</a>
+          <p class="footer-tagline" style="text-align:left;margin-top:8px;">Escola de soft skills com técnicas teatrais</p>
+          <p style="font-size:0.8125rem;color:rgba(245,239,230,0.3);margin-top:4px;">Teresina · Fortaleza</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Cursos</p>
+            <nav class="footer-links" style="flex-direction:column;align-items:flex-start;gap:8px;">
+              <a href="#modulos">Módulos</a>
+              <a href="#turmas">Turmas 2026</a>
+              <a href="#precos">Preços</a>
+              <a href="#curriculo">Currículo</a>
+            </nav>
+          </div>
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Empresa</p>
+            <nav class="footer-links" style="flex-direction:column;align-items:flex-start;gap:8px;">
+              <a href="#instrutor">Instrutor</a>
+              <a href="#depoimentos">Depoimentos</a>
+              <a href="#faq">FAQ</a>
+              <a href="#precos">Para empresas</a>
+            </nav>
+          </div>
+        </div>
+
+        <div>
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Contato</p>
+          <a href="https://wa.me/5585997041061" target="_blank" rel="noopener"
+             class="btn btn-whatsapp btn-sm" style="margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+          <p style="font-size:0.8125rem;color:rgba(245,239,230,0.3);">cambraiahumor@gmail.com</p>
+        </div>
+
+      </div>
+
+      <div class="divider-light" style="margin-top:40px;"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Cênica. Todos os direitos reservados.</p>
+        <p class="footer-credit">Teresina · Fortaleza</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Currículo accordion (independente do main.js)
+    document.querySelectorAll('[data-curriculo]').forEach(item => {
+      const btn = item.querySelector('.curriculo-trigger');
+      const body = item.querySelector('.curriculo-body');
+      if (!btn || !body) return;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('open');
+        document.querySelectorAll('[data-curriculo]').forEach(i => {
+          i.classList.remove('open');
+          const b = i.querySelector('.curriculo-body');
+          if (b) b.style.maxHeight = null;
+          const t = i.querySelector('.curriculo-trigger');
+          if (t) t.setAttribute('aria-expanded','false');
+        });
+        if (!open) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+
+    // ── Links de pagamento — atualize os URLs abaixo ──────────────────────────
+    const PAYMENT_LINKS = {
+      palestraInteira:     'https://link.mercadopago.com.br/palestrasoftskill',
+      palestraMeia:        'https://link.mercadopago.com.br/palestrasoftskill',
+      modulo:              'https://mpago.la/1qKWtv8',
+      cursoCompleto:       'https://mpago.la/1ektSi5',
+      empresaPequena:      'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Pequena%20Empresa.',
+      empresaMedia:        'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Média%20Empresa.',
+      empresaGrande:       'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Grande%20Empresa.',
+    };
+
+    function paymentLinkForInterest(interest) {
+      if (!interest) return null;
+      // Para a palestra no formulário, usa inteira por padrão
+      if (interest.includes('Palestra'))                   return PAYMENT_LINKS.palestraInteira;
+      if (interest.includes('curso completo') ||
+          interest.includes('Curso completo'))             return PAYMENT_LINKS.cursoCompleto;
+      if (interest.includes('Pequena') ||
+          interest.includes('pequena'))                    return PAYMENT_LINKS.empresaPequena;
+      if (interest.includes('Média') ||
+          interest.includes('média') ||
+          interest.includes('Media'))                      return PAYMENT_LINKS.empresaMedia;
+      if (interest.includes('Grande') ||
+          interest.includes('grande'))                     return PAYMENT_LINKS.empresaGrande;
+      if (interest.includes('empresa') ||
+          interest.includes('Empresa'))                    return PAYMENT_LINKS.empresaMedia;
+      return PAYMENT_LINKS.modulo; // módulo individual
+    }
+
+    // ── Preview de pagamento ao selecionar interesse ──────────────────────────
+    document.getElementById('f-interesse')?.addEventListener('change', function() {
+      const interesse = this.value;
+      const preview   = document.getElementById('payment-preview');
+      if (!interesse) { preview.style.display = 'none'; return; }
+      document.getElementById('preview-interesse').textContent = interesse;
+      document.getElementById('preview-valor').textContent     = priceForInterest(interesse);
+      preview.style.display = 'block';
+    });
+
+    // ── Botões "Matricular agora" → pré-seleciona interesse no formulário ─────
+    document.querySelectorAll('.btn-matricula').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const interesse = btn.dataset.interesse;
+        if (!interesse) return;
+        const select = document.getElementById('f-interesse');
+        if (!select) return;
+        for (let opt of select.options) {
+          if (opt.text === interesse || opt.value === interesse) {
+            select.value = opt.value;
+            break;
+          }
+        }
+      });
+    });
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function priceForInterest(interest) {
+      if (!interest) return '';
+      if (interest.includes('Palestra'))   return 'R$ 150 — inteira (meia-entrada: R$ 75)';
+      if (interest.includes('Curso completo') ||
+          interest.includes('curso completo')) return 'R$ 1.200 à vista ou em até 10×';
+      if (interest.startsWith('Módulo'))   return 'R$ 200';
+      return 'A consultar — nossa equipe entrará em contato';
+    }
+
+    function emailjsReady() {
+      return EMAILJS_PUBLIC_KEY !== 'SUA_PUBLIC_KEY' &&
+             EMAILJS_SERVICE_ID  !== 'SUA_SERVICE_ID' &&
+             EMAILJS_TEMPLATE_ID !== 'SEU_TEMPLATE_ID';
+    }
+
+    async function sendConfirmation(params) {
+      if (!emailjsReady()) return;
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      } catch (err) {
+        console.warn('EmailJS:', err);
+      }
+    }
+
+    function redirectToPayment(link) {
+      if (link && !link.startsWith('LINK_')) {
+        window.location.href = link;
+      }
+    }
+
+    // ── Quick enroll form (hero) ──────────────────────────────────────────────
+    document.getElementById('enroll-quick')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const f = e.target;
+      const btn = f.querySelector('[type=submit]');
+      const nome     = f.querySelector('[aria-label="Nome"]')?.value?.trim()    || '';
+      const email    = f.querySelector('[aria-label="E-mail"]')?.value?.trim()  || '';
+      const cidade   = f.querySelector('[aria-label="Cidade"]')?.value          || '';
+      const turno    = f.querySelector('[aria-label="Turno preferido"]')?.value || '';
+      const interesse= f.querySelector('[aria-label="Interesse"]')?.value       || '';
+      const link     = paymentLinkForInterest(interesse);
+
+      if (!nome || !email) { alert('Preencha nome e e-mail para continuar.'); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando confirmação…';
+
+      await sendConfirmation({
+        to_name:    nome,
+        to_email:   email,
+        interesse,
+        cidade,
+        turno,
+        valor:      priceForInterest(interesse),
+        link_pagamento: (link && !link.startsWith('LINK_')) ? link : '(em breve)',
+      });
+
+      btn.textContent = 'Redirecionando…';
+      setTimeout(() => redirectToPayment(link) || (window.location.href = '#inscricao'), 400);
+    });
+
+    // ── Main inscription form ─────────────────────────────────────────────────
+    document.getElementById('main-form')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn      = e.target.querySelector('[type=submit]');
+      const nome     = document.getElementById('f-nome')?.value?.trim()    || '';
+      const email    = document.getElementById('f-email')?.value?.trim()   || '';
+      const whats    = document.getElementById('f-whats')?.value?.trim()   || '';
+      const cidade   = document.getElementById('f-cidade')?.value          || '';
+      const turno    = document.getElementById('f-turno')?.value           || '';
+      const interesse = document.getElementById('f-interesse')?.value      || '';
+      const empresa  = document.getElementById('f-empresa')?.value?.trim() || '';
+      const link     = paymentLinkForInterest(interesse);
+
+      if (!nome || !email || !interesse) {
+        alert('Preencha nome, e-mail e interesse para continuar.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      await sendConfirmation({
+        to_name:    nome,
+        to_email:   email,
+        interesse,
+        cidade,
+        turno,
+        whatsapp:   whats,
+        empresa,
+        valor:      priceForInterest(interesse),
+        link_pagamento: link || '(em breve)',
+      });
+
+      btn.textContent = 'Redirecionando para pagamento…';
+      setTimeout(() => { if (link) window.location.href = link; }, 500);
+    });
+  </script>
+</body>
+</html>

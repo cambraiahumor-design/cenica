@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carroseis Instagram — Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#0F0A1A; --curtain:#1E0A3C; --spotlight:#D4863A;
+  --gold:#E8C86A; --cream:#F5EFE6; --warm:#FDFAF6; --muted:#8B7FA0;
+  --font-d:'Playfair Display',serif; --font-b:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);background:#D8D3CD;min-height:100vh;display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--void);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.07)}
+.topbar-brand{font-family:var(--font-d);font-size:18px;color:var(--cream);letter-spacing:.03em}
+.topbar-sub{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.topbar-right{display:flex;gap:8px;align-items:center}
+.chip{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.05em;cursor:pointer;border:none;transition:all .2s}
+.chip-outline{background:transparent;color:var(--cream);border:1px solid rgba(255,255,255,.2)}
+.chip-outline:hover{border-color:var(--gold);color:var(--gold)}
+.chip-fill{background:linear-gradient(135deg,var(--spotlight),var(--gold));color:var(--void);font-weight:700}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:280px 1fr;flex:1;min-height:0}
+
+/* ── SIDEBAR ── */
+.sidebar{background:var(--void);padding:24px 0;overflow-y:auto;border-right:1px solid rgba(255,255,255,.06)}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 20px;margin-bottom:10px;margin-top:8px}
+.nav-card{display:flex;gap:12px;align-items:center;padding:12px 20px;cursor:pointer;transition:background .15s;border-left:3px solid transparent}
+.nav-card:hover{background:rgba(255,255,255,.04)}
+.nav-card.active{background:rgba(212,134,58,.1);border-left-color:var(--spotlight)}
+.nav-thumb{width:44px;height:44px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-info-title{font-size:13px;font-weight:500;color:var(--cream);line-height:1.3;margin-bottom:2px}
+.nav-card.active .nav-info-title{color:var(--gold)}
+.nav-info-slides{font-size:11px;color:var(--muted)}
+
+/* ── MAIN ── */
+.main{display:flex;flex-direction:column;align-items:center;padding:40px 32px;gap:24px;overflow-y:auto}
+
+/* ── CAROUSEL HEADER ── */
+.carousel-header{width:100%;max-width:520px}
+.carousel-num{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--spotlight);margin-bottom:6px}
+.carousel-title-big{font-family:var(--font-d);font-size:24px;color:var(--void);line-height:1.25;margin-bottom:6px}
+.carousel-desc{font-size:14px;color:#5C5068;line-height:1.6}
+
+/* ── STAGE ── */
+.stage{width:100%;max-width:520px;position:relative}
+.slide-frame{width:100%;aspect-ratio:1/1;border-radius:20px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+
+/* slide navigation arrows */
+.nav-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(15,10,26,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);color:white;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s;user-select:none}
+.nav-arrow:hover{background:rgba(212,134,58,.8)}
+.nav-arrow.prev{left:-20px}
+.nav-arrow.next{right:-20px}
+.nav-arrow.disabled{opacity:.3;cursor:default}
+
+/* slide counter */
+.slide-counter{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);color:white;font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;z-index:10;letter-spacing:.05em}
+
+/* ── DOTS ── */
+.dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;max-width:520px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(15,10,26,.25);cursor:pointer;transition:all .2s}
+.dot.active{width:20px;border-radius:3px;background:var(--spotlight)}
+
+/* ── SLIDES ── */
+.slide{width:100%;height:100%;position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:52px 48px;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.slide.visible{opacity:1;pointer-events:all}
+
+/* DARK slide */
+.slide-dark{background:linear-gradient(145deg,#0F0A1A 0%,#1A0535 100%)}
+.slide-dark::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:3px;height:70%;background:linear-gradient(to bottom,rgba(212,134,58,.6),transparent);pointer-events:none}
+.slide-dark::after{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.18) 0%,transparent 70%);pointer-events:none}
+
+/* CREAM slide */
+.slide-cream{background:linear-gradient(145deg,#F5EFE6 0%,#EDE6DB 100%)}
+
+/* CURTAIN slide */
+.slide-curtain{background:linear-gradient(145deg,#1E0A3C 0%,#0F0A1A 100%)}
+.slide-curtain::after{content:'';position:absolute;bottom:0;right:0;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,200,106,.12),transparent 70%);pointer-events:none}
+
+/* SPOTLIGHT slide */
+.slide-spot{background:linear-gradient(145deg,#2C1A0A 0%,#1A0C05 100%)}
+
+/* GOLD slide */
+.slide-gold{background:linear-gradient(145deg,#E8C86A 0%,#D4863A 100%)}
+
+/* ── SLIDE CONTENT ── */
+.s-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.dark-eye{color:var(--spotlight)}.cream-eye{color:var(--spotlight)}.gold-eye{color:var(--void);opacity:.7}
+.s-number{font-family:var(--font-d);font-size:80px;font-weight:700;line-height:.9;margin-bottom:16px;opacity:.15;position:absolute;top:40px;right:44px}
+.s-num-dark{color:var(--gold)}.s-num-cream{color:var(--spotlight)}
+.s-big-num{font-family:var(--font-d);font-size:100px;font-weight:700;line-height:.85;margin-bottom:12px;background:linear-gradient(135deg,var(--spotlight),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s-title{font-family:var(--font-d);line-height:1.2;margin-bottom:14px}
+.s-title-lg{font-size:clamp(28px,5vw,40px)}
+.s-title-md{font-size:clamp(22px,4vw,32px)}
+.s-title-sm{font-size:clamp(18px,3.5vw,26px)}
+.s-title-dark{color:var(--warm)}.s-title-cream{color:var(--void)}.s-title-gold-card{color:var(--void)}
+em.gold{color:var(--gold);font-style:italic}
+em.spot{color:var(--spotlight);font-style:italic}
+em.dark{color:var(--void);font-style:italic}
+.s-body{font-size:14px;line-height:1.75}
+.s-body-dark{color:var(--muted)}.s-body-cream{color:#3D3249}.s-body-gold{color:rgba(15,10,26,.8)}
+.s-divider{width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--spotlight),var(--gold));margin-bottom:20px}
+.s-tag{display:inline-block;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.tag-spot{background:rgba(212,134,58,.2);color:var(--spotlight);border:1px solid rgba(212,134,58,.35)}
+.tag-gold{background:rgba(232,200,106,.15);color:var(--gold);border:1px solid rgba(232,200,106,.3)}
+.tag-dark{background:rgba(15,10,26,.12);color:var(--void);border:1px solid rgba(15,10,26,.2)}
+
+/* lists */
+.s-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.s-list li{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.6}
+.s-list li::before{content:'▸';color:var(--spotlight);flex-shrink:0;margin-top:2px}
+.s-list-dark li{color:var(--muted)}
+.s-list-cream li{color:#3D3249}
+
+/* quote */
+.s-quote{font-family:var(--font-d);font-style:italic;line-height:1.45;margin-bottom:16px}
+.s-quote-lg{font-size:clamp(20px,3.5vw,28px)}
+.s-quote-md{font-size:clamp(17px,3vw,22px)}
+.s-quote-dark{color:var(--warm)}.s-quote-cream{color:var(--void)}
+.s-quote-mark{font-family:var(--font-d);font-size:64px;line-height:.6;color:var(--spotlight);opacity:.5;display:block;margin-bottom:10px}
+
+/* compare */
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.compare-col{border-radius:12px;padding:16px}
+.compare-bad{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.compare-good{background:rgba(212,134,58,.15);border:1px solid rgba(212,134,58,.3)}
+.compare-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.label-bad{color:rgba(255,255,255,.4)}.label-good{color:var(--gold)}
+.compare-text{font-size:12px;line-height:1.6;color:var(--muted)}
+.compare-text-good{color:var(--cream)}
+
+/* pill row */
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.s-pill{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500}
+.pill-dark{background:rgba(255,255,255,.08);color:var(--cream);border:1px solid rgba(255,255,255,.12)}
+.pill-spot{background:rgba(212,134,58,.2);color:var(--gold);border:1px solid rgba(212,134,58,.3)}
+.pill-cream-dark{background:rgba(15,10,26,.08);color:var(--void);border:1px solid rgba(15,10,26,.12)}
+
+/* CTA slide button */
+.s-btn{display:inline-block;padding:15px 34px;background:linear-gradient(135deg,var(--spotlight),var(--gold));color:var(--void);font-weight:700;font-size:14px;border-radius:50px;margin-top:20px;letter-spacing:.04em;box-shadow:0 6px 24px rgba(212,134,58,.45);text-align:center}
+.s-btn-outline{display:inline-block;padding:13px 28px;background:transparent;color:var(--cream);font-weight:600;font-size:13px;border-radius:50px;margin-top:12px;letter-spacing:.04em;border:1px solid rgba(255,255,255,.3)}
+
+/* icon circle */
+.icon-circle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(212,134,58,.25),rgba(232,200,106,.15));border:1px solid rgba(212,134,58,.4);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+
+/* bottom brand bar */
+.s-brand-bar{position:absolute;bottom:0;left:0;right:0;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(15,10,26,.6);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.07)}
+.s-brand-bar-light{background:rgba(245,239,230,.7);border-top:1px solid rgba(15,10,26,.1)}
+.brand-name-bar{font-family:var(--font-d);font-size:13px;color:var(--cream);letter-spacing:.05em}
+.brand-name-bar-dark{color:var(--void)}
+.brand-handle-bar{font-size:10px;color:var(--muted);letter-spacing:.05em}
+.brand-handle-bar-dark{color:#8B7FA0}
+
+/* swipe hint */
+.swipe-hint{position:absolute;bottom:44px;right:20px;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.05em;writing-mode:vertical-rl;transform:rotate(180deg)}
+.swipe-hint-dark{color:rgba(15,10,26,.25)}
+
+/* ── THUMBNAILS STRIP ── */
+.thumb-strip{display:flex;gap:8px;max-width:520px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+.thumb-strip::-webkit-scrollbar{height:3px}.thumb-strip::-webkit-scrollbar-track{background:rgba(0,0,0,.1)}.thumb-strip::-webkit-scrollbar-thumb{background:var(--spotlight);border-radius:2px}
+.thumb{width:60px;height:60px;border-radius:8px;flex-shrink:0;cursor:pointer;overflow:hidden;border:2px solid transparent;transition:border-color .2s;scroll-snap-align:start}
+.thumb.active{border-color:var(--spotlight)}
+.thumb-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;font-family:var(--font-d)}
+
+/* toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--void);color:var(--cream);padding:12px 20px;border-radius:50px;font-size:13px;font-weight:500;border:1px solid rgba(212,134,58,.3);box-shadow:0 8px 32px rgba(0,0,0,.3);transform:translateY(60px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:999}
+.toast.show{transform:translateY(0)}
+
+@media(max-width:720px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:flex;overflow-x:auto;padding:12px 0;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-card{min-width:180px}
+  .nav-arrow.prev{left:-10px}.nav-arrow.next{right:-10px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-brand">Cênica</div>
+    <div class="topbar-sub">Carroseis de Instagram</div>
+  </div>
+  <div class="topbar-right">
+    <button class="chip chip-outline" onclick="showToast('Use Print do navegador para exportar como PDF')">Exportar PDF</button>
+    <button class="chip chip-fill" onclick="showToast('Abra cada slide em tela cheia e tire screenshot para publicar')">Como publicar?</button>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-label">6 Carroseis prontos</div>
+  <div class="nav-card active" onclick="loadCarousel(0,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#0F0A1A,#1A0535)">🗣️</div>
+    <div><div class="nav-info-title">5 sinais de comunicação</div><div class="nav-info-slides">7 slides</div></div>
+  </div>
+  <div class="nav-card" onclick="loadCarousel(1,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#1E0A3C,#0F0A1A)">🎭</div>
+    <div><div class="nav-info-title">Teatro vs. MBA</div><div class="nav-info-slides">6 slides</div></div>
+  </div>
+  <div class="nav-card" onclick="loadCarousel(2,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#D4863A,#E8C86A)">✨</div>
+    <div><div class="nav-info-title">Você já é capaz</div><div class="nav-info-slides">5 slides</div></div>
+  </div>
+  <div class="nav-card" onclick="loadCarousel(3,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#2A0A50,#0F0A1A)">💡</div>
+    <div><div class="nav-info-title">3 técnicas teatrais</div><div class="nav-info-slides">5 slides</div></div>
+  </div>
+  <div class="nav-card" onclick="loadCarousel(4,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#1A0535,#0F0A1A)">⚡</div>
+    <div><div class="nav-info-title">Equipe mediana vs. extraordinária</div><div class="nav-info-slides">6 slides</div></div>
+  </div>
+  <div class="nav-card" onclick="loadCarousel(5,this)">
+    <div class="nav-thumb" style="background:linear-gradient(135deg,#F5EFE6,#E8C86A)">🏆</div>
+    <div><div class="nav-info-title">6 soft skills de carreira</div><div class="nav-info-slides">8 slides</div></div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="main-area">
+  <div class="carousel-header">
+    <div class="carousel-num" id="c-num">Carrossel 01 de 06</div>
+    <h2 class="carousel-title-big" id="c-title">5 sinais que sua comunicação está te custando oportunidades</h2>
+    <p class="carousel-desc" id="c-desc">Pillar: Educação · Use como carrossel de educação para gerar salvamentos e alcance orgânico.</p>
+  </div>
+
+  <div class="stage">
+    <button class="nav-arrow prev" id="btn-prev" onclick="prevSlide()">‹</button>
+    <div class="slide-frame" id="slide-frame"></div>
+    <button class="nav-arrow next" id="btn-next" onclick="nextSlide()">›</button>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <div class="thumb-strip" id="thumbs"></div>
+</main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   CAROUSEL DATA
+═══════════════════════════════════════════════ */
+const carousels = [
+
+/* ① 5 SINAIS DE COMUNICAÇÃO */
+{
+  num:'01', title:'5 sinais que sua comunicação está te custando oportunidades',
+  desc:'Pillar: Educação · Gera salvamentos e compartilhamentos orgânicos. Publique 2ª feira.',
+  slides:[
+    // Cover
+    `<div class="slide slide-dark visible">
+      <div class="s-number s-num-dark">5</div>
+      <span class="s-eyebrow dark-eye">Comunicação profissional</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-lg s-title-dark">5 sinais que sua comunicação está <em class="gold">te custando</em> oportunidades</h2>
+      <p class="s-body s-body-dark" style="margin-top:14px">Arraste para ver cada um →</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+      <div class="swipe-hint">arraste</div>
+    </div>`,
+    // S2
+    `<div class="slide slide-cream visible">
+      <div class="s-number s-num-cream">1</div>
+      <span class="s-tag tag-spot">Sinal 01</span>
+      <h3 class="s-title s-title-md s-title-cream">Você sabe o que quer dizer, mas o outro <em class="spot">não entende</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">A clareza que existe na sua cabeça não chega até o ouvinte. A mensagem se perde no caminho — e você acaba repetindo, reescrevendo, reexplicando.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    // S3
+    `<div class="slide slide-dark visible">
+      <div class="s-number s-num-dark">2</div>
+      <span class="s-tag tag-gold">Sinal 02</span>
+      <h3 class="s-title s-title-md s-title-dark">Suas apresentações são <em class="gold">esquecidas</em> em minutos.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark">Você prepara, apresenta, mas a mensagem não fica. Semanas depois ninguém lembra do que você disse. O problema não é o conteúdo — é a forma de comunicar.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    // S4
+    `<div class="slide slide-cream visible">
+      <div class="s-number s-num-cream">3</div>
+      <span class="s-tag tag-spot">Sinal 03</span>
+      <h3 class="s-title s-title-md s-title-cream">Você evita conflitos porque não sabe <em class="spot">como se posicionar</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">Discordâncias importantes ficam sem voz. Você sabe o que pensa, mas não encontra as palavras — ou o momento — para dizer. Com o tempo, isso vira resignação.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    // S5
+    `<div class="slide slide-curtain visible">
+      <div class="s-number s-num-dark">4</div>
+      <span class="s-tag tag-gold">Sinal 04</span>
+      <h3 class="s-title s-title-md s-title-dark">Em reuniões, suas ideias <em class="gold">não ganham espaço</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark">Você tem boas ideias, mas alguém com mais presença pega o palco. Não é falta de competência — é falta de prática em ocupar o espaço com autoridade.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    // S6
+    `<div class="slide slide-cream visible">
+      <div class="s-number s-num-cream">5</div>
+      <span class="s-tag tag-spot">Sinal 05</span>
+      <h3 class="s-title s-title-md s-title-cream">Sua presença não <em class="spot">transmite o que você sente</em> por dentro.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">Você é competente — mas não parece. A sua postura, voz e olhar não entregam o que você tem. E no mundo profissional, percepção é realidade.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    // CTA
+    `<div class="slide slide-dark visible">
+      <span class="s-eyebrow dark-eye">A solução</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-md s-title-dark">A Cênica foi criada<br>exatamente para isso.</h2>
+      <p class="s-body s-body-dark" style="margin-top:12px;margin-bottom:20px">Usamos técnicas teatrais para desenvolver comunicação, presença e liderança. Na prática. No corpo. De verdade.</p>
+      <div class="s-btn">Link na bio → Conheça a Cênica</div>
+      <p class="s-body s-body-dark" style="font-size:11px;margin-top:14px;opacity:.6">Salva esse carrossel para revisitar 🔖</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`
+  ]
+},
+
+/* ② TEATRO VS MBA */
+{
+  num:'02', title:'Por que o teatro ensina liderança melhor que qualquer MBA',
+  desc:'Pillar: Diferenciação · Post provocativo para alcance. Ideal para Reels cover + carrossel.',
+  slides:[
+    `<div class="slide slide-curtain visible">
+      <div class="icon-circle">🎭</div>
+      <span class="s-eyebrow dark-eye" style="color:var(--gold)">A tese</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-lg s-title-dark">Por que o teatro ensina liderança melhor que qualquer <em class="gold">MBA</em>.</h2>
+      <p class="s-body s-body-dark" style="margin-top:10px">Uma afirmação forte. Provaremos em 4 slides. →</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-dark">Razão 01</span>
+      <h3 class="s-title s-title-md s-title-cream">O MBA te dá <em class="spot">frameworks</em>.<br>O teatro te dá <em class="spot">prática real</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">Você pode decorar todos os modelos de liderança situacional — mas na hora de dar um feedback difícil para alguém que você respeita, o que te salva não é teoria. É prática.</p>
+      <div class="compare-row" style="margin-top:16px">
+        <div class="compare-col" style="background:rgba(122,43,74,.08);border:1px solid rgba(122,43,74,.2)"><div class="compare-label" style="color:#7A2B4A">MBA</div><div class="compare-text" style="color:#7A2B4A;opacity:.8">Frameworks, casos, estudos, teorias</div></div>
+        <div class="compare-col compare-good"><div class="compare-label label-good">Teatro</div><div class="compare-text compare-text-good" style="color:var(--void)">Prática com pressão real e feedback imediato</div></div>
+      </div>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-tag tag-gold">Razão 02</span>
+      <h3 class="s-title s-title-md s-title-dark">No improviso, você lidera<br><em class="gold">sem roteiro</em>. Como na vida real.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark">A liderança de verdade acontece nos momentos não planejados. Na reunião que saiu do controle. Na crise de última hora. No colaborador que te surpreende. O improviso treina exatamente isso.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Razão 03</span>
+      <h3 class="s-title s-title-md s-title-cream">Teatro ensina a <em class="spot">ouvir</em>.<br>MBA ensina a <em class="spot">falar</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">Os melhores líderes do mundo são ouvintes extraordinários. No teatro, você aprende que a cena depende do que o outro traz. Que reagir bem é mais poderoso que preparar o discurso perfeito.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-curtain visible">
+      <span class="s-tag tag-gold">Razão 04</span>
+      <h3 class="s-title s-title-md s-title-dark"><em class="gold">Presença</em> não se aprende em slides.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark">Você já viu alguém entrar em uma sala e, sem dizer uma palavra, todos perceberem que algo mudou? Isso é presença. E é treinável — com o método certo.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-eyebrow dark-eye">Venha para o palco</span>
+      <div class="s-divider"></div>
+      <div class="s-quote">
+        <span class="s-quote-mark">"</span>
+        <span class="s-quote-lg s-quote-dark" style="font-family:var(--font-d);font-style:italic;font-size:clamp(22px,4vw,30px);color:var(--warm);line-height:1.35">Você já é capaz.<br>Falta espaço seguro<br>para <em class="gold">praticar</em> quem<br>você quer ser.</span>
+      </div>
+      <div class="s-btn">Conheça a Cênica → link na bio</div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`
+  ]
+},
+
+/* ③ VOCÊ JÁ É CAPAZ */
+{
+  num:'03', title:'Você já é capaz — o que falta é prática',
+  desc:'Pillar: Brand Truth · Post emocional e filosófico. Ideal para engajamento e identificação.',
+  slides:[
+    `<div class="slide slide-gold visible">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:52px 48px">
+        <div>
+          <span class="s-eyebrow" style="color:rgba(15,10,26,.6);letter-spacing:.2em;font-size:10px;font-weight:700;text-transform:uppercase;display:block;margin-bottom:16px">Brand Truth · Cênica</span>
+          <h2 style="font-family:var(--font-d);font-size:clamp(32px,6vw,48px);font-weight:700;color:var(--void);line-height:1.15;margin-bottom:16px">"Você já é capaz."</h2>
+          <div style="width:48px;height:3px;background:var(--void);opacity:.3;border-radius:2px;margin-bottom:16px"></div>
+          <p style="font-family:var(--font-d);font-style:italic;font-size:18px;color:rgba(15,10,26,.7);line-height:1.5">O que falta é espaço seguro para praticar quem você quer ser.</p>
+        </div>
+      </div>
+      <div class="s-brand-bar" style="background:rgba(15,10,26,.15);border-top:1px solid rgba(15,10,26,.1)"><span style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span style="font-size:10px;color:rgba(15,10,26,.5)">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-eyebrow dark-eye">A verdade que ninguém conta</span>
+      <div class="s-divider"></div>
+      <h3 class="s-title s-title-md s-title-dark">O problema não é <em class="gold">talento</em>.<br>É falta de espaço para errar.</h3>
+      <p class="s-body s-body-dark" style="margin-top:14px">Profissionais brilhantes travam quando precisam se expor. Não porque não sabem — mas porque nunca tiveram um ambiente seguro para praticar, falhar e tentar de novo.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">O insight do teatro</span>
+      <h3 class="s-title s-title-md s-title-cream">No teatro, <em class="spot">errar faz parte</em> do método.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:16px">Atores ensaiam centenas de vezes antes da estreia. Cada erro é informação. Cada tentativa é aprendizado. A cena não existe para ser perfeita — existe para ser <strong>verdadeira</strong>.</p>
+      <p class="s-body s-body-cream">É assim que a Cênica funciona. O palco é um laboratório, não um palco de julgamento.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-curtain visible">
+      <span class="s-eyebrow" style="color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:block">A diferença real</span>
+      <div class="s-divider"></div>
+      <h3 class="s-title s-title-md s-title-dark">Você aprende <em class="gold">fazendo</em>.<br>Não assistindo.</h3>
+      <p class="s-body s-body-dark" style="margin-top:14px">Treinamentos tradicionais te ensinam sobre comunicação. A Cênica te coloca para comunicar — com pressão, com feedback, com a adrenalina de um momento real. Essa diferença muda tudo.</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-gold visible">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:52px 48px">
+        <div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(15,10,26,.6);display:block;margin-bottom:16px">A Cênica é esse espaço.</span>
+          <h2 style="font-family:var(--font-d);font-size:clamp(24px,4.5vw,36px);font-weight:700;color:var(--void);line-height:1.2;margin-bottom:20px">Venha praticar quem você quer ser.</h2>
+          <div style="width:48px;height:3px;background:rgba(15,10,26,.3);border-radius:2px;margin-bottom:20px"></div>
+          <div class="s-btn" style="margin-top:0">Link na bio → Conheça a Cênica</div>
+          <p style="font-size:12px;color:rgba(15,10,26,.5);margin-top:14px">Marque alguém que precisa ouvir isso 💛</p>
+        </div>
+      </div>
+      <div class="s-brand-bar" style="background:rgba(15,10,26,.15);border-top:1px solid rgba(15,10,26,.1)"><span style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span style="font-size:10px;color:rgba(15,10,26,.5)">@cenica.escola</span></div>
+    </div>`
+  ]
+},
+
+/* ④ 3 TÉCNICAS TEATRAIS */
+{
+  num:'04', title:'3 técnicas de ator para usar na sua próxima reunião',
+  desc:'Pillar: Educação prática · Alto potencial de salvamento. Conteúdo aplicável imediatamente.',
+  slides:[
+    `<div class="slide slide-dark visible">
+      <div class="s-number s-num-dark">3</div>
+      <div class="icon-circle">🎬</div>
+      <span class="s-eyebrow dark-eye">Técnicas práticas</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-lg s-title-dark">3 técnicas de ator para usar na sua <em class="gold">próxima reunião</em>.</h2>
+      <p class="s-body s-body-dark" style="margin-top:10px">Simples. Testadas. Eficazes. →</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Técnica 01</span>
+      <h3 class="s-title s-title-md s-title-cream">O "<em class="spot">Sim, e...</em>"</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:16px">A regra de ouro do improviso. Ao invés de bloquear a ideia do outro, você aceita e expande.</p>
+      <div style="background:rgba(212,134,58,.1);border-left:3px solid var(--spotlight);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:14px">
+        <p style="font-size:13px;color:#4A4258;line-height:1.6"><strong style="color:var(--void)">Na reunião:</strong> quando alguém propõe algo, ao invés de "mas isso não vai funcionar", tente "sim, e se também fizéssemos..."</p>
+      </div>
+      <p class="s-body s-body-cream" style="font-size:12px;color:#8B7FA0">Resultado: mais ideias, menos bloqueios, melhor clima criativo.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-tag tag-gold">Técnica 02</span>
+      <h3 class="s-title s-title-md s-title-dark">Escuta com <em class="gold">o corpo inteiro</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark" style="margin-bottom:16px">Atores aprendem que escutar não é só com os ouvidos. É com os olhos, a postura, a presença.</p>
+      <div style="background:rgba(232,200,106,.1);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:14px">
+        <p style="font-size:13px;color:var(--muted);line-height:1.6"><strong style="color:var(--cream)">Na reunião:</strong> deixe o celular de cabeça para baixo. Vire o corpo levemente para quem fala. Mantenha contato visual. Seu interlocutor vai perceber — e vai se abrir mais.</p>
+      </div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Técnica 03</span>
+      <h3 class="s-title s-title-md s-title-cream">A <em class="spot">pausa dramática</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:16px">Os atores sabem: o silêncio fala. Uma pausa bem colocada vale mais que dez palavras.</p>
+      <div style="background:rgba(212,134,58,.1);border-left:3px solid var(--spotlight);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:14px">
+        <p style="font-size:13px;color:#4A4258;line-height:1.6"><strong style="color:var(--void)">Na reunião:</strong> antes de dizer algo importante, pause 2 segundos. Respire. As pessoas vão prestar atenção no que vem depois. Você vai soar mais confiante.</p>
+      </div>
+      <p class="s-body s-body-cream" style="font-size:12px;color:#8B7FA0">Bônus: a pausa também te dá tempo para pensar antes de falar.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-curtain visible">
+      <span class="s-eyebrow" style="color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:14px">Quer mais técnicas assim?</span>
+      <div class="s-divider"></div>
+      <h3 class="s-title s-title-md s-title-dark">Na Cênica, você <em class="gold">pratica</em> centenas de técnicas como essas — com seu time.</h3>
+      <p class="s-body s-body-dark" style="margin-top:12px;margin-bottom:20px">Treinamentos que ficam no corpo, não só no caderno.</p>
+      <div class="s-btn">Conheça os programas → link na bio</div>
+      <p class="s-body s-body-dark" style="font-size:11px;margin-top:14px;opacity:.6">Salva esse post 🔖 | Qual técnica você vai usar hoje?</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`
+  ]
+},
+
+/* ⑤ EQUIPE MEDIANA VS EXTRAORDINÁRIA */
+{
+  num:'05', title:'O que diferencia uma equipe mediana de uma extraordinária',
+  desc:'Pillar: Educação B2B · Para líderes e RH. Gera reflexão e compartilhamento.',
+  slides:[
+    `<div class="slide slide-dark visible">
+      <span class="s-eyebrow dark-eye">Para líderes</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-lg s-title-dark">O que diferencia uma equipe <em class="gold">mediana</em> de uma <em class="gold">extraordinária</em>?</h2>
+      <p class="s-body s-body-dark" style="margin-top:12px">Não é o que você pensa. →</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Não é isso</span>
+      <h3 class="s-title s-title-md s-title-cream">Não é <em class="spot">talento individual</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream">Equipes com profissionais brilhantes podem ser disfuncionais. A soma de talentos individuais não cria sinergia automaticamente. Às vezes, cria conflito.</p>
+      <div style="margin-top:20px;padding:16px;background:rgba(212,134,58,.08);border-radius:12px;border:1px solid rgba(212,134,58,.2)">
+        <p style="font-size:13px;color:#3D3249;line-height:1.6;font-style:italic">"A diferença entre uma banda boa e uma banda extraordinária não é o músico mais talentoso. É a escuta entre eles."</p>
+      </div>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-tag tag-gold">Também não é</span>
+      <h3 class="s-title s-title-md s-title-dark">Não é <em class="gold">tecnologia</em> nem <em class="gold">processo</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark">Ferramentas e metodologias ajudam — mas equipes que não se comunicam bem vão criar atritos com ou sem Notion, Slack ou OKRs. O problema é mais fundo.</p>
+      <ul class="s-list s-list-dark" style="margin-top:16px">
+        <li>Boas ferramentas em mãos que não colaboram = frustração</li>
+        <li>Processos claros com times que não se ouvem = resistência</li>
+        <li>Reuniões bem estruturadas com presença ruim = horas perdidas</li>
+      </ul>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">A resposta</span>
+      <h3 class="s-title s-title-md s-title-cream">É como eles <em class="spot">se comunicam</em> e <em class="spot">colaboram</em>.</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:16px">A pesquisa do Google Project Aristotle (2012) identificou que o fator número 1 de equipes de alta performance é <strong>segurança psicológica</strong> — a capacidade de falar, discordar e arriscar sem medo.</p>
+      <p class="s-body s-body-cream">Isso não é dom. É habilidade. E habilidade se desenvolve.</p>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-curtain visible">
+      <span class="s-eyebrow" style="color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:14px">E isso se aprende</span>
+      <div class="s-divider"></div>
+      <h3 class="s-title s-title-md s-title-dark">Com o método certo.</h3>
+      <p class="s-body s-body-dark" style="margin-top:12px;margin-bottom:20px">A Cênica usa técnicas teatrais para desenvolver exatamente isso: comunicação, escuta, colaboração e presença — de forma experiencial, prática e mensurável.</p>
+      <div class="s-btn">Conheça os programas corporativos →</div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-eyebrow dark-eye">Para compartilhar</span>
+      <div class="s-divider"></div>
+      <div class="s-quote">
+        <span class="s-quote-mark">"</span>
+        <span style="font-family:var(--font-d);font-style:italic;font-size:clamp(18px,3.5vw,26px);color:var(--warm);line-height:1.4;display:block">"Equipes extraordinárias não são feitas de pessoas melhores. São feitas de pessoas que <em class="gold">se ouvem melhor</em>."</span>
+      </div>
+      <p class="s-body s-body-dark" style="font-size:12px;margin-top:16px;opacity:.7">Marque um líder que precisa ler isso 👆</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`
+  ]
+},
+
+/* ⑥ 6 SOFT SKILLS */
+{
+  num:'06', title:'As 6 soft skills que definem carreiras em 2026',
+  desc:'Pillar: Educação · Salvo e compartilhado com frequência. Ideal para alcance orgânico.',
+  slides:[
+    `<div class="slide slide-dark visible">
+      <div class="s-number s-num-dark">6</div>
+      <span class="s-eyebrow dark-eye">Carreira e desenvolvimento</span>
+      <div class="s-divider"></div>
+      <h2 class="s-title s-title-lg s-title-dark">As 6 soft skills que <em class="gold">definem carreiras</em> em 2026.</h2>
+      <p class="s-body s-body-dark" style="margin-top:10px">E como desenvolvemos cada uma com teatro. →</p>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Skill 01 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">👁️</div>
+      <h3 class="s-title s-title-md s-title-cream">Liderança</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:14px">Liderar é influenciar, não controlar. É criar espaço para o outro aparecer.</p>
+      <div style="background:rgba(212,134,58,.1);border-radius:10px;padding:14px;border:1px solid rgba(212,134,58,.2)">
+        <p style="font-size:12px;color:var(--spotlight);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:#3D3249;line-height:1.6">Exercícios de improviso onde um lidera e todos seguem — e os papéis se invertem. Você aprende liderança na prática, não na teoria.</p>
+      </div>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-tag tag-gold">Skill 02 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">🗣️</div>
+      <h3 class="s-title s-title-md s-title-dark">Comunicação</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark" style="margin-bottom:14px">Comunicar não é só o que você fala — é o que o outro entende, sente e lembra.</p>
+      <div style="background:rgba(232,200,106,.1);border-radius:10px;padding:14px;border:1px solid rgba(232,200,106,.2)">
+        <p style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6">Técnicas de expressão vocal, corporal e narrativa. Você aprende a comunicar com clareza, presença e impacto real.</p>
+      </div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Skill 03 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">🤝</div>
+      <h3 class="s-title s-title-md s-title-cream">Trabalho em equipe</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:14px">Teatro é, por natureza, coletivo. Não existe cena solo que não dependa do outro.</p>
+      <div style="background:rgba(212,134,58,.1);border-radius:10px;padding:14px;border:1px solid rgba(212,134,58,.2)">
+        <p style="font-size:12px;color:var(--spotlight);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:#3D3249;line-height:1.6">Dinâmicas coletivas onde o sucesso só acontece quando o grupo colabora. Ego para fora, equipe para dentro.</p>
+      </div>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-curtain visible">
+      <span class="s-tag tag-gold">Skill 04 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">💡</div>
+      <h3 class="s-title s-title-md s-title-dark">Inteligência emocional</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark" style="margin-bottom:14px">Reconhecer o que você sente — e o que o outro sente — antes de agir.</p>
+      <div style="background:rgba(232,200,106,.1);border-radius:10px;padding:14px;border:1px solid rgba(232,200,106,.2)">
+        <p style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6">Exercícios de empatia e escuta ativa baseados em técnicas stanislavskianas. Você aprende a ler emoções — as suas e as do outro.</p>
+      </div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-cream visible">
+      <span class="s-tag tag-spot">Skill 05 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">✨</div>
+      <h3 class="s-title s-title-md s-title-cream">Criatividade</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-cream" style="margin-bottom:14px">Criatividade não é talento. É músculo. E se desenvolve quando você se permite arriscar.</p>
+      <div style="background:rgba(212,134,58,.1);border-radius:10px;padding:14px;border:1px solid rgba(212,134,58,.2)">
+        <p style="font-size:12px;color:var(--spotlight);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:#3D3249;line-height:1.6">Improviso e jogos teatrais que treinam o "sim" antes do "não". Você aprende a criar sem censura — e depois filtrar com critério.</p>
+      </div>
+      <div class="s-brand-bar s-brand-bar-light"><span class="brand-name-bar-dark" style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span class="brand-handle-bar-dark" style="font-size:10px;color:#8B7FA0">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-dark visible">
+      <span class="s-tag tag-gold">Skill 06 / 06</span>
+      <div class="icon-circle" style="width:48px;height:48px;font-size:20px;margin-bottom:12px">⚡</div>
+      <h3 class="s-title s-title-md s-title-dark">Proatividade</h3>
+      <div class="s-divider"></div>
+      <p class="s-body s-body-dark" style="margin-bottom:14px">Proatividade é tomar o palco antes de ser convidado. É agir sem esperar permissão.</p>
+      <div style="background:rgba(232,200,106,.1);border-radius:10px;padding:14px;border:1px solid rgba(232,200,106,.2)">
+        <p style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:4px">Como desenvolvemos:</p>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6">Cenas onde a história só avança se alguém age. Você treina o impulso de ir — e aprende que esperar custa mais caro que arriscar.</p>
+      </div>
+      <div class="s-brand-bar"><span class="brand-name-bar">Cênica</span><span class="brand-handle-bar">@cenica.escola</span></div>
+    </div>`,
+    `<div class="slide slide-gold visible">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:52px 48px">
+        <div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(15,10,26,.6);display:block;margin-bottom:14px">Desenvolva todas as 6</span>
+          <h2 style="font-family:var(--font-d);font-size:clamp(26px,5vw,38px);font-weight:700;color:var(--void);line-height:1.2;margin-bottom:16px">Com o único método que usa o palco como laboratório.</h2>
+          <div style="width:48px;height:3px;background:rgba(15,10,26,.3);border-radius:2px;margin-bottom:20px"></div>
+          <div class="s-btn" style="margin-top:0">Conheça os programas da Cênica →</div>
+          <p style="font-size:12px;color:rgba(15,10,26,.5);margin-top:14px">Salva esse carrossel 🔖 · Qual skill você precisa mais?</p>
+        </div>
+      </div>
+      <div class="s-brand-bar" style="background:rgba(15,10,26,.15);border-top:1px solid rgba(15,10,26,.1)"><span style="font-family:var(--font-d);font-size:13px;color:var(--void)">Cênica</span><span style="font-size:10px;color:rgba(15,10,26,.5)">@cenica.escola</span></div>
+    </div>`
+  ]
+}
+
+]; /* end carousels */
+
+/* ═══════════════════════════════════════════════
+   STATE & RENDER
+═══════════════════════════════════════════════ */
+let current = 0, slide = 0;
+
+function loadCarousel(idx, el) {
+  current = idx; slide = 0;
+  document.querySelectorAll('.nav-card').forEach(n=>n.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const c = carousels[idx];
+  document.getElementById('c-num').textContent = `Carrossel ${c.num} de 06`;
+  document.getElementById('c-title').textContent = c.title;
+  document.getElementById('c-desc').textContent = c.desc;
+  renderSlide();
+  renderDots();
+  renderThumbs();
+}
+
+function renderSlide() {
+  const c = carousels[current];
+  const frame = document.getElementById('slide-frame');
+  frame.innerHTML = `
+    <div class="slide-counter">${slide+1} / ${c.slides.length}</div>
+    ${c.slides[slide]}
+    ${slide < c.slides.length-1 ? '<div class="swipe-hint" style="color:rgba(255,255,255,.25);font-size:9px;letter-spacing:.05em">›</div>' : ''}
+  `;
+  // make slide visible
+  const s = frame.querySelector('.slide');
+  if(s){ s.classList.add('visible'); s.style.opacity='1'; }
+  // arrows
+  const prev = document.getElementById('btn-prev');
+  const next = document.getElementById('btn-next');
+  prev.classList.toggle('disabled', slide===0);
+  next.classList.toggle('disabled', slide===c.slides.length-1);
+  // update dots
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===slide));
+  // update thumbs
+  document.querySelectorAll('.thumb').forEach((t,i)=>t.classList.toggle('active',i===slide));
+}
+
+function renderDots() {
+  const c = carousels[current];
+  const el = document.getElementById('dots');
+  el.innerHTML = c.slides.map((_,i)=>`<div class="dot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('');
+}
+
+// Per-carousel slide color palettes for intuitive thumbnail navigation
+const carouselThumbColors = [
+  // ① 5 sinais: dark, cream, dark, cream, curtain, cream, dark(cta)
+  ['#0F0A1A','#F5EFE6','#1A0535','#EDE6DB','#1E0A3C','#EDE6DB','#0F0A1A'],
+  // ② Teatro vs MBA: curtain, cream, dark, cream, curtain, dark(cta)
+  ['#1E0A3C','#F5EFE6','#0F0A1A','#EDE6DB','#1E0A3C','#0F0A1A'],
+  // ③ Você já é capaz: gold, dark, cream, curtain, gold(cta)
+  ['#E8C86A','#0F0A1A','#F5EFE6','#1E0A3C','#D4863A'],
+  // ④ 3 técnicas: dark, cream, dark, cream, curtain(cta)
+  ['#0F0A1A','#F5EFE6','#1A0535','#EDE6DB','#1E0A3C'],
+  // ⑤ Equipe mediana: dark, cream, dark, cream, curtain, dark
+  ['#0F0A1A','#F5EFE6','#1A0535','#EDE6DB','#1E0A3C','#0F0A1A'],
+  // ⑥ 6 soft skills: dark, cream, dark, cream, curtain, cream, dark, gold(cta)
+  ['#0F0A1A','#F5EFE6','#1A0535','#EDE6DB','#1E0A3C','#F5EFE6','#1A0535','#D4863A']
+];
+
+// Extract the dominant color from a slide's class for per-slide thumbnail icon
+const slideIcons = ['🎯','📋','💬','🎭','⚡','✨','🔖','👁️'];
+
+function renderThumbs() {
+  const c = carousels[current];
+  const colors = carouselThumbColors[current] || [];
+  const el = document.getElementById('thumbs');
+  el.innerHTML = c.slides.map((_,i)=>{
+    const bg = colors[i] || '#0F0A1A';
+    const isLight = bg.startsWith('#F5') || bg.startsWith('#ED') || bg.startsWith('#E8') || bg.startsWith('#D4');
+    const numColor = isLight ? '#0F0A1A' : '#E8C86A';
+    return `<div class="thumb${i===0?' active':''}" onclick="goSlide(${i})" title="Slide ${i+1}">
+      <div class="thumb-inner" style="background:${bg};color:${numColor};font-size:13px;font-family:var(--font-d);font-weight:700">${i+1}</div>
+    </div>`;
+  }).join('');
+}
+
+function goSlide(i) {
+  slide = i;
+  renderSlide();
+}
+
+function prevSlide() {
+  if(slide>0){ slide--; renderSlide(); }
+}
+
+function nextSlide() {
+  const c = carousels[current];
+  if(slide<c.slides.length-1){ slide++; renderSlide(); }
+}
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') nextSlide();
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') prevSlide();
+});
+
+// touch swipe
+let touchX = 0;
+document.getElementById('slide-frame').addEventListener('touchstart',e=>{ touchX=e.touches[0].clientX; });
+document.getElementById('slide-frame').addEventListener('touchend',e=>{
+  const dx = e.changedTouches[0].clientX - touchX;
+  if(dx < -40) nextSlide();
+  if(dx > 40) prevSlide();
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+// init
+loadCarousel(0, document.querySelector('.nav-card'));
+</script>
+</body>
+</html>
