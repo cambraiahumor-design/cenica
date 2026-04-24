@@ -800,71 +800,129 @@
     <!-- ════════════════════════════════════
          HERO
     ════════════════════════════════════ -->
-    <section class="hero" id="hero" aria-labelledby="hero-heading">
+    <section class="hero" id="hero" aria-labelledby="hero-heading" style="padding-top:100px;padding-bottom:80px;min-height:auto;">
       <canvas id="hero-particles" class="hero-canvas" aria-hidden="true"></canvas>
 
       <div class="container">
-        <div class="hero-grid">
+        <div style="display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center;">
 
-          <!-- Esquerda: headline + badges -->
-          <div class="hero-content">
-            <div class="hero-badges">
+          <!-- Esquerda: cartaz -->
+          <div style="position:relative;z-index:2;">
+            <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(212,134,58,0.2),0 0 60px rgba(212,134,58,0.15);">
+              <img src="cartazes/cartaz-story.jpg"
+                   alt="Cartaz da palestra Manual Humano — João Cambraia, 22 de maio, Teatro Torquato Neto, Teresina"
+                   style="width:100%;display:block;border-radius:20px;" />
+            </div>
+          </div>
+
+          <!-- Direita: info + contagem + CTAs -->
+          <div style="position:relative;z-index:2;">
+            <div class="hero-badges" style="margin-bottom:24px;">
               <span class="hero-pill">🎭 Teatro aplicado</span>
               <span class="hero-pill">📍 Teresina – PI</span>
-              <span class="hero-pill">22 de maio · 20h</span>
-              <span class="hero-pill">1h30 de imersão</span>
               <span class="hero-pill">Vagas limitadas</span>
             </div>
 
-            <h1 id="hero-heading" class="display hero-title">
+            <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(2rem,4.5vw,3.25rem);margin-bottom:16px;">
               O palco onde você pratica<br>quem quer ser.
             </h1>
 
-            <p class="lead hero-subtitle">
-              Uma noite de imersão prática com técnicas teatrais para desenvolver comunicação, presença e impacto pessoal. Para quem quer ser ouvido de verdade — em reuniões, apresentações e na vida.
+            <p class="lead" style="color:rgba(245,239,230,0.65);font-size:1rem;line-height:1.75;margin-bottom:36px;max-width:480px;">
+              Uma noite de imersão prática com técnicas teatrais para desenvolver comunicação, presença e impacto pessoal. Para quem quer ser ouvido de verdade.
             </p>
 
-            <div class="hero-actions" style="margin-top:32px;">
-              <a href="#inscricao" class="btn btn-primary btn-lg">
-                Garantir meu ingresso
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <!-- Contagem regressiva -->
+            <div style="margin-bottom:36px;">
+              <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--spotlight);margin-bottom:12px;">⏳ O evento começa em</p>
+              <div id="countdown" style="display:flex;gap:12px;flex-wrap:wrap;">
+                <div class="cd-block">
+                  <span class="cd-num" id="cd-days">--</span>
+                  <span class="cd-label">dias</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                  <span class="cd-num" id="cd-hours">--</span>
+                  <span class="cd-label">horas</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                  <span class="cd-num" id="cd-minutes">--</span>
+                  <span class="cd-label">min</span>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-block">
+                  <span class="cd-num" id="cd-seconds">--</span>
+                  <span class="cd-label">seg</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+              <a href="https://mpago.la/1ektSi5" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                🎟 Inteira — R$ 100
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a href="#palestra" class="btn btn-ghost">Ver detalhes</a>
+              <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">
+                Meia — R$ 50
+              </a>
             </div>
 
-            <p class="hero-stat" style="margin-top:28px;">300+ profissionais transformados em Teresina e Fortaleza</p>
-          </div>
-
-          <!-- Direita: card de ingresso rápido -->
-          <div class="enroll-card reveal">
-            <p class="enroll-card-title">🎟 Garanta seu ingresso</p>
-            <p class="enroll-card-sub">Manual Humano · 22 de maio · Teatro Torquato Neto</p>
-
-            <div style="background:rgba(212,134,58,0.08);border:1px solid rgba(212,134,58,0.2);border-radius:12px;padding:16px;margin-bottom:16px;text-align:center;">
-              <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Inteira</p>
-              <p style="font-size:2rem;font-weight:700;color:var(--spotlight);line-height:1;">R$ 100</p>
-              <p style="font-size:0.8125rem;color:var(--text-light);margin-top:2px;">Meia-entrada disponível: R$ 50</p>
-            </div>
-
-            <a href="https://mpago.la/1ektSi5" target="_blank" rel="noopener"
-               class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-bottom:10px;">
-              Comprar — Inteira R$ 100
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-
-            <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener"
-               class="btn btn-ghost" style="width:100%;justify-content:center;border-color:rgba(212,134,58,0.4);color:var(--gold);">
-              Meia-entrada — R$ 50
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-
-            <p class="enroll-note" style="margin-top:14px;">⚡ Vagas limitadas. Pagamento seguro pelo Mercado Pago.</p>
+            <p style="font-size:0.8125rem;color:rgba(245,239,230,0.3);">Pagamento seguro pelo Mercado Pago · 300+ profissionais já transformados</p>
           </div>
 
         </div>
       </div>
       <div class="hero-spotlight" aria-hidden="true"></div>
     </section>
+
+    <style>
+      .cd-block {
+        display:flex;flex-direction:column;align-items:center;
+        background:rgba(212,134,58,0.1);border:1px solid rgba(212,134,58,0.25);
+        border-radius:12px;padding:12px 18px;min-width:72px;
+      }
+      .cd-num {
+        font-family:'Playfair Display',Georgia,serif;
+        font-size:2rem;font-weight:700;color:var(--cream);line-height:1;
+      }
+      .cd-label {
+        font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;
+        text-transform:uppercase;color:var(--spotlight);margin-top:4px;
+      }
+      .cd-sep {
+        font-size:1.75rem;font-weight:700;color:rgba(212,134,58,0.5);
+        align-self:center;padding-bottom:16px;
+      }
+      @media(max-width:900px){
+        #hero > .container > div { grid-template-columns:1fr !important; }
+        #hero > .container > div > div:first-child { max-width:340px; margin:0 auto; }
+      }
+      @media(max-width:480px){ .cd-block{min-width:56px;padding:10px 12px;} .cd-num{font-size:1.5rem;} }
+    </style>
+
+    <script>
+      (function(){
+        const target = new Date('2026-05-22T23:00:00Z'); // 20h Teresina (UTC-3)
+        function update(){
+          const diff = target - Date.now();
+          if(diff <= 0){
+            document.getElementById('countdown').innerHTML = '<p style="color:var(--gold);font-weight:700;">O evento está acontecendo agora! 🎭</p>';
+            return;
+          }
+          const d = Math.floor(diff/86400000);
+          const h = Math.floor((diff%86400000)/3600000);
+          const m = Math.floor((diff%3600000)/60000);
+          const s = Math.floor((diff%60000)/1000);
+          document.getElementById('cd-days').textContent    = String(d).padStart(2,'0');
+          document.getElementById('cd-hours').textContent   = String(h).padStart(2,'0');
+          document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
+          document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
+        }
+        update();
+        setInterval(update, 1000);
+      })();
+    </script>
 
     <!-- ════════════════════════════════════
          PALESTRA — DESTAQUE
