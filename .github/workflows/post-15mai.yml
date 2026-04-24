@@ -2,9 +2,8 @@ name: Post Instagram — 15 Mai (Lembrete -7 dias)
 
 on:
   schedule:
-    # 15 de maio às 13h UTC = 10h de Teresina (UTC-3)
     - cron: '0 13 15 5 *'
-  workflow_dispatch: # permite rodar manualmente para testar
+  workflow_dispatch:
 
 jobs:
   publicar:
@@ -25,17 +24,4 @@ jobs:
         env:
           IG_USER_ID: ${{ secrets.INSTAGRAM_BUSINESS_ID }}
           IG_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
-          IMAGE_URL: 'https://res.cloudinary.com/dag4aiqp5/image/upload/v1777052733/somoscenica/cartaz-square-v2.jpg'
-          CAPTION: |
-            O palco já está reservado. Você também vai estar lá? 🎭
-
-            Manual Humano é daqui a 7 dias. Uma noite que muda a forma como você se comunica, lidera e aparece.
-
-            📅 22 de maio · 20h
-            📍 Teatro Torquato Neto · Teresina
-            🎟 Inteira R$ 100 | Meia R$ 50
-
-            Link na bio → somoscênica.com.br
-
-            #ManualHumano #SomosCênica #PalestraTeresina #Comunicação #Liderança
-        run: node ig-publicar.js
+        run: node post-15mai.js
