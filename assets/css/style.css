@@ -512,8 +512,11 @@ p {
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display);
-  font-size: 1.625rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--spotlight);
   letter-spacing: -0.01em;
@@ -1335,11 +1338,15 @@ p {
 }
 
 .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--cream);
   letter-spacing: -0.01em;
+  text-decoration: none;
 }
 
 .footer-tagline {
