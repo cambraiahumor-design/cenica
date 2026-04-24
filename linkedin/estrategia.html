@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somos Cênica — Estratégia LinkedIn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --roxo:#4B1D8E;--dourado:#E8A820;--antracite:#1C1C2E;
+  --branco:#F7F4EF;--cinza:#6B7280;--borda:rgba(75,29,142,.12);
+}
+body{font-family:'Inter',sans-serif;background:var(--branco);color:var(--antracite);-webkit-font-smoothing:antialiased;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:60px 32px}
+
+/* HEADER */
+.header{margin-bottom:64px;padding-bottom:40px;border-bottom:2px solid var(--borda)}
+.header-label{font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--roxo);margin-bottom:12px}
+.header-titulo{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:16px}
+.header-sub{font-size:1.0625rem;color:var(--cinza);max-width:600px}
+
+/* SEÇÕES */
+.secao{margin-bottom:56px}
+.secao-titulo{font-family:'Playfair Display',serif;font-size:1.625rem;font-weight:700;margin-bottom:8px}
+.secao-sub{font-size:.9375rem;color:var(--cinza);margin-bottom:28px}
+
+/* CARDS */
+.cards{display:grid;gap:16px}
+.cards-2{grid-template-columns:1fr 1fr}
+.card{padding:28px;border-radius:14px;border:1.5px solid var(--borda);background:white}
+.card-label{font-size:.6875rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo);margin-bottom:10px}
+.card-titulo{font-size:1rem;font-weight:600;margin-bottom:8px}
+.card-texto{font-size:.9rem;color:var(--cinza);line-height:1.7}
+
+/* PILARES */
+.pilares{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.pilar{padding:24px 20px;border-radius:14px;text-align:center}
+.pilar-icon{font-size:1.75rem;margin-bottom:10px}
+.pilar-nome{font-size:.875rem;font-weight:600;margin-bottom:6px}
+.pilar-desc{font-size:.8rem;color:var(--cinza);line-height:1.5}
+.pilar-p1{background:rgba(75,29,142,.06);border:1.5px solid rgba(75,29,142,.15)}
+.pilar-p2{background:rgba(232,168,32,.06);border:1.5px solid rgba(232,168,32,.2)}
+.pilar-p3{background:rgba(232,67,147,.06);border:1.5px solid rgba(232,67,147,.15)}
+.pilar-p4{background:rgba(28,28,46,.04);border:1.5px solid rgba(28,28,46,.12)}
+
+/* CALENDÁRIO */
+.semana{margin-bottom:24px}
+.semana-titulo{font-size:.8125rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--borda)}
+.posts{display:flex;flex-direction:column;gap:10px}
+.post{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:16px 20px;border-radius:10px;border:1.5px solid var(--borda);background:white;
+}
+.post-dia{
+  min-width:56px;font-size:.75rem;font-weight:700;
+  color:var(--roxo);text-transform:uppercase;letter-spacing:.06em;
+  padding-top:2px;
+}
+.post-tipo{
+  font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 10px;border-radius:999px;margin-bottom:6px;display:inline-block;
+}
+.tipo-autoridade{background:rgba(75,29,142,.1);color:var(--roxo)}
+.tipo-humanizacao{background:rgba(232,168,32,.15);color:#8B6200}
+.tipo-resultado{background:rgba(16,185,129,.1);color:#065F46}
+.tipo-provocacao{background:rgba(232,67,147,.1);color:#9D174D}
+.post-titulo{font-size:.9rem;font-weight:600;margin-bottom:4px}
+.post-preview{font-size:.8375rem;color:var(--cinza);line-height:1.6}
+
+/* POST EXEMPLO */
+.post-exemplo{
+  padding:28px;border-radius:14px;
+  background:white;border:1.5px solid var(--borda);
+  margin-bottom:16px;
+}
+.post-exemplo-header{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--roxo);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.875rem;flex-shrink:0}
+.post-exemplo-nome{font-size:.9rem;font-weight:600}
+.post-exemplo-cargo{font-size:.8rem;color:var(--cinza)}
+.post-exemplo-corpo{font-size:.9375rem;line-height:1.75;white-space:pre-line;margin-bottom:20px}
+.post-exemplo-tags{font-size:.8125rem;color:var(--roxo);font-weight:500}
+.post-exemplo-eng{
+  display:flex;gap:20px;padding-top:16px;border-top:1px solid var(--borda);
+  font-size:.8125rem;color:var(--cinza);
+}
+
+/* PERFIL */
+.perfil-secao{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.perfil-box{padding:24px;border-radius:14px;border:1.5px solid var(--borda);background:white}
+.perfil-box-titulo{font-size:.875rem;font-weight:600;margin-bottom:12px;color:var(--roxo)}
+.perfil-box-texto{font-size:.875rem;color:var(--cinza);line-height:1.7}
+.perfil-headline{
+  font-size:1.125rem;font-weight:600;
+  padding:20px 24px;border-radius:12px;
+  background:rgba(75,29,142,.06);border:1.5px solid rgba(75,29,142,.15);
+  margin-bottom:16px;
+}
+
+/* MÉTRICAS */
+.metricas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.metrica{padding:24px;border-radius:14px;border:1.5px solid var(--borda);background:white;text-align:center}
+.metrica-num{font-family:'Playfair Display',serif;font-size:2.25rem;color:var(--roxo);font-weight:700;margin-bottom:6px}
+.metrica-label{font-size:.875rem;color:var(--cinza)}
+
+@media(max-width:700px){
+  .cards-2,.pilares,.perfil-secao,.metricas{grid-template-columns:1fr}
+  .pilares{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:32px;"><svg viewBox="0 0 80 80" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><rect width="80" height="80" rx="14" fill="#4B1D8E"/><path d="M14 12C14 12 19 18 19 40C19 62 14 68 14 68L26 68C26 68 30 58 30 40C30 22 26 12 26 12Z" fill="#E8A820" opacity=".92"/><path d="M66 12C66 12 61 18 61 40C61 62 66 68 66 68L54 68C54 68 50 58 50 40C50 22 54 12 54 12Z" fill="#E8A820" opacity=".92"/><circle cx="40" cy="40" r="14" fill="none" stroke="#fff" stroke-width="1" opacity=".18"/><circle cx="40" cy="40" r="10" fill="none" stroke="#fff" stroke-width="1.2" opacity=".32"/><circle cx="40" cy="40" r="6.5" fill="#fff"/></svg><span style="font-family:'Playfair Display',serif;font-weight:700;font-size:1.125rem;color:#4B1D8E;">Somos Cênica</span></div>
+<div class="header">
+    <div class="header-label">Estratégia de Conteúdo</div>
+    <h1 class="header-titulo">LinkedIn<br>Somos Cênica</h1>
+    <p class="header-sub">Posicionamento de autoridade em desenvolvimento humano corporativo. Canal principal de geração de leads B2B.</p>
+  </div>
+
+  <!-- OBJETIVO -->
+  <div class="secao">
+    <h2 class="secao-titulo">Objetivo estratégico</h2>
+    <p class="secao-sub">O LinkedIn não é vitrine — é palco de autoridade. Cada post deve fazer o decisor de RH pensar: "preciso falar com essa empresa."</p>
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-label">Meta 90 dias</div>
+        <div class="card-titulo">Tornar-se referência no nicho</div>
+        <div class="card-texto">Ser reconhecido como a voz mais inteligente sobre soft skills corporativas no LinkedIn brasileiro. Não o mais barulhento — o mais relevante.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Meta 6 meses</div>
+        <div class="card-titulo">Gerar leads qualificados</div>
+        <div class="card-texto">Receber mensagens de gestores e RHs pedindo conversa — sem prospecção ativa. O conteúdo faz o trabalho de atração.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERFIL IDEAL DO SEGUIDOR -->
+  <div class="secao">
+    <h2 class="secao-titulo">Para quem estamos falando</h2>
+    <p class="secao-sub">O decisor da compra — não o participante do treinamento.</p>
+    <div class="cards cards-2">
+      <div class="card">
+        <div class="card-label">Persona principal</div>
+        <div class="card-titulo">Gestora de RH / People</div>
+        <div class="card-texto">30–50 anos. Empresas de 50–500 funcionários. Cansada de treinamentos que não movem a agulha. Quer resultado mensurável, não entretenimento. Lê LinkedIn durante o almoço.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Persona secundária</div>
+        <div class="card-titulo">Diretor / CEO de PME</div>
+        <div class="card-texto">Quer equipe mais coesa, comunicativa e autônoma. Não tem paciência para teorias. Quer saber o que muda na prática. Compra pela confiança no especialista.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 PILARES DE CONTEÚDO -->
+  <div class="secao">
+    <h2 class="secao-titulo">Os 4 pilares de conteúdo</h2>
+    <p class="secao-sub">Cada post se encaixa em um pilar. Nunca poste sem saber em qual pilar está.</p>
+    <div class="pilares">
+      <div class="pilar pilar-p1">
+        <div class="pilar-icon">🎓</div>
+        <div class="pilar-nome">Autoridade</div>
+        <div class="pilar-desc">Insight, dado, perspectiva sobre soft skills e desenvolvimento humano</div>
+      </div>
+      <div class="pilar pilar-p2">
+        <div class="pilar-icon">🎭</div>
+        <div class="pilar-nome">Bastidores</div>
+        <div class="pilar-desc">Momentos reais dos treinamentos. O teatro em ação. Humanização da marca</div>
+      </div>
+      <div class="pilar pilar-p3">
+        <div class="pilar-icon">✨</div>
+        <div class="pilar-nome">Transformação</div>
+        <div class="pilar-desc">Casos reais, depoimentos, antes/depois. Prova social com profundidade</div>
+      </div>
+      <div class="pilar pilar-p4">
+        <div class="pilar-icon">🔥</div>
+        <div class="pilar-nome">Provocação</div>
+        <div class="pilar-desc">Questionamentos que desafiam o senso comum sobre treinamento e RH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CADÊNCIA SEMANAL -->
+  <div class="secao">
+    <h2 class="secao-titulo">Calendário semanal</h2>
+    <p class="secao-sub">3 posts por semana. Consistência bate criatividade no LinkedIn.</p>
+
+    <div class="semana">
+      <div class="semana-titulo">Semana modelo</div>
+      <div class="posts">
+        <div class="post">
+          <div class="post-dia">SEG</div>
+          <div>
+            <span class="post-tipo tipo-autoridade">Autoridade</span>
+            <div class="post-titulo">Post de insight ou dado sobre soft skills</div>
+            <div class="post-preview">Ex: "3 motivos pelos quais 70% dos treinamentos corporativos não geram mudança de comportamento — e o que a neurociência diz sobre isso."</div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-dia">QUA</div>
+          <div>
+            <span class="post-tipo tipo-humanizacao">Bastidores</span>
+            <div class="post-titulo">Momento real de um treinamento ou reflexão pessoal</div>
+            <div class="post-preview">Ex: Vídeo curto de um exercício de improviso. Foto de uma equipe no palco. Reflexão sobre o que o teatro ensina que a sala de aula não consegue.</div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="post-dia">SEX</div>
+          <div>
+            <span class="post-tipo tipo-provocacao">Provocação</span>
+            <div class="post-titulo">Questionamento que gera debate e comentários</div>
+            <div class="post-preview">Ex: "Sua empresa gasta R$X mil por ano em treinamento. Quantos desses treinamentos você consegue lembrar em detalhes? Pense nisso."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTS DE EXEMPLO -->
+  <div class="secao">
+    <h2 class="secao-titulo">Posts prontos para publicar</h2>
+    <p class="secao-sub">Use como estão ou adapte à sua voz.</p>
+
+    <div class="post-exemplo">
+      <div class="post-exemplo-header">
+        <div class="avatar">JC</div>
+        <div>
+          <div class="post-exemplo-nome">João Cambraia</div>
+          <div class="post-exemplo-cargo">Fundador · Somos Cênica</div>
+        </div>
+      </div>
+      <div class="post-exemplo-corpo">Eu já sentei em muitos treinamentos corporativos.
+
+A maioria me ensinou coisas que eu esqueci em 72 horas.
+
+Não é culpa do instrutor. É culpa do formato.
+
+O cérebro humano não guarda informação passiva — guarda experiência emocional.
+
+É por isso que você lembra do dia em que aprendeu a andar de bicicleta, mas não lembra da maioria das reuniões da semana passada.
+
+No teatro, ninguém anota o que é presença. Ninguém sublinha o capítulo sobre escuta ativa.
+
+Você FALA com um estranho por 3 minutos mantendo contato visual sem desviar.
+Você REPETE uma frase até sentir que ela saiu do corpo, não da cabeça.
+Você ERRA na frente de todo mundo — e descobre que o mundo não acaba.
+
+Isso fica.
+
+A pergunta que faço a todo gestor: seu treinamento faz as pessoas VIVER a habilidade — ou apenas ouvi-la?
+
+---
+Somos Cênica desenvolve soft skills pelo teatro.
+Porque o que o corpo aprende, a mente não esquece.</div>
+      <div class="post-exemplo-tags">#SoftSkills #DesenvolvimentoHumano #RH #Liderança #TreinamentoCorporativo</div>
+      <div class="post-exemplo-eng">
+        <span>💬 Pilar: Autoridade</span>
+        <span>📅 Melhor dia: Segunda-feira</span>
+        <span>🎯 Objetivo: Alcance + autoridade</span>
+      </div>
+    </div>
+
+    <div class="post-exemplo">
+      <div class="post-exemplo-header">
+        <div class="avatar">JC</div>
+        <div>
+          <div class="post-exemplo-nome">João Cambraia</div>
+          <div class="post-exemplo-cargo">Fundador · Somos Cênica</div>
+        </div>
+      </div>
+      <div class="post-exemplo-corpo">Hoje uma gerente de RH me disse algo que vou carregar por muito tempo.
+
+"Foi o único treinamento em 10 anos que minha equipe pediu para repetir."
+
+Eu perguntei o que tinha sido diferente.
+
+Ela pensou um pouco e disse:
+
+"As pessoas riram. Erraram. Se viram sendo alguém que não esperavam ser. E depois voltaram para as mesas diferentes."
+
+É isso que o teatro faz.
+
+Não ensina empatia — coloca você nos pés de outro ser humano por 20 minutos.
+Não ensina comunicação — faz você perceber que o seu corpo está dizendo uma coisa enquanto sua boca diz outra.
+Não ensina liderança — revela quem você já é quando para de se esconder.
+
+Transformação não se explica. Se vive.
+
+↓ Comente: qual soft skill você mais sente falta nas equipes que lidera?</div>
+      <div class="post-exemplo-tags">#Transformação #CulturaOrganizacional #Teatro #SoftSkills #RH</div>
+      <div class="post-exemplo-eng">
+        <span>💬 Pilar: Transformação</span>
+        <span>📅 Melhor dia: Quarta-feira</span>
+        <span>🎯 Objetivo: Engajamento + leads</span>
+      </div>
+    </div>
+
+    <div class="post-exemplo">
+      <div class="post-exemplo-header">
+        <div class="avatar">JC</div>
+        <div>
+          <div class="post-exemplo-nome">João Cambraia</div>
+          <div class="post-exemplo-cargo">Fundador · Somos Cênica</div>
+        </div>
+      </div>
+      <div class="post-exemplo-corpo">Opinião impopular:
+
+A maioria dos treinamentos de soft skills é desperdício de dinheiro.
+
+Não porque o tema não importa.
+Soft skills são o que separa um profissional mediano de um extraordinário.
+
+O problema é o formato.
+
+8 horas sentado.
+Slides sobre "comunicação eficaz".
+Dinâmica de 20 minutos no final.
+Certificado.
+Segunda-feira: nada mudou.
+
+O aprendizado de habilidades humanas exige o que a sala de aula não oferece:
+— Segurança para errar
+— Experiência no corpo, não na cabeça
+— Emoção para criar memória
+
+É por isso que usamos o teatro.
+
+Não como entretenimento.
+Como metodologia.
+
+Pergunta honesta: quando foi a última vez que um treinamento mudou de verdade como você se comporta?</div>
+      <div class="post-exemplo-tags">#Provocação #RH #Treinamento #DesenvolvimentoCorporativo #SoftSkills</div>
+      <div class="post-exemplo-eng">
+        <span>💬 Pilar: Provocação</span>
+        <span>📅 Melhor dia: Sexta-feira</span>
+        <span>🎯 Objetivo: Debate + visibilidade</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERFIL -->
+  <div class="secao">
+    <h2 class="secao-titulo">Otimização do perfil</h2>
+    <p class="secao-sub">O perfil é a landing page. Tem que converter.</p>
+
+    <div class="perfil-headline">
+      🎭 Desenvolvemos soft skills corporativas pelo teatro | Treinamentos que ficam no corpo, não no caderno | Somos Cênica
+    </div>
+
+    <div class="perfil-secao">
+      <div class="perfil-box">
+        <div class="perfil-box-titulo">Sobre (primeiros 2 linhas — aparecem sem clicar)</div>
+        <div class="perfil-box-texto">Fundei a Somos Cênica porque acreditei que havia uma forma melhor de desenvolver pessoas — e o teatro provou que eu estava certo.<br><br>Usamos técnicas somos cênicas para desenvolver as soft skills que as empresas mais precisam: comunicação, empatia, liderança, inteligência emocional e trabalho em equipe.<br><br>Não é um show. É uma metodologia de transformação humana.</div>
+      </div>
+      <div class="perfil-box">
+        <div class="perfil-box-titulo">Banner do perfil</div>
+        <div class="perfil-box-texto">Fundo roxo escuro com a tagline em dourado: <em>"Onde a transformação entra em cena."</em> + logo Somos Cênica + somossomoscenica.com.br<br><br>Simples, limpo, memorável. Nada de stock photo genérico.</div>
+      </div>
+      <div class="perfil-box">
+        <div class="perfil-box-titulo">Destaque (Featured)</div>
+        <div class="perfil-box-texto">Fixar 3 itens:<br>1. Post com maior engajamento<br>2. Link para somossomoscenica.com.br<br>3. Depoimento em vídeo de cliente</div>
+      </div>
+      <div class="perfil-box">
+        <div class="perfil-box-titulo">Palavra-chave no título</div>
+        <div class="perfil-box-texto">O algoritmo do LinkedIn indexa o título. Incluir: "Soft Skills", "Treinamento Corporativo", "Teatro Corporativo", "Desenvolvimento Humano".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÉTRICAS -->
+  <div class="secao">
+    <h2 class="secao-titulo">Métricas que importam</h2>
+    <p class="secao-sub">Ignore seguidores. Olhe para esses números.</p>
+    <div class="metricas">
+      <div class="metrica">
+        <div class="metrica-num">SSI</div>
+        <div class="metrica-label">Social Selling Index — meta: acima de 70</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-num">DMs</div>
+        <div class="metrica-label">Mensagens recebidas de prospects por mês</div>
+      </div>
+      <div class="metrica">
+        <div class="metrica-num">Saves</div>
+        <div class="metrica-label">Posts salvos — indicam conteúdo de valor real</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGRAS -->
+  <div class="secao">
+    <h2 class="secao-titulo">As 5 regras de ouro</h2>
+    <div class="cards">
+      <div class="card"><div class="card-titulo">1. Nunca poste produto</div><div class="card-texto">LinkedIn não é catálogo. Quem posta "nosso treinamento faz X" perde. Quem educa e provoca, ganha. A venda acontece nas DMs, não no feed.</div></div>
+      <div class="card"><div class="card-titulo">2. A primeira linha é tudo</div><div class="card-texto">O LinkedIn corta o texto com "ver mais". Sua primeira linha precisa criar curiosidade ou desconforto suficiente para o clique. Escreva a primeira linha por último.</div></div>
+      <div class="card"><div class="card-titulo">3. Responda todos os comentários</div><div class="card-texto">Nas primeiras horas após o post, o algoritmo usa os comentários como sinal de qualidade. Cada resposta sua gera mais alcance. Nunca ignore um comentário.</div></div>
+      <div class="card"><div class="card-titulo">4. Uma ideia por post</div><div class="card-texto">Não escreva um artigo no LinkedIn. Escreva uma ideia. Uma pergunta. Uma provocação. Posts que tentam dizer tudo não dizem nada.</div></div>
+      <div class="card"><div class="card-titulo">5. Consistência > viralização</div><div class="card-texto">3 posts por semana por 6 meses transforma qualquer profissional em referência. Um post viral e 3 meses de silêncio não constrói nada.</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

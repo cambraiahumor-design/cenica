@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartazes — Somos Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0e0e1a;color:white;padding:40px 20px;display:flex;flex-direction:column;align-items:center;gap:60px}
+h2{color:#E8A820;font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;text-align:center}
+.label{color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-bottom:20px}
+
+/* ── SQUARE 1080×1080 ── */
+.square{
+  width:540px;height:540px;
+  background:#1C1C2E;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.sq-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 100% at 100% 100%, rgba(75,29,142,.55) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 20% 0%, rgba(75,29,142,.3) 0%, transparent 60%),
+    #1C1C2E;
+}
+.sq-photo{
+  position:absolute;
+  right:-10px;bottom:0;
+  height:108%;
+  width:auto;
+  object-fit:cover;
+  object-position:top center;
+  filter: contrast(1.05) brightness(0.92);
+  mask-image:linear-gradient(to left, black 60%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to left, black 60%, transparent 100%);
+}
+.sq-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right, #1C1C2E 38%, transparent 65%);
+}
+.sq-content{
+  position:relative;z-index:2;
+  padding:36px 32px;
+  height:100%;
+  display:flex;flex-direction:column;justify-content:space-between;
+  max-width:62%;
+}
+.sq-top{}
+.sq-brand{
+  display:flex;align-items:center;gap:8px;margin-bottom:28px;
+}
+.sq-brand svg{flex-shrink:0}
+.sq-brand-text{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#E8A820}
+.sq-tag{
+  display:inline-block;
+  font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:#E8A820;border:1px solid rgba(232,168,32,.4);
+  padding:4px 10px;border-radius:999px;margin-bottom:14px;
+}
+.sq-title-sub{
+  font-family:'Inter',sans-serif;
+  font-size:.8rem;font-weight:300;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(247,244,239,.6);margin-bottom:4px;
+}
+.sq-title{
+  font-family:'Playfair Display',serif;
+  font-size:2.9rem;font-weight:900;line-height:.95;
+  color:#F7F4EF;letter-spacing:-.02em;
+}
+.sq-title span{color:#E8A820;font-style:italic}
+.sq-divider{
+  width:36px;height:2px;background:#E8A820;margin:16px 0;
+}
+.sq-speaker{
+  font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(247,244,239,.55);margin-bottom:3px;
+}
+.sq-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;color:#F7F4EF;letter-spacing:-.01em;
+}
+
+.sq-datetime{
+  background:rgba(232,168,32,.12);
+  border:1px solid rgba(232,168,32,.3);
+  border-left:3px solid #E8A820;
+  border-radius:6px;
+  padding:12px 14px;
+  margin:18px 0 0;
+}
+.sq-date-label{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,168,32,.7);margin-bottom:4px}
+.sq-date-val{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:900;color:#E8A820;line-height:1;
+  letter-spacing:-.02em;
+}
+.sq-date-val span{font-size:1.1rem;font-weight:400;color:rgba(232,168,32,.75)}
+.sq-time-val{
+  font-size:1.1rem;font-weight:700;color:#F7F4EF;letter-spacing:.04em;margin-top:2px;
+}
+
+.sq-bottom{}
+.sq-local{font-size:.6rem;font-weight:500;letter-spacing:.04em;color:rgba(247,244,239,.5);line-height:1.6}
+.sq-local strong{color:rgba(247,244,239,.8);font-weight:600}
+
+/* Gold lines decoration */
+.sq-deco{
+  position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom, transparent, #E8A820 20%, #E8A820 80%, transparent);
+  opacity:.5;
+}
+
+/* ── STORY 1080×1920 ── */
+.story{
+  width:304px;height:540px;
+  background:#1C1C2E;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.st-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 100% 50% at 50% 100%, rgba(75,29,142,.7) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(75,29,142,.25) 0%, transparent 55%),
+    #1C1C2E;
+}
+.st-photo{
+  position:absolute;
+  bottom:0;left:50%;transform:translateX(-50%);
+  height:72%;width:auto;
+  object-fit:cover;object-position:top center;
+  mask-image:linear-gradient(to top, black 60%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to top, black 60%, transparent 100%);
+}
+.st-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom, #1C1C2E 22%, transparent 45%, transparent 55%, #1C1C2E 88%);
+}
+.st-content{
+  position:relative;z-index:2;
+  padding:22px 22px;
+  height:100%;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.st-top{text-align:center}
+.st-brand{display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:16px}
+.st-brand-text{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#E8A820}
+.st-tag{
+  display:inline-block;
+  font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:#E8A820;border:1px solid rgba(232,168,32,.4);
+  padding:3px 9px;border-radius:999px;margin-bottom:10px;
+}
+.st-title-sub{
+  font-size:.6rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(247,244,239,.5);margin-bottom:3px;
+}
+.st-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:900;line-height:.95;
+  color:#F7F4EF;letter-spacing:-.02em;
+}
+.st-title span{color:#E8A820;font-style:italic;display:block}
+.st-divider{width:28px;height:2px;background:#E8A820;margin:10px auto}
+.st-speaker{font-size:.55rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.5);margin-bottom:2px}
+.st-name{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;color:#F7F4EF}
+
+.st-bottom{text-align:center}
+.st-datetime{
+  background:rgba(232,168,32,.1);
+  border:1px solid rgba(232,168,32,.35);
+  border-radius:8px;
+  padding:12px 16px;
+  margin-bottom:10px;
+}
+.st-date-label{font-size:.45rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,168,32,.65);margin-bottom:4px}
+.st-date-val{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;font-weight:900;color:#E8A820;line-height:1;letter-spacing:-.02em;
+}
+.st-date-val span{font-size:1rem;color:rgba(232,168,32,.75)}
+.st-sep{width:1px;height:28px;background:rgba(232,168,32,.3);margin:0 12px;display:inline-block;vertical-align:middle}
+.st-time{display:flex;align-items:center;justify-content:center;margin-top:6px}
+.st-time-val{font-size:1.15rem;font-weight:700;color:#F7F4EF;letter-spacing:.05em}
+.st-local{font-size:.55rem;font-weight:500;letter-spacing:.04em;color:rgba(247,244,239,.45);line-height:1.65}
+.st-local strong{color:rgba(247,244,239,.75);font-weight:600}
+
+/* ── QR Codes ── */
+.sq-tickets{display:flex;gap:10px;margin-top:14px}
+.sq-ticket{text-align:center}
+.sq-ticket img{width:62px;height:62px;display:block;border-radius:4px}
+.sq-ticket-label{font-size:.45rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,244,239,.7);margin-top:4px}
+.sq-ticket-price{font-family:'Playfair Display',serif;font-size:.75rem;font-weight:900;color:#E8A820;line-height:1}
+
+.st-tickets{display:flex;gap:14px;justify-content:center;margin-top:10px}
+.st-ticket{text-align:center}
+.st-ticket img{width:52px;height:52px;display:block;border-radius:4px}
+.st-ticket-label{font-size:.4rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,244,239,.65);margin-top:3px}
+.st-ticket-price{font-family:'Playfair Display',serif;font-size:.65rem;font-weight:900;color:#E8A820;line-height:1}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ SQUARE ══════════════════ -->
+<div>
+  <h2>Post Quadrado</h2>
+  <p class="label">Instagram / Facebook / LinkedIn — 1080 × 1080 px (exibido em 540px)</p>
+  <div class="square">
+    <div class="sq-bg"></div>
+    <img class="sq-photo" src="joao-cambraia.jpg" alt="João Cambraia">
+    <div class="sq-overlay"></div>
+    <div class="sq-deco"></div>
+
+    <div class="sq-content">
+      <div class="sq-top">
+        <!-- Logo -->
+        <div class="sq-brand">
+          <svg viewBox="0 0 40 40" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="7" fill="#4B1D8E"/>
+            <path d="M7 6C7 6,9.5 9,9.5 20C9.5 31,7 34,7 34L13 34C13 34,15 29,15 20C15 11,13 6,13 6Z" fill="#E8A820" opacity=".92"/>
+            <path d="M33 6C33 6,30.5 9,30.5 20C30.5 31,33 34,33 34L27 34C27 34,25 29,25 20C25 11,27 6,27 6Z" fill="#E8A820" opacity=".92"/>
+            <circle cx="20" cy="20" r="7" fill="none" stroke="#fff" stroke-width=".6" opacity=".2"/>
+            <circle cx="20" cy="20" r="5" fill="none" stroke="#fff" stroke-width=".7" opacity=".35"/>
+            <circle cx="20" cy="20" r="3.2" fill="#fff"/>
+          </svg>
+          <span class="sq-brand-text">Somos Cênica</span>
+        </div>
+
+        <div class="sq-tag">Palestra</div>
+        <p class="sq-title-sub">apresenta</p>
+        <h1 class="sq-title">Manual<br><span>Humano</span></h1>
+        <div class="sq-divider"></div>
+        <p class="sq-speaker">Ministrante</p>
+        <p class="sq-name">João Cambraia</p>
+
+        <div class="sq-datetime">
+          <p class="sq-date-label">Data &amp; Horário</p>
+          <div class="sq-date-val">22 <span>MAIO</span></div>
+          <div class="sq-time-val">20:00h</div>
+        </div>
+      </div>
+
+      <div class="sq-bottom">
+        <p class="sq-local">
+          <strong>Cineteatro Torquato Neto</strong><br>
+          Rua Álvaro Mendes, s/n — Centro
+        </p>
+        <div class="sq-tickets">
+          <div class="sq-ticket">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAklEQVR4AewaftIAAAVdSURBVO3BwY0dWQ5FwSvir2lB2aAVTaMZNI3WPAc0wKz7poQUsup39Yn48fHx85cA/KMQACsEwAoBsEIArBAAKwTACgGwXvqNnaPvpDp1186RU536CjtHTnXqCTtH30l1ygkBsEIArBAAKwTACgGwQgCsl/5Cderd7By9m52jK9Wpu6pTzs7RXdWpu6pT72bn6I4QACsEwAoBsEIArBAAKwTACgGwXnrQztETqlNP2Dn6t9k5cqpTzs7RV9g5ekJ16gkhAFYIgBUCYIUAWCEAVgiA9RK+3M7RZ6tO4fdCAKwQACsEwAoBsEIArBAAKwTAegl/rDr1hOoU3lMIgBUCYIUAWCEAVgiAFQJgvfSg6tR3snN0R3XqKTtHT6hOPaE69W8SAmCFAFghAFYIgBUCYIUAWC/9hZ2j/5LqlLNzdNfOkVOduqs65ewcPWXn6LsIAbBCAKwQACsEwAoBsEIArBAA66XfqE7hWdWpJ+wcOdWpu6pT/xUhAFYIgBUCYIUAWCEAVgiA9ePj4+cvXdg5cqpTV3aO3k116rPtHF2pTjk7R0+oTt21c/RuqlNPCAGwQgCsEAArBMAKAbBCAKwQAOul36hO3VWdcnaOnlCdurJzdFd16t1Up+7YObqrOnVl58ipTj1h5+hKdeqOEAArBMAKAbBCAKwQACsEwHrpTVWn7tg5esrO0R3Vqa+wc+RUp+7aOXrCztGV6tRdO0dOdcoJAbBCAKwQACsEwAoBsEIArB8fHz9/6cLO0ROqU1d2ju6oTl3ZOXKqU1d2jpzqlLNzdFd16srO0ROqU87O0ROqU0/ZOXKqU04IgBUCYIUAWCEAVgiAFQJghQBYL/1GdequnaMnVKecnaOnVKecnSOnOnXXztFd1am7do7uqk45O0d37Rx9thAAKwTACgGwQgCsEAArBMD68fHx85cu7BzdVZ1ydo6eUJ26snP0hOrUXTtHTnXqys6RU51ydo6uVKfu2jlyqlPOztGV6pSzc3SlOnVHCIAVAmCFAFghAFYIgBUCYIUAWC/9herUlZ2jJ1SnnJ2jp1SnnlCdesLOkVOdumvn6K6do6+wc+RUp5wQACsEwAoBsEIArBAAKwTAeulB1Sln5+gJ1akrO0dP2DlyqlNXdo6c6tSV6tQdO0fvpjp1V3Xqys7RHSEAVgiAFQJghQBYIQBWCID10puqTt2xc3SlOnXXzpFTnfoKO0dOdeo72TlyqlNXqlN3hABYIQBWCIAVAmCFAFghAFYIgPXj4+PnL+H/do6eUJ16ys7RE6pTT9g5uqs69dlCAKwQACsEwAoBsEIArBAA66Xf2Dn6TqpTTnXqys6RU51ydo6eUp26Y+forp2jK9WpO6pTV3aOnlCdckIArBAAKwTACgGwQgCsEAArBMB66S9Up97NztFdO0d37RzdVZ26a+fos1WnnrBzdKU6ddfO0R0hAFYIgBUCYIUAWCEAVgiA9dKDdo6eUJ36CtWpO3aOruwcvZudo89Wnbqyc+RUp65Up+4IAbBCAKwQACsEwAoBsEIArJfwx3aOnOqUU526snN0V3Xqjp2jp1SnnJ0jZ+forp2ju6pTTgiAFQJghQBYIQBWCIAVAmCFAFgv4Y9Vp5ydI6c6daU69W6qU0+oTjk7R3dVp67sHN0RAmCFAFghAFYIgBUCYIUAWC89qDr1b1Kduqs69RV2jp6wc/RuqlOfLQTACgGwQgCsEAArBMAKAbBCAKyX/sLO0Xeyc3RXdeoJO0dXqlNP2DlyqlNXdo6esHP02UIArBAAKwTACgGwQgCsEADrx8fHz18C8I9CAKwQACsEwAoBsEIArBAA638EHmjSeXDhCwAAAABJRU5ErkJggg==" alt="QR Inteira">
+            <p class="sq-ticket-label">Inteira</p>
+            <p class="sq-ticket-price">R$ 100</p>
+          </div>
+          <div class="sq-ticket">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAklEQVR4AewaftIAAAVzSURBVO3BwXEd2Q5EwRLirWEBbdAKpsGMaxqsgQP6EX+2U01Fa5qiqJP57e3t+w8B+FchAFYIgBUCYIUAWCEAVgiAFQJgvfSOOauvpDr1hDkrpzp1Zc7KqU5dmbNyqlNPmLP6SqpTTgiAFQJghQBYIQBWCIAVAmC99AuqU5/NnNVnM2d1pTp1V3XKmbO6qzp1V3Xqs5mzuiMEwAoBsEIArBAAKwTACgGwQgCslx40Z/WE6tQT5qyuVKc+mzkrpzrlzFn9DnNWT6hOPSEEwAoBsEIArBAAKwTACgGwXsJPm7NyqlNPmLN6QnUK7wsBsEIArBAAKwTACgGwQgCsEADrJfy06tRHq05dmbPCc0IArBAAKwTACgGwQgCsEADrpQdVp76SOSunOuXMWd1VnbpSnXLmrO6qTj2hOvUnCQGwQgCsEAArBMAKAbBCAKyXfsGc1d+kOuXMWTnVqStzVnfNWTnVKWfO6ilzVl9FCIAVAmCFAFghAFYIgBUCYIUAWC+9ozqFf8xZ/UnmrJzq1F3Vqb9FCIAVAmCFAFghAFYIgBUCYL30jjkrpzp1Zc7qs6lOOdWpu+as/hZzVp9NdeoJIQBWCIAVAmCFAFghAFYIgBUCYL30oOrUn2TO6glzVleqU86c1ZXq1B1zVndVp67MWTnVqSfMWV2pTt0RAmCFAFghAFYIgBUCYIUAWC+9ozrlzFndVZ16wpzVleqUU526MmflVKfumrN6wpyVU526a87qCXNWV6pTd81ZOdUpJwTACgGwQgCsEAArBMAKAbC+vb19/6ELc1a/Q3XqCXNWd1WnnjBn5VSnrsxZPaE65cxZPaE69ZQ5K6c65YQAWCEAVgiAFQJghQBYIQBWCID10juqU86c1V3VqSfMWV2pTjlzVnfNWTnVqSvVqSdUp+6as7qrOuXMWd01Z/XRQgCsEAArBMAKAbBCAKwQAOuld8xZ3VWdumvO6o7q1JU5K6c69TvMWTnVqSfMWV2pTt01Z+VUp5w5qyvVKWfO6kp16o4QACsEwAoBsEIArBAAKwTACgGwvr29ff+hC3NWTnXqypyVU526Mmf1hOqUM2d1V3XqCXNWT6hO3TVn9TtUp5w5q7uqU04IgBUCYIUAWCEAVgiAFQJgvfSg6pQzZ3WlOvWEOau7qlNPmLNyqlNX5qyc6pQzZ/XZVKfuqk5dmbO6IwTACgGwQgCsEAArBMAKAbBe+mLmrJ4yZ+VUp54wZ4V/zFk51akr1ak7QgCsEAArBMAKAbBCAKwQACsEwPr29vb9h/B/c1ZPqE49Zc7qCdWpJ8xZ3VWd+mghAFYIgBUCYIUAWCEAVgiA9dI75qy+kuqUU526MmflVKecOau7qlN3VaecOau75qyuVKfuqE5dmbN6QnXKCQGwQgCsEAArBMAKAbBCAKwQAOulX1Cd+mzmrO6as7przuqu6tRd1SlnzuoJ1aknzFldqU7dNWd1RwiAFQJghQBYIQBWCIAVAmC99KA5qydUp76SOavPZs7qo1WnrsxZOdWpK9WpO0IArBAAKwTACgGwQgCsEADrJfy06tQT5qyc6tSVOSunOuXMWT2lOuXMWTlzVnfNWd1VnXJCAKwQACsEwAoBsEIArBAAKwTAegn/iTkrpzp115zV71CdekJ1ypmzuqs6dWXO6o4QACsEwAoBsEIArBAAKwTAeulB1ak/SXXqypyVU516QnXqrjmru+asPpvq1EcLAbBCAKwQACsEwAoBsEIArBAA66VfMGf1lcxZXalOOXNWd1WnnDmrK9Uppzp115yVU526Mmf1hDmrjxYCYIUAWCEAVgiAFQJghQBY397evv8QgH8VAmCFAFghAFYIgBUCYIUAWP8DC4d7LCjWj+EAAAAASUVORK5CYII=" alt="QR Meia">
+            <p class="sq-ticket-label">Meia</p>
+            <p class="sq-ticket-price">R$ 50</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ STORY ══════════════════ -->
+<div>
+  <h2>Story / Reels</h2>
+  <p class="label">Instagram Stories — 1080 × 1920 px (exibido em 304 × 540px)</p>
+  <div class="story">
+    <div class="st-bg"></div>
+    <img class="st-photo" src="joao-cambraia.jpg" alt="João Cambraia">
+    <div class="st-overlay"></div>
+
+    <div class="st-content">
+      <div class="st-top">
+        <div class="st-brand">
+          <svg viewBox="0 0 40 40" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="7" fill="#4B1D8E"/>
+            <path d="M7 6C7 6,9.5 9,9.5 20C9.5 31,7 34,7 34L13 34C13 34,15 29,15 20C15 11,13 6,13 6Z" fill="#E8A820" opacity=".92"/>
+            <path d="M33 6C33 6,30.5 9,30.5 20C30.5 31,33 34,33 34L27 34C27 34,25 29,25 20C25 11,27 6,27 6Z" fill="#E8A820" opacity=".92"/>
+            <circle cx="20" cy="20" r="7" fill="none" stroke="#fff" stroke-width=".6" opacity=".2"/>
+            <circle cx="20" cy="20" r="5" fill="none" stroke="#fff" stroke-width=".7" opacity=".35"/>
+            <circle cx="20" cy="20" r="3.2" fill="#fff"/>
+          </svg>
+          <span class="st-brand-text">Somos Cênica</span>
+        </div>
+        <div class="st-tag">Palestra</div>
+        <p class="st-title-sub">apresenta</p>
+        <h1 class="st-title">Manual<span>Humano</span></h1>
+        <div class="st-divider"></div>
+        <p class="st-speaker">Ministrante</p>
+        <p class="st-name">João Cambraia</p>
+      </div>
+
+      <div class="st-bottom">
+        <div class="st-datetime">
+          <p class="st-date-label">Data &amp; Horário</p>
+          <div class="st-date-val">22 <span>MAIO</span></div>
+          <div class="st-time">
+            <div class="st-time-val">20:00h</div>
+          </div>
+        </div>
+        <p class="st-local">
+          <strong>Cineteatro Torquato Neto</strong><br>
+          Rua Álvaro Mendes, s/n — Centro
+        </p>
+        <div class="st-tickets">
+          <div class="st-ticket">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAklEQVR4AewaftIAAAVdSURBVO3BwY0dWQ5FwSvir2lB2aAVTaMZNI3WPAc0wKz7poQUsup39Yn48fHx85cA/KMQACsEwAoBsEIArBAAKwTACgGwXvqNnaPvpDp1186RU536CjtHTnXqCTtH30l1ygkBsEIArBAAKwTACgGwQgCsl/5Cderd7By9m52jK9Wpu6pTzs7RXdWpu6pT72bn6I4QACsEwAoBsEIArBAAKwTACgGwXnrQztETqlNP2Dn6t9k5cqpTzs7RV9g5ekJ16gkhAFYIgBUCYIUAWCEAVgiA9RK+3M7RZ6tO4fdCAKwQACsEwAoBsEIArBAAKwTAegl/rDr1hOoU3lMIgBUCYIUAWCEAVgiAFQJgvfSg6tR3snN0R3XqKTtHT6hOPaE69W8SAmCFAFghAFYIgBUCYIUAWC/9hZ2j/5LqlLNzdNfOkVOduqs65ewcPWXn6LsIAbBCAKwQACsEwAoBsEIArBAA66XfqE7hWdWpJ+wcOdWpu6pT/xUhAFYIgBUCYIUAWCEAVgiA9ePj4+cvXdg5cqpTV3aO3k116rPtHF2pTjk7R0+oTt21c/RuqlNPCAGwQgCsEAArBMAKAbBCAKwQAOul36hO3VWdcnaOnlCdurJzdFd16t1Up+7YObqrOnVl58ipTj1h5+hKdeqOEAArBMAKAbBCAKwQACsEwHrpTVWn7tg5esrO0R3Vqa+wc+RUp+7aOXrCztGV6tRdO0dOdcoJAbBCAKwQACsEwAoBsEIArB8fHz9/6cLO0ROqU1d2ju6oTl3ZOXKqU1d2jpzqlLNzdFd16srO0ROqU87O0ROqU0/ZOXKqU04IgBUCYIUAWCEAVgiAFQJghQBYL/1GdequnaMnVKecnaOnVKecnSOnOnXXztFd1am7do7uqk45O0d37Rx9thAAKwTACgGwQgCsEAArBMD68fHx85cu7BzdVZ1ydo6eUJ26snP0hOrUXTtHTnXqys6RU51ydo6uVKfu2jlyqlPOztGV6pSzc3SlOnVHCIAVAmCFAFghAFYIgBUCYIUAWC/9herUlZ2jJ1SnnJ2jp1SnnlCdesLOkVOdumvn6K6do6+wc+RUp5wQACsEwAoBsEIArBAAKwTAeulB1Sln5+gJ1akrO0dP2DlyqlNXdo6c6tSV6tQdO0fvpjp1V3Xqys7RHSEAVgiAFQJghQBYIQBWCID10puqTt2xc3SlOnXXzpFTnfoKO0dOdeo72TlyqlNXqlN3hABYIQBWCIAVAmCFAFghAFYIgPXj4+PnL+H/do6eUJ16ys7RE6pTT9g5uqs69dlCAKwQACsEwAoBsEIArBAA66Xf2Dn6TqpTTnXqys6RU51ydo6eUp26Y+forp2jK9WpO6pTV3aOnlCdckIArBAAKwTACgGwQgCsEAArBMB66S9Up97NztFdO0d37RzdVZ26a+fos1WnnrBzdKU6ddfO0R0hAFYIgBUCYIUAWCEAVgiA9dKDdo6eUJ36CtWpO3aOruwcvZudo89Wnbqyc+RUp65Up+4IAbBCAKwQACsEwAoBsEIArJfwx3aOnOqUU526snN0V3Xqjp2jp1SnnJ0jZ+forp2ju6pTTgiAFQJghQBYIQBWCIAVAmCFAFgv4Y9Vp5ydI6c6daU69W6qU0+oTjk7R3dVp67sHN0RAmCFAFghAFYIgBUCYIUAWC89qDr1b1Kduqs69RV2jp6wc/RuqlOfLQTACgGwQgCsEAArBMAKAbBCAKyX/sLO0Xeyc3RXdeoJO0dXqlNP2DlyqlNXdo6esHP02UIArBAAKwTACgGwQgCsEADrx8fHz18C8I9CAKwQACsEwAoBsEIArBAA638EHmjSeXDhCwAAAABJRU5ErkJggg==" alt="QR Inteira">
+            <p class="st-ticket-label">Inteira</p>
+            <p class="st-ticket-price">R$ 100</p>
+          </div>
+          <div class="st-ticket">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAklEQVR4AewaftIAAAVzSURBVO3BwXEd2Q5EwRLirWEBbdAKpsGMaxqsgQP6EX+2U01Fa5qiqJP57e3t+w8B+FchAFYIgBUCYIUAWCEAVgiAFQJgvfSOOauvpDr1hDkrpzp1Zc7KqU5dmbNyqlNPmLP6SqpTTgiAFQJghQBYIQBWCIAVAmC99AuqU5/NnNVnM2d1pTp1V3XKmbO6qzp1V3Xqs5mzuiMEwAoBsEIArBAAKwTACgGwQgCslx40Z/WE6tQT5qyuVKc+mzkrpzrlzFn9DnNWT6hOPSEEwAoBsEIArBAAKwTACgGwXsJPm7NyqlNPmLN6QnUK7wsBsEIArBAAKwTACgGwQgCsEADrJfy06tRHq05dmbPCc0IArBAAKwTACgGwQgCsEADrpQdVp76SOSunOuXMWd1VnbpSnXLmrO6qTj2hOvUnCQGwQgCsEAArBMAKAbBCAKyXfsGc1d+kOuXMWTnVqStzVnfNWTnVKWfO6ilzVl9FCIAVAmCFAFghAFYIgBUCYIUAWC+9ozqFf8xZ/UnmrJzq1F3Vqb9FCIAVAmCFAFghAFYIgBUCYL30jjkrpzp1Zc7qs6lOOdWpu+as/hZzVp9NdeoJIQBWCIAVAmCFAFghAFYIgBUCYL30oOrUn2TO6glzVleqU86c1ZXq1B1zVndVp67MWTnVqSfMWV2pTt0RAmCFAFghAFYIgBUCYIUAWC+9ozrlzFndVZ16wpzVleqUU526MmflVKfumrN6wpyVU526a87qCXNWV6pTd81ZOdUpJwTACgGwQgCsEAArBMAKAbC+vb19/6ELc1a/Q3XqCXNWd1WnnjBn5VSnrsxZPaE65cxZPaE69ZQ5K6c65YQAWCEAVgiAFQJghQBYIQBWCID10juqU86c1V3VqSfMWV2pTjlzVnfNWTnVqSvVqSdUp+6as7qrOuXMWd01Z/XRQgCsEAArBMAKAbBCAKwQAOuld8xZ3VWdumvO6o7q1JU5K6c69TvMWTnVqSfMWV2pTt01Z+VUp5w5qyvVKWfO6kp16o4QACsEwAoBsEIArBAAKwTACgGwvr29ff+hC3NWTnXqypyVU526Mmf1hOqUM2d1V3XqCXNWT6hO3TVn9TtUp5w5q7uqU04IgBUCYIUAWCEAVgiAFQJgvfSg6pQzZ3WlOvWEOau7qlNPmLNyqlNX5qyc6pQzZ/XZVKfuqk5dmbO6IwTACgGwQgCsEAArBMAKAbBe+mLmrJ4yZ+VUp54wZ4V/zFk51akr1ak7QgCsEAArBMAKAbBCAKwQACsEwPr29vb9h/B/c1ZPqE49Zc7qCdWpJ8xZ3VWd+mghAFYIgBUCYIUAWCEAVgiA9dI75qy+kuqUU526MmflVKecOau7qlN3VaecOau75qyuVKfuqE5dmbN6QnXKCQGwQgCsEAArBMAKAbBCAKwQAOulX1Cd+mzmrO6as7przuqu6tRd1SlnzuoJ1aknzFldqU7dNWd1RwiAFQJghQBYIQBWCIAVAmC99KA5qydUp76SOavPZs7qo1WnrsxZOdWpK9WpO0IArBAAKwTACgGwQgCsEADrJfy06tQT5qyc6tSVOSunOuXMWT2lOuXMWTlzVnfNWd1VnXJCAKwQACsEwAoBsEIArBAAKwTAegn/iTkrpzp115zV71CdekJ1ypmzuqs6dWXO6o4QACsEwAoBsEIArBAAKwTAeulB1ak/SXXqypyVU516QnXqrjmru+asPpvq1EcLAbBCAKwQACsEwAoBsEIArBAA66VfMGf1lcxZXalOOXNWd1WnnDmrK9Uppzp115yVU526Mmf1hDmrjxYCYIUAWCEAVgiAFQJghQBY397evv8QgH8VAmCFAFghAFYIgBUCYIUAWP8DC4d7LCjWj+EAAAAASUVORK5CYII=" alt="QR Meia">
+            <p class="st-ticket-label">Meia</p>
+            <p class="st-ticket-price">R$ 50</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

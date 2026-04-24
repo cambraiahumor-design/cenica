@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somos Cênica — Central de Materiais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F7F4EF;color:#1C1C2E;-webkit-font-smoothing:antialiased}
+.header{background:#1C1C2E;padding:40px 48px;display:flex;align-items:center;gap:16px}
+.header-text h1{font-family:'Playfair Display',serif;font-size:1.75rem;color:#F7F4EF;letter-spacing:-.02em}
+.header-text p{font-size:.875rem;color:#E8A820;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;padding:48px;max-width:1200px;margin:0 auto}
+.card{background:white;border-radius:16px;overflow:hidden;border:1.5px solid rgba(75,29,142,.1);transition:all .2s;text-decoration:none;display:block}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(75,29,142,.15);border-color:rgba(75,29,142,.3)}
+.card-preview{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.card-body{padding:20px 24px}
+.card-label{font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#4B1D8E;margin-bottom:6px}
+.card-title{font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:700;color:#1C1C2E;margin-bottom:6px}
+.card-desc{font-size:.8125rem;color:#6B7280;line-height:1.6}
+.card-action{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.8125rem;font-weight:600;color:#4B1D8E}
+.badge{position:absolute;top:12px;right:12px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#E8A820;color:#1C1C2E}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <svg viewBox="0 0 80 80" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="80" rx="14" fill="#4B1D8E"/>
+    <path d="M14 12C14 12 19 18 19 40C19 62 14 68 14 68L26 68C26 68 30 58 30 40C30 22 26 12 26 12Z" fill="#E8A820" opacity=".92"/>
+    <path d="M66 12C66 12 61 18 61 40C61 62 66 68 66 68L54 68C54 68 50 58 50 40C50 22 54 12 54 12Z" fill="#E8A820" opacity=".92"/>
+    <circle cx="40" cy="40" r="14" fill="none" stroke="#fff" stroke-width="1" opacity=".18"/>
+    <circle cx="40" cy="40" r="10" fill="none" stroke="#fff" stroke-width="1.2" opacity=".32"/>
+    <circle cx="40" cy="40" r="6.5" fill="#fff"/>
+  </svg>
+  <div class="header-text">
+    <h1>Somos Cênica</h1>
+    <p>Central de Materiais de Marca</p>
+  </div>
+</div>
+
+<div class="grid">
+
+  <a href="logo/index.html" class="card">
+    <div class="card-preview" style="background:#1C1C2E;">
+      <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+        <rect width="80" height="80" rx="14" fill="#4B1D8E"/>
+        <path d="M14 12C14 12 19 18 19 40C19 62 14 68 14 68L26 68C26 68 30 58 30 40C30 22 26 12 26 12Z" fill="#E8A820" opacity=".92"/>
+        <path d="M66 12C66 12 61 18 61 40C61 62 66 68 66 68L54 68C54 68 50 58 50 40C50 22 54 12 54 12Z" fill="#E8A820" opacity=".92"/>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="#fff" stroke-width="1" opacity=".18"/>
+        <circle cx="40" cy="40" r="10" fill="none" stroke="#fff" stroke-width="1.2" opacity=".32"/>
+        <circle cx="40" cy="40" r="6.5" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Identidade Visual</div>
+      <div class="card-title">Logomarca</div>
+      <div class="card-desc">Todas as variações da logo: cores, escuro, monocromático e ícone isolado.</div>
+      <div class="card-action">Abrir → </div>
+    </div>
+  </a>
+
+  <a href="brandbook/index.html" class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg,#2D0F5A,#4B1D8E);">
+      <span>📖</span>
+      <div class="badge">Novo</div>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Marca</div>
+      <div class="card-title">Brandbook</div>
+      <div class="card-desc">Identidade completa: personalidade, cores, tipografia, voz e diretrizes de uso.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="pitch/index.html" class="card">
+    <div class="card-preview" style="background:#1C1C2E;">
+      <span>🎯</span>
+      <div class="badge">B2B</div>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Vendas</div>
+      <div class="card-title">Deck Comercial</div>
+      <div class="card-desc">Apresentação de 8 slides para clientes corporativos. Pronta para enviar.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="linkedin/estrategia.html" class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg,#0A66C2,#004182);">
+      <span>💼</span>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Redes Sociais</div>
+      <div class="card-title">Estratégia LinkedIn</div>
+      <div class="card-desc">4 pilares, calendário semanal e 3 posts prontos para publicar hoje.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="carroseis/index.html" class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg,#833AB4,#E1306C,#F77737);">
+      <span>📱</span>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Instagram</div>
+      <div class="card-title">Carroseis</div>
+      <div class="card-desc">Templates de carrossel para o Instagram com identidade visual da marca.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="email/index.html" class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg,#4B1D8E,#2D0F5A);">
+      <span>✉️</span>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Comunicação</div>
+      <div class="card-title">Templates de E-mail</div>
+      <div class="card-desc">Modelos de e-mail com identidade visual para comunicação com clientes.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="https://somoscenica.com.br" target="_blank" class="card">
+    <div class="card-preview" style="background:linear-gradient(135deg,#1C1C2E,#4B1D8E);">
+      <span>🌐</span>
+      <div class="badge">Online</div>
+    </div>
+    <div class="card-body">
+      <div class="card-label">Site</div>
+      <div class="card-title">somoscenica.com.br</div>
+      <div class="card-desc">Site publicado com logo, identidade B2B e todos os programas de soft skills.</div>
+      <div class="card-action">Abrir →</div>
+    </div>
+  </a>
+
+  <a href="logo/somoscenica-logo.svg" target="_blank" class="card">
+    <div class="card-preview" style="background:#F7F4EF;border-bottom:1.5px solid rgba(75,29,142,.1);">
+      <img src="logo/somoscenica-logo.svg" style="max-width:80%;height:auto" alt="Logo Somos Cênica">
+    </div>
+    <div class="card-body">
+      <div class="card-label">Arquivo</div>
+      <div class="card-title">Logo SVG — Fundo Claro</div>
+      <div class="card-desc">Arquivo SVG para uso em documentos, Canva, PowerPoint e impressão.</div>
+      <div class="card-action">Baixar →</div>
+    </div>
+  </a>
+
+  <a href="logo/somoscenica-logo-dark.svg" target="_blank" class="card">
+    <div class="card-preview" style="background:#1C1C2E;">
+      <img src="logo/somoscenica-logo-dark.svg" style="max-width:80%;height:auto" alt="Logo Somos Cênica Dark">
+    </div>
+    <div class="card-body">
+      <div class="card-label">Arquivo</div>
+      <div class="card-title">Logo SVG — Fundo Escuro</div>
+      <div class="card-desc">Versão para fundos escuros: apresentações, rodapés, fundos roxos.</div>
+      <div class="card-action">Baixar →</div>
+    </div>
+  </a>
+
+</div>
+
+</body>
+</html>
