@@ -1,0 +1,43 @@
+name: Post Instagram — 19 Mai (Últimas vagas -3 dias)
+
+on:
+  schedule:
+    # 19 de maio às 13h UTC = 10h de Teresina (UTC-3)
+    - cron: '0 13 19 5 *'
+  workflow_dispatch: # permite rodar manualmente para testar
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install axios
+        working-directory: scripts-instagram
+
+      - name: Publicar no Instagram
+        working-directory: scripts-instagram
+        env:
+          IG_USER_ID: ${{ secrets.INSTAGRAM_BUSINESS_ID }}
+          IG_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IMAGE_URL: 'https://res.cloudinary.com/dag4aiqp5/image/upload/v1777052733/somoscenica/cartaz-square-v2.jpg'
+          CAPTION: |
+            Faltam 3 dias. ⚡
+
+            Se você ainda está na dúvida — esse é o sinal.
+
+            As vagas do Manual Humano estão acabando. Depois não tem "queria ter ido".
+
+            📅 22 de maio · 20h
+            📍 Teatro Torquato Neto · Teresina
+            🎟 Inteira R$ 100 | Meia R$ 50
+
+            👉 Link na bio para garantir o seu agora.
+
+            #ManualHumano #SomosCênica #UltimasVagas #PalestraTeresina #Teresina
+        run: node ig-publicar.js
