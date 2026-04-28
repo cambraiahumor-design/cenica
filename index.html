@@ -801,6 +801,7 @@
           <li><a href="#instrutor">Palestrante</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="#curso">Curso</a></li>
         </ul>
 
         <div class="nav-cta">
@@ -1255,6 +1256,350 @@
     </section>
 
     <!-- ════════════════════════════════════
+         CURSO TÉCNICA HUMANA
+    ════════════════════════════════════ -->
+    <style>
+      /* ── Curso Section ─────────────────────────── */
+      .curso-section { background: var(--warm-white); }
+      .curso-intro { max-width: 680px; margin: 0 auto 64px; text-align: center; }
+
+      /* Mercado */
+      .mercado-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 48px; }
+      @media(max-width:720px){ .mercado-grid { grid-template-columns: 1fr; } }
+      .mercado-card {
+        border-radius: 14px; padding: 24px 20px; text-align: center;
+        border: 1px solid rgba(74,58,82,0.1);
+      }
+      .mercado-card.mc-concorrente { background: var(--cream); }
+      .mercado-card.mc-media { background: rgba(74,58,82,0.04); border-color: rgba(74,58,82,0.14); }
+      .mercado-card.mc-cenica {
+        background: linear-gradient(135deg,rgba(212,134,58,0.10),rgba(232,200,106,0.06));
+        border: 2px solid rgba(212,134,58,0.35);
+      }
+      .mc-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+      .mc-concorrente .mc-label { color: var(--text-light); }
+      .mc-media .mc-label { color: var(--text-mid); }
+      .mc-cenica .mc-label { color: var(--spotlight); }
+      .mc-price { font-family: var(--font-display); font-size: 38px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+      .mc-concorrente .mc-price { color: var(--text-mid); }
+      .mc-media .mc-price { color: var(--text-dark); }
+      .mc-cenica .mc-price { color: var(--spotlight); }
+      .mc-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; }
+      .mc-cenica .mc-desc { color: var(--text-mid); }
+      .mc-badge-save {
+        display: inline-block; margin-top: 10px;
+        padding: 3px 12px; border-radius: 99px;
+        background: rgba(30,92,58,0.12); color: #1E7A45;
+        border: 1px solid rgba(30,92,58,0.25);
+        font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      }
+
+      /* Curso card principal */
+      .curso-main-card {
+        background: var(--void);
+        border-radius: 24px;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+        margin-bottom: 48px;
+        position: relative;
+        overflow: hidden;
+      }
+      .curso-main-card::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse 700px 500px at 0% 0%, rgba(212,134,58,0.10) 0%, transparent 65%),
+                    radial-gradient(ellipse 500px 400px at 100% 100%, rgba(122,43,74,0.10) 0%, transparent 65%);
+      }
+      .curso-main-card > * { position: relative; z-index: 1; }
+      @media(max-width:760px){ .curso-main-card { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; } }
+
+      .curso-price-big { font-family: var(--font-display); font-size: 72px; font-weight: 700; color: var(--spotlight); line-height: 1; margin-bottom: 4px; }
+      .curso-price-old { font-size: 14px; color: rgba(245,239,230,0.35); text-decoration: line-through; margin-bottom: 16px; }
+      .curso-info-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(245,239,230,0.07); font-size: 14px; color: rgba(245,239,230,0.65); }
+      .curso-info-row:last-child { border-bottom: none; }
+      .curso-info-icon { font-size: 18px; flex-shrink: 0; }
+      .curso-info-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,239,230,0.35); display: block; }
+      .curso-info-val { color: var(--cream); font-weight: 600; }
+
+      /* Urgência */
+      .curso-urgency {
+        background: rgba(212,134,58,0.08);
+        border: 1px solid rgba(212,134,58,0.25);
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin-bottom: 24px;
+        display: flex; align-items: flex-start; gap: 14px;
+      }
+      .curso-urgency-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+      .curso-urgency-title { font-weight: 700; font-size: 14px; color: var(--cream); margin-bottom: 4px; }
+      .curso-urgency-text { font-size: 13px; color: rgba(245,239,230,0.5); line-height: 1.6; }
+
+      /* Módulos do curso */
+      .curso-modulos-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+      @media(max-width:640px){ .curso-modulos-grid { grid-template-columns: 1fr; } }
+      .curso-modulo-item {
+        display: flex; gap: 14px; align-items: flex-start;
+        padding: 16px 18px;
+        background: var(--cream); border-radius: 12px;
+        border: 1px solid rgba(74,58,82,0.08);
+      }
+      .curso-modulo-num { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: rgba(212,134,58,0.35); line-height: 1; flex-shrink: 0; width: 28px; }
+      .curso-modulo-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 3px; }
+      .curso-modulo-desc { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+      .curso-modulo-presencial {
+        display: inline-block; margin-top: 6px;
+        padding: 2px 8px; border-radius: 99px;
+        background: rgba(212,134,58,0.12); color: var(--spotlight);
+        border: 1px solid rgba(212,134,58,0.3);
+        font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      }
+
+      /* Progresso de turma */
+      .vagas-bar-wrap { margin-bottom: 24px; }
+      .vagas-bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: rgba(245,239,230,0.6); }
+      .vagas-bar-label strong { color: var(--cream); }
+      .vagas-bar { height: 8px; background: rgba(245,239,230,0.08); border-radius: 99px; overflow: hidden; }
+      .vagas-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--spotlight), var(--gold)); }
+    </style>
+
+    <section class="section curso-section" id="curso" aria-labelledby="curso-heading">
+      <div class="container">
+
+        <!-- Cabeçalho -->
+        <div class="curso-intro reveal">
+          <span class="label text-spotlight" style="display:block;margin-bottom:16px;">Próximo passo após a palestra</span>
+          <h2 id="curso-heading" class="display" style="font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin-bottom:20px;">
+            Curso <em style="color:var(--spotlight);font-style:italic;">Técnica Humana</em>
+          </h2>
+          <p style="font-size:1rem;color:var(--text-mid);line-height:1.75;max-width:560px;margin:0 auto;">
+            8 semanas de metodologia cênica aplicada à vida profissional. Presença, comunicação, liderança — desenvolvidas através do teatro, não de slides.
+          </p>
+        </div>
+
+        <!-- ── Estudo de Mercado ─────────────────── -->
+        <div class="reveal" style="margin-bottom:56px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--spotlight);margin-bottom:24px;text-align:center;">
+            Estudo de mercado · Cursos de soft skills similares (8 semanas, híbrido)
+          </p>
+
+          <div class="mercado-grid">
+
+            <div class="mercado-card mc-concorrente">
+              <p class="mc-label">Mercado nacional<br>(oratória + presença)</p>
+              <p class="mc-price">R$1.497</p>
+              <p class="mc-desc">Cursos online de comunicação, liderança e presença com carga semelhante (ex: escolas de oratória, teatro corporativo em SP)</p>
+            </div>
+
+            <div class="mercado-card mc-media">
+              <p class="mc-label">Referência Nordeste<br>(soft skills híbrido)</p>
+              <p class="mc-price">R$1.197</p>
+              <p class="mc-desc">Média ponderada de cursos presenciais e híbridos de desenvolvimento pessoal e profissional ofertados em Teresina e Fortaleza</p>
+            </div>
+
+            <div class="mercado-card mc-cenica">
+              <p class="mc-label">Somos Cênica<br>Turma junho 2026</p>
+              <p class="mc-price">R$897</p>
+              <p class="mc-desc">Metodologia própria com teatro aplicado. Mesmo conteúdo que cursos nacionais de R$1.497 — entregue em Teresina, ao seu preço.</p>
+              <span class="mc-badge-save">25% abaixo do mercado regional</span>
+            </div>
+
+          </div>
+
+          <p style="text-align:center;font-size:13px;color:var(--text-light);max-width:560px;margin:0 auto;">
+            Fontes de referência: IMA (Escola de Oratória), Comunicação e Presença SP, levantamento de cursos híbridos de soft skills no Nordeste — abril/2026.
+          </p>
+        </div>
+
+        <!-- ── Card principal do curso ──────────── -->
+        <div class="curso-main-card reveal">
+
+          <!-- Coluna esquerda: preço + detalhes -->
+          <div>
+            <span style="display:inline-block;padding:4px 14px;border-radius:99px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.3);color:var(--spotlight);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;">
+              🎭 Turma presencial · Teresina PI
+            </span>
+
+            <div class="curso-price-big">R$897</div>
+            <p class="curso-price-old">Mercado cobra R$1.197 – R$1.497</p>
+
+            <div style="margin-bottom:32px;">
+              <div class="curso-info-row">
+                <span class="curso-info-icon">📅</span>
+                <div>
+                  <span class="curso-info-label">Início previsto</span>
+                  <span class="curso-info-val">8 de junho de 2026</span>
+                </div>
+              </div>
+              <div class="curso-info-row">
+                <span class="curso-info-icon">⏳</span>
+                <div>
+                  <span class="curso-info-label">Duração</span>
+                  <span class="curso-info-val">8 semanas</span>
+                </div>
+              </div>
+              <div class="curso-info-row">
+                <span class="curso-info-icon">🏛️</span>
+                <div>
+                  <span class="curso-info-label">Formato</span>
+                  <span class="curso-info-val">Híbrido — online + 2 encontros presenciais em Teresina</span>
+                </div>
+              </div>
+              <div class="curso-info-row">
+                <span class="curso-info-icon">👥</span>
+                <div>
+                  <span class="curso-info-label">Turma</span>
+                  <span class="curso-info-val">Máximo 25 pessoas</span>
+                </div>
+              </div>
+              <div class="curso-info-row">
+                <span class="curso-info-icon">🎓</span>
+                <div>
+                  <span class="curso-info-label">Certificação</span>
+                  <span class="curso-info-val">Certificado Somos Cênica + relatório individual</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Progresso de vagas -->
+            <div class="vagas-bar-wrap">
+              <div class="vagas-bar-label">
+                <span>Vagas preenchidas</span>
+                <strong id="vagas-count">— / 25 vagas</strong>
+              </div>
+              <div class="vagas-bar">
+                <div class="vagas-bar-fill" id="vagas-fill" style="width:0%"></div>
+              </div>
+            </div>
+
+            <a href="https://wa.me/5585997041061?text=Quero+entrar+no+curso+T%C3%A9cnica+Humana+-+Turma+junho+2026"
+               class="btn btn-primary btn-lg"
+               target="_blank" rel="noopener noreferrer"
+               style="width:100%;justify-content:center;display:flex;text-decoration:none;margin-bottom:12px;">
+              Quero garantir minha vaga
+            </a>
+            <p style="font-size:12px;color:rgba(245,239,230,0.35);text-align:center;">
+              Pagamento parcelado disponível · Turma fecha ao completar 25 inscrições
+            </p>
+          </div>
+
+          <!-- Coluna direita: urgência + inclui -->
+          <div>
+            <div class="curso-urgency">
+              <span class="curso-urgency-icon">📆</span>
+              <div>
+                <p class="curso-urgency-title">Início: 8 de junho — se a turma fechar</p>
+                <p class="curso-urgency-text">
+                  O curso começa no dia 8 de junho se atingirmos as 25 inscrições até essa data. Caso contrário, a data de início será prorrogada até que a turma complete — mas o seu lugar já estará garantido com o valor atual.
+                </p>
+              </div>
+            </div>
+
+            <p style="font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">O que está incluído</p>
+            <ul style="list-style:none;margin-bottom:32px;">
+              <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> 8 módulos gravados com acesso permanente
+              </li>
+              <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> 2 encontros presenciais em Teresina (semanas 4 e 8)
+              </li>
+              <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Aulas ao vivo semanais com Q&A
+              </li>
+              <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Grupo de prática com feedback entre alunos
+              </li>
+              <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Workbook impresso entregue no 1º encontro
+              </li>
+              <li style="display:flex;gap:10px;padding:9px 0;font-size:14px;color:rgba(245,239,230,0.65);">
+                <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Certificado Somos Cênica + relatório individual
+              </li>
+            </ul>
+
+            <div style="background:rgba(245,239,230,0.04);border:1px solid rgba(245,239,230,0.08);border-radius:12px;padding:20px 22px;">
+              <p style="font-size:13px;color:rgba(245,239,230,0.5);line-height:1.7;margin:0;">
+                <strong style="color:var(--cream);">Para quem é este curso?</strong><br/>
+                Profissionais que querem desenvolver presença, comunicação e liderança — mas que não têm tempo para teoria sem prática. Não é necessário nenhum conhecimento teatral.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Módulos do curso ──────────────────── -->
+        <div class="reveal">
+          <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--spotlight);margin-bottom:24px;text-align:center;">
+            Os 8 módulos da metodologia
+          </p>
+          <div class="curso-modulos-grid">
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">01</div>
+              <div>
+                <p class="curso-modulo-title">O Palco Interno</p>
+                <p class="curso-modulo-desc">Consciência corporal, presença e o que você comunica antes de abrir a boca.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">02</div>
+              <div>
+                <p class="curso-modulo-title">Voz e Corpo como Instrumentos</p>
+                <p class="curso-modulo-desc">Postura, respiração, gesto e movimento como ferramentas de impacto profissional.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">03</div>
+              <div>
+                <p class="curso-modulo-title">Comunicação Assertiva</p>
+                <p class="curso-modulo-desc">Clareza, objetividade e storytelling aplicado a apresentações e negociações reais.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item" style="background:rgba(212,134,58,0.06);border-color:rgba(212,134,58,0.2);">
+              <div class="curso-modulo-num">04</div>
+              <div>
+                <p class="curso-modulo-title">Escuta Ativa e Empatia</p>
+                <p class="curso-modulo-desc">Empatia como ferramenta estratégica de liderança e influência.</p>
+                <span class="curso-modulo-presencial">Encontro presencial</span>
+              </div>
+            </div>
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">05</div>
+              <div>
+                <p class="curso-modulo-title">Improviso e Adaptabilidade</p>
+                <p class="curso-modulo-desc">A técnica "Sim, e..." que transforma decisões sob pressão em criatividade aplicada.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">06</div>
+              <div>
+                <p class="curso-modulo-title">Gestão de Conflitos em Cena</p>
+                <p class="curso-modulo-desc">Como negociar e liderar situações difíceis com presença e clareza.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item">
+              <div class="curso-modulo-num">07</div>
+              <div>
+                <p class="curso-modulo-title">Liderança com Presença</p>
+                <p class="curso-modulo-desc">A diferença entre cargo e autoridade cênica. Como inspirar sem depender de hierarquia.</p>
+              </div>
+            </div>
+            <div class="curso-modulo-item" style="background:rgba(212,134,58,0.06);border-color:rgba(212,134,58,0.2);">
+              <div class="curso-modulo-num">08</div>
+              <div>
+                <p class="curso-modulo-title">Performance e Legado</p>
+                <p class="curso-modulo-desc">Apresentação final. Cada aluno sai com sua narrativa profissional clara e com presença.</p>
+                <span class="curso-modulo-presencial">Encontro presencial — encerramento</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
          INSCRIÇÃO
     ════════════════════════════════════ -->
     <section class="section cta-section" id="inscricao" aria-labelledby="inscricao-heading">
@@ -1417,6 +1762,7 @@
               <a href="#instrutor">Palestrante</a>
               <a href="#depoimentos">Depoimentos</a>
               <a href="#faq">FAQ</a>
+              <a href="#curso">Curso</a>
             </nav>
           </div>
         </div>
@@ -1643,6 +1989,20 @@
       btn.textContent = 'Redirecionando para pagamento…';
       setTimeout(() => { if (link) window.location.href = link; }, 500);
     });
+
+    // ── Barra de vagas do curso ──────────────────────────────��────────────────
+    // Atualize VAGAS_PREENCHIDAS manualmente conforme inscrições chegarem
+    const VAGAS_TOTAL       = 25;
+    const VAGAS_PREENCHIDAS = 0;  // ← atualizar conforme inscrições
+
+    (function initVagasBar() {
+      const countEl = document.getElementById('vagas-count');
+      const fillEl  = document.getElementById('vagas-fill');
+      if (!countEl || !fillEl) return;
+      const pct = Math.round((VAGAS_PREENCHIDAS / VAGAS_TOTAL) * 100);
+      countEl.textContent = VAGAS_PREENCHIDAS + ' / ' + VAGAS_TOTAL + ' vagas';
+      fillEl.style.width  = pct + '%';
+    })();
   </script>
 </body>
 </html>
