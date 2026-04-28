@@ -1259,37 +1259,117 @@
     ════════════════════════════════════ -->
     <section class="section cta-section" id="inscricao" aria-labelledby="inscricao-heading">
       <div class="container">
-        <div class="text-center reveal" style="max-width:640px;margin:0 auto;">
+        <div class="text-center reveal" style="max-width:640px;margin:0 auto 48px;">
           <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Garanta seu lugar</span>
           <h2 id="inscricao-heading" class="display" style="font-family:'Playfair Display',Georgia,serif;color:var(--cream);font-size:clamp(1.75rem,3.5vw,2.5rem);line-height:1.2;margin-bottom:16px;">
             O palco está pronto.<br>Falta você entrar.
           </h2>
-          <p style="color:rgba(245,239,230,0.6);font-size:1rem;line-height:1.7;margin-bottom:12px;">
-            22 de maio de 2026 &nbsp;·&nbsp; Quinta-feira, 20h<br>
-            Teatro Torquato Neto &nbsp;·&nbsp; Teresina – PI
-          </p>
-          <p style="color:rgba(245,239,230,0.4);font-size:0.875rem;margin-bottom:40px;">⚡ Vagas limitadas. Garante o seu antes que acabe.</p>
+          <p style="color:rgba(245,239,230,0.4);font-size:0.875rem;">⚡ Vagas limitadas. Garante o seu antes que acabe.</p>
+        </div>
 
-          <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:24px;">
-            <a href="https://mpago.la/1ektSi5" target="_blank" rel="noopener"
-               class="btn btn-primary btn-lg">
-              🎟 Inteira — R$ 100
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-            <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener"
-               class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">
-              Meia-entrada — R$ 50
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto;align-items:start;">
+
+          <!-- Formulário de inscrição -->
+          <div class="inscricao-form-card">
+            <p class="inscricao-form-title">Reservar meu ingresso</p>
+            <p class="inscricao-form-sub">Preencha abaixo e você receberá a confirmação por e-mail.</p>
+
+            <form id="main-form" name="inscricao-palestra" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="inscricao-palestra">
+              <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="f-nome">Nome completo</label>
+                  <input type="text" id="f-nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                <div class="form-field">
+                  <label for="f-whats">WhatsApp</label>
+                  <input type="tel" id="f-whats" name="whatsapp" placeholder="(85) 99999-9999">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="f-email">E-mail</label>
+                <input type="email" id="f-email" name="email" placeholder="seu@email.com" required>
+              </div>
+
+              <div class="form-field">
+                <label for="f-interesse">Tipo de ingresso</label>
+                <select id="f-interesse" name="interesse" required>
+                  <option value="">Selecione...</option>
+                  <option value="Palestra inteira">Inteira — R$ 100</option>
+                  <option value="Palestra meia-entrada">Meia-entrada — R$ 50 (estudantes)</option>
+                </select>
+              </div>
+
+              <div id="payment-preview" style="display:none;background:rgba(212,134,58,0.08);border:1px solid rgba(212,134,58,0.2);border-radius:10px;padding:12px 16px;margin-top:4px;">
+                <p style="font-size:0.8125rem;color:rgba(245,239,230,0.6);margin:0 0 4px;">Você selecionou:</p>
+                <p style="font-size:0.9375rem;color:var(--cream);font-weight:600;margin:0;"><span id="preview-interesse"></span></p>
+                <p style="font-size:1.125rem;color:var(--spotlight);font-weight:700;margin:4px 0 0;"><span id="preview-valor"></span></p>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:20px;justify-content:center;">
+                🎟 Garantir ingresso e ir para pagamento
+              </button>
+              <p style="font-size:0.75rem;color:rgba(245,239,230,0.35);text-align:center;margin-top:8px;">Pagamento seguro pelo Mercado Pago · Confirmação por e-mail</p>
+            </form>
           </div>
 
-          <p style="font-size:0.8125rem;color:rgba(245,239,230,0.3);">
-            Pagamento seguro pelo Mercado Pago &nbsp;·&nbsp; Dúvidas?
-            <a href="https://wa.me/5585997041061?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20palestra%20Manual%20Humano." target="_blank" rel="noopener" style="color:var(--gold);">Fale no WhatsApp</a>
-          </p>
+          <!-- Info do evento -->
+          <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px;">
+            <div style="display:flex;gap:16px;align-items:flex-start;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">📅</div>
+              <div>
+                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Data e horário</strong>
+                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">22 de maio de 2026 · Quinta-feira, 20h</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:flex-start;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">📍</div>
+              <div>
+                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Local</strong>
+                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Teatro Torquato Neto · Teresina – PI</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:flex-start;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">🎟</div>
+              <div>
+                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Ingressos</strong>
+                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Inteira R$ 100 · Meia-entrada R$ 50</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;align-items:flex-start;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">✉️</div>
+              <div>
+                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Confirmação automática</strong>
+                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Você receberá o ingresso e instruções no seu e-mail</span>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding-top:20px;border-top:1px solid rgba(245,239,230,0.08);">
+              <p style="font-size:0.8125rem;color:rgba(245,239,230,0.4);margin-bottom:12px;">Prefere comprar direto?</p>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <a href="https://mpago.la/1ektSi5" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🎟 Inteira — R$ 100</a>
+                <a href="https://mpago.la/1qKWtv8" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">Meia — R$ 50</a>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <p style="text-align:center;font-size:0.8125rem;color:rgba(245,239,230,0.25);margin-top:40px;">
+          Dúvidas? <a href="https://wa.me/5585997041061?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20palestra%20Manual%20Humano." target="_blank" rel="noopener" style="color:var(--gold);">Fale no WhatsApp</a>
+        </p>
       </div>
     </section>
+
+    <style>
+      @media (max-width: 700px) {
+        #inscricao .container > div[style*="grid-template-columns:1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
 
   </main>
 
@@ -1525,33 +1605,38 @@
     // ── Main inscription form ─────────────────────────────────────────────────
     document.getElementById('main-form')?.addEventListener('submit', async e => {
       e.preventDefault();
-      const btn      = e.target.querySelector('[type=submit]');
-      const nome     = document.getElementById('f-nome')?.value?.trim()    || '';
-      const email    = document.getElementById('f-email')?.value?.trim()   || '';
-      const whats    = document.getElementById('f-whats')?.value?.trim()   || '';
-      const cidade   = document.getElementById('f-cidade')?.value          || '';
-      const turno    = document.getElementById('f-turno')?.value           || '';
-      const interesse = document.getElementById('f-interesse')?.value      || '';
-      const empresa  = document.getElementById('f-empresa')?.value?.trim() || '';
+      const form     = e.target;
+      const btn      = form.querySelector('[type=submit]');
+      const nome     = document.getElementById('f-nome')?.value?.trim()  || '';
+      const email    = document.getElementById('f-email')?.value?.trim() || '';
+      const whats    = document.getElementById('f-whats')?.value?.trim() || '';
+      const interesse = document.getElementById('f-interesse')?.value    || '';
       const link     = paymentLinkForInterest(interesse);
 
       if (!nome || !email || !interesse) {
-        alert('Preencha nome, e-mail e interesse para continuar.');
+        alert('Preencha nome, e-mail e tipo de ingresso para continuar.');
         return;
       }
 
       btn.disabled = true;
       btn.textContent = 'Enviando…';
 
+      // Captura lead no Netlify Forms
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+      } catch (_) {}
+
+      // Envia confirmação por e-mail ao participante
       await sendConfirmation({
-        to_name:    nome,
-        to_email:   email,
+        to_name:        nome,
+        to_email:       email,
         interesse,
-        cidade,
-        turno,
-        whatsapp:   whats,
-        empresa,
-        valor:      priceForInterest(interesse),
+        whatsapp:       whats,
+        valor:          priceForInterest(interesse),
         link_pagamento: link || '(em breve)',
       });
 
