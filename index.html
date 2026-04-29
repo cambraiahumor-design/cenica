@@ -802,6 +802,7 @@
           <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#curso">Curso</a></li>
+          <li><a href="#empresas">Empresas</a></li>
         </ul>
 
         <div class="nav-cta">
@@ -1599,6 +1600,280 @@
     </section>
 
     <!-- ════════════════════════════════════
+         EMPRESAS
+    ════════════════════════════════════ -->
+    <style>
+      /* ── Empresas Section ──────────────────────────── */
+      .emp-intro { max-width: 640px; margin: 0 auto 56px; text-align: center; }
+
+      /* Pacotes */
+      .emp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px; }
+      @media(max-width:860px){ .emp-grid { grid-template-columns: 1fr; } }
+
+      .emp-card {
+        border-radius: 20px; padding: 36px 32px;
+        display: flex; flex-direction: column;
+        position: relative; overflow: hidden;
+      }
+      .emp-card-base {
+        background: var(--cream);
+        border: 1px solid rgba(74,58,82,0.12);
+      }
+      .emp-card-mid {
+        background: var(--void);
+        border: 2px solid rgba(212,134,58,0.35);
+      }
+      .emp-card-top {
+        background: linear-gradient(145deg,#1a0830,var(--void));
+        border: 2px solid rgba(232,200,106,0.3);
+      }
+
+      .emp-badge {
+        display: inline-block; padding: 4px 14px; border-radius: 99px;
+        font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; margin-bottom: 20px; width: fit-content;
+      }
+      .emp-badge-base { background: rgba(74,58,82,0.1); color: var(--text-mid); }
+      .emp-badge-mid  { background: rgba(212,134,58,0.15); color: var(--spotlight); border: 1px solid rgba(212,134,58,0.3); }
+      .emp-badge-top  { background: rgba(232,200,106,0.12); color: var(--gold); border: 1px solid rgba(232,200,106,0.3); }
+
+      .emp-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+      .emp-card-base .emp-name { color: var(--text-dark); }
+      .emp-card-mid .emp-name,
+      .emp-card-top .emp-name  { color: var(--cream); }
+
+      .emp-format { font-size: 13px; margin-bottom: 20px; }
+      .emp-card-base .emp-format { color: var(--text-light); }
+      .emp-card-mid .emp-format,
+      .emp-card-top .emp-format  { color: rgba(245,239,230,0.45); }
+
+      .emp-price-wrap { margin-bottom: 24px; }
+      .emp-price-old  { font-size: 12px; text-decoration: line-through; margin-bottom: 2px; }
+      .emp-card-base .emp-price-old { color: var(--text-light); }
+      .emp-card-mid .emp-price-old,
+      .emp-card-top .emp-price-old  { color: rgba(245,239,230,0.3); }
+
+      .emp-price { font-family: var(--font-display); font-size: 2.75rem; font-weight: 700; line-height: 1; }
+      .emp-card-base .emp-price { color: var(--spotlight); }
+      .emp-card-mid .emp-price  { color: var(--spotlight); }
+      .emp-card-top .emp-price  { color: var(--gold); }
+
+      .emp-price-note { font-size: 11px; margin-top: 4px; }
+      .emp-card-base .emp-price-note { color: var(--text-light); }
+      .emp-card-mid .emp-price-note,
+      .emp-card-top .emp-price-note  { color: rgba(245,239,230,0.35); }
+
+      .emp-save {
+        display: inline-block; padding: 3px 10px; border-radius: 99px;
+        font-size: 11px; font-weight: 700;
+        background: rgba(30,92,58,0.12); color: #1E7A45;
+        border: 1px solid rgba(30,92,58,0.25); margin-bottom: 20px;
+      }
+
+      .emp-features { list-style: none; margin-bottom: 28px; flex: 1; }
+      .emp-features li {
+        display: flex; gap: 10px; align-items: flex-start;
+        padding: 8px 0; font-size: 13px;
+        border-bottom: 1px solid rgba(74,58,82,0.07);
+      }
+      .emp-features li:last-child { border-bottom: none; }
+      .emp-card-base .emp-features li { color: var(--text-mid); border-color: rgba(74,58,82,0.07); }
+      .emp-card-mid .emp-features li,
+      .emp-card-top .emp-features li  { color: rgba(245,239,230,0.6); border-color: rgba(245,239,230,0.06); }
+      .emp-features li::before { content: '✓'; color: var(--spotlight); font-weight: 700; flex-shrink: 0; }
+      .emp-card-top .emp-features li::before { color: var(--gold); }
+
+      .emp-cta {
+        display: flex; align-items: center; justify-content: center;
+        padding: 13px 24px; border-radius: 10px;
+        font-size: 14px; font-weight: 700; text-decoration: none;
+        transition: opacity .2s, transform .2s;
+        cursor: pointer; border: none;
+      }
+      .emp-cta:hover { opacity: .88; transform: translateY(-2px); }
+      .emp-cta-base { background: var(--spotlight); color: white; }
+      .emp-cta-mid  { background: var(--spotlight); color: white; }
+      .emp-cta-top  { background: var(--gold); color: var(--void); }
+
+      /* Diferenciais */
+      .emp-diff-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; }
+      @media(max-width:720px){ .emp-diff-grid { grid-template-columns: 1fr; } }
+      .emp-diff-item {
+        display: flex; gap: 16px; align-items: flex-start;
+        padding: 24px; background: var(--cream);
+        border-radius: 14px; border: 1px solid rgba(74,58,82,0.08);
+      }
+      .emp-diff-icon {
+        width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+        background: rgba(212,134,58,0.1); border: 1px solid rgba(212,134,58,0.2);
+        display: flex; align-items: center; justify-content: center; font-size: 20px;
+      }
+      .emp-diff-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+      .emp-diff-desc  { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+    </style>
+
+    <section class="section" id="empresas" aria-labelledby="empresas-heading"
+             style="background: var(--warm-white);">
+      <div class="container">
+
+        <!-- Cabeçalho -->
+        <div class="emp-intro reveal">
+          <span class="label text-spotlight" style="display:block;margin-bottom:16px;">Para empresas · Teresina PI</span>
+          <h2 id="empresas-heading" class="display"
+              style="font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin-bottom:20px;">
+            Seu time aprende<br><em style="color:var(--spotlight);font-style:italic;">fazendo, não assistindo</em>
+          </h2>
+          <p style="font-size:1rem;color:var(--text-mid);line-height:1.75;max-width:560px;margin:0 auto 16px;">
+            Treinamento 100% presencial com metodologia teatral. Sem slides, sem apostila — só vivência prática em ambiente seguro para errar, ajustar e evoluir.
+          </p>
+          <span style="display:inline-block;padding:5px 16px;border-radius:99px;
+                       background:rgba(30,92,58,0.1);color:#1E7A45;
+                       border:1px solid rgba(30,92,58,0.25);
+                       font-size:12px;font-weight:700;letter-spacing:0.06em;">
+            Preços de inauguração — 25% abaixo do mercado
+          </span>
+        </div>
+
+        <!-- Estudo de mercado (compacto) -->
+        <div class="reveal" style="background:var(--cream);border-radius:16px;padding:28px 32px;margin-bottom:48px;border:1px solid rgba(74,58,82,0.1);">
+          <p style="font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--spotlight);margin-bottom:16px;">
+            Referência de mercado · Treinamentos in company soft skills · Nordeste
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;overflow:hidden;border-radius:10px;border:1px solid rgba(74,58,82,0.1);">
+            <div style="padding:16px 20px;background:white;border-right:1px solid rgba(74,58,82,0.08);">
+              <p style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Workshop 1 dia</p>
+              <p style="font-family:var(--font-display);font-size:1.375rem;font-weight:700;color:var(--text-mid);">R$6.400</p>
+              <p style="font-size:11px;color:var(--text-light);">referência regional</p>
+            </div>
+            <div style="padding:16px 20px;background:white;border-right:1px solid rgba(74,58,82,0.08);">
+              <p style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Imersão 2 dias</p>
+              <p style="font-family:var(--font-display);font-size:1.375rem;font-weight:700;color:var(--text-mid);">R$13.000</p>
+              <p style="font-size:11px;color:var(--text-light);">referência regional</p>
+            </div>
+            <div style="padding:16px 20px;background:white;">
+              <p style="font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:6px;">Programa 4 semanas</p>
+              <p style="font-family:var(--font-display);font-size:1.375rem;font-weight:700;color:var(--text-mid);">R$32.000</p>
+              <p style="font-size:11px;color:var(--text-light);">referência regional</p>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--text-light);margin-top:12px;">
+            Fontes: trainers independentes Teresina, SENAC executive, consultoras nacionais — abril/2026.
+          </p>
+        </div>
+
+        <!-- Pacotes -->
+        <div class="emp-grid reveal">
+
+          <!-- Flash Cênico -->
+          <div class="emp-card emp-card-base">
+            <span class="emp-badge emp-badge-base">Entrada</span>
+            <p class="emp-name">Flash Cênico</p>
+            <p class="emp-format">1 dia · até 20 pessoas</p>
+            <div class="emp-price-wrap">
+              <p class="emp-price-old">Mercado: R$6.400</p>
+              <p class="emp-price">R$4.800</p>
+              <p class="emp-price-note">preço de inauguração</p>
+            </div>
+            <span class="emp-save">economia de R$1.600</span>
+            <ul class="emp-features">
+              <li>Vivência de 6 horas com exercícios teatrais</li>
+              <li>1 habilidade-foco por sessão (comunicação, liderança ou empatia)</li>
+              <li>Dinâmicas em grupo — sem teoria, só prática</li>
+              <li>Feedback ao vivo do facilitador</li>
+              <li>Ideal para kick-offs, onboardings e convenções</li>
+            </ul>
+            <a href="https://wa.me/5585997041061?text=Quero+uma+proposta+Flash+C%C3%AAnico+para+minha+empresa"
+               class="emp-cta emp-cta-base" target="_blank" rel="noopener">
+              Pedir proposta
+            </a>
+          </div>
+
+          <!-- Imersão Cênica -->
+          <div class="emp-card emp-card-mid">
+            <span class="emp-badge emp-badge-mid">⭐ Mais procurado</span>
+            <p class="emp-name">Imersão Cênica</p>
+            <p class="emp-format">2 dias · até 25 pessoas</p>
+            <div class="emp-price-wrap">
+              <p class="emp-price-old">Mercado: R$13.000</p>
+              <p class="emp-price">R$9.750</p>
+              <p class="emp-price-note">preço de inauguração</p>
+            </div>
+            <span class="emp-save">economia de R$3.250</span>
+            <ul class="emp-features">
+              <li>16 horas de vivência intensiva em 2 dias</li>
+              <li>Comunicação assertiva + liderança com presença</li>
+              <li>Cenas reais do cotidiano da equipe encenadas e trabalhadas</li>
+              <li>Feedback individual e coletivo a cada sessão</li>
+              <li>Relatório de grupo para o RH ao final</li>
+              <li>Ideal para equipes de liderança e times de vendas</li>
+            </ul>
+            <a href="https://wa.me/5585997041061?text=Quero+uma+proposta+Immers%C3%A3o+C%C3%AAnica+para+minha+empresa"
+               class="emp-cta emp-cta-mid" target="_blank" rel="noopener">
+              Pedir proposta
+            </a>
+          </div>
+
+          <!-- Programa In Company -->
+          <div class="emp-card emp-card-top">
+            <span class="emp-badge emp-badge-top">Transformação</span>
+            <p class="emp-name">Programa In Company</p>
+            <p class="emp-format">4 semanas · até 30 pessoas</p>
+            <div class="emp-price-wrap">
+              <p class="emp-price-old">Mercado: R$32.000</p>
+              <p class="emp-price">R$24.000</p>
+              <p class="emp-price-note">preço de inauguração</p>
+            </div>
+            <span class="emp-save">economia de R$8.000</span>
+            <ul class="emp-features">
+              <li>4 encontros presenciais semanais (full-day)</li>
+              <li>Metodologia completa dos 8 módulos condensada</li>
+              <li>Cenas criadas a partir dos desafios reais da empresa</li>
+              <li>Ambiente seguro para errar e recalibrar na prática</li>
+              <li>Relatório executivo de impacto ao final</li>
+              <li>Ideal para programas de cultura e liderança</li>
+            </ul>
+            <a href="https://wa.me/5585997041061?text=Quero+uma+proposta+Programa+In+Company+para+minha+empresa"
+               class="emp-cta emp-cta-top" target="_blank" rel="noopener">
+              Pedir proposta
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Por que a metodologia funciona para empresas -->
+        <div class="reveal">
+          <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--spotlight);margin-bottom:24px;text-align:center;">
+            O que torna diferente
+          </p>
+          <div class="emp-diff-grid">
+            <div class="emp-diff-item">
+              <div class="emp-diff-icon">🎭</div>
+              <div>
+                <p class="emp-diff-title">Corpo, não slides</p>
+                <p class="emp-diff-desc">O time aprende no corpo — não na cabeça. Retenção de 75% na prática ativa contra 5% em palestras convencionais.</p>
+              </div>
+            </div>
+            <div class="emp-diff-item">
+              <div class="emp-diff-icon">🔒</div>
+              <div>
+                <p class="emp-diff-title">Espaço seguro para errar</p>
+                <p class="emp-diff-desc">As cenas simulam situações reais — demissão, negociação difícil, conflito — sem o custo do erro no trabalho.</p>
+              </div>
+            </div>
+            <div class="emp-diff-item">
+              <div class="emp-diff-icon">📍</div>
+              <div>
+                <p class="emp-diff-title">Único em Teresina</p>
+                <p class="emp-diff-desc">Metodologia teatral aplicada a empresas. Nenhum outro treinamento corporativo no Piauí usa esta abordagem.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
          INSCRIÇÃO
     ════════════════════════════════════ -->
     <section class="section cta-section" id="inscricao" aria-labelledby="inscricao-heading">
@@ -1762,6 +2037,7 @@
               <a href="#depoimentos">Depoimentos</a>
               <a href="#faq">FAQ</a>
               <a href="#curso">Curso</a>
+              <a href="#empresas">Empresas</a>
             </nav>
           </div>
         </div>
