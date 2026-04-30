@@ -2512,6 +2512,28 @@ p {
   .nav-cta .btn-ghost { display: none; }
 
   .bb-cover { padding: var(--space-6); }
+
+  .footer-inner-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .footer-links-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .mercado-ref-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mercado-ref-grid > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(74,58,82,0.08);
+  }
+
+  .mercado-ref-grid > div:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ============================================================

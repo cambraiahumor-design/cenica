@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- 11. MOBILE NAV (close on link click) ---- */
   const mobileMenuBtn = document.querySelector('.nav-mobile-btn');
-  const navLinks = document.querySelector('.nav-links-mobile');
+  const navLinks = document.querySelector('.nav-links');
 
   if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', () => {
