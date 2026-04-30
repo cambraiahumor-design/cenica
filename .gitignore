@@ -6,3 +6,6 @@ brandbook-cenica.pdf
 slides-exportados/
 pitch/
 proposta/
+
+# Local Netlify folder
+.netlify
