@@ -35,6 +35,23 @@
     @media (max-width: 960px) {
       .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     }
+    /* ── Hero poster (cartaz + CTA) ────────────────── */
+    .hero-poster-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-poster-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-poster-grid > div:first-child {
+        max-width: 340px;
+        margin: 0 auto;
+      }
+    }
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
@@ -675,11 +692,13 @@
     /* ── Inscrição form ─────────────────────────────── */
     .inscricao-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 56px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
       align-items: start;
     }
-    @media (max-width: 880px) { .inscricao-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) { .inscricao-grid { grid-template-columns: 1fr; } }
     .inscricao-form-card {
       background: var(--warm-white);
       border-radius: 20px;
@@ -835,7 +854,7 @@
       <canvas id="hero-particles" class="hero-canvas" aria-hidden="true"></canvas>
 
       <div class="container">
-        <div style="display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:center;">
+        <div class="hero-poster-grid">
 
           <!-- Esquerda: cartaz -->
           <div style="position:relative;z-index:2;">
@@ -926,10 +945,6 @@
       .cd-sep {
         font-size:1.75rem;font-weight:700;color:rgba(212,134,58,0.5);
         align-self:center;padding-bottom:16px;
-      }
-      @media(max-width:900px){
-        #hero > .container > div { grid-template-columns:1fr !important; }
-        #hero > .container > div > div:first-child { max-width:340px; margin:0 auto; }
       }
       @media(max-width:480px){ .cd-block{min-width:56px;padding:10px 12px;} .cd-num{font-size:1.5rem;} }
     </style>
@@ -1849,7 +1864,7 @@
           <p style="color:rgba(245,239,230,0.4);font-size:0.875rem;">⚡ Vagas limitadas. Garante o seu antes que acabe.</p>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:900px;margin:0 auto;align-items:start;">
+        <div class="inscricao-grid">
 
           <!-- Formulário de inscrição -->
           <div class="inscricao-form-card">
@@ -1945,13 +1960,6 @@
       </div>
     </section>
 
-    <style>
-      @media (max-width: 700px) {
-        #inscricao .container > div[style*="grid-template-columns:1fr 1fr"] {
-          grid-template-columns: 1fr !important;
-        }
-      }
-    </style>
 
   </main>
 

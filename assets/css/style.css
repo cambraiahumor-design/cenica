@@ -64,6 +64,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -2455,6 +2456,8 @@ p {
 
 @media (max-width: 767px) {
   .section { padding-block: var(--space-12); }
+
+  .curso-price-big { font-size: 44px !important; }
 
   .hero h1 { font-size: 2.25rem; }
 
