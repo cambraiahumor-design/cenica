@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Treinamentos de soft skills com metodologia teatral para empresas. Pacotes in-company."/>
+  <title>Empresas | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <header class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">Somos <span>Cênica</span></a>
+        <ul class="nav-links">
+          <li><a href="../index.html#cursos">Cursos</a></li>
+          <li><a href="empresas.html" class="active">Empresas</a></li>
+          <li><a href="area-aluno.html">Área do Aluno</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="login.html"  class="btn-outline">Entrar</a>
+          <a href="#contato"    class="btn-primary">Solicitar Proposta</a>
+        </div>
+        <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-mobile-menu">
+      <a href="../index.html#cursos" onclick="toggleMenu()">Cursos</a>
+      <a href="empresas.html"        onclick="toggleMenu()">Empresas</a>
+      <a href="area-aluno.html"      onclick="toggleMenu()">Área do Aluno</a>
+      <a href="login.html"           onclick="toggleMenu()">Entrar</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero" style="background:var(--black);padding-top:66px;min-height:70vh;">
+    <div class="container">
+      <div class="hero-inner fade-up">
+        <span class="hero-label" style="background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.3);color:var(--gold);">🏢 Teatro Corporativo</span>
+        <h1 style="color:var(--cream);">Transforme sua equipe com <em>teatro corporativo</em></h1>
+        <p style="color:rgba(245,240,232,.6);">Treinamentos 100% presenciais com metodologia teatral. Sem slides, sem apostila — só vivência em ambiente seguro para errar e evoluir.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn-primary">Solicitar Proposta →</a>
+          <a href="#planos"  class="btn-ghost light">Ver Planos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── POR QUE FUNCIONA ── -->
+  <section id="porque" class="section" style="background:var(--cream);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:44px;">
+        <h2 class="section-title">Por que funciona</h2>
+        <p class="section-sub">Dados de programas de teatro corporativo aplicados no Brasil</p>
+      </div>
+      <div class="porque-grid">
+        <div class="porque-card">
+          <div class="porque-stat">73%</div>
+          <div class="porque-label">Melhora na comunicação</div>
+          <p class="porque-desc">de profissionais reportam comunicação mais assertiva após 2 dias de imersão teatral</p>
+        </div>
+        <div class="porque-card">
+          <div class="porque-stat">5×</div>
+          <div class="porque-label">Mais retenção</div>
+          <p class="porque-desc">de aprendizado em práticas corporais versus palestras e workshops convencionais</p>
+        </div>
+        <div class="porque-card">
+          <div class="porque-stat">89%</div>
+          <div class="porque-label">Mais confiança</div>
+          <p class="porque-desc">dos líderes relatam maior segurança em apresentações após o programa completo</p>
+        </div>
+        <div class="porque-card">
+          <div class="porque-stat">+40%</div>
+          <div class="porque-label">Engajamento de equipe</div>
+          <p class="porque-desc">de aumento medido 30 dias após treinamentos com metodologia teatral corporativa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLANOS ── -->
+  <section id="planos" class="section light-bg">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:44px;">
+        <h2 class="section-title">Planos para empresas</h2>
+        <p class="section-sub">Todos os treinamentos são personalizados para a realidade da sua empresa.</p>
+      </div>
+      <div class="planos-wrap">
+        <table class="planos-table">
+          <thead>
+            <tr>
+              <th>Plano</th>
+              <th>Investimento</th>
+              <th>Módulos</th>
+              <th>Participantes</th>
+              <th>Duração</th>
+              <th>O que inclui</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="plano-nome">Essencial</div></td>
+              <td><div class="plano-preco">R$ 4.800</div></td>
+              <td>1 módulo</td>
+              <td>Até 20 pessoas</td>
+              <td>1 dia (8h)</td>
+              <td>Facilitação, dinâmicas teatrais, feedback individual</td>
+            </tr>
+            <tr class="plano-destaque">
+              <td><div class="plano-nome">Profissional ⭐</div></td>
+              <td><div class="plano-preco">R$ 9.600</div></td>
+              <td>3 módulos</td>
+              <td>Até 30 pessoas</td>
+              <td>3 dias (24h)</td>
+              <td>Tudo do Essencial + relatório de equipe + follow-up 30 dias</td>
+            </tr>
+            <tr>
+              <td><div class="plano-nome">Transformação</div></td>
+              <td><div class="plano-preco">R$ 18.000</div></td>
+              <td>Programa completo</td>
+              <td>Até 40 pessoas</td>
+              <td>3 meses</td>
+              <td>Tudo do Profissional + cenas personalizadas + certificados + mentorias individuais</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.8125rem;color:var(--gray);margin-top:14px;text-align:center;">Parcelamento em até 3× disponível. Consulte condições especiais para contratos anuais.</p>
+    </div>
+  </section>
+
+  <!-- ── FORMULÁRIO ── -->
+  <section id="contato" class="section dark">
+    <div class="container" style="max-width:680px;">
+      <div class="text-center" style="margin-bottom:40px;">
+        <h2 class="section-title light">Solicitar proposta</h2>
+        <p class="section-sub light">Respondemos em até 1 dia útil com uma proposta personalizada para o seu time.</p>
+      </div>
+      <form id="form-empresas" onsubmit="submitEmpresasForm(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="light">Empresa</label>
+            <input type="text" class="input dark-bg" name="empresa" placeholder="Nome da empresa" required/>
+          </div>
+          <div class="form-group">
+            <label class="light">Seu nome</label>
+            <input type="text" class="input dark-bg" name="nome" placeholder="Nome completo" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="light">Cargo</label>
+            <input type="text" class="input dark-bg" name="cargo" placeholder="Ex: Gerente de RH" required/>
+          </div>
+          <div class="form-group">
+            <label class="light">E-mail corporativo</label>
+            <input type="email" class="input dark-bg" name="email" placeholder="voce@empresa.com.br" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="light">Telefone</label>
+            <input type="tel" class="input dark-bg" name="telefone" placeholder="(85) 99999-9999"/>
+          </div>
+          <div class="form-group">
+            <label class="light">Plano de interesse</label>
+            <select class="input dark-bg" name="interesse" required>
+              <option value="">Selecione...</option>
+              <option value="Essencial">Essencial — R$ 4.800</option>
+              <option value="Profissional">Profissional — R$ 9.600</option>
+              <option value="Transformação">Transformação — R$ 18.000</option>
+              <option value="Personalizado">Quero orçamento personalizado</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:15px;">
+          Solicitar Proposta →
+        </button>
+        <div id="form-sucesso" style="display:none;text-align:center;margin-top:18px;padding:14px;background:rgba(30,120,60,.12);border:1px solid rgba(30,120,60,.25);border-radius:8px;color:#3ab567;font-weight:600;">
+          ✓ Proposta solicitada! Retornaremos em até 1 dia útil.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Somos <span>Cênica</span></div>
+        <nav class="footer-nav">
+          <a href="../index.html#cursos">Cursos</a>
+          <a href="empresas.html">Empresas</a>
+          <a href="area-aluno.html">Área do Aluno</a>
+        </nav>
+        <div class="footer-right">
+          <div class="footer-email">contato@somoscenica.com.br</div>
+          <div class="footer-copy">© 2026 Somos Cênica</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function submitEmpresasForm(e) {
+      e.preventDefault();
+      const f = e.target;
+      const d = {
+        empresa:    f.querySelector('[name=empresa]').value,
+        nome:       f.querySelector('[name=nome]').value,
+        cargo:      f.querySelector('[name=cargo]').value,
+        email:      f.querySelector('[name=email]').value,
+        telefone:   f.querySelector('[name=telefone]').value,
+        interesse:  f.querySelector('[name=interesse]').value
+      };
+      const body = `Empresa: ${d.empresa}\nNome: ${d.nome}\nCargo: ${d.cargo}\nE-mail: ${d.email}\nTelefone: ${d.telefone}\nInteresse: ${d.interesse}`;
+      window.location.href = `mailto:contato@somoscenica.com.br?subject=${encodeURIComponent('Proposta Corporativa — ' + d.empresa)}&body=${encodeURIComponent(body)}`;
+      document.getElementById('form-sucesso').style.display = 'block';
+      f.reset();
+    }
+  </script>
+</body>
+</html>
