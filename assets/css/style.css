@@ -2512,7 +2512,9 @@ p {
     padding: var(--space-6);
   }
 
-  .nav-cta .btn-ghost { display: none; }
+  .nav-cta a { display: none; }
+
+  .nav-inner { gap: var(--space-4); }
 
   .bb-cover { padding: var(--space-6); }
 
@@ -2537,6 +2539,10 @@ p {
   .mercado-ref-grid > div:last-child {
     border-bottom: none;
   }
+
+  .wa-label { display: none; }
+
+  .inscricao-form-card { padding: 28px 20px; }
 }
 
 /* ============================================================
