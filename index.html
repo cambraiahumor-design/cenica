@@ -1971,6 +1971,179 @@
       </div>
     </section>
 
+    <!-- ════════════════════════════════════
+         ARTIGOS — O Palco Corporativo
+    ════════════════════════════════════ -->
+    <style>
+      .blog-tag {
+        display: inline-block;
+        padding: 4px 14px;
+        border-radius: 99px;
+        background: rgba(212,134,58,0.15);
+        border: 1px solid rgba(212,134,58,0.35);
+        color: var(--spotlight);
+        font-size: 0.6875rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .blog-featured {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(212,134,58,0.2);
+        border-radius: 16px;
+        padding: 48px 56px;
+        max-width: 800px;
+        margin: 0 auto 64px;
+      }
+      @media (max-width: 640px) {
+        .blog-featured { padding: 32px 24px; }
+      }
+      .blog-featured-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 700;
+        color: var(--cream);
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+      .blog-body {
+        color: rgba(245,239,230,0.75);
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+      .blog-body p { margin-bottom: 18px; }
+      .blog-body h4 {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--gold);
+        margin: 32px 0 12px;
+      }
+      .blog-body-preview { display: block; }
+      .blog-body-rest { display: none; }
+      .blog-body-rest.open { display: block; }
+      .blog-read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        background: none;
+        border: none;
+        color: var(--spotlight);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0;
+        transition: opacity .2s;
+      }
+      .blog-read-more:hover { opacity: 0.75; }
+      .blog-read-more svg { transition: transform .25s; }
+      .blog-read-more.open svg { transform: rotate(180deg); }
+      .blog-coming-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .blog-coming-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(245,239,230,0.1);
+        border-radius: 12px;
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .blog-coming-card::before {
+        content: 'Em breve';
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        font-size: 0.625rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(245,239,230,0.3);
+      }
+      .blog-coming-card h4 {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: rgba(245,239,230,0.55);
+        line-height: 1.35;
+        margin-top: 8px;
+      }
+    </style>
+
+    <section class="section bg-stage" id="artigos" aria-labelledby="artigos-heading">
+      <div class="container">
+
+        <div class="section-header text-center reveal" style="margin-bottom:56px;">
+          <span class="label text-spotlight">O Palco Corporativo</span>
+          <h2 id="artigos-heading" class="display text-cream" style="margin-top:10px;">Artigos</h2>
+          <p class="body text-light-opacity" style="margin-top:16px;max-width:480px;margin-inline:auto;">Como técnicas do teatro iluminam os maiores desafios do ambiente de trabalho.</p>
+        </div>
+
+        <!-- Artigo 1 — Destaque -->
+        <article class="blog-featured reveal">
+          <span class="blog-tag">Trabalho em Equipe</span>
+          <h3 class="blog-featured-title">O que o improviso ensina sobre trabalho em equipe</h3>
+
+          <div class="blog-body">
+            <div class="blog-body-preview">
+              <p>No teatro de improviso, não existe script. Dois atores entram em cena sem saber o que vai acontecer — e precisam criar juntos, em tempo real, na frente de uma plateia.</p>
+              <p>O resultado pode ser genial ou desastroso. A diferença está em um conjunto de princípios simples que, quando internalizados, transformam não só o palco — mas qualquer ambiente onde pessoas precisam trabalhar juntas.</p>
+            </div>
+
+            <div class="blog-body-rest" id="blog-rest-1">
+              <h4>A regra de ouro: "Sim, e..."</h4>
+              <p>Todo ator de improv aprende cedo a regra do <em style="color:var(--gold);">"Sim, e..."</em>. Quando seu parceiro propõe algo — um cenário, um personagem, uma emoção — você aceita (sim) e acrescenta algo novo (e).</p>
+              <p>Na prática corporativa, a maioria dos times opera no modo inverso: <em>"Sim, mas..."</em>. Aceitamos a ideia do colega na aparência, mas imediatamente a neutralizamos. O improv ensina que bloquear propostas mata o fluxo criativo — e que equipes que criam juntas precisam aprender a construir, não a barrar.</p>
+
+              <h4>Fazer o seu parceiro brilhar</h4>
+              <p>No improviso, o objetivo não é se destacar individualmente. É fazer o seu parceiro parecer ótimo. Quando cada pessoa em cena está preocupada em elevar o outro, o grupo todo performa melhor — e o resultado supera o que qualquer um conseguiria sozinho.</p>
+              <p>Times de alto desempenho operam da mesma forma. A competição interna fragmenta. A colaboração genuína — onde você passa a bola para quem está em melhor posição — cria algo maior do que a soma das partes.</p>
+
+              <h4>Escuta ativa como ferramenta de cena</h4>
+              <p>Atores de improv desenvolvem uma qualidade rara: eles escutam de verdade. Não para aguardar a vez de falar, mas para capturar nuances — o tom de voz do parceiro, o que ficou implícito, o que pode ser explorado.</p>
+              <p>Em reuniões corporativas, a maioria das pessoas "escuta" enquanto formula a próxima resposta. O teatro ensina que presença real — ouvir com o corpo inteiro, sem agenda — muda a qualidade de qualquer conversa.</p>
+
+              <h4>O que você pode fazer amanhã</h4>
+              <p>Na próxima reunião de time, experimente a regra do "Sim, e..." por 30 minutos. Toda vez que um colega propuser algo, aceite a premissa antes de acrescentar suas ideias. Observe o que muda no clima e na qualidade do que emerge.</p>
+              <p>Não precisa de palco. Precisa de intenção.</p>
+            </div>
+
+            <button class="blog-read-more" id="btn-rest-1" onclick="(function(btn){var r=document.getElementById('blog-rest-1');r.classList.toggle('open');btn.classList.toggle('open');btn.querySelector('span').textContent=r.classList.contains('open')?'Ler menos':'Continuar lendo';})(this)" aria-expanded="false">
+              <span>Continuar lendo</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Próximos artigos -->
+        <div class="blog-coming-grid reveal">
+          <div class="blog-coming-card">
+            <span class="blog-tag" style="font-size:.6rem;">Liderança</span>
+            <h4>Escuta ativa: o que atores sabem que líderes ignoram</h4>
+          </div>
+          <div class="blog-coming-card">
+            <span class="blog-tag" style="font-size:.6rem;">Presença</span>
+            <h4>Presença: a soft skill que ninguém nomeia mas todo mundo percebe</h4>
+          </div>
+          <div class="blog-coming-card">
+            <span class="blog-tag" style="font-size:.6rem;">Empatia</span>
+            <h4>Como personagens fictícios treinam empatia real</h4>
+          </div>
+          <div class="blog-coming-card">
+            <span class="blog-tag" style="font-size:.6rem;">Decisão</span>
+            <h4>Por que grandes líderes precisam aprender a improvisar</h4>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
 
   </main>
 
