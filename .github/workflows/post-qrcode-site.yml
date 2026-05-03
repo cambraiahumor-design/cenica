@@ -1,0 +1,34 @@
+name: Post Instagram — QR Code Site
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Instalar dependências
+        run: npm install axios
+        working-directory: scripts-instagram
+
+      - name: Publicar no Instagram
+        working-directory: scripts-instagram
+        env:
+          IG_USER_ID: ${{ secrets.INSTAGRAM_BUSINESS_ID }}
+          IG_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          IMAGE_URL: https://res.cloudinary.com/dag4aiqp5/image/upload/v1777768369/somoscenica/post-qrcode-site.png
+          CAPTION: |
+            E se o maior segredo dos líderes que dominam qualquer sala... viesse do palco? 🎭
+
+            Aponte a câmera para o QR code e descubra o que o teatro pode fazer pela sua presença, comunicação e liderança.
+
+            ✨ Soft skills com técnicas teatrais — porque o palco prepara para a vida.
+
+            #SomosCênica #SoftSkills #Teatro #Liderança #DesenvolvimentoProfissional #Comunicação #Presença
+        run: node ig-publicar.js
