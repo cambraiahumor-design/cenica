@@ -1353,6 +1353,56 @@
       .vagas-bar-label strong { color: var(--cream); }
       .vagas-bar { height: 8px; background: rgba(245,239,230,0.08); border-radius: 99px; overflow: hidden; }
       .vagas-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--spotlight), var(--gold)); }
+
+      /* ── Tabs de cidade ─────────────────────────── */
+      .turma-tabs {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .turma-tab {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        border-radius: 14px;
+        border: 2px solid rgba(74,58,82,0.15);
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: left;
+        box-shadow: 0 2px 8px rgba(74,58,82,0.06);
+      }
+      .turma-tab:hover {
+        border-color: rgba(212,134,58,0.5);
+        background: rgba(212,134,58,0.04);
+        box-shadow: 0 4px 16px rgba(212,134,58,0.12);
+      }
+      .turma-tab.active {
+        border-color: var(--spotlight);
+        background: rgba(212,134,58,0.06);
+        box-shadow: 0 4px 20px rgba(212,134,58,0.15);
+      }
+      .turma-tab-city {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+      .turma-tab.active .turma-tab-city { color: var(--spotlight); }
+      .turma-tab-date {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+      .turma-tab.active .turma-tab-date { color: rgba(212,134,58,0.8); }
+      .turma-tab-icon {
+        font-size: 1.375rem;
+        flex-shrink: 0;
+      }
+      .turma-panel { display: none; }
+      .turma-panel.active { display: block; }
     </style>
 
     <section class="section curso-section" id="curso" aria-labelledby="curso-heading">
@@ -1402,6 +1452,27 @@
             Fontes de referência: IMA (Escola de Oratória), Comunicação e Presença SP, levantamento de cursos presenciais de soft skills no Nordeste — abril/2026.
           </p>
         </div>
+
+        <!-- ── Tabs de cidade ──────────────────── -->
+        <div class="turma-tabs" role="tablist" aria-label="Selecione a cidade">
+          <button class="turma-tab active" role="tab" aria-selected="true" aria-controls="panel-teresina" id="tab-teresina" onclick="switchTurma('teresina')">
+            <span class="turma-tab-icon">📍</span>
+            <div>
+              <div class="turma-tab-city">Teresina – PI</div>
+              <div class="turma-tab-date">Turma junho 2026 · Início 8 de junho</div>
+            </div>
+          </button>
+          <button class="turma-tab" role="tab" aria-selected="false" aria-controls="panel-fortaleza" id="tab-fortaleza" onclick="switchTurma('fortaleza')">
+            <span class="turma-tab-icon">📍</span>
+            <div>
+              <div class="turma-tab-city">Fortaleza – CE</div>
+              <div class="turma-tab-date">Turma agosto 2026 · Início 3 de agosto</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- ── PAINEL TERESINA ──────────────── -->
+        <div id="panel-teresina" class="turma-panel active" role="tabpanel" aria-labelledby="tab-teresina">
 
         <!-- ── Card principal do curso ──────────── -->
         <div class="curso-main-card reveal">
@@ -1584,6 +1655,195 @@
             </div>
           </div>
         </div>
+
+        </div><!-- /panel-teresina -->
+
+        <!-- ── PAINEL FORTALEZA ─────────────────── -->
+        <div id="panel-fortaleza" class="turma-panel" role="tabpanel" aria-labelledby="tab-fortaleza">
+
+          <!-- Card principal Fortaleza -->
+          <div class="curso-main-card reveal">
+
+            <!-- Coluna esquerda: preço + detalhes -->
+            <div>
+              <span style="display:inline-block;padding:4px 14px;border-radius:99px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.3);color:var(--spotlight);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;">
+                🎭 Turma presencial · Fortaleza CE
+              </span>
+
+              <div class="curso-price-big">R$897</div>
+              <p class="curso-price-old">Mercado cobra R$1.197 – R$1.497</p>
+
+              <div style="margin-bottom:32px;">
+                <div class="curso-info-row">
+                  <span class="curso-info-icon">📅</span>
+                  <div>
+                    <span class="curso-info-label">Início previsto</span>
+                    <span class="curso-info-val">3 de agosto de 2026</span>
+                  </div>
+                </div>
+                <div class="curso-info-row">
+                  <span class="curso-info-icon">⏳</span>
+                  <div>
+                    <span class="curso-info-label">Duração</span>
+                    <span class="curso-info-val">8 semanas</span>
+                  </div>
+                </div>
+                <div class="curso-info-row">
+                  <span class="curso-info-icon">🏛️</span>
+                  <div>
+                    <span class="curso-info-label">Formato</span>
+                    <span class="curso-info-val">100% presencial em Fortaleza — vivência prática, sem material teórico</span>
+                  </div>
+                </div>
+                <div class="curso-info-row">
+                  <span class="curso-info-icon">👥</span>
+                  <div>
+                    <span class="curso-info-label">Turma</span>
+                    <span class="curso-info-val">Máximo 25 pessoas</span>
+                  </div>
+                </div>
+                <div class="curso-info-row">
+                  <span class="curso-info-icon">🎓</span>
+                  <div>
+                    <span class="curso-info-label">Certificação</span>
+                    <span class="curso-info-val">Certificado Somos Cênica + relatório individual</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Progresso de vagas -->
+              <div class="vagas-bar-wrap">
+                <div class="vagas-bar-label">
+                  <span>Vagas preenchidas</span>
+                  <strong id="vagas-count-for">— / 25 vagas</strong>
+                </div>
+                <div class="vagas-bar">
+                  <div class="vagas-bar-fill" id="vagas-fill-for" style="width:0%"></div>
+                </div>
+              </div>
+
+              <a href="https://wa.me/5585997041061?text=Quero+entrar+no+curso+T%C3%A9cnica+Humana+-+Turma+agosto+2026+-+Fortaleza"
+                 class="btn btn-primary btn-lg"
+                 target="_blank" rel="noopener noreferrer"
+                 style="width:100%;justify-content:center;display:flex;text-decoration:none;margin-bottom:12px;">
+                Quero garantir minha vaga
+              </a>
+              <p style="font-size:12px;color:rgba(245,239,230,0.35);text-align:center;">
+                Pagamento parcelado disponível · Turma fecha ao completar 25 inscrições
+              </p>
+            </div>
+
+            <!-- Coluna direita: urgência + inclui -->
+            <div>
+              <div class="curso-urgency">
+                <span class="curso-urgency-icon">📆</span>
+                <div>
+                  <p class="curso-urgency-title">Início: 3 de agosto — se a turma fechar</p>
+                  <p class="curso-urgency-text">
+                    O curso começa no dia 3 de agosto se atingirmos as 25 inscrições até essa data. Caso contrário, a data de início será prorrogada até que a turma complete — mas o seu lugar já estará garantido com o valor atual.
+                  </p>
+                </div>
+              </div>
+
+              <p style="font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">O que você vai viver</p>
+              <ul style="list-style:none;margin-bottom:32px;">
+                <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> 8 encontros presenciais semanais em Fortaleza
+                </li>
+                <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Vivência prática — você treina, erra e acerta no corpo
+                </li>
+                <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Ambiente seguro e confidencial para praticar sem julgamento
+                </li>
+                <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Exercícios teatrais aplicados a situações reais do seu dia a dia
+                </li>
+                <li style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(245,239,230,0.06);font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Feedback ao vivo do grupo e do facilitador em cada sessão
+                </li>
+                <li style="display:flex;gap:10px;padding:9px 0;font-size:14px;color:rgba(245,239,230,0.65);">
+                  <span style="color:var(--spotlight);font-weight:700;flex-shrink:0;">✓</span> Certificado Somos Cênica ao final das 8 semanas
+                </li>
+              </ul>
+
+              <div style="background:rgba(245,239,230,0.04);border:1px solid rgba(245,239,230,0.08);border-radius:12px;padding:20px 22px;">
+                <p style="font-size:13px;color:rgba(245,239,230,0.5);line-height:1.7;margin:0;">
+                  <strong style="color:var(--cream);">Para quem é este curso?</strong><br/>
+                  Para quem aprende fazendo. Sem apostila, sem slides — só você, o grupo e a prática. Você vai sair diferente porque vai ter vivido diferente. Nenhum conhecimento teatral necessário.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Módulos Fortaleza (mesma metodologia) -->
+          <div class="reveal">
+            <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--spotlight);margin-bottom:24px;text-align:center;">
+              Os 8 módulos da metodologia
+            </p>
+            <div class="curso-modulos-grid">
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">01</div>
+                <div>
+                  <p class="curso-modulo-title">O Palco Interno</p>
+                  <p class="curso-modulo-desc">Você descobre o que comunica antes de abrir a boca — com exercícios de presença e consciência corporal.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">02</div>
+                <div>
+                  <p class="curso-modulo-title">Voz e Corpo como Instrumentos</p>
+                  <p class="curso-modulo-desc">Você treina respiração, projeção de voz, postura e gesto — com o seu próprio corpo, no espaço.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">03</div>
+                <div>
+                  <p class="curso-modulo-title">Comunicação Assertiva</p>
+                  <p class="curso-modulo-desc">Você pratica falar com clareza e objetividade em situações reais — sem rodeios, sem desculpas.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">04</div>
+                <div>
+                  <p class="curso-modulo-title">Escuta Ativa e Empatia</p>
+                  <p class="curso-modulo-desc">Você vivencia o que significa realmente ouvir — e como isso muda as relações profissionais e pessoais.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">05</div>
+                <div>
+                  <p class="curso-modulo-title">Improviso e Adaptabilidade</p>
+                  <p class="curso-modulo-desc">Você treina reagir ao inesperado sem travar — a técnica "Sim, e..." aplicada ao cotidiano real.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">06</div>
+                <div>
+                  <p class="curso-modulo-title">Gestão de Conflitos em Cena</p>
+                  <p class="curso-modulo-desc">Você encena conflitos reais — demissão, feedback difícil, negociação — e aprende a atravessá-los com presença.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item">
+                <div class="curso-modulo-num">07</div>
+                <div>
+                  <p class="curso-modulo-title">Liderança com Presença</p>
+                  <p class="curso-modulo-desc">Você pratica liderar sem depender de cargo — autoridade que vem do corpo e da clareza, não do título.</p>
+                </div>
+              </div>
+              <div class="curso-modulo-item" style="background:rgba(212,134,58,0.06);border-color:rgba(212,134,58,0.2);">
+                <div class="curso-modulo-num">08</div>
+                <div>
+                  <p class="curso-modulo-title">Performance e Legado</p>
+                  <p class="curso-modulo-desc">Você se apresenta para o grupo e sai com a sua narrativa profissional vivida — não decorada.</p>
+                  <span class="curso-modulo-presencial">Encerramento · apresentação final</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /panel-fortaleza -->
 
       </div>
     </section>
@@ -2432,6 +2692,24 @@
       countEl.textContent = VAGAS_PREENCHIDAS + ' / ' + VAGAS_TOTAL + ' vagas';
       fillEl.style.width  = pct + '%';
     })();
+  </script>
+
+  <script>
+    // ── Troca de turmas (Teresina / Fortaleza) ─────────────────────────────
+    function switchTurma(cidade) {
+      document.querySelectorAll('.turma-tab').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.turma-panel').forEach(p => p.classList.remove('active'));
+
+      document.getElementById('tab-' + cidade).classList.add('active');
+      document.getElementById('tab-' + cidade).setAttribute('aria-selected', 'true');
+      document.getElementById('panel-' + cidade).classList.add('active');
+
+      // scroll suave até a seção do curso
+      document.getElementById('curso').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   </script>
 </body>
 </html>
