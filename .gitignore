@@ -9,3 +9,5 @@ proposta/
 
 # Local Netlify folder
 .netlify
+
+.vercel
