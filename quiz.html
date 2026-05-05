@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Descubra seu Arquétipo e seu Temperamento — ferramentas de autoconhecimento da Somos Cênica."/>
+<title>Quiz de Autoconhecimento — Somos Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root {
+  --void:#0F0A1A; --curtain:#1E0A3C; --spot:#D4863A; --gold:#E8C86A;
+  --cream:#F5EFE6; --warm:#FDFAF6; --rose:#7A2B4A;
+  --t-dark:#1C1018; --t-mid:#4A3A52; --t-light:#8A7A92;
+  --fd:'Playfair Display',Georgia,serif; --fb:'DM Sans',sans-serif;
+  --r:16px; --max:860px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--fb);background:var(--warm);color:var(--t-dark);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{background:rgba(15,10,26,.96);backdrop-filter:blur(16px);padding:16px 0;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--spot)}
+.nav-back{display:flex;align-items:center;gap:6px;color:rgba(245,239,230,.6);font-size:.875rem;font-weight:500;transition:color .2s}
+.nav-back:hover{color:var(--cream)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,var(--void) 0%,#140830 60%,var(--curtain) 100%);padding:80px 24px 72px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.1) 0%,transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,134,58,.12);border:1px solid rgba(212,134,58,.3);color:var(--spot);padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+.hero-title{font-family:var(--fd);font-size:clamp(2rem,5vw,3rem);color:var(--cream);margin-bottom:16px;line-height:1.15}
+.hero-title em{color:var(--spot);font-style:italic}
+.hero-sub{color:rgba(245,239,230,.7);font-size:1.0625rem;line-height:1.75;max-width:540px;margin:0 auto}
+
+/* ── QUIZ SELECTOR ── */
+.selector{max-width:var(--max);margin:0 auto;padding:64px 24px 0}
+.selector-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--t-dark);text-align:center;margin-bottom:8px}
+.selector-sub{text-align:center;color:var(--t-mid);font-size:.9375rem;margin-bottom:40px}
+.selector-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.selector-cards{grid-template-columns:1fr}}
+
+.sq-card{background:var(--cream);border-radius:20px;padding:36px 32px;cursor:pointer;border:2px solid transparent;transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.sq-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,134,58,.07),transparent);opacity:0;transition:opacity .2s}
+.sq-card:hover{border-color:rgba(212,134,58,.4);transform:translateY(-4px);box-shadow:0 16px 48px rgba(212,134,58,.12)}
+.sq-card:hover::before{opacity:1}
+.sq-card.active{border-color:var(--spot);box-shadow:0 16px 48px rgba(212,134,58,.18)}
+.sq-card.active::before{opacity:1}
+.sq-icon{font-size:2.5rem;margin-bottom:16px}
+.sq-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spot);margin-bottom:8px}
+.sq-name{font-family:var(--fd);font-size:1.375rem;font-weight:700;color:var(--t-dark);margin-bottom:10px;line-height:1.25}
+.sq-desc{font-size:.9rem;color:var(--t-mid);line-height:1.65}
+.sq-time{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:.8rem;color:var(--t-light);font-weight:500}
+
+/* ── QUIZ AREA ── */
+.quiz-wrap{max-width:var(--max);margin:0 auto;padding:48px 24px 80px;display:none}
+.quiz-wrap.visible{display:block}
+
+.quiz-header{margin-bottom:40px}
+.quiz-back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--t-mid);font-family:var(--fb);font-size:.875rem;font-weight:500;cursor:pointer;padding:0;margin-bottom:24px;transition:color .2s}
+.quiz-back-btn:hover{color:var(--t-dark)}
+.quiz-title{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:var(--t-dark);margin-bottom:8px}
+.quiz-subtitle{color:var(--t-mid);font-size:.9375rem;line-height:1.6;margin-bottom:24px}
+.progress-bar-wrap{height:6px;background:rgba(212,134,58,.15);border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--spot),var(--gold));border-radius:3px;transition:width .4s ease}
+.progress-label{display:flex;justify-content:space-between;font-size:.8rem;color:var(--t-light);margin-top:8px}
+
+/* ── QUESTION ── */
+.question-card{background:var(--cream);border-radius:20px;padding:40px;margin-bottom:24px;animation:fadeUp .3s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--spot);margin-bottom:12px}
+.q-text{font-family:var(--fd);font-size:1.2rem;font-weight:600;color:var(--t-dark);line-height:1.5;margin-bottom:28px}
+.q-options{display:flex;flex-direction:column;gap:12px}
+.q-opt{display:flex;align-items:flex-start;gap:14px;background:var(--warm);border:1.5px solid rgba(74,58,82,.12);border-radius:12px;padding:16px 20px;cursor:pointer;transition:all .2s;font-family:var(--fb);font-size:.9375rem;color:var(--t-dark);line-height:1.5;text-align:left}
+.q-opt:hover{border-color:rgba(212,134,58,.4);background:#FFF8F0;transform:translateX(4px)}
+.q-opt.selected{border-color:var(--spot);background:rgba(212,134,58,.08);color:var(--t-dark)}
+.q-opt-bullet{width:22px;height:22px;border-radius:50%;border:2px solid rgba(74,58,82,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .2s}
+.q-opt.selected .q-opt-bullet{background:var(--spot);border-color:var(--spot)}
+.q-opt.selected .q-opt-bullet::after{content:'✓';font-size:.7rem;color:#fff;font-weight:700}
+
+/* ── NAV BTNS ── */
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.btn-prev,.btn-next{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-weight:700;border-radius:50px;cursor:pointer;border:none;font-size:.9375rem;transition:all .2s;padding:14px 32px}
+.btn-prev{background:transparent;color:var(--t-mid);border:1.5px solid rgba(74,58,82,.2)}
+.btn-prev:hover{border-color:var(--t-dark);color:var(--t-dark)}
+.btn-prev:disabled{opacity:.35;cursor:default}
+.btn-next{background:linear-gradient(135deg,#E8803A 0%,var(--spot) 40%,var(--gold) 100%);color:var(--void);box-shadow:0 6px 24px rgba(212,134,58,.4)}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,134,58,.55)}
+.btn-next:disabled{opacity:.35;cursor:default;transform:none;box-shadow:none}
+
+/* ── RESULT ── */
+.result-wrap{display:none;animation:fadeUp .4s ease both}
+.result-wrap.visible{display:block}
+.result-hero{background:linear-gradient(160deg,var(--void) 0%,#140830 60%,var(--curtain) 100%);border-radius:24px;padding:48px 40px;text-align:center;margin-bottom:32px;position:relative;overflow:hidden}
+.result-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,134,58,.15) 0%,transparent 70%);pointer-events:none}
+.result-hero-inner{position:relative;z-index:1}
+.result-icon{font-size:4rem;margin-bottom:16px}
+.result-tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.result-name{font-family:var(--fd);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--cream);margin-bottom:8px;line-height:1.2}
+.result-archetype{font-family:var(--fd);font-size:1.125rem;font-style:italic;color:var(--spot);margin-bottom:24px}
+.result-summary{color:rgba(245,239,230,.78);font-size:1rem;line-height:1.8;max-width:520px;margin:0 auto}
+
+.result-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+.score-card{background:var(--cream);border-radius:16px;padding:24px 20px;text-align:center}
+.score-card.winner{background:linear-gradient(135deg,rgba(212,134,58,.12),rgba(232,200,106,.08));border:2px solid rgba(212,134,58,.35)}
+.score-icon{font-size:1.75rem;margin-bottom:8px}
+.score-name{font-family:var(--fd);font-size:.9375rem;font-weight:700;color:var(--t-dark);margin-bottom:10px}
+.score-bar-wrap{height:6px;background:rgba(74,58,82,.1);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.score-bar{height:100%;background:linear-gradient(90deg,var(--spot),var(--gold));border-radius:3px;transition:width .8s ease .2s}
+.score-val{font-size:.8rem;font-weight:700;color:var(--spot)}
+
+.result-detail{background:var(--cream);border-radius:20px;padding:36px 32px;margin-bottom:24px}
+.result-detail-title{font-family:var(--fd);font-size:1.25rem;font-weight:700;color:var(--t-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.result-detail ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.result-detail ul li{display:flex;gap:12px;align-items:flex-start;font-size:.9375rem;color:var(--t-mid);line-height:1.6}
+.result-detail ul li::before{content:'▸';color:var(--spot);flex-shrink:0;margin-top:2px}
+
+.result-cta{background:linear-gradient(135deg,rgba(212,134,58,.1),rgba(232,200,106,.06));border:1px solid rgba(212,134,58,.25);border-radius:20px;padding:36px;text-align:center}
+.result-cta-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;color:var(--t-dark);margin-bottom:12px}
+.result-cta-text{font-size:.9375rem;color:var(--t-mid);line-height:1.7;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-weight:700;border-radius:50px;cursor:pointer;border:none;background:linear-gradient(135deg,#E8803A 0%,var(--spot) 40%,var(--gold) 100%);color:var(--void);padding:16px 40px;font-size:1rem;box-shadow:0 6px 28px rgba(212,134,58,.45);transition:all .25s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(212,134,58,.6)}
+.btn-refazer{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1.5px solid rgba(212,134,58,.35);color:var(--spot);font-family:var(--fb);font-weight:600;font-size:.9rem;padding:12px 28px;border-radius:50px;cursor:pointer;transition:all .2s;margin-top:12px}
+.btn-refazer:hover{border-color:var(--spot);background:rgba(212,134,58,.06)}
+
+/* ── DIVIDER ── */
+.section-divider{display:flex;align-items:center;gap:16px;margin:56px 0 0}
+.div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,134,58,.2),transparent)}
+.div-dot{color:var(--spot);opacity:.4}
+
+@media(max-width:600px){
+  .question-card{padding:28px 24px}
+  .result-hero{padding:36px 24px}
+  .result-detail{padding:28px 24px}
+  .result-cta{padding:28px 24px}
+  .quiz-nav{flex-direction:column;gap:12px}
+  .btn-prev,.btn-next{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="site.html" class="nav-logo">Somos Cênica</a>
+    <a href="site.html" class="nav-back">← Voltar ao site</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">✦ Autoconhecimento</div>
+    <h1 class="hero-title">Descubra quem você é<br><em>no palco da vida</em></h1>
+    <p class="hero-sub">Dois questionários poderosos para revelar seu Arquétipo predominante e seu Temperamento — ferramentas usadas nas nossas formações.</p>
+  </div>
+</section>
+
+<!-- SELETOR -->
+<div id="selector" class="selector">
+  <h2 class="selector-title">Escolha seu quiz</h2>
+  <p class="selector-sub">Faça um de cada vez ou os dois — cada um revela uma camada diferente de você.</p>
+  <div class="selector-cards">
+
+    <div class="sq-card" onclick="startQuiz('arq')">
+      <div class="sq-icon">🎭</div>
+      <div class="sq-label">Arquétipos de Jung</div>
+      <h3 class="sq-name">Qual é o seu personagem interior?</h3>
+      <p class="sq-desc">Baseado na psicologia analítica de Carl Jung, identifica qual dos 12 arquétipos universais guia sua forma de se expressar, liderar e se relacionar.</p>
+      <div class="sq-time">🕐 &nbsp;5–7 minutos · 15 perguntas</div>
+    </div>
+
+    <div class="sq-card" onclick="startQuiz('temp')">
+      <div class="sq-icon">🔥</div>
+      <div class="sq-label">Temperamentos Humanos</div>
+      <h3 class="sq-name">Como você age sob pressão?</h3>
+      <p class="sq-desc">Baseado na teoria clássica dos quatro temperamentos (Sanguíneo, Colérico, Melancólico e Fleumático), revela sua energia natural e estilo de resposta ao mundo.</p>
+      <div class="sq-time">🕐 &nbsp;4–6 minutos · 12 perguntas</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- QUIZ ARQUÉTIPOS -->
+<div id="quiz-arq" class="quiz-wrap">
+  <div class="quiz-header">
+    <button class="quiz-back-btn" onclick="backToSelector()">← Escolher outro quiz</button>
+    <h2 class="quiz-title">Arquétipos de Jung</h2>
+    <p class="quiz-subtitle">Responda com a primeira opção que sentir como mais verdadeira. Não há certo nem errado.</p>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="arq-progress" style="width:0%"></div></div>
+    <div class="progress-label"><span id="arq-q-label">Pergunta 1 de 15</span><span id="arq-pct">0%</span></div>
+  </div>
+  <div id="arq-question-area"></div>
+  <div class="quiz-nav">
+    <button class="btn-prev" id="arq-prev" onclick="arqPrev()" disabled>← Anterior</button>
+    <button class="btn-next" id="arq-next" onclick="arqNext()" disabled>Próxima →</button>
+  </div>
+  <div id="arq-result" class="result-wrap"></div>
+</div>
+
+<!-- QUIZ TEMPERAMENTOS -->
+<div id="quiz-temp" class="quiz-wrap">
+  <div class="quiz-header">
+    <button class="quiz-back-btn" onclick="backToSelector()">← Escolher outro quiz</button>
+    <h2 class="quiz-title">Temperamentos Humanos</h2>
+    <p class="quiz-subtitle">Escolha a alternativa que mais descreve como você realmente age — não como gostaria de agir.</p>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="temp-progress" style="width:0%"></div></div>
+    <div class="progress-label"><span id="temp-q-label">Pergunta 1 de 12</span><span id="temp-pct">0%</span></div>
+  </div>
+  <div id="temp-question-area"></div>
+  <div class="quiz-nav">
+    <button class="btn-prev" id="temp-prev" onclick="tempPrev()" disabled>← Anterior</button>
+    <button class="btn-next" id="temp-next" onclick="tempNext()" disabled>Próxima →</button>
+  </div>
+  <div id="temp-result" class="result-wrap"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   DADOS — ARQUÉTIPOS DE JUNG
+═══════════════════════════════════════ */
+const ARQ_ARCHETYPES = {
+  heroi:      { nome:'Herói',       icon:'⚔️',  cor:'#C85A1A' },
+  sábio:      { nome:'Sábio',       icon:'🔮',  cor:'#2A5FA5' },
+  explorador: { nome:'Explorador',  icon:'🧭',  cor:'#1A7A4A' },
+  criador:    { nome:'Criador',     icon:'🎨',  cor:'#7A2A8A' },
+  governante: { nome:'Governante',  icon:'👑',  cor:'#8A6A00' },
+  cuidador:   { nome:'Cuidador',    icon:'🌸',  cor:'#A0244A' },
+  amante:     { nome:'Amante',      icon:'💖',  cor:'#C02060' },
+  bobo:       { nome:'Bobo da Corte',icon:'🃏', cor:'#B06A00' },
+  inocente:   { nome:'Inocente',    icon:'☀️',  cor:'#1A8A6A' },
+  mago:       { nome:'Mago',        icon:'✨',  cor:'#4A0A7A' },
+  fora_lei:   { nome:'Fora da Lei', icon:'🌩️',  cor:'#5A1A1A' },
+  homem_comum:{ nome:'Homem Comum', icon:'🤝',  cor:'#3A4A5A' },
+};
+
+const ARQ_SUMMARIES = {
+  heroi:      'Você é movido pela necessidade de provar seu valor e superar desafios. Sua força de vontade é sua maior ferramenta — e às vezes também sua maior armadilha.',
+  sábio:      'Você busca compreender o mundo antes de agir. Seu dom é a clareza de pensamento; seu desafio é não se perder na análise.',
+  explorador: 'Você precisa de liberdade para respirar. Descobrir territórios desconhecidos — físicos ou internos — é o que te mantém vivo.',
+  criador:    'Você sente o impulso de materializar o que imagina. Criar não é hobby — é necessidade. Quando não cria, algo te falta.',
+  governante: 'Você tem instinto para organizar, liderar e construir sistemas. Sua visão de longo prazo é seu maior ativo.',
+  cuidador:   'Você se realiza através do cuidado com os outros. Seu calor humano é genuíno — mas aprender a se cuidar também é parte do caminho.',
+  amante:     'Você busca profundidade nas conexões. Beleza, intensidade e plenitude são valores que guiam suas escolhas.',
+  bobo:       'Você transforma tensão em leveza com naturalidade. Seu humor esconde uma inteligência que muitos subestimam.',
+  inocente:   'Você carrega uma fé no bem que resiste às adversidades. Sua pureza de intenção inspira os que estão ao redor.',
+  mago:       'Você percebe conexões invisíveis e transforma realidades. Sua intuição é poderosa — e às vezes assustadora para os outros.',
+  fora_lei:   'Você questiona regras que não fazem sentido. Sua força está na capacidade de romper o que precisa ser rompido.',
+  homem_comum:'Você acredita na igualdade e no poder da comunidade. Sua autenticidade cria pontes onde outros constroem muros.',
+};
+
+const ARQ_STRENGTHS = {
+  heroi:      ['Determinação e resiliência sob pressão','Capacidade de liderar em momentos de crise','Comprometimento com a excelência'],
+  sábio:      ['Pensamento crítico apurado','Capacidade de síntese e comunicação de ideias complexas','Credibilidade e consistência'],
+  explorador: ['Adaptabilidade em ambientes novos','Curiosidade que gera aprendizado contínuo','Autenticidade e independência'],
+  criador:    ['Visão estética e sensibilidade para o original','Persistência no processo criativo','Transformação de ideias em realidade'],
+  governante: ['Visão estratégica de longo prazo','Capacidade de construir estruturas duradouras','Liderança por competência e responsabilidade'],
+  cuidador:   ['Empatia profunda e capacidade de escuta','Habilidade de criar ambientes seguros','Generosidade que inspira lealdade'],
+  amante:     ['Intensidade nas conexões e comprometimento','Sensibilidade à beleza e ao significado','Capacidade de criar experiências memoráveis'],
+  bobo:       ['Inteligência social e leitura de grupo','Humor como ferramenta de abertura e conexão','Presença leve que descomprime tensões'],
+  inocente:   ['Otimismo que reanima equipes e relacionamentos','Valores claros e integridade','Capacidade de enxergar o melhor nas pessoas'],
+  mago:       ['Intuição aguçada e visão sistêmica','Poder de transformação e influência','Capacidade de conectar pontos invisíveis'],
+  fora_lei:   ['Coragem para questionar o status quo','Energia catalisadora de mudanças necessárias','Autenticidade radical'],
+  homem_comum:['Capacidade de construir conexões genuínas','Humildade e senso de pertencimento','Confiabilidade e coerência'],
+};
+
+const ARQ_QUESTIONS = [
+  {
+    texto: 'Quando enfrento um grande desafio, meu instinto é:',
+    opts:[
+      {texto:'Enfrentar de frente — os obstáculos existem para ser superados', arq:'heroi'},
+      {texto:'Entender profundamente a situação antes de agir', arq:'sábio'},
+      {texto:'Buscar um caminho alternativo que ninguém tentou ainda', arq:'explorador'},
+      {texto:'Criar algo novo para resolver o problema de forma original', arq:'criador'},
+    ]
+  },
+  {
+    texto: 'As pessoas ao meu redor me descrevem como alguém que:',
+    opts:[
+      {texto:'Cuida e acolhe com naturalidade', arq:'cuidador'},
+      {texto:'Traz leveza e humor para qualquer situação', arq:'bobo'},
+      {texto:'Inspira e conecta com paixão', arq:'amante'},
+      {texto:'Transmite uma sensação de segurança e confiança', arq:'governante'},
+    ]
+  },
+  {
+    texto: 'O que mais me move em um projeto é:',
+    opts:[
+      {texto:'Provar que é possível — a conquista em si', arq:'heroi'},
+      {texto:'Aprender algo novo no processo', arq:'sábio'},
+      {texto:'A liberdade de explorar sem um mapa definido', arq:'explorador'},
+      {texto:'Deixar algo único e meu no resultado final', arq:'criador'},
+    ]
+  },
+  {
+    texto: 'Quando estou em um grupo, naturalmente:',
+    opts:[
+      {texto:'Assumo responsabilidade para organizar e direcionar', arq:'governante'},
+      {texto:'Percebo quem precisa de apoio e vou lá', arq:'cuidador'},
+      {texto:'Animo o ambiente e quebro o gelo', arq:'bobo'},
+      {texto:'Crio conexões profundas com algumas pessoas', arq:'amante'},
+    ]
+  },
+  {
+    texto: 'Minha relação com regras e convenções é:',
+    opts:[
+      {texto:'Respeito quando fazem sentido, questiono quando não fazem', arq:'fora_lei'},
+      {texto:'Prefiro simplesmente pertencer e me encaixar sem atrito', arq:'homem_comum'},
+      {texto:'Acredito que o mundo é bom e as regras geralmente fazem sentido', arq:'inocente'},
+      {texto:'Enxergo padrões maiores por trás das regras', arq:'mago'},
+    ]
+  },
+  {
+    texto: 'O que mais me energiza é:',
+    opts:[
+      {texto:'Superar um limite que parecia impossível', arq:'heroi'},
+      {texto:'Ter um insight que conecta coisas que pareciam separadas', arq:'mago'},
+      {texto:'Sentir que fiz parte de algo maior que eu', arq:'homem_comum'},
+      {texto:'Descobrir que o mundo ainda tem muito por revelar', arq:'explorador'},
+    ]
+  },
+  {
+    texto: 'Em situações de conflito, costumo:',
+    opts:[
+      {texto:'Ir direto ao ponto e resolver logo', arq:'heroi'},
+      {texto:'Analisar os lados antes de opinar', arq:'sábio'},
+      {texto:'Usar o humor para aliviar a tensão', arq:'bobo'},
+      {texto:'Mediar com empatia e escuta ativa', arq:'cuidador'},
+    ]
+  },
+  {
+    texto: 'Quando imagino meu propósito, ele tem a ver com:',
+    opts:[
+      {texto:'Construir um legado e deixar algo duradouro', arq:'governante'},
+      {texto:'Transformar pessoas ou situações de forma profunda', arq:'mago'},
+      {texto:'Expressar minha visão de mundo através da criação', arq:'criador'},
+      {texto:'Viver com intensidade e plenitude', arq:'amante'},
+    ]
+  },
+  {
+    texto: 'O que mais temo em mim mesmo é:',
+    opts:[
+      {texto:'Ser fraco ou fracassar publicamente', arq:'heroi'},
+      {texto:'Ser ignorante ou enganado', arq:'sábio'},
+      {texto:'Ser preso em uma rotina sem saída', arq:'explorador'},
+      {texto:'Produzir algo medíocre ou sem alma', arq:'criador'},
+    ]
+  },
+  {
+    texto: 'Quando vejo alguém sofrendo, meu impulso é:',
+    opts:[
+      {texto:'Oferecer ajuda prática imediatamente', arq:'cuidador'},
+      {texto:'Tentar entender a raiz do problema', arq:'sábio'},
+      {texto:'Usar palavras ou gestos para reconfortar', arq:'amante'},
+      {texto:'Trazer uma perspectiva diferente para aliviar', arq:'bobo'},
+    ]
+  },
+  {
+    texto: 'Minha visão de mundo é mais próxima de:',
+    opts:[
+      {texto:'O mundo pode ser transformado por quem tem coragem', arq:'heroi'},
+      {texto:'Existe uma ordem e significado em tudo', arq:'mago'},
+      {texto:'As pessoas são essencialmente boas e o mundo é cheio de possibilidades', arq:'inocente'},
+      {texto:'Pertencer a uma comunidade é o que dá sentido à vida', arq:'homem_comum'},
+    ]
+  },
+  {
+    texto: 'Quando estou no meu melhor, eu me sinto:',
+    opts:[
+      {texto:'Em pleno controle e capacidade de liderança', arq:'governante'},
+      {texto:'Quebrando algo que precisava ser quebrado', arq:'fora_lei'},
+      {texto:'Criando algo que nunca existiu antes', arq:'criador'},
+      {texto:'Genuinamente conectado com alguém ou algo', arq:'amante'},
+    ]
+  },
+  {
+    texto: 'Em um projeto criativo, meu papel natural é:',
+    opts:[
+      {texto:'O estrategista que define a visão e distribui papéis', arq:'governante'},
+      {texto:'O executante que resolve os problemas práticos', arq:'heroi'},
+      {texto:'O pesquisador que mergulha fundo no tema', arq:'sábio'},
+      {texto:'O criativo que traz conceitos inesperados', arq:'mago'},
+    ]
+  },
+  {
+    texto: 'O que mais valorizo em uma relação é:',
+    opts:[
+      {texto:'Lealdade e compromisso verdadeiros', arq:'homem_comum'},
+      {texto:'Profundidade e intensidade emocional', arq:'amante'},
+      {texto:'Honestidade mesmo quando é difícil', arq:'fora_lei'},
+      {texto:'Espaço para ser quem eu sou sem julgamento', arq:'explorador'},
+    ]
+  },
+  {
+    texto: 'Quando preciso tomar uma decisão importante, confio mais em:',
+    opts:[
+      {texto:'Dados, análise e lógica', arq:'sábio'},
+      {texto:'Intuição e percepção do que está por baixo', arq:'mago'},
+      {texto:'O que vai gerar mais bem-estar para todos', arq:'cuidador'},
+      {texto:'O que me mantém fiel à minha essência', arq:'inocente'},
+    ]
+  },
+];
+
+/* ═══════════════════════════════════════
+   DADOS — TEMPERAMENTOS
+═══════════════════════════════════════ */
+const TEMP_TYPES = {
+  san: { nome:'Sanguíneo',    icon:'🌟', cor:'#E8803A', desc:'O Entusiasta Expressivo' },
+  col: { nome:'Colérico',     icon:'🔥', cor:'#C81A1A', desc:'O Líder Determinado' },
+  mel: { nome:'Melancólico',  icon:'🌙', cor:'#2A5FA5', desc:'O Analista Profundo' },
+  fle: { nome:'Fleumático',   icon:'🌿', cor:'#1A7A4A', desc:'O Pacificador Estável' },
+};
+
+const TEMP_SUMMARIES = {
+  san:'Você é energia, entusiasmo e conexão. Seu talento natural é animar ambientes e inspirar pessoas com sua presença — mas o desafio é transformar empolgação em entrega.',
+  col:'Você é orientado a resultados e naturalmente assume o comando. Sua força de vontade move montanhas — o desafio é aprender a liderar sem atropelar.',
+  mel:'Você pensa antes de agir, sente profundamente e exige qualidade de tudo. Seu padrão elevado é seu maior presente — e às vezes seu maior peso.',
+  fle:'Você traz equilíbrio onde há caos. Sua calma não é indiferença — é profundidade. O desafio é agir quando é preciso, mesmo sem certeza total.',
+};
+
+const TEMP_STRENGTHS = {
+  san:['Comunicação natural e carisma irresistível','Capacidade de criar entusiasmo e engajamento','Flexibilidade e adaptabilidade'],
+  col:['Foco em resultados e capacidade de decisão rápida','Liderança natural em situações de pressão','Determinação que transforma visão em ação'],
+  mel:['Análise profunda e atenção a detalhes','Comprometimento com qualidade e excelência','Empatia silenciosa e sensibilidade às necessidades dos outros'],
+  fle:['Mediação de conflitos com habilidade rara','Constância e confiabilidade inabalável','Presença calmante que estabiliza grupos sob pressão'],
+};
+
+const TEMP_QUESTIONS = [
+  {
+    texto:'Numa reunião de equipe, você tende a:',
+    opts:[
+      {texto:'Falar bastante, trazer energia e ideias espontâneas', t:'san'},
+      {texto:'Direcionar a pauta e ir direto ao ponto', t:'col'},
+      {texto:'Ouvir com atenção e contribuir quando tem certeza', t:'mel'},
+      {texto:'Apoiar o que foi decidido e garantir harmonia', t:'fle'},
+    ]
+  },
+  {
+    texto:'Quando recebe uma crítica, sua reação mais honesta é:',
+    opts:[
+      {texto:'Ficou um pouco na defensiva, mas logo passa', t:'san'},
+      {texto:'Quer entender logo o que fazer para corrigir', t:'col'},
+      {texto:'Analisa em profundidade — talvez até demais', t:'mel'},
+      {texto:'Aceita tranquilamente, mas processa por dentro', t:'fle'},
+    ]
+  },
+  {
+    texto:'Sua maior dificuldade no dia a dia é:',
+    opts:[
+      {texto:'Terminar o que começa sem se distrair', t:'san'},
+      {texto:'Ter paciência com quem não acompanha seu ritmo', t:'col'},
+      {texto:'Sair da paralisia e tomar a decisão', t:'mel'},
+      {texto:'Se posicionar quando o conflito bate na porta', t:'fle'},
+    ]
+  },
+  {
+    texto:'No trabalho, você se destaca por:',
+    opts:[
+      {texto:'Criar conexões, animar equipes e gerar entusiasmo', t:'san'},
+      {texto:'Executar com eficiência e liderar com autoridade', t:'col'},
+      {texto:'Entregar com qualidade e atenção a cada detalhe', t:'mel'},
+      {texto:'Ser confiável, estável e apaziguar tensões', t:'fle'},
+    ]
+  },
+  {
+    texto:'Sob pressão extrema, você provavelmente:',
+    opts:[
+      {texto:'Faz piada, tenta aliviar — e às vezes parece que não tá levando a sério', t:'san'},
+      {texto:'Assume o controle e passa a ditar o ritmo', t:'col'},
+      {texto:'Se fecha, analisa cada risco e trava um pouco', t:'mel'},
+      {texto:'Mantém a calma enquanto todo mundo ao redor desmorona', t:'fle'},
+    ]
+  },
+  {
+    texto:'Você prefere trabalhar:',
+    opts:[
+      {texto:'Com muita gente, em ambientes animados e dinâmicos', t:'san'},
+      {texto:'Com autonomia total e metas claras para bater', t:'col'},
+      {texto:'Com foco, quietude e espaço para pensar', t:'mel'},
+      {texto:'Em equipe coesa, sem atrito e com rotinas estáveis', t:'fle'},
+    ]
+  },
+  {
+    texto:'Sua relação com prazos é:',
+    opts:[
+      {texto:'Corro contra o prazo — a urgência me liga', t:'san'},
+      {texto:'Entrego antes — prazos existem para ser batidos', t:'col'},
+      {texto:'Planejo desde o início para entregar com perfeição', t:'mel'},
+      {texto:'Cumpro o combinado, sem pressa mas sem atraso', t:'fle'},
+    ]
+  },
+  {
+    texto:'O que mais te irrita nos outros é:',
+    opts:[
+      {texto:'Gente séria demais que não sabe se divertir', t:'san'},
+      {texto:'Indecisão e falta de ação', t:'col'},
+      {texto:'Superficialidade e falta de compromisso com qualidade', t:'mel'},
+      {texto:'Conflito desnecessário e drama', t:'fle'},
+    ]
+  },
+  {
+    texto:'Num projeto novo, sua primeira pergunta é:',
+    opts:[
+      {texto:'"Quem vai estar envolvido? Pode ser divertido!"', t:'san'},
+      {texto:'"Qual é o objetivo e qual é o meu papel?"', t:'col'},
+      {texto:'"Quais são os riscos e como fazemos certo?"', t:'mel'},
+      {texto:'"Como isso afeta a equipe? Precisamos de alinhamento."', t:'fle'},
+    ]
+  },
+  {
+    texto:'Quando erra, seu padrão é:',
+    opts:[
+      {texto:'Reconhece rápido, pede desculpa e segue em frente', t:'san'},
+      {texto:'Analisa o que falhou e já quer corrigir', t:'col'},
+      {texto:'Se culpa mais do que deveria e rumina por um tempo', t:'mel'},
+      {texto:'Processa internamente e raramente demonstra', t:'fle'},
+    ]
+  },
+  {
+    texto:'Seu maior medo profissional é:',
+    opts:[
+      {texto:'Ser ignorado ou perder a relevância social', t:'san'},
+      {texto:'Ser controlado ou ter sua autoridade questionada', t:'col'},
+      {texto:'Cometer um erro grave ou entregar algo abaixo do padrão', t:'mel'},
+      {texto:'Ser exposto a conflitos sem fim ou instabilidade constante', t:'fle'},
+    ]
+  },
+  {
+    texto:'Quando a equipe está em conflito, você:',
+    opts:[
+      {texto:'Usa humor e leveza para destravar', t:'san'},
+      {texto:'Vai direto ao ponto e decide de uma vez', t:'col'},
+      {texto:'Mapeia cada lado antes de opinar', t:'mel'},
+      {texto:'Ouve todos e busca um consenso que preserve a relação', t:'fle'},
+    ]
+  },
+];
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let arqAnswers = new Array(ARQ_QUESTIONS.length).fill(null);
+let arqCurrent = 0;
+let tempAnswers = new Array(TEMP_QUESTIONS.length).fill(null);
+let tempCurrent = 0;
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+function startQuiz(type) {
+  document.getElementById('selector').style.display = 'none';
+  document.getElementById('quiz-'+type).classList.add('visible');
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (type === 'arq') renderArqQ(0);
+  else renderTempQ(0);
+}
+
+function backToSelector() {
+  document.getElementById('selector').style.display = '';
+  document.querySelectorAll('.quiz-wrap').forEach(el => el.classList.remove('visible'));
+  document.querySelectorAll('.result-wrap').forEach(el => el.classList.remove('visible'));
+  arqAnswers = new Array(ARQ_QUESTIONS.length).fill(null);
+  arqCurrent = 0;
+  tempAnswers = new Array(TEMP_QUESTIONS.length).fill(null);
+  tempCurrent = 0;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════
+   QUIZ — ARQUÉTIPOS
+═══════════════════════════════════════ */
+function renderArqQ(idx) {
+  const q = ARQ_QUESTIONS[idx];
+  const total = ARQ_QUESTIONS.length;
+  const pct = Math.round((idx / total) * 100);
+  document.getElementById('arq-progress').style.width = pct+'%';
+  document.getElementById('arq-q-label').textContent = `Pergunta ${idx+1} de ${total}`;
+  document.getElementById('arq-pct').textContent = pct+'%';
+  document.getElementById('arq-prev').disabled = idx === 0;
+  document.getElementById('arq-next').disabled = arqAnswers[idx] === null;
+  document.getElementById('arq-next').textContent = idx === total-1 ? 'Ver resultado ✦' : 'Próxima →';
+
+  const area = document.getElementById('arq-question-area');
+  area.innerHTML = `
+    <div class="question-card">
+      <div class="q-num">Pergunta ${idx+1}</div>
+      <div class="q-text">${q.texto}</div>
+      <div class="q-options">
+        ${q.opts.map((o,i) => `
+          <button class="q-opt ${arqAnswers[idx]===i?'selected':''}" onclick="arqSelect(${i})">
+            <span class="q-opt-bullet"></span>
+            ${o.texto}
+          </button>
+        `).join('')}
+      </div>
+    </div>`;
+}
+
+function arqSelect(optIdx) {
+  arqAnswers[arqCurrent] = optIdx;
+  renderArqQ(arqCurrent);
+}
+
+function arqPrev() {
+  if (arqCurrent > 0) { arqCurrent--; renderArqQ(arqCurrent); }
+}
+
+function arqNext() {
+  if (arqAnswers[arqCurrent] === null) return;
+  if (arqCurrent < ARQ_QUESTIONS.length - 1) {
+    arqCurrent++;
+    renderArqQ(arqCurrent);
+    document.getElementById('quiz-arq').scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    showArqResult();
+  }
+}
+
+function showArqResult() {
+  const scores = {};
+  Object.keys(ARQ_ARCHETYPES).forEach(k => scores[k] = 0);
+  ARQ_QUESTIONS.forEach((q, qi) => {
+    const ans = arqAnswers[qi];
+    if (ans !== null) scores[q.opts[ans].arq]++;
+  });
+
+  const sorted = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  const [winner, wScore] = sorted[0];
+  const total = ARQ_QUESTIONS.length;
+  const arch = ARQ_ARCHETYPES[winner];
+
+  // Hide question area + nav
+  document.getElementById('arq-question-area').style.display='none';
+  document.querySelector('#quiz-arq .quiz-nav').style.display='none';
+  document.getElementById('arq-progress').style.width='100%';
+  document.getElementById('arq-q-label').textContent='Concluído';
+  document.getElementById('arq-pct').textContent='100%';
+
+  const top4 = sorted.slice(0,4);
+
+  const result = document.getElementById('arq-result');
+  result.classList.add('visible');
+  result.innerHTML = `
+    <div class="result-hero">
+      <div class="result-hero-inner">
+        <div class="result-icon">${arch.icon}</div>
+        <div class="result-tag">Seu Arquétipo Predominante</div>
+        <div class="result-name">${arch.nome}</div>
+        <div class="result-archetype">${ARQ_ARCHETYPES[winner].nome} — ${Math.round(wScore/total*100)}% das respostas</div>
+        <p class="result-summary">${ARQ_SUMMARIES[winner]}</p>
+      </div>
+    </div>
+
+    <div class="result-scores">
+      ${top4.map(([k,v],i) => {
+        const a = ARQ_ARCHETYPES[k];
+        const pct = Math.round(v/total*100);
+        return `<div class="score-card ${i===0?'winner':''}">
+          <div class="score-icon">${a.icon}</div>
+          <div class="score-name">${a.nome}</div>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:${pct}%"></div></div>
+          <div class="score-val">${pct}%</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="result-detail">
+      <div class="result-detail-title">${arch.icon} Seus pontos fortes como ${arch.nome}</div>
+      <ul>${ARQ_STRENGTHS[winner].map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>
+
+    <div class="result-cta">
+      <div class="result-cta-title">Quer colocar esse autoconhecimento em cena?</div>
+      <p class="result-cta-text">Na Somos Cênica, usamos técnicas teatrais para ajudar você a expressar seu arquétipo com autenticidade — no trabalho, nas relações e no palco da vida.</p>
+      <a href="site.html#contato" class="btn-primary">Quero conhecer a formação</a><br>
+      <button class="btn-refazer" onclick="resetArq()">↺ Refazer o quiz</button>
+    </div>`;
+
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(() => {
+    result.querySelectorAll('.score-bar').forEach(b => b.style.width = b.style.width);
+  }, 100);
+}
+
+function resetArq() {
+  arqAnswers = new Array(ARQ_QUESTIONS.length).fill(null);
+  arqCurrent = 0;
+  document.getElementById('arq-question-area').style.display='';
+  document.querySelector('#quiz-arq .quiz-nav').style.display='';
+  document.getElementById('arq-result').classList.remove('visible');
+  document.getElementById('arq-result').innerHTML='';
+  renderArqQ(0);
+  document.getElementById('quiz-arq').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ═══════════════════════════════════════
+   QUIZ — TEMPERAMENTOS
+═══════════════════════════════════════ */
+function renderTempQ(idx) {
+  const q = TEMP_QUESTIONS[idx];
+  const total = TEMP_QUESTIONS.length;
+  const pct = Math.round((idx / total) * 100);
+  document.getElementById('temp-progress').style.width = pct+'%';
+  document.getElementById('temp-q-label').textContent = `Pergunta ${idx+1} de ${total}`;
+  document.getElementById('temp-pct').textContent = pct+'%';
+  document.getElementById('temp-prev').disabled = idx === 0;
+  document.getElementById('temp-next').disabled = tempAnswers[idx] === null;
+  document.getElementById('temp-next').textContent = idx === total-1 ? 'Ver resultado ✦' : 'Próxima →';
+
+  const area = document.getElementById('temp-question-area');
+  area.innerHTML = `
+    <div class="question-card">
+      <div class="q-num">Pergunta ${idx+1}</div>
+      <div class="q-text">${q.texto}</div>
+      <div class="q-options">
+        ${q.opts.map((o,i) => `
+          <button class="q-opt ${tempAnswers[idx]===i?'selected':''}" onclick="tempSelect(${i})">
+            <span class="q-opt-bullet"></span>
+            ${o.texto}
+          </button>
+        `).join('')}
+      </div>
+    </div>`;
+}
+
+function tempSelect(optIdx) {
+  tempAnswers[tempCurrent] = optIdx;
+  renderTempQ(tempCurrent);
+}
+
+function tempPrev() {
+  if (tempCurrent > 0) { tempCurrent--; renderTempQ(tempCurrent); }
+}
+
+function tempNext() {
+  if (tempAnswers[tempCurrent] === null) return;
+  if (tempCurrent < TEMP_QUESTIONS.length - 1) {
+    tempCurrent++;
+    renderTempQ(tempCurrent);
+    document.getElementById('quiz-temp').scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    showTempResult();
+  }
+}
+
+function showTempResult() {
+  const scores = {san:0, col:0, mel:0, fle:0};
+  TEMP_QUESTIONS.forEach((q, qi) => {
+    const ans = tempAnswers[qi];
+    if (ans !== null) scores[q.opts[ans].t]++;
+  });
+
+  const sorted = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  const [winner, wScore] = sorted[0];
+  const total = TEMP_QUESTIONS.length;
+  const type = TEMP_TYPES[winner];
+
+  document.getElementById('temp-question-area').style.display='none';
+  document.querySelector('#quiz-temp .quiz-nav').style.display='none';
+  document.getElementById('temp-progress').style.width='100%';
+  document.getElementById('temp-q-label').textContent='Concluído';
+  document.getElementById('temp-pct').textContent='100%';
+
+  const result = document.getElementById('temp-result');
+  result.classList.add('visible');
+  result.innerHTML = `
+    <div class="result-hero">
+      <div class="result-hero-inner">
+        <div class="result-icon">${type.icon}</div>
+        <div class="result-tag">Seu Temperamento Predominante</div>
+        <div class="result-name">${type.nome}</div>
+        <div class="result-archetype">${type.desc} — ${Math.round(wScore/total*100)}% das respostas</div>
+        <p class="result-summary">${TEMP_SUMMARIES[winner]}</p>
+      </div>
+    </div>
+
+    <div class="result-scores">
+      ${sorted.map(([k,v],i) => {
+        const t = TEMP_TYPES[k];
+        const pct = Math.round(v/total*100);
+        return `<div class="score-card ${i===0?'winner':''}">
+          <div class="score-icon">${t.icon}</div>
+          <div class="score-name">${t.nome}</div>
+          <div class="score-bar-wrap"><div class="score-bar" style="width:${pct}%"></div></div>
+          <div class="score-val">${pct}%</div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <div class="result-detail">
+      <div class="result-detail-title">${type.icon} Seus pontos fortes como ${type.nome}</div>
+      <ul>${TEMP_STRENGTHS[winner].map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>
+
+    <div class="result-cta">
+      <div class="result-cta-title">Quer trabalhar esse temperamento em cena?</div>
+      <p class="result-cta-text">Na Somos Cênica, usamos o teatro para ampliar o que é forte em você e desenvolver o que ainda está em construção. Sem psicologia de corredor — prática real.</p>
+      <a href="site.html#contato" class="btn-primary">Quero conhecer a formação</a><br>
+      <button class="btn-refazer" onclick="resetTemp()">↺ Refazer o quiz</button>
+    </div>`;
+
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetTemp() {
+  tempAnswers = new Array(TEMP_QUESTIONS.length).fill(null);
+  tempCurrent = 0;
+  document.getElementById('temp-question-area').style.display='';
+  document.querySelector('#quiz-temp .quiz-nav').style.display='';
+  document.getElementById('temp-result').classList.remove('visible');
+  document.getElementById('temp-result').innerHTML='';
+  renderTempQ(0);
+  document.getElementById('quiz-temp').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
