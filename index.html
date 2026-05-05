@@ -875,43 +875,100 @@
     <!-- ════════════════════════════════════
          HERO
     ════════════════════════════════════ -->
-    <section class="hero" id="hero" aria-labelledby="hero-heading" style="padding-top:100px;padding-bottom:80px;min-height:auto;">
+    <style>
+      .hero3-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr 220px;
+        gap: 28px;
+        align-items: center;
+      }
+      @media (max-width: 960px) {
+        .hero3-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+        .hero3-nav { grid-column: 1 / -1; }
+      }
+      @media (max-width: 600px) {
+        .hero3-grid { grid-template-columns: 1fr; }
+        .hero3-poster { max-width: 220px; margin: 0 auto; }
+      }
+
+      /* Nav quadrados */
+      .hero-nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hng-card {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; text-decoration: none; color: inherit;
+        background: rgba(245,239,230,0.06); border: 1.5px solid rgba(212,134,58,0.18);
+        border-radius: 14px; padding: 16px 10px 14px; gap: 6px;
+        transition: all .2s cubic-bezier(.34,1.56,.64,1);
+      }
+      .hng-card:hover { background: rgba(212,134,58,0.12); border-color: rgba(212,134,58,0.5); transform: translateY(-3px); }
+      .hng-icon { font-size: 1.5rem; }
+      .hng-name { font-family: 'Playfair Display', Georgia, serif; font-size: .8125rem; font-weight: 700; color: var(--cream); line-height: 1.2; }
+      .hng-sub { font-size: .68rem; color: rgba(245,239,230,0.45); line-height: 1.4; }
+
+      /* Quiz card — destaque pulsante */
+      @keyframes quiz-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(212,134,58,0.5), inset 0 0 0 0 rgba(212,134,58,0.1); border-color: rgba(212,134,58,0.6); }
+        50% { box-shadow: 0 0 0 6px rgba(212,134,58,0), inset 0 0 16px rgba(212,134,58,0.08); border-color: var(--spotlight); }
+      }
+      @keyframes badge-blink {
+        0%, 100% { opacity: 1; } 50% { opacity: .5; }
+      }
+      .hng-card--quiz {
+        background: rgba(212,134,58,0.1);
+        border-color: var(--spotlight);
+        animation: quiz-pulse 2s ease-in-out infinite;
+        grid-column: 1 / -1;
+        flex-direction: row; gap: 10px; padding: 14px 14px;
+        text-align: left; align-items: center;
+      }
+      .hng-card--quiz:hover { animation: none; }
+      .hng-card--quiz .hng-icon { font-size: 1.75rem; flex-shrink: 0; }
+      .hng-card--quiz .hng-name { font-size: .875rem; color: var(--gold); }
+      .quiz-badge {
+        display: inline-block; font-size: .6rem; font-weight: 800; letter-spacing: .1em;
+        text-transform: uppercase; background: var(--spotlight); color: var(--void);
+        padding: 2px 7px; border-radius: 4px; margin-bottom: 3px;
+        animation: badge-blink 1.4s ease-in-out infinite;
+      }
+    </style>
+
+    <section class="hero" id="hero" aria-labelledby="hero-heading" style="padding-top:100px;padding-bottom:72px;min-height:auto;">
       <canvas id="hero-particles" class="hero-canvas" aria-hidden="true"></canvas>
 
       <div class="container">
-        <div class="hero-poster-grid">
+        <div class="hero3-grid">
 
-          <!-- Esquerda: cartaz -->
-          <div style="position:relative;z-index:2;">
-            <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(212,134,58,0.2),0 0 60px rgba(212,134,58,0.15);">
+          <!-- Coluna 1: cartaz -->
+          <div class="hero3-poster" style="position:relative;z-index:2;">
+            <div style="border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(212,134,58,0.2),0 0 40px rgba(212,134,58,0.12);">
               <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" style="display:block;">
                 <img src="cartazes/cartaz-story.jpg"
                      alt="Cartaz da palestra Manual Humano — João Cambraia, 22 de maio, Teatro Torquato Neto, Teresina"
-                     style="width:100%;display:block;border-radius:20px;" />
+                     style="width:100%;display:block;border-radius:16px;" />
               </a>
             </div>
           </div>
 
-          <!-- Direita: info + contagem + CTAs -->
+          <!-- Coluna 2: info condensada -->
           <div style="position:relative;z-index:2;">
-            <div class="hero-badges" style="margin-bottom:24px;">
+            <div class="hero-badges" style="margin-bottom:16px;">
               <span class="hero-pill">🎭 Teatro aplicado</span>
               <span class="hero-pill">📍 Teresina – PI</span>
               <span class="hero-pill">Vagas limitadas</span>
             </div>
 
-            <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(2rem,4.5vw,3.25rem);margin-bottom:16px;">
-              O palco onde você pratica<br>quem quer ser.
+            <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:12px;line-height:1.2;">
+              O palco onde você pratica quem quer ser.
             </h1>
 
-            <p class="lead" style="color:rgba(245,239,230,0.65);font-size:1rem;line-height:1.75;margin-bottom:36px;max-width:480px;">
-              Uma noite de imersão prática com técnicas teatrais para desenvolver comunicação, presença e impacto pessoal. Para quem quer ser ouvido de verdade.
+            <p class="lead" style="color:rgba(245,239,230,0.65);font-size:.9rem;line-height:1.65;margin-bottom:24px;">
+              Uma noite de imersão com técnicas teatrais. Comunicação, presença e impacto pessoal — na prática.
             </p>
 
             <!-- Contagem regressiva -->
-            <div style="margin-bottom:36px;">
-              <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--spotlight);margin-bottom:12px;">⏳ O evento começa em</p>
-              <div id="countdown" style="display:flex;gap:12px;flex-wrap:wrap;">
+            <div style="margin-bottom:24px;">
+              <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--spotlight);margin-bottom:10px;">⏳ O evento começa em</p>
+              <div id="countdown" style="display:flex;gap:8px;flex-wrap:wrap;">
                 <div class="cd-block">
                   <span class="cd-num" id="cd-days">--</span>
                   <span class="cd-label">dias</span>
@@ -935,17 +992,52 @@
             </div>
 
             <!-- CTAs -->
-            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
-              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 24px;font-size:.9375rem;">
                 🎟 Inteira — R$ 100
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">
+              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);padding:12px 20px;font-size:.9375rem;">
                 Meia — R$ 50
               </a>
             </div>
 
-            <p style="font-size:0.8125rem;color:rgba(245,239,230,0.3);">Pagamento seguro pelo Mercado Pago · 300+ profissionais já transformados</p>
+            <p style="font-size:0.75rem;color:rgba(245,239,230,0.3);">Pagamento seguro · 300+ profissionais já transformados</p>
+          </div>
+
+          <!-- Coluna 3: quadrados de navegação -->
+          <div class="hero3-nav" style="position:relative;z-index:2;">
+            <p style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,239,230,0.4);margin-bottom:10px;text-align:center;">Explore</p>
+            <div class="hero-nav-grid">
+
+              <!-- Quiz — destaque pulsante (ocupa linha inteira) -->
+              <a href="quiz.html" class="hng-card hng-card--quiz">
+                <div class="hng-icon">🔮</div>
+                <div>
+                  <div class="quiz-badge">✦ Novo</div>
+                  <div class="hng-name">Faça seu Quiz!</div>
+                  <div class="hng-sub">Descubra seu arquétipo e temperamento</div>
+                </div>
+              </a>
+
+              <a href="#curso" class="hng-card">
+                <div class="hng-icon">🎭</div>
+                <div class="hng-name">Cursos</div>
+                <div class="hng-sub">Formações práticas</div>
+              </a>
+
+              <a href="#empresas" class="hng-card">
+                <div class="hng-icon">🏢</div>
+                <div class="hng-name">Empresas</div>
+                <div class="hng-sub">Treinamentos B2B</div>
+              </a>
+
+              <a href="https://instagram.com/somoscenica.escola" target="_blank" rel="noopener" class="hng-card" style="grid-column: 1 / -1;">
+                <div class="hng-icon">📲</div>
+                <div class="hng-name">Redes Sociais</div>
+                <div class="hng-sub">Instagram · WhatsApp</div>
+              </a>
+
+            </div>
           </div>
 
         </div>
@@ -1079,72 +1171,6 @@
               <strong>⚡ Últimas vagas!</strong> Não deixe para a última hora.
             </p>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════
-         NAV GRID — explore o site
-    ════════════════════════════════════ -->
-    <section style="background:var(--warm-white);padding:64px 0;">
-      <div class="container">
-        <p style="text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--spotlight);margin-bottom:10px;">Explore a Somos Cênica</p>
-        <h2 style="font-family:var(--font-display);font-size:clamp(1.375rem,2.5vw,1.875rem);font-weight:700;color:var(--void);text-align:center;margin-bottom:40px;">O que você quer descobrir agora?</h2>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;" class="navgrid-index">
-          <style>
-            .navgrid-index{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-            @media(max-width:860px){.navgrid-index{grid-template-columns:repeat(2,1fr);}}
-            @media(max-width:440px){.navgrid-index{grid-template-columns:1fr 1fr;gap:12px;}}
-            .ngi-card{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;background:#F5EFE6;border-radius:20px;padding:32px 16px 28px;border:2px solid transparent;text-decoration:none;color:inherit;transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden;gap:12px;}
-            .ngi-card:hover{transform:translateY(-6px);border-color:rgba(212,134,58,.35);box-shadow:0 20px 56px rgba(212,134,58,.13);}
-            .ngi-icon{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;transition:transform .25s;}
-            .ngi-card:hover .ngi-icon{transform:scale(1.1);}
-            .ngi-name{font-family:'Playfair Display',Georgia,serif;font-size:1.0625rem;font-weight:700;color:#1C1018;line-height:1.25;}
-            .ngi-desc{font-size:.8125rem;color:#8A7A92;line-height:1.55;}
-            .ngi-cta{font-size:.8rem;font-weight:700;color:var(--spotlight);opacity:0;transform:translateY(4px);transition:all .2s;margin-top:4px;}
-            .ngi-card:hover .ngi-cta{opacity:1;transform:translateY(0);}
-            .ngi-card--cursos .ngi-icon{background:linear-gradient(135deg,rgba(212,134,58,.18),rgba(232,200,106,.1));border:1px solid rgba(212,134,58,.25);}
-            .ngi-card--empresas .ngi-icon{background:linear-gradient(135deg,rgba(122,43,74,.15),rgba(180,60,100,.08));border:1px solid rgba(122,43,74,.2);}
-            .ngi-card--quiz .ngi-icon{background:linear-gradient(135deg,rgba(42,95,165,.15),rgba(80,140,220,.08));border:1px solid rgba(42,95,165,.2);}
-            .ngi-card--redes .ngi-icon{background:linear-gradient(135deg,rgba(26,122,74,.15),rgba(60,180,120,.08));border:1px solid rgba(26,122,74,.2);}
-            .ngi-pills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:2px;}
-            .ngi-pill{font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:50px;}
-            .ngi-pill--ig{background:rgba(225,48,108,.1);color:#E1306C;border:1px solid rgba(225,48,108,.22);}
-            .ngi-pill--wa{background:rgba(37,211,102,.1);color:#1DA851;border:1px solid rgba(37,211,102,.22);}
-          </style>
-
-          <a href="#curso" class="ngi-card ngi-card--cursos">
-            <div class="ngi-icon">🎭</div>
-            <div class="ngi-name">Cursos</div>
-            <div class="ngi-desc">Formações práticas com técnicas teatrais</div>
-            <div class="ngi-cta">Ver cursos →</div>
-          </a>
-
-          <a href="#empresas" class="ngi-card ngi-card--empresas">
-            <div class="ngi-icon">🏢</div>
-            <div class="ngi-name">Empresas</div>
-            <div class="ngi-desc">Treinamentos corporativos para equipes</div>
-            <div class="ngi-cta">Ver programas →</div>
-          </a>
-
-          <a href="quiz.html" class="ngi-card ngi-card--quiz">
-            <div class="ngi-icon">🔮</div>
-            <div class="ngi-name">Quiz</div>
-            <div class="ngi-desc">Descubra seu arquétipo e temperamento</div>
-            <div class="ngi-cta">Fazer o quiz →</div>
-          </a>
-
-          <a href="https://instagram.com/somoscenica.escola" target="_blank" rel="noopener" class="ngi-card ngi-card--redes">
-            <div class="ngi-icon">📲</div>
-            <div class="ngi-name">Redes Sociais</div>
-            <div class="ngi-desc">Conteúdo diário sobre presença e comunicação</div>
-            <div class="ngi-pills">
-              <span class="ngi-pill ngi-pill--ig">Instagram</span>
-              <span class="ngi-pill ngi-pill--wa">WhatsApp</span>
-            </div>
-            <div class="ngi-cta">Seguir →</div>
-          </a>
 
         </div>
       </div>
