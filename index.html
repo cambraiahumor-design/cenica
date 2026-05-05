@@ -812,6 +812,34 @@
 <body>
 
   <!-- ════════════════════════════════════
+       BARRA 1º LOTE
+  ════════════════════════════════════ -->
+  <div id="lote-bar" style="background:linear-gradient(90deg,#7B1200 0%,#A01828 50%,#7B1200 100%);padding:9px 16px;text-align:center;position:relative;z-index:200;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;">
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:4px;">🔥 1º LOTE</span>
+      <span style="color:rgba(255,255,255,0.92);font-size:.875rem;font-weight:600;">Preços sobem dia <strong style="color:#fff;">10 de maio</strong> — Inteira <strong style="color:#fff;">R$ 100</strong> · Meia <strong style="color:#fff;">R$ 50</strong></span>
+      <span style="display:flex;align-items:center;gap:6px;font-size:.8rem;color:rgba(255,255,255,0.7);">Faltam: <strong id="lote-countdown" style="color:#FFD080;font-family:'Playfair Display',serif;font-size:.9375rem;letter-spacing:.04em;">--d --h --m</strong></span>
+      <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#fff;color:#7B1200;font-size:.78rem;font-weight:800;padding:6px 16px;border-radius:50px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:all .2s;" onmouseover="this.style.background='#FFD080'" onmouseout="this.style.background='#fff'">Garantir agora →</a>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var deadline = new Date('2026-05-10T23:59:59-03:00');
+      function updateLote(){
+        var now = new Date();
+        var diff = deadline - now;
+        if(diff <= 0){ document.getElementById('lote-bar').style.display='none'; return; }
+        var d = Math.floor(diff/86400000);
+        var h = Math.floor((diff%86400000)/3600000);
+        var m = Math.floor((diff%3600000)/60000);
+        document.getElementById('lote-countdown').textContent = d+'d '+h+'h '+m+'m';
+      }
+      updateLote();
+      setInterval(updateLote, 30000);
+    })();
+  </script>
+
+  <!-- ════════════════════════════════════
        NAVEGAÇÃO
   ════════════════════════════════════ -->
   <header class="nav" id="nav" role="banner">
@@ -952,16 +980,18 @@
           <!-- Coluna 2: info condensada -->
           <div style="position:relative;z-index:2;">
             <div class="hero-badges" style="margin-bottom:16px;">
-              <span class="hero-pill">🎭 Teatro aplicado</span>
+              <span class="hero-pill" style="background:rgba(160,24,40,0.25);border-color:rgba(220,60,80,0.5);color:#FF8899;">🔥 1º Lote — até 10/05</span>
               <span class="hero-pill">📍 Teresina – PI</span>
-              <span class="hero-pill">Vagas limitadas</span>
+              <span class="hero-pill">22 de Maio · 20h</span>
             </div>
 
-            <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:12px;line-height:1.2;">
-              O palco onde você pratica quem quer ser.
+            <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:8px;line-height:1.2;">
+              Uma palestra que vai<br>mudar sua vida.
             </h1>
 
-            <p class="lead" style="color:rgba(245,239,230,0.65);font-size:.9rem;line-height:1.65;margin-bottom:24px;">
+            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:.9375rem;color:var(--spotlight);margin-bottom:12px;">O palco onde você pratica quem quer ser.</p>
+
+            <p class="lead" style="color:rgba(245,239,230,0.65);font-size:.875rem;line-height:1.65;margin-bottom:24px;">
               Uma noite de imersão com técnicas teatrais. Comunicação, presença e impacto pessoal — na prática.
             </p>
 
@@ -992,7 +1022,7 @@
             </div>
 
             <!-- CTAs -->
-            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
               <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 24px;font-size:.9375rem;">
                 🎟 Inteira — R$ 100
               </a>
@@ -1000,8 +1030,8 @@
                 Meia — R$ 50
               </a>
             </div>
-
-            <p style="font-size:0.75rem;color:rgba(245,239,230,0.3);">Pagamento seguro · 300+ profissionais já transformados</p>
+            <p style="font-size:.72rem;color:rgba(255,136,153,0.7);margin-bottom:8px;">⚡ Preço de 1º lote · Sobe dia 10/05</p>
+            <p style="font-size:0.72rem;color:rgba(245,239,230,0.3);">Pagamento seguro · 300+ profissionais já transformados</p>
           </div>
 
           <!-- Coluna 3: quadrados de navegação -->
