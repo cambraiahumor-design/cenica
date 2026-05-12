@@ -812,32 +812,19 @@
 <body>
 
   <!-- ════════════════════════════════════
-       BARRA 1º LOTE
+     BARRA POUCAS VAGAS
   ════════════════════════════════════ -->
-  <div id="lote-bar" style="background:linear-gradient(90deg,#7B1200 0%,#A01828 50%,#7B1200 100%);padding:9px 16px;text-align:center;position:relative;z-index:200;">
+  <style>
+    @keyframes blink-vagas { 0%,100%{opacity:1} 50%{opacity:0.15} }
+    .blink-vagas { animation: blink-vagas 1.1s ease-in-out infinite; }
+  </style>
+  <div id="vagas-alert-bar" style="background:linear-gradient(90deg,#7B1200 0%,#A01828 50%,#7B1200 100%);padding:9px 16px;text-align:center;position:relative;z-index:200;">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;">
-      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:4px;">🔥 1º LOTE</span>
-      <span style="color:rgba(255,255,255,0.92);font-size:.875rem;font-weight:600;">Preços sobem dia <strong style="color:#fff;">10 de maio</strong> — Inteira <strong style="color:#fff;">R$ 100</strong> · Meia <strong style="color:#fff;">R$ 50</strong></span>
-      <span style="display:flex;align-items:center;gap:6px;font-size:.8rem;color:rgba(255,255,255,0.7);">Faltam: <strong id="lote-countdown" style="color:#FFD080;font-family:'Playfair Display',serif;font-size:.9375rem;letter-spacing:.04em;">--d --h --m</strong></span>
+      <span class="blink-vagas" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:4px;">🔴 POUCAS VAGAS</span>
+      <span style="color:rgba(255,255,255,0.92);font-size:.875rem;font-weight:600;">Os ingressos estão acabando — <strong style="color:#FFD080;">garanta o seu agora!</strong></span>
       <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#fff;color:#7B1200;font-size:.78rem;font-weight:800;padding:6px 16px;border-radius:50px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:all .2s;" onmouseover="this.style.background='#FFD080'" onmouseout="this.style.background='#fff'">Garantir agora →</a>
     </div>
   </div>
-  <script>
-    (function(){
-      var deadline = new Date('2026-05-10T23:59:59-03:00');
-      function updateLote(){
-        var now = new Date();
-        var diff = deadline - now;
-        if(diff <= 0){ document.getElementById('lote-bar').style.display='none'; return; }
-        var d = Math.floor(diff/86400000);
-        var h = Math.floor((diff%86400000)/3600000);
-        var m = Math.floor((diff%3600000)/60000);
-        document.getElementById('lote-countdown').textContent = d+'d '+h+'h '+m+'m';
-      }
-      updateLote();
-      setInterval(updateLote, 30000);
-    })();
-  </script>
 
   <!-- ════════════════════════════════════
        NAVEGAÇÃO
@@ -980,7 +967,7 @@
           <!-- Coluna 2: info condensada -->
           <div style="position:relative;z-index:2;">
             <div class="hero-badges" style="margin-bottom:16px;">
-              <span class="hero-pill" style="background:rgba(160,24,40,0.25);border-color:rgba(220,60,80,0.5);color:#FF8899;">🔥 1º Lote — até 10/05</span>
+              <span class="hero-pill blink-vagas" style="background:rgba(160,24,40,0.25);border-color:rgba(220,60,80,0.5);color:#FF8899;">🔴 Poucas vagas</span>
               <span class="hero-pill">📍 Teresina – PI</span>
               <span class="hero-pill">22 de Maio · 20h</span>
             </div>
@@ -1030,7 +1017,7 @@
                 Meia — R$ 50
               </a>
             </div>
-            <p style="font-size:.72rem;color:rgba(255,136,153,0.7);margin-bottom:8px;">⚡ Preço de 1º lote · Sobe dia 10/05</p>
+            <p class="blink-vagas" style="font-size:.72rem;color:rgba(255,136,153,0.9);margin-bottom:8px;">🔴 Poucas vagas — garanta o seu ingresso!</p>
             <p style="font-size:0.72rem;color:rgba(245,239,230,0.3);">Pagamento seguro · 300+ profissionais já transformados</p>
           </div>
 
@@ -1133,7 +1120,7 @@
 
           <!-- Esquerda: info do evento -->
           <div>
-            <p class="palestra-section-date">22 de maio de 2026 &nbsp;·&nbsp; Quinta-feira, 20h</p>
+            <p class="palestra-section-date">22 de maio de 2026 &nbsp;·&nbsp; Sexta-feira, 20h</p>
             <h2 id="palestra-heading" class="palestra-section-title">Manual<br>Humano</h2>
             <p class="palestra-section-desc">
               Uma noite de imersão prática sobre comunicação, presença e impacto pessoal — usando as técnicas teatrais que a Somos Cênica aplica em líderes e equipes. Para quem quer se destacar e ser ouvido de verdade.
@@ -1350,7 +1337,7 @@
               <span class="faq-question">Onde e quando acontece?</span>
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
-            <div class="faq-body" id="faq-3"><p class="faq-answer">22 de maio de 2026, quinta-feira, às 20h. No Teatro Torquato Neto, em Teresina – PI.</p></div>
+            <div class="faq-body" id="faq-3"><p class="faq-answer">22 de maio de 2026, sexta-feira, às 20h. No Teatro Torquato Neto, em Teresina – PI.</p></div>
           </div>
 
           <div class="faq-item" role="listitem">
@@ -2326,7 +2313,7 @@
               <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">📅</div>
               <div>
                 <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Data e horário</strong>
-                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">22 de maio de 2026 · Quinta-feira, 20h</span>
+                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">22 de maio de 2026 · Sexta-feira, 20h</span>
               </div>
             </div>
             <div style="display:flex;gap:16px;align-items:flex-start;">
