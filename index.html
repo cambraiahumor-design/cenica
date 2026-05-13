@@ -1658,8 +1658,9 @@
               </div>
             </div>
 
-            <a href="inscricao.html?cidade=teresina"
+            <a href="#form-curso"
                class="btn btn-primary btn-lg"
+               onclick="abrirFormCurso('teresina')"
                style="width:100%;justify-content:center;display:flex;text-decoration:none;margin-bottom:12px;">
               Quero garantir minha vaga
             </a>
@@ -1844,8 +1845,9 @@
                 </div>
               </div>
 
-              <a href="inscricao.html?cidade=fortaleza"
+              <a href="#form-curso"
                  class="btn btn-primary btn-lg"
+                 onclick="abrirFormCurso('fortaleza')"
                  style="width:100%;justify-content:center;display:flex;text-decoration:none;margin-bottom:12px;">
                 Quero garantir minha vaga
               </a>
@@ -1967,6 +1969,102 @@
         </div><!-- /panel-fortaleza -->
 
       </div>
+
+      <!-- ════════════════════════════════════
+           FORMULÁRIO DE INSCRIÇÃO NO CURSO
+      ════════════════════════════════════ -->
+      <style>
+        #form-curso { scroll-margin-top: 88px; padding-top: 48px; }
+        .fc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        @media(max-width:560px){ .fc-grid { grid-template-columns: 1fr; } }
+        .fc-field { display: flex; flex-direction: column; gap: 6px; }
+        .fc-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:rgba(245,239,230,0.38); }
+        .fc-input {
+          background:rgba(245,239,230,0.06); border:1px solid rgba(245,239,230,0.12);
+          border-radius:10px; padding:14px 16px;
+          font-family:var(--font-body); font-size:16px; color:var(--cream);
+          width:100%; outline:none; -webkit-appearance:none; appearance:none;
+          transition: border-color .2s;
+        }
+        .fc-input:focus { border-color: rgba(212,134,58,0.5); }
+        .fc-input::placeholder { color: rgba(245,239,230,0.18); }
+        .fc-span2 { grid-column: span 2; }
+        @media(max-width:560px){ .fc-span2 { grid-column: span 1; } }
+      </style>
+
+      <div id="form-curso">
+        <div class="reveal" style="max-width:680px;margin:0 auto;padding:0 20px 64px;">
+
+          <!-- Aviso turma -->
+          <div style="background:rgba(212,134,58,0.07);border:1px solid rgba(212,134,58,0.28);border-radius:14px;padding:18px 22px;display:flex;gap:12px;align-items:flex-start;margin-bottom:28px;">
+            <span style="font-size:18px;flex-shrink:0;margin-top:1px;">⚠️</span>
+            <div>
+              <p style="font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">O curso só acontece se a turma for formada</p>
+              <p id="fc-aviso-texto" style="font-size:13px;color:rgba(245,239,230,0.5);line-height:1.7;">
+                O curso começa na data prevista <strong style="color:rgba(245,239,230,0.75);">somente se atingirmos o número mínimo de inscrições até a data-limite.</strong>
+                Caso contrário, a data será prorrogada — mas <strong style="color:rgba(245,239,230,0.75);">sua vaga e o preço atual ficam garantidos</strong> com a inscrição.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card do formulário -->
+          <div class="curso-main-card" style="grid-template-columns:1fr;padding:40px;gap:0;">
+
+            <div style="margin-bottom:28px;">
+              <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--spotlight);margin-bottom:8px;">Inscrição no curso</p>
+              <p style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--cream);">Técnica Humana — <span id="fc-cidade-label" style="color:var(--gold);">selecione a turma acima</span></p>
+            </div>
+
+            <div id="fc-erro" style="display:none;background:rgba(122,43,74,0.15);border:1px solid rgba(122,43,74,0.35);border-radius:10px;padding:12px 16px;font-size:13px;color:#f0a0b5;margin-bottom:18px;"></div>
+
+            <form id="form-inscricao-curso" novalidate>
+              <input type="hidden" id="fc-cidade" name="cidade" value="">
+              <input type="hidden" id="fc-turma"  name="turma"  value="">
+              <input type="hidden" id="fc-data"   name="data_inicio" value="">
+
+              <div class="fc-grid">
+                <div class="fc-field fc-span2">
+                  <label class="fc-label" for="fc-nome">Nome completo <span style="color:var(--spotlight);">*</span></label>
+                  <input class="fc-input" type="text" id="fc-nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+                </div>
+                <div class="fc-field">
+                  <label class="fc-label" for="fc-email">E-mail <span style="color:var(--spotlight);">*</span></label>
+                  <input class="fc-input" type="email" id="fc-email" name="email" placeholder="seu@email.com" required autocomplete="email">
+                </div>
+                <div class="fc-field">
+                  <label class="fc-label" for="fc-whatsapp">WhatsApp <span style="color:var(--spotlight);">*</span></label>
+                  <input class="fc-input" type="tel" id="fc-whatsapp" name="whatsapp" placeholder="(00) 9 0000-0000" required autocomplete="tel">
+                </div>
+                <div class="fc-field">
+                  <label class="fc-label" for="fc-empresa">Empresa <span style="font-weight:300;text-transform:none;letter-spacing:0;color:rgba(245,239,230,0.2);">(opcional)</span></label>
+                  <input class="fc-input" type="text" id="fc-empresa" name="empresa" placeholder="Onde você trabalha">
+                </div>
+                <div class="fc-field">
+                  <label class="fc-label" for="fc-cargo">Cargo <span style="font-weight:300;text-transform:none;letter-spacing:0;color:rgba(245,239,230,0.2);">(opcional)</span></label>
+                  <input class="fc-input" type="text" id="fc-cargo" name="cargo" placeholder="Seu cargo atual">
+                </div>
+              </div>
+
+              <button type="submit" id="fc-btn"
+                style="width:100%;padding:18px 32px;background:var(--spotlight);color:var(--void);font-family:var(--font-body);font-size:16px;font-weight:700;border:none;border-radius:12px;cursor:pointer;margin-top:4px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:opacity .2s;">
+                Enviar minha inscrição
+              </button>
+              <p style="font-size:11px;color:rgba(245,239,230,0.2);text-align:center;margin-top:12px;line-height:1.6;">
+                Nenhum pagamento agora. Nossa equipe confirma sua vaga pelo WhatsApp.
+              </p>
+            </form>
+
+            <!-- Sucesso -->
+            <div id="fc-sucesso" style="display:none;text-align:center;padding:32px 0;">
+              <p style="font-size:48px;margin-bottom:16px;">🎭</p>
+              <p style="font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--cream);margin-bottom:12px;">Inscrição recebida!</p>
+              <p id="fc-sucesso-texto" style="font-size:14px;color:rgba(245,239,230,0.5);line-height:1.8;max-width:440px;margin:0 auto;"></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ════════════════════════════════════
@@ -2836,6 +2934,82 @@
   </script>
 
   <script>
+    // ── Formulário de inscrição no curso ────────────────────────────────────
+    const FC_CITIES = {
+      teresina: { label:'Teresina – PI', turma:'Turma junho 2026', data:'8 de junho de 2026',
+        aviso:'O curso começa em <strong style="color:rgba(245,239,230,0.75);">8 de junho de 2026</strong> somente se atingirmos o número mínimo de inscrições. Caso contrário, a data será prorrogada — mas <strong style="color:rgba(245,239,230,0.75);">sua vaga e o preço ficam garantidos.</strong>' },
+      fortaleza: { label:'Fortaleza – CE', turma:'Turma agosto 2026', data:'3 de agosto de 2026',
+        aviso:'O curso começa em <strong style="color:rgba(245,239,230,0.75);">3 de agosto de 2026</strong> somente se atingirmos o número mínimo de inscrições. Caso contrário, a data será prorrogada — mas <strong style="color:rgba(245,239,230,0.75);">sua vaga e o preço ficam garantidos.</strong>' },
+    };
+
+    function abrirFormCurso(cidade) {
+      const d = FC_CITIES[cidade];
+      if (!d) return;
+      document.getElementById('fc-cidade').value       = d.label;
+      document.getElementById('fc-turma').value        = d.turma;
+      document.getElementById('fc-data').value         = d.data;
+      document.getElementById('fc-cidade-label').textContent = d.label;
+      document.getElementById('fc-aviso-texto').innerHTML    = d.aviso;
+    }
+
+    document.getElementById('form-inscricao-curso')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const nome     = document.getElementById('fc-nome').value.trim();
+      const email    = document.getElementById('fc-email').value.trim();
+      const whatsapp = document.getElementById('fc-whatsapp').value.trim();
+      const cidade   = document.getElementById('fc-cidade').value;
+      const turma    = document.getElementById('fc-turma').value;
+      const data     = document.getElementById('fc-data').value;
+      const errBox   = document.getElementById('fc-erro');
+
+      if (!nome || !email || !whatsapp || !cidade) {
+        errBox.textContent = !cidade
+          ? 'Clique em "Quero garantir minha vaga" na turma desejada (Teresina ou Fortaleza) antes de enviar.'
+          : 'Preencha nome, e-mail e WhatsApp para continuar.';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      const btn = document.getElementById('fc-btn');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      errBox.style.display = 'none';
+
+      const params = {
+        from_name:   nome,
+        from_email:  email,
+        phone:       whatsapp,
+        cidade,
+        turma,
+        data_inicio: data,
+        empresa:     document.getElementById('fc-empresa').value.trim() || '—',
+        cargo:       document.getElementById('fc-cargo').value.trim()   || '—',
+        message: [
+          'Inscrição: Curso Técnica Humana',
+          'Turma: '   + turma,
+          'Cidade: '  + cidade,
+          'Início: '  + data,
+          'WhatsApp: '+ whatsapp,
+          'Empresa: ' + (document.getElementById('fc-empresa').value.trim() || '—'),
+          'Cargo: '   + (document.getElementById('fc-cargo').value.trim()   || '—'),
+        ].join('\n'),
+      };
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+        document.getElementById('form-inscricao-curso').style.display = 'none';
+        document.getElementById('fc-sucesso-texto').innerHTML =
+          'Obrigado, <strong>' + nome + '</strong>! Recebemos sua inscrição para a turma de <strong>' + cidade + '</strong>.<br><br>' +
+          'Nossa equipe entrará em contato no WhatsApp <strong>' + whatsapp + '</strong> para confirmar sua vaga.';
+        document.getElementById('fc-sucesso').style.display = 'block';
+      } catch(err) {
+        btn.disabled = false;
+        btn.textContent = 'Enviar minha inscrição';
+        errBox.textContent = 'Erro ao enviar. Tente novamente ou fale pelo WhatsApp.';
+        errBox.style.display = 'block';
+      }
+    });
+
     // ── Troca de turmas (Teresina / Fortaleza) ─────────────────────────────
     function switchTurma(cidade) {
       document.querySelectorAll('.turma-tab').forEach(btn => {
