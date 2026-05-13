@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição — Técnica Humana | Somos Cênica</title>
+  <meta name="description" content="Garanta sua vaga no curso Técnica Humana. Turmas presenciais em Teresina (junho 2026) e Fortaleza (agosto 2026).">
+  <meta name="theme-color" content="#0F0A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    const EMAILJS_PUBLIC_KEY  = '5pxMSgyr6_YghsKsg';
+    const EMAILJS_SERVICE_ID  = 'service_ra63ug7';
+    const EMAILJS_TEMPLATE_ID = 'template_gutkwjd';
+    (function(){ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); })();
+  </script>
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --rose: #7A2B4A;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--void);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ── Navbar ─────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15,10,26,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(245,239,230,0.06);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px;
+      color: rgba(245,239,230,0.45);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--cream); }
+
+    main { padding-top: 72px; }
+
+    /* ── Hero ───────────────────────────────────── */
+    .insc-hero {
+      padding: 64px 24px 40px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .insc-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 99px;
+      background: rgba(212,134,58,0.12);
+      border: 1px solid rgba(212,134,58,0.3);
+      color: var(--spotlight);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .insc-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .insc-title em { color: var(--spotlight); font-style: italic; }
+    .insc-subtitle {
+      font-size: 15px;
+      color: rgba(245,239,230,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── Seletor de cidade ──────────────────────── */
+    .city-selector {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 24px 40px;
+    }
+    .city-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      border: 2px solid rgba(245,239,230,0.1);
+      background: rgba(245,239,230,0.03);
+      color: rgba(245,239,230,0.45);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+      text-align: left;
+    }
+    .city-btn:hover {
+      border-color: rgba(212,134,58,0.35);
+      color: var(--cream);
+    }
+    .city-btn.active {
+      border-color: var(--spotlight);
+      background: rgba(212,134,58,0.07);
+      color: var(--cream);
+    }
+    .city-btn-name { font-size: 15px; font-weight: 700; display: block; }
+    .city-btn-date { font-size: 12px; color: rgba(245,239,230,0.4); display: block; margin-top: 2px; }
+    .city-btn.active .city-btn-date { color: var(--spotlight); }
+
+    /* ── Info rápida ────────────────────────────── */
+    .curso-info {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+    }
+    .curso-info-panel {
+      background: rgba(245,239,230,0.03);
+      border: 1px solid rgba(245,239,230,0.07);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
+    }
+    .ci-item { display: flex; flex-direction: column; gap: 4px; }
+    .ci-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(245,239,230,0.3);
+      font-weight: 600;
+    }
+    .ci-val { font-size: 14px; font-weight: 600; color: var(--cream); }
+    .ci-val.hl { color: var(--spotlight); }
+
+    /* ── Aviso turma ────────────────────────────── */
+    .aviso-turma {
+      max-width: 720px;
+      margin: 0 auto 36px;
+      padding: 0 24px;
+    }
+    .aviso-box {
+      background: rgba(212,134,58,0.06);
+      border: 1px solid rgba(212,134,58,0.28);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .aviso-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .aviso-title { font-size: 14px; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
+    .aviso-text { font-size: 13px; color: rgba(245,239,230,0.5); line-height: 1.7; }
+    .aviso-text strong { color: rgba(245,239,230,0.75); }
+
+    /* ── Formulário ─────────────────────────────── */
+    .form-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .form-card {
+      background: rgba(245,239,230,0.03);
+      border: 1px solid rgba(245,239,230,0.07);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    @media (max-width: 600px) { .form-card { padding: 28px 20px; } }
+
+    .form-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+    .span2 { grid-column: span 2; }
+    @media (max-width: 560px) { .span2 { grid-column: span 1; } }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(245,239,230,0.38);
+    }
+    label .req { color: var(--spotlight); }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      background: rgba(245,239,230,0.05);
+      border: 1px solid rgba(245,239,230,0.1);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cream);
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    input::placeholder { color: rgba(245,239,230,0.18); }
+    select { appearance: none; cursor: pointer; }
+    select option { background: #1a0e30; color: var(--cream); }
+
+    input:focus, select:focus {
+      border-color: rgba(212,134,58,0.5);
+      background: rgba(212,134,58,0.04);
+    }
+    input:invalid:not(:placeholder-shown) { border-color: rgba(122,43,74,0.5); }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid rgba(245,239,230,0.06);
+      margin: 28px 0;
+    }
+
+    .opt-label {
+      font-weight: 300;
+      text-transform: none;
+      letter-spacing: 0;
+      color: rgba(245,239,230,0.2);
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    /* ── Submit ─────────────────────────────────── */
+    .btn-submit {
+      width: 100%;
+      padding: 16px 32px;
+      background: var(--spotlight);
+      color: var(--void);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .form-fine {
+      font-size: 11px;
+      color: rgba(245,239,230,0.2);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── Erro ───────────────────────────────────── */
+    .form-error {
+      display: none;
+      background: rgba(122,43,74,0.12);
+      border: 1px solid rgba(122,43,74,0.35);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #f0a0b5;
+      margin-bottom: 16px;
+    }
+    .form-error.show { display: block; }
+
+    /* ── Sucesso ────────────────────────────────── */
+    .success-wrap {
+      display: none;
+      text-align: center;
+      padding: 40px 16px;
+    }
+    .success-wrap.show { display: block; }
+    .success-icon { font-size: 52px; display: block; margin-bottom: 20px; }
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .success-text {
+      font-size: 14px;
+      color: rgba(245,239,230,0.5);
+      line-height: 1.8;
+      max-width: 460px;
+      margin: 0 auto 28px;
+    }
+    .success-text strong { color: rgba(245,239,230,0.8); }
+    .btn-voltar {
+      display: inline-block;
+      padding: 11px 24px;
+      border-radius: 10px;
+      border: 1px solid rgba(245,239,230,0.14);
+      color: rgba(245,239,230,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-voltar:hover { background: rgba(245,239,230,0.05); color: var(--cream); }
+
+    /* ── Footer ─────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding: 20px 24px;
+      border-top: 1px solid rgba(245,239,230,0.05);
+      font-size: 12px;
+      color: rgba(245,239,230,0.18);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Somos Cênica</a>
+    <a href="index.html#curso" class="nav-back">← Voltar ao site</a>
+  </nav>
+
+  <main>
+
+    <div class="insc-hero">
+      <span class="insc-badge">🎭 Inscrição — Curso Técnica Humana</span>
+      <h1 class="insc-title">Garanta sua vaga<br>na turma <em id="hero-city">presencial</em></h1>
+      <p class="insc-subtitle">
+        Preencha o formulário abaixo. A vaga é confirmada<br>
+        após contato da nossa equipe pelo WhatsApp.
+      </p>
+    </div>
+
+    <!-- Seletor de cidade -->
+    <div class="city-selector">
+      <button class="city-btn" id="btn-teresina" onclick="selectCity('teresina')">
+        <span style="font-size:18px;">📍</span>
+        <div>
+          <span class="city-btn-name">Teresina – PI</span>
+          <span class="city-btn-date">Turma junho 2026 · Início 8 de junho</span>
+        </div>
+      </button>
+      <button class="city-btn" id="btn-fortaleza" onclick="selectCity('fortaleza')">
+        <span style="font-size:18px;">📍</span>
+        <div>
+          <span class="city-btn-name">Fortaleza – CE</span>
+          <span class="city-btn-date">Turma agosto 2026 · Início 3 de agosto</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Resumo do curso -->
+    <div class="curso-info">
+      <div class="curso-info-panel">
+        <div class="ci-item">
+          <span class="ci-label">Investimento</span>
+          <span class="ci-val hl">R$ 897</span>
+        </div>
+        <div class="ci-item">
+          <span class="ci-label">Início previsto</span>
+          <span class="ci-val" id="info-data">—</span>
+        </div>
+        <div class="ci-item">
+          <span class="ci-label">Duração</span>
+          <span class="ci-val">8 semanas</span>
+        </div>
+        <div class="ci-item">
+          <span class="ci-label">Vagas</span>
+          <span class="ci-val">Máx. 25 pessoas</span>
+        </div>
+        <div class="ci-item">
+          <span class="ci-label">Formato</span>
+          <span class="ci-val">100% presencial</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aviso sobre formação de turma -->
+    <div class="aviso-turma">
+      <div class="aviso-box">
+        <span class="aviso-icon">⚠️</span>
+        <div>
+          <p class="aviso-title">O curso só acontece se a turma for formada</p>
+          <p class="aviso-text" id="aviso-text">
+            O curso começa na data prevista <strong>somente se atingirmos o número de inscrições necessário até a data-limite.</strong>
+            Caso contrário, a data de início será prorrogada — mas <strong>sua vaga e o preço atual ficam garantidos</strong> com a inscrição realizada.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulário -->
+    <div class="form-wrap">
+      <div class="form-card">
+
+        <div id="form-error" class="form-error"></div>
+
+        <form id="inscricao-form" novalidate>
+          <!-- Campos ocultos preenchidos via JS -->
+          <input type="hidden" id="field-cidade" name="cidade">
+          <input type="hidden" id="field-turma"  name="turma">
+          <input type="hidden" id="field-data"   name="data_inicio">
+
+          <span class="form-section-label">Seus dados</span>
+
+          <div class="form-grid">
+            <div class="form-field span2">
+              <label for="nome">Nome completo <span class="req">*</span></label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label for="email">E-mail <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label for="whatsapp">WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="(00) 9 0000-0000" required autocomplete="tel">
+            </div>
+          </div>
+
+          <hr class="divider">
+          <span class="form-section-label">
+            Contexto profissional
+            <span class="opt-label">(opcional)</span>
+          </span>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="empresa">Empresa / Organização</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Onde você trabalha">
+            </div>
+            <div class="form-field">
+              <label for="cargo">Cargo / Função</label>
+              <input type="text" id="cargo" name="cargo" placeholder="Seu cargo atual">
+            </div>
+            <div class="form-field span2">
+              <label for="como_soube">Como ficou sabendo?</label>
+              <select id="como_soube" name="como_soube">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option>Palestra Teresina (22/05)</option>
+                <option>Instagram</option>
+                <option>Indicação de alguém</option>
+                <option>LinkedIn</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="btn-submit">
+            Enviar minha inscrição
+          </button>
+          <p class="form-fine">
+            Ao enviar, você autoriza o contato da equipe Somos Cênica para confirmar sua vaga.<br>
+            Nenhum pagamento é feito agora.
+          </p>
+        </form>
+
+        <!-- Estado de sucesso (oculto até envio) -->
+        <div class="success-wrap" id="success-wrap">
+          <span class="success-icon">🎭</span>
+          <h2 class="success-title">Inscrição recebida!</h2>
+          <p class="success-text" id="success-text"></p>
+          <a href="index.html" class="btn-voltar">← Voltar ao site</a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    © 2026 Somos Cênica · somoscênica.com.br
+  </footer>
+
+  <script>
+    const CITIES = {
+      teresina: {
+        label:    'Teresina – PI',
+        turma:    'Turma junho 2026',
+        data:     '8 de junho de 2026',
+        heroCity: 'de Teresina – PI',
+        aviso:    'O curso começa em <strong>8 de junho de 2026</strong> somente se atingirmos o número de inscrições necessário até essa data. Caso contrário, a data será prorrogada — mas <strong>sua vaga e o preço atual ficam garantidos</strong> com a inscrição realizada.'
+      },
+      fortaleza: {
+        label:    'Fortaleza – CE',
+        turma:    'Turma agosto 2026',
+        data:     '3 de agosto de 2026',
+        heroCity: 'de Fortaleza – CE',
+        aviso:    'O curso começa em <strong>3 de agosto de 2026</strong> somente se atingirmos o número de inscrições necessário até essa data. Caso contrário, a data será prorrogada — mas <strong>sua vaga e o preço atual ficam garantidos</strong> com a inscrição realizada.'
+      }
+    };
+
+    let currentCity = null;
+
+    function selectCity(city) {
+      currentCity = city;
+      const d = CITIES[city];
+
+      document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + city).classList.add('active');
+
+      document.getElementById('hero-city').textContent = d.heroCity;
+      document.getElementById('info-data').textContent = d.data;
+      document.getElementById('aviso-text').innerHTML  = d.aviso;
+
+      document.getElementById('field-cidade').value = d.label;
+      document.getElementById('field-turma').value  = d.turma;
+      document.getElementById('field-data').value   = d.data;
+    }
+
+    // Pré-selecionar cidade via ?cidade=teresina ou ?cidade=fortaleza
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      const c = (p.get('cidade') || '').toLowerCase();
+      selectCity(c === 'fortaleza' ? 'fortaleza' : 'teresina');
+    })();
+
+    // Envio do formulário via EmailJS
+    document.getElementById('inscricao-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const nome     = document.getElementById('nome').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const errBox   = document.getElementById('form-error');
+
+      if (!nome || !email || !whatsapp) {
+        errBox.textContent = 'Preencha todos os campos obrigatórios: nome, e-mail e WhatsApp.';
+        errBox.classList.add('show');
+        return;
+      }
+
+      const btn = document.getElementById('btn-submit');
+      btn.disabled    = true;
+      btn.textContent = 'Enviando…';
+      errBox.classList.remove('show');
+
+      const d = CITIES[currentCity];
+
+      const params = {
+        from_name:   nome,
+        from_email:  email,
+        phone:       whatsapp,
+        cidade:      d.label,
+        turma:       d.turma,
+        data_inicio: d.data,
+        empresa:     document.getElementById('empresa').value.trim()    || '—',
+        cargo:       document.getElementById('cargo').value.trim()      || '—',
+        como_soube:  document.getElementById('como_soube').value        || '—',
+        // campo genérico "message" para compatibilidade com templates existentes
+        message: [
+          'Inscrição no curso Técnica Humana',
+          'Turma: '       + d.turma,
+          'Cidade: '      + d.label,
+          'Início: '      + d.data,
+          'WhatsApp: '    + whatsapp,
+          'Empresa: '     + (document.getElementById('empresa').value.trim()   || '—'),
+          'Cargo: '       + (document.getElementById('cargo').value.trim()     || '—'),
+          'Como soube: '  + (document.getElementById('como_soube').value       || '—'),
+        ].join('\n')
+      };
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+
+        document.getElementById('inscricao-form').style.display = 'none';
+        document.getElementById('success-text').innerHTML =
+          'Obrigado, <strong>' + nome + '</strong>! Recebemos sua inscrição para a turma de ' +
+          '<strong>' + d.label + '</strong> — início previsto em <strong>' + d.data + '</strong>.<br><br>' +
+          'Nossa equipe vai entrar em contato no WhatsApp <strong>' + whatsapp + '</strong> ' +
+          'em breve para confirmar sua vaga e informar sobre o pagamento.';
+        document.getElementById('success-wrap').classList.add('show');
+      } catch(err) {
+        btn.disabled    = false;
+        btn.textContent = 'Enviar minha inscrição';
+        errBox.textContent = 'Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.';
+        errBox.classList.add('show');
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>
