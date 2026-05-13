@@ -41,7 +41,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 16px 32px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,11 +71,12 @@
 
     /* ── Hero ───────────────────────────────────── */
     .insc-hero {
-      padding: 64px 24px 40px;
+      padding: 48px 20px 36px;
       text-align: center;
       max-width: 640px;
       margin: 0 auto;
     }
+    @media (min-width: 640px) { .insc-hero { padding: 64px 24px 40px; } }
     .insc-badge {
       display: inline-block;
       padding: 4px 14px;
@@ -110,7 +111,10 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-      padding: 0 24px 40px;
+      padding: 0 20px 40px;
+    }
+    @media (max-width: 480px) {
+      .city-selector { flex-direction: column; }
     }
     .city-btn {
       display: flex;
@@ -125,6 +129,7 @@
       transition: all 0.2s;
       font-family: var(--font-body);
       text-align: left;
+      -webkit-tap-highlight-color: transparent;
     }
     .city-btn:hover {
       border-color: rgba(212,134,58,0.35);
@@ -143,8 +148,9 @@
     .curso-info {
       max-width: 720px;
       margin: 0 auto;
-      padding: 0 24px 32px;
+      padding: 0 16px 32px;
     }
+    @media (min-width: 560px) { .curso-info { padding: 0 24px 32px; } }
     .curso-info-panel {
       background: rgba(245,239,230,0.03);
       border: 1px solid rgba(245,239,230,0.07);
@@ -169,8 +175,9 @@
     .aviso-turma {
       max-width: 720px;
       margin: 0 auto 36px;
-      padding: 0 24px;
+      padding: 0 16px;
     }
+    @media (min-width: 560px) { .aviso-turma { padding: 0 24px; } }
     .aviso-box {
       background: rgba(212,134,58,0.06);
       border: 1px solid rgba(212,134,58,0.28);
@@ -189,15 +196,17 @@
     .form-wrap {
       max-width: 720px;
       margin: 0 auto;
-      padding: 0 24px 80px;
+      padding: 0 16px 80px;
     }
+    @media (min-width: 560px) { .form-wrap { padding: 0 24px 80px; } }
     .form-card {
       background: rgba(245,239,230,0.03);
       border: 1px solid rgba(245,239,230,0.07);
-      border-radius: 20px;
-      padding: 40px;
+      border-radius: 16px;
+      padding: 24px 16px;
     }
-    @media (max-width: 600px) { .form-card { padding: 28px 20px; } }
+    @media (min-width: 480px) { .form-card { padding: 32px 28px; border-radius: 20px; } }
+    @media (min-width: 640px) { .form-card { padding: 40px; } }
 
     .form-section-label {
       font-size: 10px;
@@ -236,16 +245,19 @@
       background: rgba(245,239,230,0.05);
       border: 1px solid rgba(245,239,230,0.1);
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 14px 16px;
       font-family: var(--font-body);
-      font-size: 15px;
+      font-size: 16px; /* 16px evita zoom automático no iOS */
       color: var(--cream);
       width: 100%;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
     input::placeholder { color: rgba(245,239,230,0.18); }
-    select { appearance: none; cursor: pointer; }
+    select { cursor: pointer; }
     select option { background: #1a0e30; color: var(--cream); }
 
     input:focus, select:focus {
@@ -272,7 +284,7 @@
     /* ── Submit ─────────────────────────────────── */
     .btn-submit {
       width: 100%;
-      padding: 16px 32px;
+      padding: 18px 32px;
       background: var(--spotlight);
       color: var(--void);
       font-family: var(--font-body);
@@ -283,9 +295,11 @@
       cursor: pointer;
       margin-top: 8px;
       transition: opacity 0.2s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .btn-submit:hover { opacity: 0.88; }
-    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:active { transform: scale(0.98); opacity: 0.85; }
     .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .form-fine {
