@@ -124,192 +124,7 @@
     .enroll-divider::before { left: 0; } .enroll-divider::after { right: 0; }
     .enroll-note { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 4px; }
 
-    /* ── Palestra section (destaque) ───────────────── */
-    .palestra-section {
-      background: linear-gradient(135deg, #0a0516 0%, var(--curtain) 45%, #1a0630 100%);
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid rgba(212,134,58,0.15);
-      border-bottom: 1px solid rgba(212,134,58,0.15);
-    }
-    .palestra-section::before {
-      content: '';
-      position: absolute;
-      left: -100px; top: -100px;
-      width: 500px; height: 500px;
-      background: radial-gradient(ellipse, rgba(212,134,58,0.1) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .palestra-section::after {
-      content: '';
-      position: absolute;
-      right: -80px; bottom: -80px;
-      width: 400px; height: 400px;
-      background: radial-gradient(ellipse, rgba(100,40,160,0.15) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .palestra-section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      border-radius: 99px;
-      background: rgba(212,134,58,0.15);
-      border: 1px solid rgba(212,134,58,0.35);
-      color: var(--spotlight);
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .palestra-section-grid {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 56px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    @media (max-width: 900px) {
-      .palestra-section-grid { grid-template-columns: 1fr; gap: 40px; }
-    }
-    .palestra-section-date {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-      margin-bottom: 10px;
-    }
-    .palestra-section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4.5vw, 3.25rem);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 18px;
-    }
-    .palestra-section-desc {
-      font-size: 1rem;
-      color: rgba(245,239,230,0.6);
-      line-height: 1.75;
-      margin-bottom: 28px;
-      max-width: 520px;
-    }
-    .palestra-section-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      margin-bottom: 28px;
-    }
-    .palestra-detail-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.875rem;
-      color: rgba(245,239,230,0.65);
-    }
-    .palestra-detail-item strong { color: var(--cream); }
-    .palestra-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .palestra-bullet {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.875rem;
-      color: rgba(245,239,230,0.7);
-      line-height: 1.5;
-    }
-    .palestra-bullet::before {
-      content: '✦';
-      color: var(--spotlight);
-      font-size: 0.75rem;
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    /* ── Ticket card ────────────────────────────────── */
-    .palestra-ticket-card {
-      background: rgba(245,239,230,0.04);
-      border: 1px solid rgba(212,134,58,0.3);
-      border-radius: 24px;
-      padding: 36px 28px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      backdrop-filter: blur(12px);
-    }
-    .palestra-ticket-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 24px;
-      background: linear-gradient(160deg, rgba(212,134,58,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .palestra-ticket-label {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--spotlight);
-      margin-bottom: 16px;
-    }
-    .palestra-ticket-price-block { margin-bottom: 8px; }
-    .palestra-ticket-price-inteira {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .palestra-ticket-price-meia {
-      font-size: 0.9375rem;
-      color: rgba(245,239,230,0.5);
-      margin-top: 4px;
-      margin-bottom: 20px;
-    }
-    .palestra-ticket-qr {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 16px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: white;
-      padding: 6px;
-      display: block;
-    }
-    .palestra-ticket-qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .palestra-ticket-pix-hint {
-      font-size: 0.75rem;
-      color: rgba(245,239,230,0.4);
-      margin-bottom: 20px;
-    }
-    .palestra-ticket-divider {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.75rem;
-      color: rgba(245,239,230,0.3);
-      margin: 16px 0;
-    }
-    .palestra-ticket-divider::before,
-    .palestra-ticket-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(245,239,230,0.1);
-    }
-    .palestra-ticket-spots {
-      font-size: 0.8125rem;
-      color: rgba(245,239,230,0.4);
-      margin-top: 14px;
-    }
-    .palestra-ticket-spots strong { color: var(--spotlight); }
+    
 
     /* ── Stats strip ────────────────────────────────── */
     .stats-strip {
@@ -818,12 +633,6 @@
     @keyframes blink-vagas { 0%,100%{opacity:1} 50%{opacity:0.15} }
     .blink-vagas { animation: blink-vagas 1.1s ease-in-out infinite; }
   </style>
-  <div id="vagas-alert-bar" style="background:linear-gradient(90deg,#7B1200 0%,#A01828 50%,#7B1200 100%);padding:9px 16px;text-align:center;position:relative;z-index:200;">
-    <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;max-width:1100px;margin:0 auto;">
-      <span class="blink-vagas" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:4px;">🔴 POUCAS VAGAS</span>
-      <span style="color:rgba(255,255,255,0.92);font-size:.875rem;font-weight:600;">Os ingressos estão acabando — <strong style="color:#FFD080;">garanta o seu agora!</strong></span>
-      <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:#fff;color:#7B1200;font-size:.78rem;font-weight:800;padding:6px 16px;border-radius:50px;letter-spacing:.04em;text-decoration:none;white-space:nowrap;transition:all .2s;" onmouseover="this.style.background='#FFD080'" onmouseout="this.style.background='#fff'">Garantir agora →</a>
-    </div>
   </div>
 
   <!-- ════════════════════════════════════
@@ -853,9 +662,8 @@
         </a>
 
         <ul class="nav-links" role="list">
-          <li><a href="#palestra">A Palestra</a></li>
           <li><a href="#porquesomoscenica">Por que ir</a></li>
-          <li><a href="#instrutor">Palestrante</a></li>
+          <li><a href="#instrutor">Instrutor</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#curso">Curso</a></li>
           <li><a href="#empresas">Empresas</a></li>
@@ -876,7 +684,7 @@
              onmouseout="this.style.borderColor='rgba(245,239,230,0.12)';this.style.color='rgba(245,239,230,0.55)'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a href="#inscricao" class="btn btn-primary btn-sm">Garantir ingresso</a>
+          <a href="#curso" class="btn btn-primary btn-sm">Ver cursos</a>
           <button class="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -893,7 +701,7 @@
     <style>
       .hero3-grid {
         display: grid;
-        grid-template-columns: 220px 1fr 220px;
+        grid-template-columns: 1fr 220px;
         gap: 28px;
         align-items: center;
       }
@@ -953,72 +761,36 @@
       <div class="container">
         <div class="hero3-grid">
 
-          <!-- Coluna 1: cartaz -->
-          <div class="hero3-poster" style="position:relative;z-index:2;">
-            <div style="border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(212,134,58,0.2),0 0 40px rgba(212,134,58,0.12);">
-              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" style="display:block;">
-                <img src="cartazes/cartaz-story.jpg"
-                     alt="Cartaz da palestra Manual Humano — João Cambraia, 22 de maio, Teatro Torquato Neto, Teresina"
-                     style="width:100%;display:block;border-radius:16px;" />
-              </a>
-            </div>
-          </div>
 
           <!-- Coluna 2: info condensada -->
           <div style="position:relative;z-index:2;">
             <div class="hero-badges" style="margin-bottom:16px;">
-              <span class="hero-pill blink-vagas" style="background:rgba(160,24,40,0.25);border-color:rgba(220,60,80,0.5);color:#FF8899;">🔴 Poucas vagas</span>
               <span class="hero-pill">📍 Teresina – PI</span>
-              <span class="hero-pill">22 de Maio · 20h</span>
+              <span class="hero-pill">📍 Fortaleza – CE</span>
+              <span class="hero-pill">🎭 Cursos presenciais</span>
             </div>
 
             <h1 id="hero-heading" class="display hero-title" style="font-size:clamp(1.5rem,3vw,2.25rem);margin-bottom:8px;line-height:1.2;">
-              Uma palestra que vai<br>mudar sua vida.
+              Soft skills que você<br><em style="color:var(--spotlight);font-style:italic;">vive</em> — não decora.
             </h1>
 
             <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:.9375rem;color:var(--spotlight);margin-bottom:12px;">O palco onde você pratica quem quer ser.</p>
 
             <p class="lead" style="color:rgba(245,239,230,0.65);font-size:.875rem;line-height:1.65;margin-bottom:24px;">
-              Uma noite de imersão com técnicas teatrais. Comunicação, presença e impacto pessoal — na prática.
+              8 semanas presenciais com técnicas teatrais. Comunicação, presença e impacto pessoal — na prática. Turmas em Teresina e Fortaleza.
             </p>
 
-            <!-- Contagem regressiva -->
-            <div style="margin-bottom:24px;">
-              <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--spotlight);margin-bottom:10px;">⏳ O evento começa em</p>
-              <div id="countdown" style="display:flex;gap:8px;flex-wrap:wrap;">
-                <div class="cd-block">
-                  <span class="cd-num" id="cd-days">--</span>
-                  <span class="cd-label">dias</span>
-                </div>
-                <div class="cd-sep">:</div>
-                <div class="cd-block">
-                  <span class="cd-num" id="cd-hours">--</span>
-                  <span class="cd-label">horas</span>
-                </div>
-                <div class="cd-sep">:</div>
-                <div class="cd-block">
-                  <span class="cd-num" id="cd-minutes">--</span>
-                  <span class="cd-label">min</span>
-                </div>
-                <div class="cd-sep">:</div>
-                <div class="cd-block">
-                  <span class="cd-num" id="cd-seconds">--</span>
-                  <span class="cd-label">seg</span>
-                </div>
-              </div>
-            </div>
 
             <!-- CTAs -->
-            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
-              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-primary" style="padding:12px 24px;font-size:.9375rem;">
-                🎟 Inteira — R$ 100
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+              <a href="#curso" class="btn btn-primary" style="padding:12px 24px;font-size:.9375rem;">
+                🎭 Ver turmas disponíveis
               </a>
-              <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);padding:12px 20px;font-size:.9375rem;">
-                Meia — R$ 50
+              <a href="#empresas" class="btn btn-ghost" style="border-color:rgba(212,134,58,0.4);color:var(--gold);padding:12px 20px;font-size:.9375rem;">
+                Treinamentos B2B
               </a>
             </div>
-            <p class="blink-vagas" style="font-size:.72rem;color:rgba(255,136,153,0.9);margin-bottom:8px;">🔴 Poucas vagas — garanta o seu ingresso!</p>
-            <p style="font-size:0.72rem;color:rgba(245,239,230,0.3);">Pagamento seguro · 300+ profissionais já transformados</p>
+            <p style="font-size:0.72rem;color:rgba(245,239,230,0.3);">Pagamento parcelado disponível · 300+ profissionais já transformados</p>
           </div>
 
           <!-- Coluna 3: quadrados de navegação -->
@@ -1062,311 +834,7 @@
       <div class="hero-spotlight" aria-hidden="true"></div>
     </section>
 
-    <style>
-      .cd-block {
-        display:flex;flex-direction:column;align-items:center;
-        background:rgba(212,134,58,0.1);border:1px solid rgba(212,134,58,0.25);
-        border-radius:12px;padding:12px 18px;min-width:72px;
-      }
-      .cd-num {
-        font-family:'Playfair Display',Georgia,serif;
-        font-size:2rem;font-weight:700;color:var(--cream);line-height:1;
-      }
-      .cd-label {
-        font-size:0.6875rem;font-weight:600;letter-spacing:0.1em;
-        text-transform:uppercase;color:var(--spotlight);margin-top:4px;
-      }
-      .cd-sep {
-        font-size:1.75rem;font-weight:700;color:rgba(212,134,58,0.5);
-        align-self:center;padding-bottom:16px;
-      }
-      @media(max-width:480px){ .cd-block{min-width:56px;padding:10px 12px;} .cd-num{font-size:1.5rem;} }
-    </style>
 
-    <script>
-      (function(){
-        const target = new Date('2026-05-22T23:00:00Z'); // 20h Teresina (UTC-3)
-        function update(){
-          const diff = target - Date.now();
-          if(diff <= 0){
-            document.getElementById('countdown').innerHTML = '<p style="color:var(--gold);font-weight:700;">O evento está acontecendo agora! 🎭</p>';
-            return;
-          }
-          const d = Math.floor(diff/86400000);
-          const h = Math.floor((diff%86400000)/3600000);
-          const m = Math.floor((diff%3600000)/60000);
-          const s = Math.floor((diff%60000)/1000);
-          document.getElementById('cd-days').textContent    = String(d).padStart(2,'0');
-          document.getElementById('cd-hours').textContent   = String(h).padStart(2,'0');
-          document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
-          document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
-        }
-        update();
-        setInterval(update, 1000);
-      })();
-    </script>
-
-    <!-- ════════════════════════════════════
-         PALESTRA — DESTAQUE
-    ════════════════════════════════════ -->
-    <section class="palestra-section" id="palestra" aria-labelledby="palestra-heading">
-      <div class="container">
-        <div class="palestra-section-tag" style="display:inline-flex;">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Evento especial · Teresina
-        </div>
-
-        <div class="palestra-section-grid">
-
-          <!-- Esquerda: info do evento -->
-          <div>
-            <p class="palestra-section-date">22 de maio de 2026 &nbsp;·&nbsp; Sexta-feira, 20h</p>
-            <h2 id="palestra-heading" class="palestra-section-title">Manual<br>Humano</h2>
-            <p class="palestra-section-desc">
-              Uma noite de imersão prática sobre comunicação, presença e impacto pessoal — usando as técnicas teatrais que a Somos Cênica aplica em líderes e equipes. Para quem quer se destacar e ser ouvido de verdade.
-            </p>
-
-            <div class="palestra-section-details">
-              <div class="palestra-detail-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span><strong>Teatro Torquato Neto</strong> · Teresina – PI</span>
-              </div>
-              <div class="palestra-detail-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Duração: <strong>1h30</strong></span>
-              </div>
-              <div class="palestra-detail-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <span>Palestrante: <strong>João Cambraia</strong></span>
-              </div>
-              <div class="palestra-detail-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/></svg>
-                <span><strong style="color:var(--spotlight);">Vagas limitadas</strong></span>
-              </div>
-            </div>
-
-            <div class="palestra-bullets">
-              <div class="palestra-bullet">Como usar a voz e o corpo para comunicar com autoridade</div>
-              <div class="palestra-bullet">Técnicas de presença usadas por atores profissionais</div>
-              <div class="palestra-bullet">O poder da escuta ativa em reuniões, vendas e liderança</div>
-              <div class="palestra-bullet">Exercícios práticos que você leva para o dia seguinte</div>
-            </div>
-          </div>
-
-          <!-- Direita: card de ingresso -->
-          <div class="palestra-ticket-card">
-            <p class="palestra-ticket-label">🎟 Ingresso · Palestra</p>
-
-            <div class="palestra-ticket-price-block">
-              <p class="palestra-ticket-price-inteira">R$ 100</p>
-              <p class="palestra-ticket-price-meia">Meia-entrada: R$ 50</p>
-            </div>
-
-            <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9"
-               target="_blank" rel="noopener"
-               class="btn btn-primary btn-lg"
-               style="width:100%;justify-content:center;margin-bottom:10px;">
-              Inteira — R$ 100
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-
-            <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9"
-               target="_blank" rel="noopener"
-               class="btn btn-ghost"
-               style="width:100%;justify-content:center;border-color:rgba(212,134,58,0.4);color:var(--gold);margin-bottom:16px;">
-              Meia-entrada — R$ 50
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-
-            <a href="#palestra"
-               class="btn btn-ghost"
-               style="width:100%;justify-content:center;font-size:0.8rem;margin-bottom:16px;">
-              Ver detalhes do evento →
-            </a>
-
-            <p class="palestra-ticket-spots">
-              <strong>⚡ Últimas vagas!</strong> Não deixe para a última hora.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════
-         STATS
-    ════════════════════════════════════ -->
-    <div class="stats-strip">
-      <div class="container">
-        <div class="stats-strip-inner">
-          <div class="stat-item">
-            <span class="stat-value stat-counter" data-target="300" data-suffix="+">300+</span>
-            <span class="stat-label">Profissionais impactados</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">22/05</span>
-            <span class="stat-label">Data do evento</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">20h</span>
-            <span class="stat-label">Horário de início</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">1h30</span>
-            <span class="stat-label">De imersão prática</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value stat-counter" data-target="95" data-suffix="%">95%</span>
-            <span class="stat-label">Satisfação nas palestras</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-        <!-- ════════════════════════════════════
-         POR QUE CÊNICA
-    ════════════════════════════════════ -->
-    <section class="section bg-void" id="porquesomoscenica" aria-labelledby="motivos-heading">
-      <div class="container">
-        <div class="section-header text-center reveal" style="margin-bottom:48px;">
-          <span class="label text-spotlight">Por que ir</span>
-          <h2 id="motivos-heading" class="display text-cream" style="margin-top:10px;">6 razões para estar lá</h2>
-        </div>
-
-        <div class="motivos-grid">
-          <div class="motivo-card reveal reveal-delay-1">
-            <div class="motivo-icon">🎭</div>
-            <h4>Prática, não teoria</h4>
-            <p>Técnicas teatrais aplicadas ao vivo. Você sai com exercícios que usa no dia seguinte — em reuniões, apresentações e conversas difíceis.</p>
-          </div>
-          <div class="motivo-card reveal reveal-delay-2">
-            <div class="motivo-icon">🎤</div>
-            <h4>Voz e presença</h4>
-            <p>Aprenda a usar a voz, o corpo e o silêncio para comunicar com autoridade. O que atores sabem e poucos profissionais praticam.</p>
-          </div>
-          <div class="motivo-card reveal reveal-delay-3">
-            <div class="motivo-icon">🧠</div>
-            <h4>Conteúdo que fica</h4>
-            <p>Nada de slides genéricos. Uma noite densa, com vivências que entram pelo corpo e ficam na memória por semanas.</p>
-          </div>
-          <div class="motivo-card reveal reveal-delay-1">
-            <div class="motivo-icon">🏛</div>
-            <h4>No Teatro Torquato Neto</h4>
-            <p>Um ambiente que já é palco. O cenário certo para uma experiência que vai além de uma palestra comum.</p>
-          </div>
-          <div class="motivo-card reveal reveal-delay-2">
-            <div class="motivo-icon">👤</div>
-            <h4>João Cambraia ao vivo</h4>
-            <p>Facilitador com anos de experiência em teatro aplicado e desenvolvimento humano. Sem roteiro engessado, sem slides prontos.</p>
-          </div>
-          <div class="motivo-card reveal reveal-delay-3">
-            <div class="motivo-icon">⚡</div>
-            <h4>Uma noite que muda</h4>
-            <p>300+ profissionais já saíram diferentes. Não é promessa — é o que acontece quando você para de assistir e começa a praticar.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════
-         INSTRUTOR
-    ════════════════════════════════════ -->
-    <section class="section bg-curtain" id="instrutor" aria-labelledby="instrutor-heading">
-      <div class="container">
-        <div class="instrutor-grid reveal">
-
-          <div class="instrutor-foto">
-            <img src="joao-cambraia.jpg" alt="João Cambraia — Fundador da Somos Cênica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-            <div class="instrutor-foto-placeholder" style="display:none;">JC</div>
-          </div>
-
-          <div>
-            <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Fundador &amp; Facilitador</span>
-            <h2 id="instrutor-heading" class="instrutor-nome">João Cambraia</h2>
-            <p class="instrutor-cargo">Diretor da Somos Cênica · Especialista em Desenvolvimento Humano</p>
-            <p class="instrutor-bio">
-              João Cambraia combina anos de experiência com técnicas teatrais e desenvolvimento humano para criar uma metodologia única: usar o palco como laboratório de transformação comportamental. Fundou a Somos Cênica com a convicção de que toda pessoa já tem dentro de si as habilidades que busca — falta apenas o espaço seguro para praticá-las.
-            </p>
-            <p class="instrutor-bio">
-              Seu método já passou por mais de 300 profissionais em Teresina e Fortaleza, de analistas a diretores, de startups a empresas tradicionais.
-            </p>
-            <div class="instrutor-tags">
-              <span class="instrutor-tag">Teatro aplicado</span>
-              <span class="instrutor-tag">Liderança</span>
-              <span class="instrutor-tag">Comunicação</span>
-              <span class="instrutor-tag">Inteligência emocional</span>
-              <span class="instrutor-tag">Improviso</span>
-              <span class="instrutor-tag">Facilitação de grupos</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ════════════════════════════════════
-         FAQ
-    ════════════════════════════════════ -->
-    <section class="section bg-cream" id="faq" aria-labelledby="faq-heading">
-      <div class="container">
-        <div class="section-header text-center reveal" style="margin-bottom:40px;">
-          <h2 id="faq-heading" class="display">Perguntas frequentes</h2>
-        </div>
-
-        <div class="faq-list" role="list">
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-1">
-              <span class="faq-question">Preciso ter experiência com teatro?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-1"><p class="faq-answer">Não. A palestra é para profissionais, não para atores. Nenhum conhecimento teatral é necessário — apenas a disposição de participar e praticar.</p></div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-2">
-              <span class="faq-question">Qual é o formato da palestra?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-2"><p class="faq-answer">É uma imersão prática de 1h30 com conteúdo, exercícios e vivências teatrais. Não é uma palestra convencional onde só se assiste — você vai praticar durante o evento.</p></div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
-              <span class="faq-question">Onde e quando acontece?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-3"><p class="faq-answer">22 de maio de 2026, sexta-feira, às 20h. No Teatro Torquato Neto, em Teresina – PI.</p></div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">
-              <span class="faq-question">Qual o valor do ingresso?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-4"><p class="faq-answer">Inteira: R$ 100. Meia-entrada: R$ 50 (estudantes e beneficiários de programas sociais com apresentação de documento). Pagamento pelo Mercado Pago.</p></div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-5">
-              <span class="faq-question">A palestra pode ser contratada para empresas?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-5"><p class="faq-answer">Sim. Oferecemos o formato in-company para eventos corporativos, convenções e treinamentos de liderança. Entre em contato pelo WhatsApp para receber uma proposta.</p></div>
-          </div>
-
-          <div class="faq-item" role="listitem">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-6">
-              <span class="faq-question">As vagas são limitadas?</span>
-              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            </button>
-            <div class="faq-body" id="faq-6"><p class="faq-answer">Sim. A capacidade do Teatro Torquato Neto é limitada e as vagas estão sendo preenchidas. Garanta o seu ingresso o quanto antes para não ficar de fora.</p></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
     <!-- ════════════════════════════════════
          CURSO TÉCNICA HUMANA
@@ -1533,7 +1001,7 @@
 
         <!-- Cabeçalho -->
         <div class="curso-intro reveal">
-          <span class="label text-spotlight" style="display:block;margin-bottom:16px;">Próximo passo após a palestra</span>
+          <span class="label text-spotlight" style="display:block;margin-bottom:16px;">Cursos presenciais · Teresina e Fortaleza</span>
           <h2 id="curso-heading" class="display" style="font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3rem);line-height:1.1;margin-bottom:20px;">
             Curso <em style="color:var(--spotlight);font-style:italic;">Técnica Humana</em>
           </h2>
@@ -2068,6 +1536,174 @@
     </section>
 
     <!-- ════════════════════════════════════
+         STATS
+    ════════════════════════════════════ -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-strip-inner">
+          <div class="stat-item">
+            <span class="stat-value stat-counter" data-target="300" data-suffix="+">300+</span>
+            <span class="stat-label">Profissionais impactados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">22/05</span>
+            <span class="stat-label">Data do evento</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">20h</span>
+            <span class="stat-label">Horário de início</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">1h30</span>
+            <span class="stat-label">De imersão prática</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value stat-counter" data-target="95" data-suffix="%">95%</span>
+            <span class="stat-label">Satisfação nas palestras</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        <!-- ════════════════════════════════════
+         POR QUE CÊNICA
+    ════════════════════════════════════ -->
+    <section class="section bg-void" id="porquesomoscenica" aria-labelledby="motivos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:48px;">
+          <span class="label text-spotlight">Por que ir</span>
+          <h2 id="motivos-heading" class="display text-cream" style="margin-top:10px;">6 razões para estar lá</h2>
+        </div>
+
+        <div class="motivos-grid">
+          <div class="motivo-card reveal reveal-delay-1">
+            <div class="motivo-icon">🎭</div>
+            <h4>Prática, não teoria</h4>
+            <p>Técnicas teatrais aplicadas ao vivo. Você sai com exercícios que usa no dia seguinte — em reuniões, apresentações e conversas difíceis.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-2">
+            <div class="motivo-icon">🎤</div>
+            <h4>Voz e presença</h4>
+            <p>Aprenda a usar a voz, o corpo e o silêncio para comunicar com autoridade. O que atores sabem e poucos profissionais praticam.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-3">
+            <div class="motivo-icon">🧠</div>
+            <h4>Conteúdo que fica</h4>
+            <p>Nada de slides genéricos. Uma noite densa, com vivências que entram pelo corpo e ficam na memória por semanas.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-1">
+            <div class="motivo-icon">🏛</div>
+            <h4>No Teatro Torquato Neto</h4>
+            <p>Um ambiente que já é palco. O cenário certo para uma experiência que vai além de uma palestra comum.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-2">
+            <div class="motivo-icon">👤</div>
+            <h4>João Cambraia ao vivo</h4>
+            <p>Facilitador com anos de experiência em teatro aplicado e desenvolvimento humano. Sem roteiro engessado, sem slides prontos.</p>
+          </div>
+          <div class="motivo-card reveal reveal-delay-3">
+            <div class="motivo-icon">⚡</div>
+            <h4>Uma noite que muda</h4>
+            <p>300+ profissionais já saíram diferentes. Não é promessa — é o que acontece quando você para de assistir e começa a praticar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         INSTRUTOR
+    ════════════════════════════════════ -->
+    <section class="section bg-curtain" id="instrutor" aria-labelledby="instrutor-heading">
+      <div class="container">
+        <div class="instrutor-grid reveal">
+
+          <div class="instrutor-foto">
+            <img src="joao-cambraia.jpg" alt="João Cambraia — Fundador da Somos Cênica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="instrutor-foto-placeholder" style="display:none;">JC</div>
+          </div>
+
+          <div>
+            <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Fundador &amp; Facilitador</span>
+            <h2 id="instrutor-heading" class="instrutor-nome">João Cambraia</h2>
+            <p class="instrutor-cargo">Diretor da Somos Cênica · Especialista em Desenvolvimento Humano</p>
+            <p class="instrutor-bio">
+              João Cambraia combina anos de experiência com técnicas teatrais e desenvolvimento humano para criar uma metodologia única: usar o palco como laboratório de transformação comportamental. Fundou a Somos Cênica com a convicção de que toda pessoa já tem dentro de si as habilidades que busca — falta apenas o espaço seguro para praticá-las.
+            </p>
+            <p class="instrutor-bio">
+              Seu método já passou por mais de 300 profissionais em Teresina e Fortaleza, de analistas a diretores, de startups a empresas tradicionais.
+            </p>
+            <div class="instrutor-tags">
+              <span class="instrutor-tag">Teatro aplicado</span>
+              <span class="instrutor-tag">Liderança</span>
+              <span class="instrutor-tag">Comunicação</span>
+              <span class="instrutor-tag">Inteligência emocional</span>
+              <span class="instrutor-tag">Improviso</span>
+              <span class="instrutor-tag">Facilitação de grupos</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         FAQ
+    ════════════════════════════════════ -->
+    <section class="section bg-cream" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:40px;">
+          <h2 id="faq-heading" class="display">Perguntas frequentes</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-1">
+              <span class="faq-question">Preciso ter experiência com teatro?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-1"><p class="faq-answer">Não. O curso é para profissionais, não para atores. Nenhum conhecimento teatral é necessário — apenas a disposição de participar e praticar.</p></div>
+          </div>
+
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
+              <span class="faq-question">Onde e quando acontecem os cursos?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-3"><p class="faq-answer">Em Teresina – PI (turma de junho 2026, início 8 de junho) e Fortaleza – CE (turma de agosto 2026, início 3 de agosto). Ambas 100% presenciais, 8 semanas, máximo 25 pessoas por turma.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">
+              <span class="faq-question">Qual o valor do curso?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-4"><p class="faq-answer">R$ 897 por pessoa. Pagamento parcelado disponível. Nenhum pagamento no ato da inscrição — nossa equipe confirma sua vaga pelo WhatsApp e apresenta as opções de pagamento.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-5">
+              <span class="faq-question">O curso pode ser contratado para empresas?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-5"><p class="faq-answer">Sim. Oferecemos o formato in-company para equipes e programas de desenvolvimento de liderança. Turmas fechadas a partir de 10 pessoas. Entre em contato pelo WhatsApp para receber uma proposta personalizada.</p></div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-6">
+              <span class="faq-question">As vagas são limitadas?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-body" id="faq-6"><p class="faq-answer">Sim. Cada turma tem no máximo 25 pessoas — esse limite é proposital para garantir qualidade e atenção individual. Garanta sua vaga o quanto antes para não ficar de fora.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
          EMPRESAS
     ════════════════════════════════════ -->
     <style>
@@ -2361,8 +1997,8 @@
             <p class="inscricao-form-title">Reservar meu ingresso</p>
             <p class="inscricao-form-sub">Preencha abaixo e você receberá a confirmação por e-mail.</p>
 
-            <form id="main-form" name="inscricao-palestra" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-              <input type="hidden" name="form-name" value="inscricao-palestra">
+            <form id="main-form" name="inscricao-curso" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="inscricao-curso">
               <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
 
               <div class="form-row">
@@ -2382,11 +2018,12 @@
               </div>
 
               <div class="form-field">
-                <label for="f-interesse">Tipo de ingresso</label>
+                <label for="f-interesse">Interesse</label>
                 <select id="f-interesse" name="interesse" required>
                   <option value="">Selecione...</option>
-                  <option value="Palestra inteira">Inteira — R$ 100</option>
-                  <option value="Palestra meia-entrada">Meia-entrada — R$ 50 (estudantes)</option>
+                  <option value="Curso Teresina">Curso Técnica Humana · Teresina (jun/2026)</option>
+                  <option value="Curso Fortaleza">Curso Técnica Humana · Fortaleza (ago/2026)</option>
+                  <option value="Treinamento Empresas">Treinamento para Empresas</option>
                 </select>
               </div>
 
@@ -2397,7 +2034,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary" style="width:100%;margin-top:20px;justify-content:center;">
-                🎟 Garantir ingresso e ir para pagamento
+                🎭 Quero garantir minha vaga
               </button>
               <p style="font-size:0.75rem;color:rgba(245,239,230,0.35);text-align:center;margin-top:8px;">Pagamento seguro pelo Mercado Pago · Confirmação por e-mail</p>
             </form>
@@ -2657,17 +2294,17 @@
 
         <div class="footer-links-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
           <div>
-            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Palestra</p>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Cursos</p>
             <nav class="footer-links" style="flex-direction:column;align-items:flex-start;gap:8px;">
-              <a href="#palestra">A Palestra</a>
+              <a href="#curso">Cursos</a>
               <a href="#porquesomoscenica">Por que ir</a>
-              <a href="#inscricao">Garantir ingresso</a>
+              <a href="#form-curso">Garantir vaga</a>
             </nav>
           </div>
           <div>
             <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,239,230,0.3);margin-bottom:12px;">Sobre</p>
             <nav class="footer-links" style="flex-direction:column;align-items:flex-start;gap:8px;">
-              <a href="#instrutor">Palestrante</a>
+              <a href="#instrutor">Instrutor</a>
               <a href="#faq">FAQ</a>
               <a href="#curso">Curso</a>
               <a href="#empresas">Empresas</a>
@@ -2761,19 +2398,15 @@
 
     // ── Links de pagamento — atualize os URLs abaixo ──────────────────────────
     const PAYMENT_LINKS = {
-      palestraInteira:     'https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9',
-      palestraMeia:        'https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9',
-      modulo:              'https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9',
-      cursoCompleto:       'https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9',
-      empresaPequena:      'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Pequena%20Empresa.',
-      empresaMedia:        'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Média%20Empresa.',
-      empresaGrande:       'https://wa.me/5585997041061?text=Olá!%20Quero%20uma%20proposta%20para%20Grande%20Empresa.',
+      cursoTeresina:   'https://wa.me/5586994002099?text=Quero%20garantir%20vaga%20no%20curso%20de%20Teresina',
+      cursoFortaleza:  'https://wa.me/5586994002099?text=Quero%20garantir%20vaga%20no%20curso%20de%20Fortaleza',
+      empresas:        'https://wa.me/5586994002099?text=Quero%20um%20treinamento%20para%20minha%20empresa',
     };
 
     function paymentLinkForInterest(interest) {
       if (!interest) return null;
       // Para a palestra no formulário, usa inteira por padrão
-      if (interest.includes('Palestra'))                   return PAYMENT_LINKS.palestraInteira;
+      if (interest.includes('Teresina') || interest.includes('Fortaleza')) return 'R$ 897 — pagamento parcelado disponível';
       if (interest.includes('curso completo') ||
           interest.includes('Curso completo'))             return PAYMENT_LINKS.cursoCompleto;
       if (interest.includes('Pequena') ||
@@ -2817,7 +2450,7 @@
     // ── Helpers ───────────────────────────────────────────────────────────────
     function priceForInterest(interest) {
       if (!interest) return '';
-      if (interest.includes('Palestra'))   return 'R$ 150 — inteira (meia-entrada: R$ 75)';
+      if (interest.includes('Teresina') || interest.includes('Fortaleza')) return 'R$ 897 — pagamento parcelado disponível';
       if (interest.includes('Curso completo') ||
           interest.includes('curso completo')) return 'R$ 1.200 à vista ou em até 10×';
       if (interest.startsWith('Módulo'))   return 'R$ 200';
