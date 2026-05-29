@@ -633,7 +633,6 @@
     @keyframes blink-vagas { 0%,100%{opacity:1} 50%{opacity:0.15} }
     .blink-vagas { animation: blink-vagas 1.1s ease-in-out infinite; }
   </style>
-  </div>
 
   <!-- ════════════════════════════════════
        NAVEGAÇÃO
@@ -701,7 +700,7 @@
     <style>
       .hero3-grid {
         display: grid;
-        grid-template-columns: 1fr 220px;
+        grid-template-columns: 1fr 250px;
         gap: 28px;
         align-items: center;
       }
@@ -793,40 +792,38 @@
             <p style="font-size:0.72rem;color:rgba(245,239,230,0.3);">Pagamento parcelado disponível · 300+ profissionais já transformados</p>
           </div>
 
-          <!-- Coluna 3: quadrados de navegação -->
+          <!-- Coluna 3: foto do facilitador -->
           <div class="hero3-nav" style="position:relative;z-index:2;">
-            <p style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,239,230,0.4);margin-bottom:10px;text-align:center;">Explore</p>
-            <div class="hero-nav-grid">
 
-              <!-- Quiz — destaque pulsante (ocupa linha inteira) -->
-              <a href="quiz.html" class="hng-card hng-card--quiz">
-                <div class="hng-icon">🔮</div>
+            <!-- Foto do João -->
+            <div style="border-radius:20px;overflow:hidden;position:relative;box-shadow:0 24px 64px rgba(15,10,26,0.55),0 0 0 1px rgba(212,134,58,0.2);">
+              <img src="joao-cambraia.jpg" alt="João Cambraia — Facilitador da Somos Cênica"
+                   style="width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top;" />
+              <div style="position:absolute;bottom:0;left:0;right:0;padding:18px 16px 16px;background:linear-gradient(0deg,rgba(15,10,26,0.92) 0%,rgba(15,10,26,0.6) 60%,transparent 100%);">
+                <p style="font-family:'Playfair Display',Georgia,serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:2px;line-height:1.2;">João Cambraia</p>
+                <p style="font-size:0.6875rem;color:var(--spotlight);font-weight:600;letter-spacing:0.04em;">Fundador · Somos Cênica</p>
+              </div>
+            </div>
+
+            <!-- nav cards compactos -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+              <a href="quiz.html" class="hng-card hng-card--quiz" style="grid-column:1/-1;padding:10px 12px;">
+                <div class="hng-icon" style="font-size:1.25rem;">🔮</div>
                 <div>
                   <div class="quiz-badge">✦ Novo</div>
-                  <div class="hng-name">Faça seu Quiz!</div>
-                  <div class="hng-sub">Descubra seu arquétipo e temperamento</div>
+                  <div class="hng-name" style="font-size:.75rem;">Faça seu Quiz!</div>
                 </div>
               </a>
-
-              <a href="#curso" class="hng-card">
-                <div class="hng-icon">🎭</div>
-                <div class="hng-name">Cursos</div>
-                <div class="hng-sub">Formações práticas</div>
+              <a href="#curso" class="hng-card" style="padding:12px 8px;">
+                <div class="hng-icon" style="font-size:1.25rem;">🎭</div>
+                <div class="hng-name" style="font-size:.75rem;">Cursos</div>
               </a>
-
-              <a href="#empresas" class="hng-card">
-                <div class="hng-icon">🏢</div>
-                <div class="hng-name">Empresas</div>
-                <div class="hng-sub">Treinamentos B2B</div>
+              <a href="#empresas" class="hng-card" style="padding:12px 8px;">
+                <div class="hng-icon" style="font-size:1.25rem;">🏢</div>
+                <div class="hng-name" style="font-size:.75rem;">Empresas</div>
               </a>
-
-              <a href="https://instagram.com/somoscenica.escola" target="_blank" rel="noopener" class="hng-card" style="grid-column: 1 / -1;">
-                <div class="hng-icon">📲</div>
-                <div class="hng-name">Redes Sociais</div>
-                <div class="hng-sub">Instagram · WhatsApp</div>
-              </a>
-
             </div>
+
           </div>
 
         </div>
@@ -1546,20 +1543,16 @@
             <span class="stat-label">Profissionais impactados</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value">22/05</span>
-            <span class="stat-label">Data do evento</span>
+            <span class="stat-value">8</span>
+            <span class="stat-label">Semanas de vivência</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value">20h</span>
-            <span class="stat-label">Horário de início</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">1h30</span>
-            <span class="stat-label">De imersão prática</span>
+            <span class="stat-value">25</span>
+            <span class="stat-label">Vagas por turma</span>
           </div>
           <div class="stat-item">
             <span class="stat-value stat-counter" data-target="95" data-suffix="%">95%</span>
-            <span class="stat-label">Satisfação nas palestras</span>
+            <span class="stat-label">Índice de satisfação</span>
           </div>
         </div>
       </div>
@@ -1644,6 +1637,78 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         DEPOIMENTOS
+    ════════════════════════════════════ -->
+    <section class="section bg-stage" id="depoimentos" aria-labelledby="depoimentos-heading">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom:56px;">
+          <span class="label text-spotlight" style="display:block;margin-bottom:12px;">Quem já passou pelo palco</span>
+          <h2 id="depoimentos-heading" class="display text-cream" style="font-family:'Playfair Display',Georgia,serif;">O que dizem os alunos</h2>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:960px;margin:0 auto;">
+
+          <!-- Depoimento 1 — substitua pelo real -->
+          <div class="reveal reveal-delay-1" style="background:rgba(245,239,230,0.05);border:1px solid rgba(212,134,58,0.2);border-radius:20px;padding:32px 28px;position:relative;">
+            <span style="font-family:'Playfair Display',Georgia,serif;font-size:3.5rem;line-height:0.5;color:var(--spotlight);opacity:0.35;display:block;margin-bottom:16px;">"</span>
+            <p style="font-size:1rem;line-height:1.75;color:rgba(245,239,230,0.85);font-style:italic;margin-bottom:24px;">
+              <!-- SUBSTITUA: cole aqui a frase real do aluno -->
+              "A experiência mudou completamente a forma como me comunico nas reuniões. Passei a ocupar o espaço com muito mais segurança."
+            </p>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--spotlight),var(--curtain));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:700;color:var(--cream);flex-shrink:0;">A</div>
+              <div>
+                <p style="font-weight:700;font-size:0.9375rem;color:var(--cream);"><!-- Nome do aluno --></p>
+                <p style="font-size:0.8125rem;color:var(--spotlight);"><!-- Cargo · Empresa --></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Depoimento 2 — substitua pelo real -->
+          <div class="reveal reveal-delay-2" style="background:rgba(245,239,230,0.05);border:1px solid rgba(212,134,58,0.2);border-radius:20px;padding:32px 28px;position:relative;">
+            <span style="font-family:'Playfair Display',Georgia,serif;font-size:3.5rem;line-height:0.5;color:var(--spotlight);opacity:0.35;display:block;margin-bottom:16px;">"</span>
+            <p style="font-size:1rem;line-height:1.75;color:rgba(245,239,230,0.85);font-style:italic;margin-bottom:24px;">
+              <!-- SUBSTITUA: cole aqui a frase real do aluno -->
+              "Nunca imaginei que técnicas de teatro fossem tão aplicáveis ao dia a dia profissional. O módulo de escuta ativa transformou como lidero minha equipe."
+            </p>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--spotlight),var(--curtain));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:700;color:var(--cream);flex-shrink:0;">B</div>
+              <div>
+                <p style="font-weight:700;font-size:0.9375rem;color:var(--cream);"><!-- Nome do aluno --></p>
+                <p style="font-size:0.8125rem;color:var(--spotlight);"><!-- Cargo · Empresa --></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Depoimento 3 — substitua pelo real -->
+          <div class="reveal reveal-delay-3" style="background:rgba(245,239,230,0.05);border:1px solid rgba(212,134,58,0.2);border-radius:20px;padding:32px 28px;position:relative;">
+            <span style="font-family:'Playfair Display',Georgia,serif;font-size:3.5rem;line-height:0.5;color:var(--spotlight);opacity:0.35;display:block;margin-bottom:16px;">"</span>
+            <p style="font-size:1rem;line-height:1.75;color:rgba(245,239,230,0.85);font-style:italic;margin-bottom:24px;">
+              <!-- SUBSTITUA: cole aqui a frase real do aluno -->
+              "Saí do curso diferente. Não decorei nada — vivi. E essa diferença aparece toda vez que preciso me comunicar sob pressão."
+            </p>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--spotlight),var(--curtain));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:700;color:var(--cream);flex-shrink:0;">C</div>
+              <div>
+                <p style="font-weight:700;font-size:0.9375rem;color:var(--cream);"><!-- Nome do aluno --></p>
+                <p style="font-size:0.8125rem;color:var(--spotlight);"><!-- Cargo · Empresa --></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Barra de credibilidade -->
+        <div class="reveal" style="max-width:640px;margin:48px auto 0;text-align:center;padding:20px 24px;background:rgba(245,239,230,0.04);border:1px solid rgba(245,239,230,0.08);border-radius:14px;">
+          <p style="font-size:0.9375rem;color:rgba(245,239,230,0.6);line-height:1.7;">
+            <strong style="color:var(--cream);">300+ profissionais</strong> já passaram pelos programas da Somos Cênica em Teresina e Fortaleza — de analistas a diretores, de startups a empresas tradicionais.
+          </p>
+        </div>
+
       </div>
     </section>
 
@@ -1978,112 +2043,31 @@
     </section>
 
     <!-- ════════════════════════════════════
-         INSCRIÇÃO
+         CTA FINAL
     ════════════════════════════════════ -->
-    <section class="section cta-section" id="inscricao" aria-labelledby="inscricao-heading">
+    <section class="section cta-section" id="inscricao" aria-labelledby="cta-final-heading" style="padding-block:var(--space-20);">
       <div class="container">
-        <div class="text-center reveal" style="max-width:640px;margin:0 auto 48px;">
-          <span class="label text-spotlight" style="margin-bottom:16px;display:block;">Garanta seu lugar</span>
-          <h2 id="inscricao-heading" class="display" style="font-family:'Playfair Display',Georgia,serif;color:var(--cream);font-size:clamp(1.75rem,3.5vw,2.5rem);line-height:1.2;margin-bottom:16px;">
+        <div style="max-width:640px;margin:0 auto;text-align:center;">
+          <span class="label text-spotlight" style="display:block;margin-bottom:16px;">Garanta seu lugar</span>
+          <h2 id="cta-final-heading" style="font-family:'Playfair Display',Georgia,serif;color:var(--cream);font-size:clamp(1.75rem,3.5vw,2.5rem);line-height:1.2;margin-bottom:16px;">
             O palco está pronto.<br>Falta você entrar.
           </h2>
-          <p style="color:rgba(245,239,230,0.4);font-size:0.875rem;">⚡ Vagas limitadas. Garante o seu antes que acabe.</p>
-        </div>
-
-        <div class="inscricao-grid">
-
-          <!-- Formulário de inscrição -->
-          <div class="inscricao-form-card">
-            <p class="inscricao-form-title">Reservar meu ingresso</p>
-            <p class="inscricao-form-sub">Preencha abaixo e você receberá a confirmação por e-mail.</p>
-
-            <form id="main-form" name="inscricao-curso" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-              <input type="hidden" name="form-name" value="inscricao-curso">
-              <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="f-nome">Nome completo</label>
-                  <input type="text" id="f-nome" name="nome" placeholder="Seu nome" required>
-                </div>
-                <div class="form-field">
-                  <label for="f-whats">WhatsApp</label>
-                  <input type="tel" id="f-whats" name="whatsapp" placeholder="(85) 99999-9999">
-                </div>
-              </div>
-
-              <div class="form-field">
-                <label for="f-email">E-mail</label>
-                <input type="email" id="f-email" name="email" placeholder="seu@email.com" required>
-              </div>
-
-              <div class="form-field">
-                <label for="f-interesse">Interesse</label>
-                <select id="f-interesse" name="interesse" required>
-                  <option value="">Selecione...</option>
-                  <option value="Curso Teresina">Curso Técnica Humana · Teresina (jun/2026)</option>
-                  <option value="Curso Fortaleza">Curso Técnica Humana · Fortaleza (ago/2026)</option>
-                  <option value="Treinamento Empresas">Treinamento para Empresas</option>
-                </select>
-              </div>
-
-              <div id="payment-preview" style="display:none;background:rgba(212,134,58,0.08);border:1px solid rgba(212,134,58,0.2);border-radius:10px;padding:12px 16px;margin-top:4px;">
-                <p style="font-size:0.8125rem;color:rgba(245,239,230,0.6);margin:0 0 4px;">Você selecionou:</p>
-                <p style="font-size:0.9375rem;color:var(--cream);font-weight:600;margin:0;"><span id="preview-interesse"></span></p>
-                <p style="font-size:1.125rem;color:var(--spotlight);font-weight:700;margin:4px 0 0;"><span id="preview-valor"></span></p>
-              </div>
-
-              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:20px;justify-content:center;">
-                🎭 Quero garantir minha vaga
-              </button>
-              <p style="font-size:0.75rem;color:rgba(245,239,230,0.35);text-align:center;margin-top:8px;">Pagamento seguro pelo Mercado Pago · Confirmação por e-mail</p>
-            </form>
+          <p style="color:rgba(245,239,230,0.6);font-size:1rem;line-height:1.75;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;">
+            Turmas com vagas limitadas. Inscreva-se abaixo — o pagamento só acontece depois que nossa equipe confirma sua vaga pelo WhatsApp.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+            <a href="#form-curso" onclick="abrirFormCurso('teresina')" class="btn btn-primary btn-lg">
+              🎭 Garantir vaga — Teresina
+            </a>
+            <a href="https://wa.me/5585997041061?text=Olá!%20Quero%20saber%20mais%20sobre%20a%20Somos%20Cênica."
+               target="_blank" rel="noopener"
+               class="btn btn-ghost btn-lg" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              Falar no WhatsApp
+            </a>
           </div>
-
-          <!-- Info do evento -->
-          <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px;">
-            <div style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">📅</div>
-              <div>
-                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Data e horário</strong>
-                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">22 de maio de 2026 · Sexta-feira, 20h</span>
-              </div>
-            </div>
-            <div style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">📍</div>
-              <div>
-                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Local</strong>
-                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Teatro Torquato Neto · Teresina – PI</span>
-              </div>
-            </div>
-            <div style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">🎟</div>
-              <div>
-                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Ingressos</strong>
-                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Inteira R$ 100 · Meia-entrada R$ 50</span>
-              </div>
-            </div>
-            <div style="display:flex;gap:16px;align-items:flex-start;">
-              <div style="width:40px;height:40px;border-radius:10px;background:rgba(212,134,58,0.12);border:1px solid rgba(212,134,58,0.25);display:flex;align-items:center;justify-content:center;font-size:1.125rem;flex-shrink:0;">✉️</div>
-              <div>
-                <strong style="display:block;font-size:0.875rem;color:var(--cream);margin-bottom:2px;">Confirmação automática</strong>
-                <span style="font-size:0.8125rem;color:rgba(245,239,230,0.5);">Você receberá o ingresso e instruções no seu e-mail</span>
-              </div>
-            </div>
-            <div style="margin-top:8px;padding-top:20px;border-top:1px solid rgba(245,239,230,0.08);">
-              <p style="font-size:0.8125rem;color:rgba(245,239,230,0.4);margin-bottom:12px;">Prefere comprar direto?</p>
-              <div style="display:flex;flex-wrap:wrap;gap:10px;">
-                <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-primary btn-sm">🎟 Inteira — R$ 100</a>
-                <a href="https://www.sympla.com.br/evento/palestra-manual-humano/3398331?algoliaID=0efa69ac96b4bb33c34330c26b8625b9" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="border-color:rgba(212,134,58,0.4);color:var(--gold);">Meia — R$ 50</a>
-              </div>
-            </div>
-          </div>
-
+          <p style="font-size:0.75rem;color:rgba(245,239,230,0.25);margin-top:20px;">Nenhum pagamento agora · Confirmação e opções de pagamento pelo WhatsApp</p>
         </div>
-
-        <p style="text-align:center;font-size:0.8125rem;color:rgba(245,239,230,0.25);margin-top:40px;">
-          Dúvidas? <a href="https://wa.me/5585997041061?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20palestra%20Manual%20Humano." target="_blank" rel="noopener" style="color:var(--gold);">Fale no WhatsApp</a>
-        </p>
       </div>
     </section>
 
