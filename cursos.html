@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos | Somos Cênica — Soft Skills com Técnicas Teatrais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --curtain: #1E0A3C;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --warm-white: #FDFAF6;
+      --rose: #7A2B4A;
+      --text-dark: #1C1018;
+      --text-mid: #4A3A52;
+      --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--void);
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* ══ NAV ══ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,10,26,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(232,200,106,0.1);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-brand span { color: var(--spotlight); }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9pt;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--gold); }
+
+    /* ══ HERO ══ */
+    .hero {
+      padding: 120px 40px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(61,16,96,0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(122,43,74,0.2) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-size: 8pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 52pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span { color: var(--gold); font-style: italic; }
+
+    .hero-desc {
+      font-size: 13pt;
+      color: rgba(255,255,255,0.5);
+      max-width: 640px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 28pt;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      margin: 0 8px;
+    }
+
+    /* ══ GRADE DE CURSOS ══ */
+    .cursos-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cursos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ══ CARD DE CURSO ══ */
+    .curso-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .curso-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232,200,106,0.2);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+
+    .card-header {
+      padding: 28px 28px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+
+    /* Cores por curso */
+    .curso-ie .card-header { background: linear-gradient(135deg, var(--curtain), #3D1060); }
+    .curso-ie .card-header::before { background: var(--spotlight); }
+
+    .curso-empatia .card-header { background: linear-gradient(135deg, #1E0A3C, #4A1A60); }
+    .curso-empatia .card-header::before { background: #C47AC0; }
+
+    .curso-comunicacao .card-header { background: linear-gradient(135deg, #1E0A3C, var(--rose)); }
+    .curso-comunicacao .card-header::before { background: var(--rose); }
+
+    .curso-lideranca .card-header { background: linear-gradient(135deg, #0A1628, #1A4A6E); }
+    .curso-lideranca .card-header::before { background: #5B8CC4; }
+
+    .curso-equipe .card-header { background: linear-gradient(135deg, #0A1E28, #1A4A5E); }
+    .curso-equipe .card-header::before { background: #5BC4B8; }
+
+    .curso-criatividade .card-header { background: linear-gradient(135deg, #1E1000, #5C3A00); }
+    .curso-criatividade .card-header::before { background: var(--gold); }
+
+    .curso-proatividade .card-header { background: linear-gradient(135deg, #0A1E10, #1A5C3A); }
+    .curso-proatividade .card-header::before { background: #2A8A58; }
+
+    .card-number {
+      font-family: var(--font-display);
+      font-size: 40pt;
+      font-weight: 700;
+      color: rgba(255,255,255,0.07);
+      position: absolute;
+      bottom: -8px; right: 20px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .card-icon { font-size: 28pt; margin-bottom: 12px; position: relative; z-index: 1; }
+
+    .card-tag {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 22pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      position: relative; z-index: 1;
+    }
+
+    .card-tagline {
+      font-size: 9pt;
+      color: rgba(255,255,255,0.55);
+      font-style: italic;
+      line-height: 1.4;
+      position: relative; z-index: 1;
+    }
+
+    /* Pills de competências */
+    .card-body { padding: 20px 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+    .card-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .cpill {
+      font-size: 8pt;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* Ferramentas */
+    .card-tools { display: flex; flex-direction: column; gap: 6px; }
+
+    .card-tools-label {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    .tool-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .tool-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--spotlight);
+      flex-shrink: 0;
+    }
+
+    /* Botões de acesso */
+    .card-footer {
+      padding: 16px 28px 24px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .btn-slides {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 8.5pt;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      background: rgba(212,134,58,0.15);
+      border: 1px solid rgba(212,134,58,0.3);
+      color: var(--spotlight);
+    }
+
+    .btn-slides:hover {
+      background: rgba(212,134,58,0.25);
+      border-color: var(--spotlight);
+      color: white;
+    }
+
+    .btn-ficha {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 8.5pt;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+    }
+
+    .btn-ficha:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.25);
+      color: white;
+    }
+
+    /* ══ METODOLOGIA ══ */
+    .metodologia {
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metodologia-title {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .metodologia-title span { color: var(--gold); font-style: italic; }
+
+    .metodologia-sub {
+      text-align: center;
+      font-size: 10pt;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 40px;
+    }
+
+    .metodo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .metodo-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .metodo-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+
+    .metodo-time {
+      font-family: var(--font-display);
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--spotlight);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .metodo-name {
+      font-size: 10pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .metodo-desc {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    /* ══ FOOTER ══ */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 14pt;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-brand span { color: var(--spotlight); }
+
+    .footer-text { font-size: 8.5pt; color: rgba(255,255,255,0.3); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 680px) {
+      .hero-title { font-size: 32pt; }
+      .cursos-grid { grid-template-columns: 1fr; }
+      .hero { padding: 100px 20px 60px; }
+      .cursos-section { padding: 0 20px 80px; }
+      .metodologia { padding: 0 20px; }
+      .nav { padding: 0 20px; }
+      .hero-stats { gap: 24px; }
+      .hero-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVEGAÇÃO ══ -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Somos <span>Cênica</span></a>
+  <a href="index.html" class="nav-back">← Voltar ao site</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Somos Cênica · Material Didático</div>
+    <h1 class="hero-title">Todos os<br><span>Cursos</span></h1>
+    <p class="hero-desc">7 competências humanas desenvolvidas com técnicas teatrais. Cada curso tem slides para o facilitador e ficha de encerramento para o participante.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Cursos</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Slides por curso</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">60</div>
+        <div class="stat-label">Min por encontro</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="stat">
+        <div class="stat-num">14</div>
+        <div class="stat-label">Materiais</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GRADE DE CURSOS ══ -->
+<section class="cursos-section">
+  <div class="cursos-grid">
+
+    <!-- 1. Inteligência Emocional -->
+    <div class="curso-card curso-ie">
+      <div class="card-header">
+        <div class="card-number">1</div>
+        <div class="card-icon">🧠</div>
+        <div class="card-tag">Soft Skill 01</div>
+        <div class="card-title">Inteligência<br>Emocional</div>
+        <div class="card-tagline">"Quem sente mais conscientemente — decide melhor."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">🎭 Nomear</span>
+          <span class="cpill">🫀 Localizar</span>
+          <span class="cpill">🔍 Entender</span>
+          <span class="cpill">⚡ Regular</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">Roda das Emoções — vocabulário emocional</div>
+          <div class="tool-item">Triângulo do Gatilho — Situação → Interpretação</div>
+          <div class="tool-item">Técnica STOP — autorregulação consciente</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-ie.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-ie.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 2. Empatia -->
+    <div class="curso-card curso-empatia">
+      <div class="card-header">
+        <div class="card-number">2</div>
+        <div class="card-icon">🤝</div>
+        <div class="card-tag">Soft Skill 02</div>
+        <div class="card-title">Empatia</div>
+        <div class="card-tagline">"Empatia não é sentir pelo outro — é sentir com o outro."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">👁 Observar</span>
+          <span class="cpill">🧩 Perspectiva</span>
+          <span class="cpill">🎭 Presença</span>
+          <span class="cpill">💬 Escuta</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">Técnica do Espelho — escuta corporal</div>
+          <div class="tool-item">Os 3 Níveis de Empatia — cognitivo, afetivo, compassivo</div>
+          <div class="tool-item">Troca de Ponto de Vista — exercício teatral</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-empatia.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-empatia.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 3. Comunicação -->
+    <div class="curso-card curso-comunicacao">
+      <div class="card-header">
+        <div class="card-number">3</div>
+        <div class="card-icon">💬</div>
+        <div class="card-tag">Soft Skill 03</div>
+        <div class="card-title">Comuni-<br>cação</div>
+        <div class="card-tagline">"Quem comunica bem não fala mais — ouve melhor."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">🎭 Corpo</span>
+          <span class="cpill">🔊 Voz</span>
+          <span class="cpill">👂 Escuta</span>
+          <span class="cpill">💬 Assertividade</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">As 4 Camadas — corpo, voz, palavras, escuta</div>
+          <div class="tool-item">Técnica do Eco — escuta em 3 níveis</div>
+          <div class="tool-item">CNV — Comunicação Não Violenta (Rosenberg)</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-comunicacao.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-comunicacao.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 4. Liderança -->
+    <div class="curso-card curso-lideranca">
+      <div class="card-header">
+        <div class="card-number">4</div>
+        <div class="card-icon">🧭</div>
+        <div class="card-tag">Soft Skill 04</div>
+        <div class="card-title">Lide-<br>rança</div>
+        <div class="card-tagline">"Liderar é criar o palco para que outros brilhem."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">🎭 Presença</span>
+          <span class="cpill">🧭 Direção</span>
+          <span class="cpill">🤝 Confiança</span>
+          <span class="cpill">🌱 Desenvolvimento</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">O Diretor vs o Ator — presença sem centralizar</div>
+          <div class="tool-item">Feedback SBI — Situação, Comportamento, Impacto</div>
+          <div class="tool-item">Segurança Psicológica — Amy Edmondson</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-lideranca.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-lideranca.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 5. Trabalho em Equipe -->
+    <div class="curso-card curso-equipe">
+      <div class="card-header">
+        <div class="card-number">5</div>
+        <div class="card-icon">🎭</div>
+        <div class="card-tag">Soft Skill 05</div>
+        <div class="card-title">Trabalho em<br>Equipe</div>
+        <div class="card-tagline">"No palco, não existe estrela solitária — existe elenco."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">🤝 Colaboração</span>
+          <span class="cpill">🎯 Objetivo comum</span>
+          <span class="cpill">🔄 Confiança</span>
+          <span class="cpill">💡 Sinergia</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">Impro em grupo — construção coletiva de cenas</div>
+          <div class="tool-item">Modelo de Lencioni — 5 disfunções de equipe</div>
+          <div class="tool-item">Mapa de papéis — quem faz o quê no palco</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-trabalho-em-equipe.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-trabalho-em-equipe.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 6. Criatividade -->
+    <div class="curso-card curso-criatividade">
+      <div class="card-header">
+        <div class="card-number">6</div>
+        <div class="card-icon">💡</div>
+        <div class="card-tag">Soft Skill 06</div>
+        <div class="card-title">Criati-<br>vidade</div>
+        <div class="card-tagline">"Criar não é ter ideias geniais — é ter coragem de ter ideias imperfeitas."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">🌊 Fluxo</span>
+          <span class="cpill">🎲 Improviso</span>
+          <span class="cpill">🔓 Desbloqueio</span>
+          <span class="cpill">✨ Geração</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">Os 4 Bloqueios da Criatividade — medo, perfeição…</div>
+          <div class="tool-item">Regra do "Sim, e..." — improviso como método</div>
+          <div class="tool-item">As 4 Fases do Brainstorm — soltar, conectar, selecionar</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-criatividade.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-criatividade.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+    <!-- 7. Proatividade -->
+    <div class="curso-card curso-proatividade">
+      <div class="card-header">
+        <div class="card-number">7</div>
+        <div class="card-icon">⚡</div>
+        <div class="card-tag">Soft Skill 07</div>
+        <div class="card-title">Proativi-<br>dade</div>
+        <div class="card-tagline">"Protagonistas não esperam a deixa — criam a cena."</div>
+      </div>
+      <div class="card-body">
+        <div class="card-pills">
+          <span class="cpill">⚡ Iniciativa</span>
+          <span class="cpill">🔭 Antecipação</span>
+          <span class="cpill">🎯 Foco</span>
+          <span class="cpill">🔄 Ação</span>
+        </div>
+        <div class="card-tools">
+          <div class="card-tools-label">Ferramentas da aula</div>
+          <div class="tool-item">Os 4 Níveis — reativo, responsivo, preventivo, generativo</div>
+          <div class="tool-item">Matriz de Covey — zona proativa (Quadrante 2)</div>
+          <div class="tool-item">Regra dos 2 Minutos + Antecipação de 48h</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="slides-proatividade.html" class="btn-slides">🎬 Slides</a>
+        <a href="ficha-encerramento-proatividade.html" class="btn-ficha">📋 Ficha</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ METODOLOGIA ══ -->
+<section class="metodologia">
+  <h2 class="metodologia-title">Estrutura de <span>cada encontro</span></h2>
+  <p class="metodologia-sub">Todo curso segue a mesma progressão pedagógica — do corpo para a ideia, da ideia para a prática.</p>
+  <div class="metodo-grid">
+    <div class="metodo-card">
+      <div class="metodo-time">10'</div>
+      <div class="metodo-name">Aquecimento</div>
+      <div class="metodo-desc">Check-in com frase estruturada. Ativa presença e quebra o modo automático.</div>
+    </div>
+    <div class="metodo-card">
+      <div class="metodo-time">15'</div>
+      <div class="metodo-name">Conceito</div>
+      <div class="metodo-desc">Framework central com linguagem teatral. Teoria que nasce da experiência, não precede ela.</div>
+    </div>
+    <div class="metodo-card">
+      <div class="metodo-time">25'</div>
+      <div class="metodo-name">Exercício</div>
+      <div class="metodo-desc">Prática corporal e técnica teatral. Os participantes são protagonistas — não plateia.</div>
+    </div>
+    <div class="metodo-card">
+      <div class="metodo-time">10'</div>
+      <div class="metodo-name">Fechamento</div>
+      <div class="metodo-desc">Ficha de encerramento. Descoberta + compromisso + palavra do dia.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer">
+    <div class="footer-brand">Somos <span>Cênica</span></div>
+    <div class="footer-text">somoscênica.com.br · Escola de Soft Skills com Técnicas Teatrais</div>
+  </div>
+</footer>
+
+</body>
+</html>

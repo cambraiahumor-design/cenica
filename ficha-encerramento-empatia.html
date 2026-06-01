@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha de Encerramento — Empatia | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --curtain: #1E0A3C; --spotlight: #D4863A; --gold: #E8C86A; --cream: #F5EFE6;
+      --warm-white: #FDFAF6; --rose: #7A2B4A;
+      --teal: #2A7A6A; --teal-light: #4AAF9A; --teal-pale: #E6F5F2;
+      --text-dark: #1C1018; --text-mid: #4A3A52; --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #c8e8e0; display: flex; justify-content: center; align-items: flex-start; padding: 30px 20px; min-height: 100vh; }
+    .card { width: 210mm; min-height: 148mm; background: var(--warm-white); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(10,61,53,0.25); display: grid; grid-template-columns: 72mm 1fr; }
+    .col-brand { background: linear-gradient(160deg, #051A18 0%, #0A3D35 50%, var(--teal) 100%); padding: 28px 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .col-brand::before { content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border: 2px solid rgba(74,175,154,0.15); border-radius: 50%; }
+    .col-brand::after { content: ''; position: absolute; bottom: -20px; left: -20px; width: 80px; height: 80px; border: 2px solid rgba(232,200,106,0.15); border-radius: 50%; }
+    .brand-top { position: relative; z-index: 1; }
+    .brand-label { font-size: 7pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 8px; }
+    .brand-name { font-family: var(--font-display); font-size: 22pt; font-weight: 700; color: white; line-height: 1.1; margin-bottom: 6px; }
+    .brand-tagline { font-size: 7.5pt; color: rgba(255,255,255,0.6); line-height: 1.4; font-weight: 300; }
+    .brand-module { position: relative; z-index: 1; }
+    .module-pill { display: inline-block; background: var(--teal); color: white; font-size: 7pt; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .module-title { font-family: var(--font-display); font-size: 13pt; font-weight: 600; color: var(--gold); line-height: 1.3; margin-bottom: 6px; }
+    .module-desc { font-size: 7.5pt; color: rgba(255,255,255,0.55); line-height: 1.5; font-style: italic; }
+    .brand-bottom { position: relative; z-index: 1; }
+    .brand-url { font-size: 7pt; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; }
+    .col-ficha { padding: 28px 28px 24px; display: flex; flex-direction: column; }
+    .ficha-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid #D4EDE8; }
+    .ficha-title { font-family: var(--font-display); font-size: 14pt; font-weight: 700; color: #0A3D35; line-height: 1.2; }
+    .ficha-subtitle { font-size: 8pt; color: var(--text-light); margin-top: 3px; }
+    .date-label { font-size: 7pt; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+    .date-line { width: 80px; border-bottom: 1.5px solid #B0D4CC; height: 16px; }
+    .ficha-date-field { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+    .questions { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .q-item { display: flex; flex-direction: column; gap: 5px; }
+    .q-header { display: flex; align-items: center; gap: 8px; }
+    .q-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .q-label { font-size: 7.5pt; font-weight: 600; color: var(--text-mid); text-transform: uppercase; letter-spacing: 0.8px; }
+    .q-prompt { font-family: var(--font-display); font-size: 9pt; color: var(--text-dark); font-style: italic; line-height: 1.4; padding-left: 16px; }
+    .q-lines { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .q-line { border-bottom: 1px solid #C8E0DA; height: 16px; width: 100%; }
+    .bottom-section { margin-top: 14px; padding-top: 14px; border-top: 1.5px solid #D4EDE8; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .palavra-box { background: linear-gradient(135deg, #0A3D35, var(--teal)); border-radius: 10px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px; }
+    .palavra-label { font-size: 7pt; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    .palavra-title { font-family: var(--font-display); font-size: 11pt; font-weight: 700; color: white; line-height: 1.2; }
+    .palavra-sub { font-size: 7.5pt; color: rgba(255,255,255,0.6); font-style: italic; }
+    .palavra-field { border-bottom: 1.5px solid rgba(255,255,255,0.3); height: 20px; margin-top: 4px; }
+    .compromisso-box { display: flex; flex-direction: column; gap: 4px; }
+    .compromisso-label { font-size: 7pt; color: var(--teal); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+    .compromisso-label::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+    .compromisso-title { font-family: var(--font-display); font-size: 9pt; color: var(--text-dark); font-style: italic; line-height: 1.3; margin-bottom: 4px; }
+    .compromisso-line { border-bottom: 1px solid #B0D4CC; height: 16px; }
+    @media print { body { background: white; padding: 0; display: block; } .card { width: 210mm; min-height: 148mm; border-radius: 0; box-shadow: none; margin: 0; } }
+    @page { size: A5 landscape; margin: 0; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="col-brand">
+    <div class="brand-top">
+      <div class="brand-label">Escola de Soft Skills</div>
+      <div class="brand-name">Somos<br>Cênica</div>
+      <div class="brand-tagline">Desenvolvimento humano<br>com técnicas teatrais</div>
+    </div>
+    <div class="brand-module">
+      <div class="module-pill">Módulo</div>
+      <div class="module-title">Empatia</div>
+      <div class="module-desc">"Empatia não é concordar.<br>É conseguir habitar o ponto<br>de vista do outro."</div>
+    </div>
+    <div class="brand-bottom"><div class="brand-url">somoscênica.com.br</div></div>
+  </div>
+  <div class="col-ficha">
+    <div class="ficha-header">
+      <div>
+        <div class="ficha-title">Ficha de Encerramento</div>
+        <div class="ficha-subtitle">O que você leva para o palco real</div>
+      </div>
+      <div class="ficha-date-field">
+        <div class="date-label">Nome</div><div class="date-line"></div>
+        <div class="date-label" style="margin-top:6px;">Data</div><div class="date-line"></div>
+      </div>
+    </div>
+    <div class="questions">
+      <div class="q-item">
+        <div class="q-header"><div class="q-dot" style="background:var(--teal)"></div><div class="q-label">Descoberta</div></div>
+        <div class="q-prompt">"Hoje eu aprendi sobre mim que..."</div>
+        <div class="q-lines"><div class="q-line"></div><div class="q-line"></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-header"><div class="q-dot" style="background:var(--teal-light)"></div><div class="q-label">Pessoa escolhida</div></div>
+        <div class="q-prompt">"A pessoa com quem vou praticar escuta real esta semana é..."</div>
+        <div class="q-lines"><div class="q-line"></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-header"><div class="q-dot" style="background:var(--gold)"></div><div class="q-label">Pergunta que vou usar</div></div>
+        <div class="q-prompt">"A pergunta empática que vou levar é..."</div>
+        <div class="q-lines"><div class="q-line"></div></div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="palavra-box">
+        <div class="palavra-label">Palavra do Dia</div>
+        <div class="palavra-title">Minha âncora</div>
+        <div class="palavra-sub">Uma palavra. Sem explicação.</div>
+        <div class="palavra-field"></div>
+      </div>
+      <div class="compromisso-box">
+        <div class="compromisso-label">Compromisso</div>
+        <div class="compromisso-title">"Até o próximo encontro, eu vou..."</div>
+        <div class="compromisso-line"></div>
+        <div class="compromisso-line"></div>
+        <div class="compromisso-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

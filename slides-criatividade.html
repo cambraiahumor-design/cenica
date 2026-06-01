@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Criatividade | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A; --curtain: #1E0A3C; --spotlight: #D4863A; --gold: #E8C86A;
+      --cream: #F5EFE6; --warm-white: #FDFAF6; --rose: #7A2B4A;
+      --amber: #C47A1E; --amber-light: #F0A830; --amber-pale: #FDF3E0;
+      --text-dark: #1C1018; --text-mid: #4A3A52; --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #1a1a2e; padding: 40px 20px; }
+
+    .nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 100; background: rgba(15,10,26,0.85); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 40px; border: 1px solid rgba(240,168,48,0.25); }
+    .nav button { background: none; border: none; color: rgba(255,255,255,0.5); font-family: var(--font-body); font-size: 9pt; font-weight: 500; cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.2s; }
+    .nav button:hover, .nav button.active { background: var(--amber); color: white; }
+    .nav-arrow { background: none; border: 1px solid rgba(255,255,255,0.2); color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 12pt; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .nav-arrow:hover { background: var(--amber); border-color: var(--amber); }
+
+    .slide { width: 960px; height: 540px; margin: 0 auto 60px; border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5); position: relative; display: none; }
+    .slide.active { display: flex; }
+
+    /* S1 */
+    .s1 { background: linear-gradient(145deg, #1A0A00 0%, #3D1F00 40%, var(--amber) 80%, #E8A030 100%); align-items: center; justify-content: center; flex-direction: column; }
+    .s1-c { position: absolute; border-radius: 50%; border: 1px solid rgba(240,168,48,0.15); }
+    .s1-c1 { width: 420px; height: 420px; top: -110px; right: -110px; }
+    .s1-c2 { width: 260px; height: 260px; bottom: -70px; left: -70px; border-color: rgba(232,200,106,0.12); }
+    .s1-content { position: relative; z-index: 1; text-align: center; padding: 48px; }
+    .eyebrow { font-size: 9pt; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 20px; }
+    .s1-title { font-family: var(--font-display); font-size: 60pt; font-weight: 700; color: white; line-height: 1.0; margin-bottom: 12px; }
+    .s1-title span { color: var(--void); font-style: italic; }
+    .s1-subtitle { font-size: 13pt; color: rgba(255,255,255,0.8); font-weight: 300; margin-bottom: 32px; line-height: 1.5; }
+    .s1-pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .pill { background: rgba(15,10,26,0.25); border: 1px solid rgba(15,10,26,0.2); color: white; font-size: 8pt; padding: 5px 14px; border-radius: 20px; font-weight: 500; }
+    .s1-brand { position: absolute; bottom: 24px; right: 28px; font-family: var(--font-display); font-size: 9pt; color: rgba(255,255,255,0.5); }
+    .s1-brand span { color: white; font-weight: 700; }
+
+    /* S2 */
+    .s2 { background: var(--warm-white); }
+    .s2-left { width: 280px; background: linear-gradient(160deg, #3D1F00, var(--amber)); padding: 44px 32px; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0; }
+    .s2-tag { font-size: 7.5pt; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
+    .s2-title { font-family: var(--font-display); font-size: 24pt; font-weight: 700; color: white; line-height: 1.1; }
+    .s2-title span { color: var(--gold); font-style: italic; }
+    .s2-timer { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; }
+    .timer-num { font-family: var(--font-display); font-size: 14pt; color: var(--gold); font-weight: 700; }
+    .timer-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .s2-right { flex: 1; padding: 44px; display: flex; flex-direction: column; justify-content: center; }
+    .s2-instruction { font-size: 11pt; color: var(--text-mid); line-height: 1.6; margin-bottom: 24px; }
+    .s2-instruction strong { color: var(--text-dark); }
+    .s2-frase-box { background: linear-gradient(135deg, #3D1F00, var(--amber)); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+    .s2-frase { font-family: var(--font-display); font-size: 14pt; color: white; font-style: italic; line-height: 1.4; }
+    .s2-frase span { color: var(--gold); }
+    .s2-exemplos { display: flex; flex-direction: column; gap: 6px; }
+    .exemplo { display: flex; align-items: flex-start; gap: 8px; font-size: 9pt; color: var(--text-mid); font-style: italic; line-height: 1.4; }
+    .exemplo::before { content: '→'; color: var(--amber); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+    /* S3 CONCEITO */
+    .s3 { background: #1A0A00; flex-direction: column; align-items: center; justify-content: center; padding: 56px 80px; text-align: center; }
+    .s3::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(196,122,30,0.35) 0%, transparent 70%); }
+    .s3-content { position: relative; z-index: 1; }
+    .s3-bg { position: absolute; font-family: var(--font-display); font-size: 100pt; font-weight: 700; color: rgba(240,168,48,0.05); top: 50%; left: 50%; transform: translate(-50%,-50%); user-select: none; white-space: nowrap; }
+    .s3-eyebrow { font-size: 8pt; color: var(--amber-light); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 20px; }
+    .s3-quote { font-family: var(--font-display); font-size: 24pt; font-weight: 600; color: white; line-height: 1.35; margin-bottom: 24px; }
+    .s3-quote span { color: var(--gold); font-style: italic; }
+    .s3-divider { width: 48px; height: 2px; background: var(--amber-light); margin: 0 auto 20px; border-radius: 2px; }
+    .s3-desc { font-size: 11pt; color: rgba(255,255,255,0.55); max-width: 560px; line-height: 1.6; font-weight: 300; }
+
+    /* S4 BLOQUEIOS */
+    .s4 { background: var(--amber-pale); }
+    .s4-left { width: 260px; background: linear-gradient(160deg, #3D1F00, var(--amber)); padding: 44px 28px; display: flex; flex-direction: column; justify-content: center; flex-shrink: 0; }
+    .s4-tag { font-size: 7.5pt; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
+    .s4-title { font-family: var(--font-display); font-size: 22pt; font-weight: 700; color: white; line-height: 1.15; margin-bottom: 16px; }
+    .s4-desc { font-size: 8.5pt; color: rgba(255,255,255,0.55); line-height: 1.5; font-style: italic; }
+    .s4-right { flex: 1; padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .bloq { display: flex; align-items: center; gap: 16px; background: white; border-radius: 10px; padding: 14px 18px; border-left: 4px solid transparent; box-shadow: 0 2px 12px rgba(196,122,30,0.1); }
+    .bloq-1 { border-color: var(--rose); }
+    .bloq-2 { border-color: var(--amber); }
+    .bloq-3 { border-color: #7B5EA7; }
+    .bloq-4 { border-color: #5E8DA7; }
+    .bloq-num { font-family: var(--font-display); font-size: 22pt; font-weight: 700; line-height: 1; flex-shrink: 0; width: 36px; }
+    .bloq-1 .bloq-num { color: var(--rose); }
+    .bloq-2 .bloq-num { color: var(--amber); }
+    .bloq-3 .bloq-num { color: #7B5EA7; }
+    .bloq-4 .bloq-num { color: #5E8DA7; }
+    .bloq-info { flex: 1; }
+    .bloq-name { font-weight: 600; font-size: 11pt; color: var(--text-dark); margin-bottom: 2px; }
+    .bloq-sub { font-size: 8.5pt; color: var(--text-light); font-style: italic; }
+    .bloq-icon { font-size: 18pt; }
+
+    /* S5 SIM E */
+    .s5 { background: var(--void); flex-direction: column; padding: 44px 56px; }
+    .s5-header { margin-bottom: 24px; }
+    .s5-tag { font-size: 7.5pt; color: var(--amber-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+    .s5-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; line-height: 1.1; }
+    .s5-title span { color: var(--gold); font-style: italic; }
+    .simE-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .simE-col { display: flex; flex-direction: column; gap: 12px; }
+    .simE-rule { background: rgba(240,168,48,0.08); border: 1px solid rgba(240,168,48,0.25); border-radius: 14px; padding: 20px 20px; }
+    .simE-rule-label { font-size: 7.5pt; color: var(--amber-light); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 10px; }
+    .simE-rule-text { font-family: var(--font-display); font-size: 22pt; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 8px; }
+    .simE-rule-text span { color: var(--gold); }
+    .simE-rule-desc { font-size: 9pt; color: rgba(255,255,255,0.55); line-height: 1.4; }
+    .simE-how { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px 20px; }
+    .simE-how-label { font-size: 7.5pt; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 10px; }
+    .simE-steps { display: flex; flex-direction: column; gap: 8px; }
+    .simE-step { display: flex; gap: 10px; align-items: flex-start; }
+    .simE-step-num { background: var(--amber); color: white; font-size: 8pt; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .simE-step-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.4; }
+    .simE-badge { background: rgba(122,43,74,0.3); border: 1px solid rgba(122,43,74,0.4); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; }
+    .simE-badge-text { font-size: 9pt; color: #E8A0B0; line-height: 1.4; }
+    .simE-badge-icon { font-size: 18pt; flex-shrink: 0; }
+    .simE-good { background: rgba(240,168,48,0.12); border: 1px solid rgba(240,168,48,0.25); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; }
+    .simE-good-text { font-size: 9pt; color: rgba(255,255,255,0.75); line-height: 1.4; }
+
+    /* S6 BRAINSTORM */
+    .s6 { background: var(--amber-pale); flex-direction: column; padding: 40px 56px; }
+    .s6-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
+    .s6-tag { font-size: 7.5pt; color: var(--amber); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+    .s6-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: #3D1F00; line-height: 1.1; }
+    .s6-title span { color: var(--rose); font-style: italic; }
+    .s6-insight { background: linear-gradient(135deg, #3D1F00, var(--amber)); border-radius: 10px; padding: 14px 18px; max-width: 260px; }
+    .s6-insight-text { font-family: var(--font-display); font-size: 9.5pt; color: var(--gold); font-style: italic; line-height: 1.4; }
+    .s6-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .s6-step { background: white; border-radius: 12px; padding: 16px 14px; text-align: center; box-shadow: 0 2px 12px rgba(196,122,30,0.12); }
+    .s6-step-icon { font-size: 22pt; margin-bottom: 6px; }
+    .s6-step-num { font-family: var(--font-display); font-size: 10pt; font-weight: 700; color: var(--amber); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .s6-step-name { font-weight: 700; font-size: 10pt; color: var(--text-dark); margin-bottom: 6px; }
+    .s6-step-desc { font-size: 8pt; color: var(--text-light); line-height: 1.4; font-style: italic; }
+    .s6-footer { margin-top: 14px; background: linear-gradient(135deg, #3D1F00, var(--amber)); border-radius: 10px; padding: 12px 18px; text-align: center; }
+    .s6-footer-text { font-size: 9.5pt; color: white; line-height: 1.4; font-style: italic; }
+    .s6-footer-text strong { color: var(--gold); font-style: normal; }
+
+    /* S7 OLHOS DE PRIMEIRA VEZ */
+    .s7 { background: #1A0A00; flex-direction: column; align-items: center; justify-content: center; padding: 44px 60px; position: relative; }
+    .s7::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(196,122,30,0.3) 0%, transparent 70%); }
+    .s7-content { position: relative; z-index: 1; width: 100%; }
+    .s7-header { text-align: center; margin-bottom: 28px; }
+    .s7-tag { font-size: 7.5pt; color: var(--amber-light); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 8px; }
+    .s7-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; }
+    .s7-title span { color: var(--gold); }
+    .hab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .hab-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(240,168,48,0.2); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .hab-icon { font-size: 18pt; }
+    .hab-label { font-size: 7.5pt; color: var(--amber-light); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .hab-text { font-family: var(--font-display); font-size: 10pt; color: white; font-style: italic; line-height: 1.4; }
+    .hab-action { font-size: 8pt; color: rgba(255,255,255,0.4); line-height: 1.3; margin-top: 4px; }
+
+    /* S8 */
+    .s8 { background: var(--warm-white); }
+    .s8-left { flex: 1; padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    .s8-eyebrow { font-size: 8pt; color: var(--amber); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 16px; }
+    .s8-title { font-family: var(--font-display); font-size: 30pt; font-weight: 700; color: #3D1F00; line-height: 1.15; margin-bottom: 24px; }
+    .s8-title span { color: var(--amber); font-style: italic; }
+    .s8-cards { display: flex; flex-direction: column; gap: 10px; }
+    .s8-card { display: flex; align-items: center; gap: 12px; background: var(--amber-pale); border-radius: 10px; padding: 12px 16px; }
+    .s8-num { font-family: var(--font-display); font-size: 18pt; font-weight: 700; color: var(--amber); width: 28px; flex-shrink: 0; line-height: 1; }
+    .s8-text { font-size: 9.5pt; color: var(--text-mid); line-height: 1.4; }
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+    .s8-right { width: 300px; background: linear-gradient(160deg, #3D1F00, var(--amber), #C47A1E); padding: 44px 32px; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0; position: relative; overflow: hidden; }
+    .s8-right::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border: 1px solid rgba(232,200,106,0.2); border-radius: 50%; }
+    .s8-quote-mark { font-family: var(--font-display); font-size: 48pt; color: rgba(232,200,106,0.35); line-height: 0.8; margin-bottom: 8px; }
+    .s8-quote-text { font-family: var(--font-display); font-size: 13pt; color: white; font-style: italic; line-height: 1.4; }
+    .s8-quote-text span { color: var(--gold); }
+    .s8-brand-name { font-family: var(--font-display); font-size: 18pt; font-weight: 700; color: white; margin-bottom: 4px; }
+    .s8-brand-tag { font-size: 7.5pt; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+    @media print { body { background: white; padding: 0; } .nav { display: none; } .slide { display: flex !important; page-break-after: always; margin: 0; border-radius: 0; box-shadow: none; width: 100%; height: 100vh; } }
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- S1 ABERTURA -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-c s1-c1"></div><div class="s1-c s1-c2"></div>
+  <div class="s1-content">
+    <div class="eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title">Criati<span>vidade</span></div>
+    <div class="s1-subtitle">Criatividade não é talento — é coragem de olhar<br>para um problema com olhos de primeira vez.</div>
+    <div class="s1-pills">
+      <div class="pill">🚧 Os 4 Bloqueios</div>
+      <div class="pill">🎭 Sim, e...</div>
+      <div class="pill">💡 Brainstorm Livre</div>
+      <div class="pill">👁 Olhos de Primeira Vez</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- S2 CHECK-IN -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">A ideia<br>que você<br><span>guardou</span></div>
+    </div>
+    <div class="s2-timer">
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Todos participam</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">Criatividade morre antes de nascer — no filtro do que os outros vão pensar. Vamos começar recuperando o que ficou para trás.</div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"A última ideia que eu tive e <span>não falei</span> foi _______ — e o que me impediu foi _______."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Tive a ideia de mudar o formato das reuniões — mas achei que iam achar ridículo"</div>
+      <div class="exemplo">"Pensei em uma solução diferente — mas já tentamos algo parecido antes"</div>
+      <div class="exemplo">"Queria sugerir algo fora do padrão — mas não era o momento certo"</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 CONCEITO -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-bg">CRIAR</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Criatividade no trabalho</div>
+    <div class="s3-quote">Criar não é ter ideias geniais.<br>É ter <span>coragem de ter</span> ideias imperfeitas.</div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">No teatro, o improviso ensina que não existe ideia ruim — existe ideia bloqueada. A criatividade no trabalho não morre por falta de talento. Morre por excesso de filtro. O que vamos treinar hoje é a habilidade de soltar antes de julgar.</div>
+  </div>
+</div>
+
+<!-- S4 OS 4 BLOQUEIOS -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Por que não criamos</div>
+    <div class="s4-title">Os 4<br>Bloqueios<br>da Cria-<br>tividade</div>
+    <div class="s4-desc">"Esses 4 bloqueios são internos — não vêm da empresa ou dos colegas. Vêm de dentro."</div>
+  </div>
+  <div class="s4-right">
+    <div class="bloq bloq-1">
+      <div class="bloq-num">1</div>
+      <div class="bloq-info">
+        <div class="bloq-name">Medo do Julgamento</div>
+        <div class="bloq-sub">"Vão achar que sou ingênuo/a" — a autocensura que acontece antes da fala</div>
+      </div>
+      <div class="bloq-icon">😬</div>
+    </div>
+    <div class="bloq bloq-2">
+      <div class="bloq-num">2</div>
+      <div class="bloq-info">
+        <div class="bloq-name">Perfeccionismo</div>
+        <div class="bloq-sub">"Só falo quando tiver certeza" — a ideia morre esperando ser perfeita</div>
+      </div>
+      <div class="bloq-icon">🎯</div>
+    </div>
+    <div class="bloq bloq-3">
+      <div class="bloq-num">3</div>
+      <div class="bloq-info">
+        <div class="bloq-name">Já Tentamos Isso</div>
+        <div class="bloq-sub">"Não vai funcionar" — a experiência passada vira muro para o futuro</div>
+      </div>
+      <div class="bloq-icon">🧱</div>
+    </div>
+    <div class="bloq bloq-4">
+      <div class="bloq-num">4</div>
+      <div class="bloq-info">
+        <div class="bloq-name">Comparação</div>
+        <div class="bloq-sub">"Fulano é mais criativo" — o mito do talento inato que paralisa</div>
+      </div>
+      <div class="bloq-icon">🪞</div>
+    </div>
+  </div>
+</div>
+
+<!-- S5 SIM E -->
+<div class="slide s5" id="slide-5" style="flex-direction:column;">
+  <div class="s5-header">
+    <div class="s5-tag">Exercício Central · Improviso Teatral</div>
+    <div class="s5-title">A Regra do <span>"Sim, e..."</span></div>
+  </div>
+  <div class="simE-layout" style="flex:1;">
+    <div class="simE-col">
+      <div class="simE-rule">
+        <div class="simE-rule-label">A regra de ouro do improviso</div>
+        <div class="simE-rule-text"><span>"Sim,</span> e..."</div>
+        <div class="simE-rule-desc">Aceite o que o outro trouxe. Depois construa sobre isso. Nunca vete antes de explorar.</div>
+      </div>
+      <div class="simE-badge">
+        <div class="simE-badge-icon">🚫</div>
+        <div class="simE-badge-text"><strong style="color:white">"Sim, mas..."</strong> — aceita e destrói. A ideia morre antes de crescer.</div>
+      </div>
+      <div class="simE-good">
+        <div style="font-size:18pt;flex-shrink:0">✅</div>
+        <div class="simE-good-text"><strong style="color:var(--amber-light)">"Sim, e..."</strong> — aceita e expande. A ideia cresce além do que um sozinho veria.</div>
+      </div>
+    </div>
+    <div class="simE-col">
+      <div class="simE-how">
+        <div class="simE-how-label">Como fazer ao vivo</div>
+        <div class="simE-steps">
+          <div class="simE-step"><div class="simE-step-num">1</div><div class="simE-step-text">Facilitador lança um problema real da equipe</div></div>
+          <div class="simE-step"><div class="simE-step-num">2</div><div class="simE-step-text">Primeira pessoa dá uma ideia — pode ser absurda</div></div>
+          <div class="simE-step"><div class="simE-step-num">3</div><div class="simE-step-text">Cada pessoa começa com "Sim, e..." e adiciona algo</div></div>
+          <div class="simE-step"><div class="simE-step-num">4</div><div class="simE-step-text">Sem vetar, sem "mas", sem "já tentamos"</div></div>
+          <div class="simE-step"><div class="simE-step-num">5</div><div class="simE-step-text">Após 5 rodadas: qual ideia surpreendeu?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 BRAINSTORM LIVRE -->
+<div class="slide s6" id="slide-6" style="display:flex;flex-direction:column;">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Técnica · Brainstorm Livre</div>
+      <div class="s6-title">As 4 fases do <span>Brainstorm</span></div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"Separe o momento de gerar do momento de avaliar. Esses dois modos não funcionam juntos."</div>
+    </div>
+  </div>
+  <div class="s6-steps">
+    <div class="s6-step">
+      <div class="s6-step-icon">🌊</div>
+      <div class="s6-step-num">Fase 1</div>
+      <div class="s6-step-name">Soltar</div>
+      <div class="s6-step-desc">3 minutos. Escreva tudo que vier — sem filtro, sem ordem, sem julgamento</div>
+    </div>
+    <div class="s6-step">
+      <div class="s6-step-icon">🔗</div>
+      <div class="s6-step-num">Fase 2</div>
+      <div class="s6-step-name">Conectar</div>
+      <div class="s6-step-desc">Agrupe ideias parecidas. Veja o que se repete. Identifique padrões inesperados</div>
+    </div>
+    <div class="s6-step">
+      <div class="s6-step-icon">⭐</div>
+      <div class="s6-step-num">Fase 3</div>
+      <div class="s6-step-name">Selecionar</div>
+      <div class="s6-step-desc">Agora — e só agora — escolha as 2 ou 3 ideias com mais potencial</div>
+    </div>
+    <div class="s6-step">
+      <div class="s6-step-icon">🚀</div>
+      <div class="s6-step-num">Fase 4</div>
+      <div class="s6-step-name">Próximo passo</div>
+      <div class="s6-step-desc">Qual ação mínima transforma essa ideia em algo real na próxima semana?</div>
+    </div>
+  </div>
+  <div class="s6-footer">
+    <div class="s6-footer-text">A criatividade não pede <strong>perfeição</strong> — pede <strong>permissão</strong>. Dê a si mesmo a permissão de ter ideias ruins primeiro.</div>
+  </div>
+</div>
+
+<!-- S7 OLHOS DE PRIMEIRA VEZ -->
+<div class="slide s7" id="slide-7" style="display:flex;flex-direction:column;">
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Mentalidade Criativa</div>
+      <div class="s7-title">6 hábitos de quem pensa com <span>olhos novos</span></div>
+    </div>
+    <div class="hab-grid">
+      <div class="hab-card">
+        <div class="hab-icon">❓</div>
+        <div class="hab-label">Perguntar antes de responder</div>
+        <div class="hab-text">"Por que fazemos assim?" — a pergunta que ninguém faz</div>
+        <div class="hab-action">Pratique: questione um processo que "sempre foi assim"</div>
+      </div>
+      <div class="hab-card">
+        <div class="hab-icon">🔀</div>
+        <div class="hab-label">Misturar referências</div>
+        <div class="hab-text">As melhores ideias vêm da combinação de campos diferentes</div>
+        <div class="hab-action">Pratique: o que [área fora do seu trabalho] faria nesse problema?</div>
+      </div>
+      <div class="hab-card">
+        <div class="hab-icon">🧱</div>
+        <div class="hab-label">Transformar restrição em motor</div>
+        <div class="hab-text">Criatividade floresce dentro de limites — não apesar deles</div>
+        <div class="hab-action">Pratique: e se você tivesse metade do tempo e metade do orçamento?</div>
+      </div>
+      <div class="hab-card">
+        <div class="hab-icon">🎭</div>
+        <div class="hab-label">Usar o "e se..."</div>
+        <div class="hab-text">"E se fizéssemos o contrário do que sempre fazemos?"</div>
+        <div class="hab-action">Pratique: inverta o problema — qual seria o pior resultado possível?</div>
+      </div>
+      <div class="hab-card">
+        <div class="hab-icon">😴</div>
+        <div class="hab-label">Dar espaço para a ideia</div>
+        <div class="hab-text">Melhores soluções surgem quando a mente descansa do problema</div>
+        <div class="hab-action">Pratique: durma antes de decidir sobre um problema difícil</div>
+      </div>
+      <div class="hab-card">
+        <div class="hab-icon">🗣</div>
+        <div class="hab-label">Falar antes de ter certeza</div>
+        <div class="hab-text">Dizer a ideia em voz alta a transforma — o silêncio a mata</div>
+        <div class="hab-action">Pratique: na próxima reunião, fale a primeira ideia imperfeita</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 ENCERRAMENTO -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Identifique seu bloqueio dominante</strong> — qual dos 4 mais te trava? E em qual situação?</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>Use o "Sim, e..."</strong> na próxima reunião — mesmo que só internamente, antes de vetar</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Sua palavra do dia</strong> — a âncora quando o filtro aparecer e quiser calar sua ideia</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div>
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">Você não pode usar criatividade quando tem medo de ser <span>julgado</span>.</div>
+    </div>
+    <div>
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+<script>
+  let current=1,total=8;
+  function goTo(n){document.getElementById('slide-'+current).classList.remove('active');document.getElementById('btn-'+current).classList.remove('active');current=n;document.getElementById('slide-'+current).classList.add('active');document.getElementById('btn-'+current).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  function changeSlide(d){let n=current+d;if(n<1)n=total;if(n>total)n=1;goTo(n);}
+  document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')changeSlide(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')changeSlide(-1);});
+</script>
+</body>
+</html>

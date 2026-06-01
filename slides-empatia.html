@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Empatia | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A; --curtain: #1E0A3C; --spotlight: #D4863A; --gold: #E8C86A;
+      --cream: #F5EFE6; --warm-white: #FDFAF6; --rose: #7A2B4A;
+      --teal: #2A7A6A; --teal-light: #4AAF9A; --teal-pale: #E6F5F2;
+      --text-dark: #1C1018; --text-mid: #4A3A52; --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: #1a1a2e; padding: 40px 20px; }
+
+    .nav {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 100;
+      background: rgba(15,10,26,0.85); backdrop-filter: blur(10px);
+      padding: 10px 20px; border-radius: 40px;
+      border: 1px solid rgba(74,175,154,0.25);
+    }
+    .nav button {
+      background: none; border: none; color: rgba(255,255,255,0.5);
+      font-family: var(--font-body); font-size: 9pt; font-weight: 500;
+      cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.2s;
+    }
+    .nav button:hover, .nav button.active { background: var(--teal); color: white; }
+    .nav-arrow {
+      background: none; border: 1px solid rgba(255,255,255,0.2); color: white;
+      width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 12pt;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .nav-arrow:hover { background: var(--teal); border-color: var(--teal); }
+
+    .slide {
+      width: 960px; height: 540px; margin: 0 auto 60px; border-radius: 16px;
+      overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      position: relative; display: none;
+    }
+    .slide.active { display: flex; }
+
+    /* ── S1 ABERTURA ── */
+    .s1 {
+      background: linear-gradient(145deg, #051A18 0%, #0A3D35 40%, var(--teal) 70%, #1A5A4A 100%);
+      align-items: center; justify-content: center; flex-direction: column;
+    }
+    .s1-circles { position: absolute; inset: 0; overflow: hidden; }
+    .s1-c { position: absolute; border-radius: 50%; border: 1px solid rgba(74,175,154,0.15); }
+    .s1-c1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+    .s1-c2 { width: 250px; height: 250px; bottom: -60px; left: -60px; border-color: rgba(232,200,106,0.12); }
+    .s1-c3 { width: 160px; height: 160px; top: 50%; right: 100px; border-color: rgba(74,175,154,0.2); }
+    .s1-content { position: relative; z-index: 1; text-align: center; padding: 48px; }
+    .s1-eyebrow { font-size: 9pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 20px; }
+    .s1-title { font-family: var(--font-display); font-size: 64pt; font-weight: 700; color: white; line-height: 1.0; margin-bottom: 12px; }
+    .s1-title span { color: var(--gold); font-style: italic; }
+    .s1-subtitle { font-size: 13pt; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 32px; line-height: 1.5; }
+    .s1-pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .pill { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); font-size: 8pt; padding: 5px 14px; border-radius: 20px; font-weight: 500; }
+    .s1-brand { position: absolute; bottom: 24px; right: 28px; font-family: var(--font-display); font-size: 9pt; color: rgba(255,255,255,0.3); }
+    .s1-brand span { color: var(--teal-light); }
+
+    /* ── S2 CHECK-IN ── */
+    .s2 { background: var(--warm-white); }
+    .s2-left { width: 280px; background: linear-gradient(160deg, #0A3D35, var(--teal)); padding: 44px 32px; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0; }
+    .s2-tag { font-size: 7.5pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
+    .s2-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; line-height: 1.1; }
+    .s2-title span { color: var(--gold); font-style: italic; }
+    .s2-timer { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 14px; }
+    .timer-num { font-family: var(--font-display); font-size: 14pt; color: var(--gold); font-weight: 700; }
+    .timer-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .s2-right { flex: 1; padding: 44px; display: flex; flex-direction: column; justify-content: center; }
+    .s2-instruction { font-size: 11pt; color: var(--text-mid); line-height: 1.6; margin-bottom: 24px; }
+    .s2-instruction strong { color: var(--text-dark); font-weight: 600; }
+    .s2-frase-box { background: linear-gradient(135deg, #0A3D35, var(--teal)); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+    .s2-frase { font-family: var(--font-display); font-size: 16pt; color: white; font-style: italic; line-height: 1.3; }
+    .s2-frase span { color: var(--gold); }
+    .s2-exemplos { display: flex; flex-direction: column; gap: 6px; }
+    .exemplo { display: flex; align-items: flex-start; gap: 8px; font-size: 9pt; color: var(--text-mid); font-style: italic; line-height: 1.4; }
+    .exemplo::before { content: '→'; color: var(--teal); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+    /* ── S3 CONCEITO ── */
+    .s3 {
+      background: #051A18; flex-direction: column; align-items: center;
+      justify-content: center; padding: 56px 80px; text-align: center;
+    }
+    .s3::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(42,122,106,0.4) 0%, transparent 70%);
+    }
+    .s3-content { position: relative; z-index: 1; }
+    .s3-bg { position: absolute; font-family: var(--font-display); font-size: 120pt; font-weight: 700; color: rgba(74,175,154,0.05); top: 50%; left: 50%; transform: translate(-50%,-50%); user-select: none; white-space: nowrap; }
+    .s3-eyebrow { font-size: 8pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 3px; font-weight: 600; margin-bottom: 20px; }
+    .s3-quote { font-family: var(--font-display); font-size: 26pt; font-weight: 600; color: white; line-height: 1.3; margin-bottom: 24px; }
+    .s3-quote span { color: var(--gold); font-style: italic; }
+    .s3-divider { width: 48px; height: 2px; background: var(--teal-light); margin: 0 auto 20px; border-radius: 2px; }
+    .s3-desc { font-size: 11pt; color: rgba(255,255,255,0.55); max-width: 560px; line-height: 1.6; font-weight: 300; }
+
+    /* ── S4 PILARES ── */
+    .s4 { background: var(--teal-pale); }
+    .s4-left { width: 260px; background: linear-gradient(160deg, #0A3D35, var(--teal)); padding: 44px 28px; display: flex; flex-direction: column; justify-content: center; flex-shrink: 0; }
+    .s4-tag { font-size: 7.5pt; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
+    .s4-title { font-family: var(--font-display); font-size: 24pt; font-weight: 700; color: white; line-height: 1.15; margin-bottom: 16px; }
+    .s4-desc { font-size: 8.5pt; color: rgba(255,255,255,0.55); line-height: 1.5; font-style: italic; }
+    .s4-right { flex: 1; padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .pilar { display: flex; align-items: center; gap: 16px; background: white; border-radius: 10px; padding: 14px 18px; border-left: 4px solid transparent; box-shadow: 0 2px 12px rgba(10,61,53,0.08); }
+    .pilar-1 { border-color: var(--teal); }
+    .pilar-2 { border-color: var(--teal-light); }
+    .pilar-3 { border-color: var(--gold); }
+    .pilar-4 { border-color: var(--rose); }
+    .pilar-num { font-family: var(--font-display); font-size: 22pt; font-weight: 700; line-height: 1; flex-shrink: 0; width: 36px; }
+    .pilar-1 .pilar-num { color: var(--teal); }
+    .pilar-2 .pilar-num { color: var(--teal-light); }
+    .pilar-3 .pilar-num { color: #c9a840; }
+    .pilar-4 .pilar-num { color: var(--rose); }
+    .pilar-info { flex: 1; }
+    .pilar-name { font-weight: 600; font-size: 11pt; color: var(--text-dark); margin-bottom: 2px; }
+    .pilar-sub { font-size: 8.5pt; color: var(--text-light); font-style: italic; }
+    .pilar-icon { font-size: 18pt; }
+
+    /* ── S5 DOIS MODOS ── */
+    .s5 { background: var(--void); flex-direction: column; padding: 44px 56px; }
+    .s5-header { margin-bottom: 28px; }
+    .s5-tag { font-size: 7.5pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+    .s5-title { font-family: var(--font-display); font-size: 28pt; font-weight: 700; color: white; line-height: 1.1; }
+    .s5-title span { color: var(--gold); font-style: italic; }
+    .s5-grid { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; align-items: center; flex: 1; }
+    .modo-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 24px; height: 100%; display: flex; flex-direction: column; gap: 12px; }
+    .modo-card.negativo { border-color: rgba(122,43,74,0.4); background: rgba(122,43,74,0.06); }
+    .modo-card.positivo { border-color: rgba(74,175,154,0.4); background: rgba(74,175,154,0.06); }
+    .modo-badge { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 20px; display: inline-block; width: fit-content; }
+    .negativo .modo-badge { background: rgba(122,43,74,0.3); color: #E8A0B0; }
+    .positivo .modo-badge { background: rgba(74,175,154,0.3); color: var(--teal-light); }
+    .modo-title { font-family: var(--font-display); font-size: 16pt; font-weight: 700; color: white; line-height: 1.2; }
+    .modo-items { display: flex; flex-direction: column; gap: 6px; }
+    .modo-item { font-size: 9pt; color: rgba(255,255,255,0.6); line-height: 1.4; display: flex; gap: 7px; }
+    .modo-item::before { content: '·'; color: var(--teal-light); font-weight: 700; flex-shrink: 0; }
+    .negativo .modo-item::before { color: #E8A0B0; }
+    .vs-circle { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 10pt; font-weight: 700; color: var(--gold); margin: 0 auto; }
+
+    /* ── S6 EXERCÍCIO ── */
+    .s6 { background: var(--teal-pale); flex-direction: column; padding: 40px 56px; }
+    .s6-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
+    .s6-tag { font-size: 7.5pt; color: var(--teal); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+    .s6-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: #0A3D35; line-height: 1.1; }
+    .s6-title span { color: var(--rose); font-style: italic; }
+    .s6-insight { background: linear-gradient(135deg, #0A3D35, var(--teal)); border-radius: 10px; padding: 14px 18px; max-width: 260px; }
+    .s6-insight-text { font-family: var(--font-display); font-size: 9.5pt; color: var(--gold); font-style: italic; line-height: 1.4; }
+    .s6-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .s6-step { background: white; border-radius: 12px; padding: 18px 16px; text-align: center; box-shadow: 0 2px 12px rgba(10,61,53,0.1); border-top: 3px solid var(--teal); }
+    .s6-step-num { font-family: var(--font-display); font-size: 28pt; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 6px; }
+    .s6-step-name { font-weight: 700; font-size: 11pt; color: var(--text-dark); margin-bottom: 6px; }
+    .s6-step-desc { font-size: 8.5pt; color: var(--text-light); line-height: 1.4; font-style: italic; }
+    .s6-footer { margin-top: 16px; background: linear-gradient(135deg, #0A3D35, var(--teal)); border-radius: 10px; padding: 12px 18px; text-align: center; }
+    .s6-footer-text { font-size: 9.5pt; color: white; line-height: 1.4; font-style: italic; }
+    .s6-footer-text strong { color: var(--gold); font-style: normal; }
+
+    /* ── S7 PERGUNTAS QUE ABREM ── */
+    .s7 { background: #051A18; flex-direction: column; align-items: center; justify-content: center; padding: 44px 60px; position: relative; }
+    .s7::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(42,122,106,0.3) 0%, transparent 70%); }
+    .s7-content { position: relative; z-index: 1; width: 100%; }
+    .s7-header { text-align: center; margin-bottom: 28px; }
+    .s7-tag { font-size: 7.5pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 8px; }
+    .s7-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; line-height: 1.1; }
+    .s7-title span { color: var(--gold); }
+    .perguntas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .pergunta-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(74,175,154,0.2); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .pg-icon { font-size: 18pt; }
+    .pg-label { font-size: 7.5pt; color: var(--teal-light); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .pg-text { font-family: var(--font-display); font-size: 10pt; color: white; font-style: italic; line-height: 1.4; }
+    .pg-why { font-size: 8pt; color: rgba(255,255,255,0.4); line-height: 1.3; margin-top: 4px; }
+
+    /* ── S8 ENCERRAMENTO ── */
+    .s8 { background: var(--warm-white); }
+    .s8-left { flex: 1; padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    .s8-eyebrow { font-size: 8pt; color: var(--teal); text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; margin-bottom: 16px; }
+    .s8-title { font-family: var(--font-display); font-size: 30pt; font-weight: 700; color: #0A3D35; line-height: 1.15; margin-bottom: 24px; }
+    .s8-title span { color: var(--teal); font-style: italic; }
+    .s8-cards { display: flex; flex-direction: column; gap: 10px; }
+    .s8-card { display: flex; align-items: center; gap: 12px; background: var(--teal-pale); border-radius: 10px; padding: 12px 16px; }
+    .s8-num { font-family: var(--font-display); font-size: 18pt; font-weight: 700; color: var(--teal); width: 28px; flex-shrink: 0; line-height: 1; }
+    .s8-text { font-size: 9.5pt; color: var(--text-mid); line-height: 1.4; }
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+    .s8-right { width: 300px; background: linear-gradient(160deg, #0A3D35, var(--teal), #1A5A4A); padding: 44px 32px; display: flex; flex-direction: column; justify-content: space-between; flex-shrink: 0; position: relative; overflow: hidden; }
+    .s8-right::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; border: 1px solid rgba(74,175,154,0.2); border-radius: 50%; }
+    .s8-quote-mark { font-family: var(--font-display); font-size: 48pt; color: rgba(232,200,106,0.3); line-height: 0.8; margin-bottom: 8px; }
+    .s8-quote-text { font-family: var(--font-display); font-size: 13pt; color: white; font-style: italic; line-height: 1.4; }
+    .s8-quote-text span { color: var(--gold); }
+    .s8-brand-name { font-family: var(--font-display); font-size: 18pt; font-weight: 700; color: white; margin-bottom: 4px; }
+    .s8-brand-tag { font-size: 7.5pt; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+    @media print { body { background: white; padding: 0; } .nav { display: none; } .slide { display: flex !important; page-break-after: always; margin: 0; border-radius: 0; box-shadow: none; width: 100%; height: 100vh; } }
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- SLIDE 1 — ABERTURA -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-circles">
+    <div class="s1-c s1-c1"></div><div class="s1-c s1-c2"></div><div class="s1-c s1-c3"></div>
+  </div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title"><span>Empatia</span></div>
+    <div class="s1-subtitle">Empatia não é concordar. É conseguir habitar<br>o ponto de vista do outro tempo suficiente para entendê-lo.</div>
+    <div class="s1-pills">
+      <div class="pill">👁 Presença</div>
+      <div class="pill">🔄 Perspectiva</div>
+      <div class="pill">🚫 Sem Julgamento</div>
+      <div class="pill">🫂 Sentir Junto</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- SLIDE 2 — CHECK-IN -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">De onde<br>você está<br><span>olhando?</span></div>
+    </div>
+    <div class="s2-timer">
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Todos participam</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">Pense em alguém com quem você teve <strong>dificuldade de se conectar</strong> recentemente. Sem julgamento — só observação.</div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"Se eu tivesse que defender o ponto de vista de <span>[essa pessoa]</span>, eu diria que ela age assim porque <span>_______</span>."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Meu colega é difícil porque... talvez ele se sinta invisível nas decisões"</div>
+      <div class="exemplo">"Minha liderança pressiona porque... talvez ela carregue uma pressão que não vejo"</div>
+      <div class="exemplo">"Esse cliente reclama porque... talvez ele já tenha sido decepcionado antes"</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3 — CONCEITO -->
+<div class="slide s3" id="slide-3" style="display:flex;flex-direction:column;">
+  <div class="s3-bg">EMPATIA</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Empatia — de verdade</div>
+    <div class="s3-quote">Empatia não é sentir <span>pelo</span> outro.<br>É sentir <span>com</span> o outro.</div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">No teatro, aprendemos a "habitar" um personagem diferente de nós. Isso não significa concordar com ele — significa entender de onde ele vem. Empatia no trabalho é essa habilidade: estar presente o suficiente para ouvir o que está por trás das palavras.</div>
+  </div>
+</div>
+
+<!-- SLIDE 4 — 4 PILARES -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Estrutura da Aula</div>
+    <div class="s4-title">Os 4<br>Pilares<br>da Empatia</div>
+    <div class="s4-desc">"Cada pilar é uma habilidade que pode ser treinada — não um traço de personalidade fixo."</div>
+  </div>
+  <div class="s4-right">
+    <div class="pilar pilar-1">
+      <div class="pilar-num">1</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Presença Total</div>
+        <div class="pilar-sub">Estar de corpo e mente — sem planejar a resposta enquanto ouve</div>
+      </div>
+      <div class="pilar-icon">👁</div>
+    </div>
+    <div class="pilar pilar-2">
+      <div class="pilar-num">2</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Perspectiva</div>
+        <div class="pilar-sub">Conseguir habitar o ponto de vista do outro sem perder o seu</div>
+      </div>
+      <div class="pilar-icon">🔄</div>
+    </div>
+    <div class="pilar pilar-3">
+      <div class="pilar-num">3</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Suspensão do Julgamento</div>
+        <div class="pilar-sub">Adiar a avaliação — ouvir até o fim antes de concluir</div>
+      </div>
+      <div class="pilar-icon">🚫</div>
+    </div>
+    <div class="pilar pilar-4">
+      <div class="pilar-num">4</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Reconhecer a Emoção</div>
+        <div class="pilar-sub">Nomear o que o outro parece estar sentindo — e verificar</div>
+      </div>
+      <div class="pilar-icon">🫂</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5 — DOIS MODOS DE ESCUTAR -->
+<div class="slide s5" id="slide-5" style="flex-direction:column;">
+  <div class="s5-header">
+    <div class="s5-tag">Degrau 2 · Escuta Ativa</div>
+    <div class="s5-title">Dois modos de <span>escutar</span></div>
+  </div>
+  <div class="s5-grid" style="flex:1;display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;">
+    <div class="modo-card negativo">
+      <div class="modo-badge">Escuta Reativa</div>
+      <div class="modo-title">Ouvir para<br>Responder</div>
+      <div class="modo-items">
+        <div class="modo-item">Você já está formulando o que vai dizer</div>
+        <div class="modo-item">Interrompe quando "já entendeu"</div>
+        <div class="modo-item">Compara com sua própria experiência</div>
+        <div class="modo-item">O outro sente que não foi ouvido</div>
+      </div>
+    </div>
+    <div class="vs-circle">VS</div>
+    <div class="modo-card positivo">
+      <div class="modo-badge">Escuta Empática</div>
+      <div class="modo-title">Ouvir para<br>Entender</div>
+      <div class="modo-items">
+        <div class="modo-item">Você fica presente até o fim da fala</div>
+        <div class="modo-item">Faz perguntas antes de dar opiniões</div>
+        <div class="modo-item">Nomeia a emoção que percebe</div>
+        <div class="modo-item">O outro sente que foi realmente visto</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6 — EXERCÍCIO TROCA DE PERSONAGEM -->
+<div class="slide s6" id="slide-6" style="display:flex;flex-direction:column;">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Exercício Central · Breakout 5 min</div>
+      <div class="s6-title">Troca de <span>Personagem</span></div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"No teatro, você não precisa ser o personagem para entendê-lo. Precisa habitá-lo."</div>
+    </div>
+  </div>
+  <div class="s6-steps">
+    <div class="s6-step">
+      <div class="s6-step-num">1</div>
+      <div class="s6-step-name">Escolha uma pessoa</div>
+      <div class="s6-step-desc">Alguém com quem você tem dificuldade de se relacionar no trabalho agora</div>
+    </div>
+    <div class="s6-step">
+      <div class="s6-step-num">2</div>
+      <div class="s6-step-name">Vire essa pessoa</div>
+      <div class="s6-step-desc">Responda: qual é o maior medo dela? O que ela mais quer ser reconhecida? O que a estressa?</div>
+    </div>
+    <div class="s6-step">
+      <div class="s6-step-num">3</div>
+      <div class="s6-step-name">Compartilhe com seu par</div>
+      <div class="s6-step-desc">Não o que aconteceu — o que mudou em você ao tentar habitar esse ponto de vista</div>
+    </div>
+  </div>
+  <div class="s6-footer">
+    <div class="s6-footer-text">Você não precisa concordar com alguém para <strong>entendê-lo</strong>. E entendê-lo já muda a conversa.</div>
+  </div>
+</div>
+
+<!-- SLIDE 7 — PERGUNTAS QUE ABREM -->
+<div class="slide s7" id="slide-7" style="display:flex;flex-direction:column;">
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Técnica · Perguntas Empáticas</div>
+      <div class="s7-title">Perguntas que <span>abrem</span> — não que fecham</div>
+    </div>
+    <div class="perguntas-grid">
+      <div class="pergunta-card">
+        <div class="pg-icon">🎯</div>
+        <div class="pg-label">Para entender o contexto</div>
+        <div class="pg-text">"O que está tornando isso difícil para você agora?"</div>
+        <div class="pg-why">Abre o contexto antes de julgar a atitude</div>
+      </div>
+      <div class="pergunta-card">
+        <div class="pg-icon">🫀</div>
+        <div class="pg-label">Para nomear a emoção</div>
+        <div class="pg-text">"Parece que isso está te pesando — é isso mesmo?"</div>
+        <div class="pg-why">Valida sem presumir — verifica antes de concluir</div>
+      </div>
+      <div class="pergunta-card">
+        <div class="pg-icon">🔑</div>
+        <div class="pg-label">Para descobrir a necessidade</div>
+        <div class="pg-text">"O que você precisaria para se sentir mais apoiado nisso?"</div>
+        <div class="pg-why">Vai direto ao que o outro precisa — não ao que você acha que ele precisa</div>
+      </div>
+      <div class="pergunta-card">
+        <div class="pg-icon">🌱</div>
+        <div class="pg-label">Para não resolver, mas estar presente</div>
+        <div class="pg-text">"Você quer que eu ajude a resolver ou só precisa ser ouvido agora?"</div>
+        <div class="pg-why">Pergunta antes de agir — respeita o que o outro realmente quer</div>
+      </div>
+      <div class="pergunta-card">
+        <div class="pg-icon">🔄</div>
+        <div class="pg-label">Para mudar de perspectiva</div>
+        <div class="pg-text">"Se você estivesse no lugar dela, o que acharia que estava acontecendo?"</div>
+        <div class="pg-why">Convida à perspectiva sem impor — o outro chega sozinho</div>
+      </div>
+      <div class="pergunta-card">
+        <div class="pg-icon">⚓</div>
+        <div class="pg-label">Para encerrar com cuidado</div>
+        <div class="pg-text">"Tem mais alguma coisa que você queria dizer antes de a gente seguir?"</div>
+        <div class="pg-why">Garante que o outro foi ouvido até o fim — não apenas o suficiente</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8 — ENCERRAMENTO -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Escolha uma pessoa</strong> com quem vai praticar escuta empática esta semana — antes de dar uma opinião</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>Use uma das perguntas</strong> que abrem na próxima conversa difícil</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Sua palavra do dia</strong> — a âncora quando a escuta travar</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div>
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">Quando as pessoas falam, <span>escute completamente</span>. A maioria nunca escuta.</div>
+    </div>
+    <div>
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+<script>
+  let current=1,total=8;
+  function goTo(n){document.getElementById('slide-'+current).classList.remove('active');document.getElementById('btn-'+current).classList.remove('active');current=n;document.getElementById('slide-'+current).classList.add('active');document.getElementById('btn-'+current).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  function changeSlide(d){let n=current+d;if(n<1)n=total;if(n>total)n=1;goTo(n);}
+  document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')changeSlide(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')changeSlide(-1);});
+</script>
+</body>
+</html>

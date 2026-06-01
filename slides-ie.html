@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Inteligência Emocional | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --curtain: #1E0A3C;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --warm-white: #FDFAF6;
+      --rose: #7A2B4A;
+      --text-dark: #1C1018;
+      --text-mid: #4A3A52;
+      --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: #1a1a2e;
+      padding: 40px 20px;
+    }
+
+    /* ── Navegação ── */
+    .nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+      background: rgba(15,10,26,0.85);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(232,200,106,0.2);
+    }
+
+    .nav button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-body);
+      font-size: 9pt;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav button:hover,
+    .nav button.active {
+      background: var(--spotlight);
+      color: white;
+    }
+
+    .nav-arrow {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 12pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .nav-arrow:hover { background: var(--spotlight); border-color: var(--spotlight); }
+
+    /* ── Slide base ── */
+    .slide {
+      width: 960px;
+      height: 540px;
+      margin: 0 auto 60px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      position: relative;
+      display: none;
+    }
+
+    .slide.active { display: block; }
+
+    /* ────────────────────────────────────────
+       SLIDE 1 — ABERTURA
+    ──────────────────────────────────────── */
+    .s1 {
+      background: linear-gradient(145deg, var(--void) 0%, var(--curtain) 40%, #3D1060 70%, var(--rose) 100%);
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .s1-circles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .s1-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(232,200,106,0.12);
+    }
+
+    .s1-c1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+    .s1-c2 { width: 250px; height: 250px; bottom: -60px; left: -60px; border-color: rgba(212,134,58,0.15); }
+    .s1-c3 { width: 150px; height: 150px; top: 50%; right: 120px; border-color: rgba(212,134,58,0.2); }
+
+    .s1-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px;
+    }
+
+    .s1-eyebrow {
+      font-size: 9pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .s1-title {
+      font-family: var(--font-display);
+      font-size: 52pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.0;
+      margin-bottom: 12px;
+    }
+
+    .s1-title span { color: var(--gold); font-style: italic; }
+
+    .s1-subtitle {
+      font-size: 13pt;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .s1-pills {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 8pt;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .s1-brand {
+      position: absolute;
+      bottom: 24px;
+      right: 28px;
+      font-family: var(--font-display);
+      font-size: 9pt;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.5px;
+    }
+
+    .s1-brand span { color: var(--spotlight); }
+
+    /* ────────────────────────────────────────
+       SLIDE 2 — CHECK-IN
+    ──────────────────────────────────────── */
+    .s2 {
+      background: var(--warm-white);
+      display: flex !important;
+    }
+
+    .s2-left {
+      width: 280px;
+      background: var(--curtain);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .s2-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .s2-title {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .s2-title span { color: var(--gold); font-style: italic; }
+
+    .s2-timer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+
+    .timer-icon { font-size: 16pt; }
+
+    .timer-text {
+      font-size: 9pt;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.3;
+    }
+
+    .timer-num {
+      font-family: var(--font-display);
+      font-size: 14pt;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .s2-right {
+      flex: 1;
+      padding: 44px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s2-instruction {
+      font-size: 11pt;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .s2-instruction strong { color: var(--curtain); font-weight: 600; }
+
+    .s2-frase-box {
+      background: linear-gradient(135deg, var(--curtain) 0%, var(--rose) 100%);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .s2-frase {
+      font-family: var(--font-display);
+      font-size: 17pt;
+      color: white;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .s2-frase span {
+      color: var(--gold);
+      text-decoration: underline;
+      text-decoration-color: rgba(232,200,106,0.4);
+      text-underline-offset: 4px;
+    }
+
+    .s2-exemplos {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .exemplo {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 9pt;
+      color: var(--text-mid);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .exemplo::before {
+      content: '→';
+      color: var(--spotlight);
+      font-style: normal;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 3 — CONCEITO IE
+    ──────────────────────────────────────── */
+    .s3 {
+      background: var(--void);
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .s3::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(61,16,96,0.5) 0%, transparent 70%);
+    }
+
+    .s3-content { position: relative; z-index: 1; }
+
+    .s3-number {
+      font-family: var(--font-display);
+      font-size: 80pt;
+      font-weight: 700;
+      color: rgba(232,200,106,0.07);
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      user-select: none;
+      line-height: 1;
+    }
+
+    .s3-eyebrow {
+      font-size: 8pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .s3-quote {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .s3-quote span { color: var(--gold); font-style: italic; }
+
+    .s3-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--spotlight);
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+
+    .s3-desc {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.55);
+      max-width: 560px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 4 — OS 4 DEGRAUS
+    ──────────────────────────────────────── */
+    .s4 {
+      background: var(--cream);
+      display: flex !important;
+    }
+
+    .s4-left {
+      width: 260px;
+      background: linear-gradient(160deg, var(--curtain), var(--rose));
+      padding: 44px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .s4-tag {
+      font-size: 7.5pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .s4-title {
+      font-family: var(--font-display);
+      font-size: 24pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .s4-desc {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .s4-right {
+      flex: 1;
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .degrau {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      border-radius: 10px;
+      padding: 14px 18px;
+      border-left: 4px solid transparent;
+      box-shadow: 0 2px 12px rgba(30,10,60,0.07);
+    }
+
+    .degrau-1 { border-color: var(--spotlight); }
+    .degrau-2 { border-color: var(--gold); }
+    .degrau-3 { border-color: var(--rose); }
+    .degrau-4 { border-color: #7B5EA7; }
+
+    .degrau-num {
+      font-family: var(--font-display);
+      font-size: 22pt;
+      font-weight: 700;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+
+    .degrau-1 .degrau-num { color: var(--spotlight); }
+    .degrau-2 .degrau-num { color: #c9a840; }
+    .degrau-3 .degrau-num { color: var(--rose); }
+    .degrau-4 .degrau-num { color: #7B5EA7; }
+
+    .degrau-info { flex: 1; }
+
+    .degrau-name {
+      font-weight: 600;
+      font-size: 11pt;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .degrau-sub {
+      font-size: 8.5pt;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .degrau-time {
+      font-size: 8pt;
+      color: var(--text-light);
+      background: var(--cream);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 5 — NOMEAR / RODA
+    ──────────────────────────────────────── */
+    .s5 {
+      background: var(--void);
+      display: flex !important;
+    }
+
+    .s5-left {
+      flex: 1;
+      padding: 44px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s5-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .step-badge {
+      background: var(--spotlight);
+      color: white;
+      font-size: 8pt;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .step-line {
+      height: 1px;
+      flex: 1;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .s5-title {
+      font-family: var(--font-display);
+      font-size: 34pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .s5-title span { color: var(--gold); font-style: italic; }
+
+    .s5-desc {
+      font-size: 10.5pt;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .s5-task {
+      background: rgba(232,200,106,0.08);
+      border: 1px solid rgba(232,200,106,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+
+    .s5-task-label {
+      font-size: 7.5pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .s5-task-text {
+      font-size: 10pt;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .s5-right {
+      width: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* Roda das emoções simplificada */
+    .wheel {
+      width: 280px;
+      height: 280px;
+      position: relative;
+    }
+
+    .wheel-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--spotlight);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .wheel-center-text {
+      font-family: var(--font-display);
+      font-size: 8pt;
+      color: white;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .wheel-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .ring-1 { width: 110px; height: 110px; border-color: rgba(212,134,58,0.3); }
+    .ring-2 { width: 190px; height: 190px; border-color: rgba(232,200,106,0.2); }
+    .ring-3 { width: 270px; height: 270px; border-color: rgba(255,255,255,0.1); }
+
+    .emotion-dot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .edot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .elabel {
+      font-size: 7pt;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 6 — TRIÂNGULO DO GATILHO
+    ──────────────────────────────────────── */
+    .s6 {
+      background: var(--cream);
+      display: flex !important;
+      flex-direction: column;
+      padding: 40px 56px;
+    }
+
+    .s6-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .s6-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .s6-title {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: var(--curtain);
+      line-height: 1.1;
+    }
+
+    .s6-title span { color: var(--rose); font-style: italic; }
+
+    .s6-insight {
+      background: var(--curtain);
+      border-radius: 10px;
+      padding: 14px 18px;
+      max-width: 260px;
+    }
+
+    .s6-insight-text {
+      font-family: var(--font-display);
+      font-size: 9.5pt;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .triangle-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+
+    .tri-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .tri-box {
+      border-radius: 12px;
+      padding: 16px 12px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .tri-s { background: rgba(30,10,60,0.08); border: 2px solid rgba(30,10,60,0.15); }
+    .tri-i { background: rgba(212,134,58,0.1); border: 2px solid rgba(212,134,58,0.3); }
+    .tri-e { background: rgba(122,43,74,0.1); border: 2px solid rgba(122,43,74,0.3); }
+    .tri-r { background: rgba(123,94,167,0.1); border: 2px solid rgba(123,94,167,0.3); }
+
+    .tri-icon { font-size: 20pt; margin-bottom: 6px; }
+
+    .tri-name {
+      font-weight: 700;
+      font-size: 11pt;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .tri-sub {
+      font-size: 8pt;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .tri-arrow {
+      font-size: 20pt;
+      color: var(--spotlight);
+      padding: 0 4px;
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    .tri-key {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--text-mid);
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 7 — TÉCNICA STOP
+    ──────────────────────────────────────── */
+    .s7 {
+      background: linear-gradient(145deg, var(--void) 0%, #1A0530 50%, var(--curtain) 100%);
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 44px 60px;
+      position: relative;
+    }
+
+    .s7-bg-text {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 180pt;
+      font-weight: 700;
+      color: rgba(255,255,255,0.02);
+      line-height: 1;
+      user-select: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .s7-content { position: relative; z-index: 1; width: 100%; }
+
+    .s7-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .s7-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .s7-title {
+      font-family: var(--font-display);
+      font-size: 28pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .s7-title span { color: var(--gold); }
+
+    .stop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .stop-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stop-letter {
+      font-family: var(--font-display);
+      font-size: 40pt;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stop-s .stop-letter { color: var(--spotlight); }
+    .stop-t .stop-letter { color: var(--gold); }
+    .stop-o .stop-letter { color: #A78BDA; }
+    .stop-p .stop-letter { color: #6ABFAD; }
+
+    .stop-word {
+      font-weight: 700;
+      font-size: 9pt;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stop-desc {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* ────────────────────────────────────────
+       SLIDE 8 — ENCERRAMENTO
+    ──────────────────────────────────────── */
+    .s8 {
+      background: var(--warm-white);
+      display: flex !important;
+    }
+
+    .s8-left {
+      flex: 1;
+      padding: 48px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s8-eyebrow {
+      font-size: 8pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .s8-title {
+      font-family: var(--font-display);
+      font-size: 30pt;
+      font-weight: 700;
+      color: var(--curtain);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .s8-title span { color: var(--spotlight); font-style: italic; }
+
+    .s8-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .s8-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .s8-num {
+      font-family: var(--font-display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--spotlight);
+      width: 28px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .s8-text {
+      font-size: 9.5pt;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+
+    .s8-right {
+      width: 300px;
+      background: linear-gradient(160deg, var(--curtain), #3D1060, var(--rose));
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s8-right::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(232,200,106,0.12);
+      border-radius: 50%;
+    }
+
+    .s8-right::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: -30px;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(212,134,58,0.15);
+      border-radius: 50%;
+    }
+
+    .s8-quote-block { position: relative; z-index: 1; }
+
+    .s8-quote-mark {
+      font-family: var(--font-display);
+      font-size: 48pt;
+      color: rgba(232,200,106,0.3);
+      line-height: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .s8-quote-text {
+      font-family: var(--font-display);
+      font-size: 13pt;
+      color: white;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .s8-quote-text span { color: var(--gold); }
+
+    .s8-brand { position: relative; z-index: 1; }
+
+    .s8-brand-name {
+      font-family: var(--font-display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .s8-brand-tag {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.4;
+    }
+
+    /* ── Print / PDF ── */
+    @media print {
+      body { background: white; padding: 0; }
+      .nav { display: none; }
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+        height: 100vh;
+      }
+    }
+
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SLIDE 1 — ABERTURA ══════════════ -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-circles">
+    <div class="s1-circle s1-c1"></div>
+    <div class="s1-circle s1-c2"></div>
+    <div class="s1-circle s1-c3"></div>
+  </div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title">Inteligência<br><span>Emocional</span></div>
+    <div class="s1-subtitle">Quem sente mais conscientemente — decide melhor.</div>
+    <div class="s1-pills">
+      <div class="pill">🎭 Nomear</div>
+      <div class="pill">🫀 Localizar</div>
+      <div class="pill">🔍 Entender</div>
+      <div class="pill">⚡ Regular</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- ══════════════ SLIDE 2 — CHECK-IN ══════════════ -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">Qual é o<br><span>clima</span><br>hoje?</div>
+    </div>
+    <div class="s2-timer">
+      <div class="timer-icon">⏱</div>
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Uma pessoa de cada vez</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">
+      <strong>Não diga "estou bem".</strong> Escolha uma metáfora que representa como você está chegando agora.
+    </div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"Hoje eu estou como <span>_______</span> porque <span>_______</span>."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Estou como uma panela de pressão — tudo acumulando"</div>
+      <div class="exemplo">"Estou como um dia nublado — não tem sol mas também não chove"</div>
+      <div class="exemplo">"Estou como um cachorro que acabou de passear — leve e presente"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 3 — CONCEITO IE ══════════════ -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-number">IE</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Inteligência Emocional</div>
+    <div class="s3-quote">IE não é sentir menos.<br>É sentir <span>mais conscientemente.</span></div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">Não é sobre controlar emoções — é sobre ter passaporte para transitar entre elas. Quem tem IE não suprime. Escolhe. E escolha só existe quando você sabe o que está sentindo antes de agir.</div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 4 — OS 4 DEGRAUS ══════════════ -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Estrutura da Aula</div>
+    <div class="s4-title">Os 4<br>Degraus<br>da IE</div>
+    <div class="s4-desc">"Você não pula — você sobe. Cada degrau constrói sobre o anterior."</div>
+  </div>
+  <div class="s4-right">
+    <div class="degrau degrau-1">
+      <div class="degrau-num">1</div>
+      <div class="degrau-info">
+        <div class="degrau-name">Nomear</div>
+        <div class="degrau-sub">Vocabulário emocional · Roda das Emoções</div>
+      </div>
+      <div class="degrau-time">15 min</div>
+    </div>
+    <div class="degrau degrau-2">
+      <div class="degrau-num">2</div>
+      <div class="degrau-info">
+        <div class="degrau-name">Localizar no Corpo</div>
+        <div class="degrau-sub">O corpo como GPS emocional · Escaneamento</div>
+      </div>
+      <div class="degrau-time">15 min</div>
+    </div>
+    <div class="degrau degrau-3">
+      <div class="degrau-num">3</div>
+      <div class="degrau-info">
+        <div class="degrau-name">Entender a Origem</div>
+        <div class="degrau-sub">Triângulo do Gatilho · Situação → Interpretação</div>
+      </div>
+      <div class="degrau-time">20 min</div>
+    </div>
+    <div class="degrau degrau-4">
+      <div class="degrau-num">4</div>
+      <div class="degrau-info">
+        <div class="degrau-name">Regular</div>
+        <div class="degrau-sub">Técnica STOP · O espaço entre estímulo e resposta</div>
+      </div>
+      <div class="degrau-time">20 min</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 5 — NOMEAR ══════════════ -->
+<div class="slide s5" id="slide-5">
+  <div class="s5-left">
+    <div class="s5-step">
+      <div class="step-badge">Degrau 1</div>
+      <div class="step-line"></div>
+    </div>
+    <div class="s5-title">Nomear<br><span>a Emoção</span></div>
+    <div class="s5-desc">Pessoas com vocabulário emocional amplo tomam decisões melhores. A diferença entre "estou mal" e "estou com vergonha antecipada" é o espaço que separa reação de escolha.</div>
+    <div class="s5-task">
+      <div class="s5-task-label">✏ Exercício — 3 minutos</div>
+      <div class="s5-task-text">Escreva 3 emoções dos últimos 3 dias. Depois, seja mais específico: raiva ou frustração? ansiedade ou medo de falhar?</div>
+    </div>
+  </div>
+  <div class="s5-right">
+    <div class="wheel">
+      <!-- Anéis -->
+      <div class="wheel-ring ring-3"></div>
+      <div class="wheel-ring ring-2"></div>
+      <div class="wheel-ring ring-1"></div>
+      <!-- Centro -->
+      <div class="wheel-center">
+        <div class="wheel-center-text">Como<br>me<br>sinto?</div>
+      </div>
+      <!-- Emoções primárias -->
+      <div class="emotion-dot" style="top:14%;left:50%">
+        <div class="edot" style="background:#D4863A"></div>
+        <div class="elabel">Alegria</div>
+      </div>
+      <div class="emotion-dot" style="top:28%;left:84%">
+        <div class="edot" style="background:#E8C86A"></div>
+        <div class="elabel">Confiança</div>
+      </div>
+      <div class="emotion-dot" style="top:56%;left:90%">
+        <div class="edot" style="background:#7B5EA7"></div>
+        <div class="elabel">Medo</div>
+      </div>
+      <div class="emotion-dot" style="top:82%;left:72%">
+        <div class="edot" style="background:#5E8DA7"></div>
+        <div class="elabel">Surpresa</div>
+      </div>
+      <div class="emotion-dot" style="top:88%;left:42%">
+        <div class="edot" style="background:#6BAD8E"></div>
+        <div class="elabel">Tristeza</div>
+      </div>
+      <div class="emotion-dot" style="top:72%;left:14%">
+        <div class="edot" style="background:#7A2B4A"></div>
+        <div class="elabel">Desgosto</div>
+      </div>
+      <div class="emotion-dot" style="top:44%;left:8%">
+        <div class="edot" style="background:#C94040"></div>
+        <div class="elabel">Raiva</div>
+      </div>
+      <div class="emotion-dot" style="top:18%;left:22%">
+        <div class="edot" style="background:#D4863A"></div>
+        <div class="elabel">Antecipação</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 6 — TRIÂNGULO DO GATILHO ══════════════ -->
+<div class="slide s6" id="slide-6">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Degrau 3 · Entender a Origem</div>
+      <div class="s6-title">Triângulo<br>do <span>Gatilho</span></div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"A emoção não vem da situação — vem do que você conta para si mesmo sobre ela."</div>
+    </div>
+  </div>
+  <div class="triangle-flow">
+    <div class="tri-step">
+      <div class="tri-box tri-s">
+        <div class="tri-icon">📍</div>
+        <div class="tri-name">Situação</div>
+        <div class="tri-sub">Só os fatos — o que aconteceu objetivamente?</div>
+      </div>
+      <div class="tri-key">O QUE ACONTECEU</div>
+    </div>
+    <div class="tri-arrow">→</div>
+    <div class="tri-step">
+      <div class="tri-box tri-i">
+        <div class="tri-icon">💭</div>
+        <div class="tri-name">Interpretação</div>
+        <div class="tri-sub">O que você disse para si mesmo sobre isso?</div>
+      </div>
+      <div class="tri-key">O QUE VOCÊ CONTOU</div>
+    </div>
+    <div class="tri-arrow">→</div>
+    <div class="tri-step">
+      <div class="tri-box tri-e">
+        <div class="tri-icon">🫀</div>
+        <div class="tri-name">Emoção</div>
+        <div class="tri-sub">O que você sentiu como consequência?</div>
+      </div>
+      <div class="tri-key">O QUE VOCÊ SENTIU</div>
+    </div>
+    <div class="tri-arrow">→</div>
+    <div class="tri-step">
+      <div class="tri-box tri-r">
+        <div class="tri-icon">⚡</div>
+        <div class="tri-name">Reação</div>
+        <div class="tri-sub">O que você fez? Foi escolha ou automático?</div>
+      </div>
+      <div class="tri-key">O QUE VOCÊ FEZ</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 7 — TÉCNICA STOP ══════════════ -->
+<div class="slide s7" id="slide-7">
+  <div class="s7-bg-text">STOP</div>
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Degrau 4 · Regular</div>
+      <div class="s7-title">A Técnica <span>STOP</span></div>
+    </div>
+    <div class="stop-grid">
+      <div class="stop-card stop-s">
+        <div class="stop-letter">S</div>
+        <div class="stop-word">Stop</div>
+        <div class="stop-desc">Pause fisicamente. Interrompa o movimento automático.</div>
+      </div>
+      <div class="stop-card stop-t">
+        <div class="stop-letter">T</div>
+        <div class="stop-word">Take a breath</div>
+        <div class="stop-desc">Uma respiração profunda. Ativa o sistema nervoso parassimpático.</div>
+      </div>
+      <div class="stop-card stop-o">
+        <div class="stop-letter">O</div>
+        <div class="stop-word">Observe</div>
+        <div class="stop-desc">O que estou sentindo? Onde no corpo? Que nome tem isso?</div>
+      </div>
+      <div class="stop-card stop-p">
+        <div class="stop-letter">P</div>
+        <div class="stop-word">Proceed</div>
+        <div class="stop-desc">Agora escolha como responder. Com intenção — não no automático.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 8 — ENCERRAMENTO ══════════════ -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Hoje eu descobri que...</strong> — escreva na Ficha de Encerramento</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>A emoção que vou trabalhar</strong> e a técnica que vou usar esta semana</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Uma palavra</strong> — sua âncora. Quando a semana apertar, volte para ela.</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div class="s8-quote-block">
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">Entre o estímulo e a resposta existe um <span>espaço</span>. Nesse espaço está nossa liberdade.</div>
+    </div>
+    <div class="s8-brand">
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NAVEGAÇÃO ══════════════ -->
+<nav class="nav" id="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+
+<script>
+  let current = 1;
+  const total = 8;
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.getElementById('btn-' + current).classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.getElementById('btn-' + current).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function changeSlide(dir) {
+    let next = current + dir;
+    if (next < 1) next = total;
+    if (next > total) next = 1;
+    goTo(next);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>

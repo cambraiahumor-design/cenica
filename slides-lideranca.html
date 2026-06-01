@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Liderança | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --curtain: #1E0A3C;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --warm-white: #FDFAF6;
+      --rose: #7A2B4A;
+      --text-dark: #1C1018;
+      --text-mid: #4A3A52;
+      --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: var(--font-body); background: #1a1a2e; padding: 40px 20px; }
+
+    .nav {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 100;
+      background: rgba(15,10,26,0.85); backdrop-filter: blur(10px);
+      padding: 10px 20px; border-radius: 40px;
+      border: 1px solid rgba(232,200,106,0.2);
+    }
+
+    .nav button {
+      background: none; border: none; color: rgba(255,255,255,0.5);
+      font-family: var(--font-body); font-size: 9pt; font-weight: 500;
+      cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.2s;
+    }
+
+    .nav button:hover, .nav button.active { background: var(--spotlight); color: white; }
+
+    .nav-arrow {
+      background: none !important; border: 1px solid rgba(255,255,255,0.2) !important;
+      color: white !important; width: 28px; height: 28px;
+      border-radius: 50% !important; cursor: pointer; font-size: 12pt;
+      display: flex !important; align-items: center; justify-content: center; padding: 0 !important;
+    }
+
+    .slide {
+      display: none; width: 100%; max-width: 960px; height: 540px;
+      margin: 0 auto 100px; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5); position: relative;
+    }
+
+    .slide.active { display: flex; }
+
+    /* ── S1 ABERTURA ── */
+    .s1 {
+      background: linear-gradient(135deg, #0A1628 0%, #0D2240 40%, #1A3A60 70%, #0F1A2E 100%);
+      flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 60px;
+    }
+
+    .s1-circles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .s1-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(232,200,106,0.08); }
+    .s1-c1 { width: 500px; height: 500px; top: -150px; right: -150px; }
+    .s1-c2 { width: 300px; height: 300px; bottom: -80px; left: -80px; border-color: rgba(212,134,58,0.1); }
+    .s1-c3 { width: 200px; height: 200px; top: 30%; left: 10%; border-color: rgba(255,255,255,0.03); }
+
+    .s1-content { position: relative; z-index: 1; }
+
+    .s1-eyebrow {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 3px; font-weight: 600; margin-bottom: 20px;
+    }
+
+    .s1-title {
+      font-family: var(--font-display); font-size: 60pt; font-weight: 700;
+      color: white; line-height: 1.0; margin-bottom: 16px;
+    }
+
+    .s1-title span { color: var(--gold); font-style: italic; }
+
+    .s1-subtitle {
+      font-size: 12pt; color: rgba(255,255,255,0.5); font-weight: 300;
+      margin-bottom: 32px; font-style: italic;
+    }
+
+    .s1-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .pill {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(232,200,106,0.2);
+      color: rgba(255,255,255,0.8); font-size: 9pt; font-weight: 500;
+      padding: 6px 16px; border-radius: 20px;
+    }
+
+    .s1-brand {
+      position: absolute; bottom: 24px; right: 32px;
+      font-family: var(--font-display); font-size: 13pt; font-weight: 700;
+      color: rgba(255,255,255,0.2); z-index: 1;
+    }
+
+    .s1-brand span { color: var(--spotlight); }
+
+    /* ── S2 CHECK-IN ── */
+    .s2 { background: var(--cream); }
+
+    .s2-left {
+      width: 260px; background: linear-gradient(160deg, #0D2240, #1A3A60);
+      padding: 44px 32px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0;
+    }
+
+    .s2-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;
+    }
+
+    .s2-title {
+      font-family: var(--font-display); font-size: 24pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s2-title span { color: var(--gold); font-style: italic; }
+
+    .s2-timer {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 14px;
+    }
+
+    .timer-icon { font-size: 16pt; }
+    .timer-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .timer-num { font-family: var(--font-display); font-size: 14pt; color: var(--gold); font-weight: 700; }
+
+    .s2-right { flex: 1; padding: 44px 44px; display: flex; flex-direction: column; justify-content: center; }
+
+    .s2-instruction { font-size: 11pt; color: var(--text-mid); line-height: 1.6; margin-bottom: 28px; }
+    .s2-instruction strong { color: var(--curtain); font-weight: 600; }
+
+    .s2-frase-box {
+      background: linear-gradient(135deg, #0D2240 0%, #1A4A6E 100%);
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;
+    }
+
+    .s2-frase {
+      font-family: var(--font-display); font-size: 16pt; color: white;
+      font-style: italic; line-height: 1.3;
+    }
+
+    .s2-frase span { color: var(--gold); }
+
+    .s2-exemplos { display: flex; flex-direction: column; gap: 6px; }
+
+    .exemplo {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 9pt; color: var(--text-mid); font-style: italic; line-height: 1.4;
+    }
+
+    .exemplo::before { content: '→'; color: var(--spotlight); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+    /* ── S3 CONCEITO ── */
+    .s3 {
+      background: #0A1628; flex-direction: column; align-items: center;
+      justify-content: center; padding: 56px 80px; text-align: center; position: relative;
+    }
+
+    .s3::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(13,34,64,0.8) 0%, transparent 70%);
+    }
+
+    .s3-content { position: relative; z-index: 1; }
+
+    .s3-bg {
+      font-family: var(--font-display); font-size: 80pt; font-weight: 700;
+      color: rgba(232,200,106,0.05); position: absolute; top: -20px; left: 50%;
+      transform: translateX(-50%); user-select: none; line-height: 1; white-space: nowrap;
+    }
+
+    .s3-eyebrow {
+      font-size: 8pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 3px; font-weight: 600; margin-bottom: 20px;
+    }
+
+    .s3-quote {
+      font-family: var(--font-display); font-size: 26pt; font-weight: 600;
+      color: white; line-height: 1.3; margin-bottom: 24px;
+    }
+
+    .s3-quote span { color: var(--gold); font-style: italic; }
+
+    .s3-divider { width: 48px; height: 2px; background: var(--spotlight); margin: 0 auto 20px; border-radius: 2px; }
+
+    .s3-desc { font-size: 11pt; color: rgba(255,255,255,0.5); max-width: 560px; line-height: 1.6; font-weight: 300; }
+
+    /* ── S4 4 PILARES ── */
+    .s4 { background: var(--cream); }
+
+    .s4-left {
+      width: 260px;
+      background: linear-gradient(160deg, #0D2240, #1A4A6E);
+      padding: 44px 28px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0;
+    }
+
+    .s4-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;
+    }
+
+    .s4-title {
+      font-family: var(--font-display); font-size: 28pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s4-desc { font-size: 8.5pt; color: rgba(255,255,255,0.5); line-height: 1.5; font-style: italic; }
+
+    .s4-right {
+      flex: 1; padding: 36px 40px; display: flex; flex-direction: column;
+      gap: 12px; justify-content: center;
+    }
+
+    .pilar {
+      display: flex; align-items: center; gap: 16px;
+      background: white; border-radius: 10px; padding: 14px 18px;
+    }
+
+    .pilar-icon { font-size: 22pt; flex-shrink: 0; width: 36px; text-align: center; }
+
+    .pilar-info { flex: 1; }
+
+    .pilar-name { font-size: 10.5pt; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .pilar-sub { font-size: 8.5pt; color: var(--text-light); line-height: 1.3; }
+
+    .pilar-num {
+      font-family: var(--font-display); font-size: 18pt; font-weight: 700;
+      color: rgba(13,34,64,0.15); flex-shrink: 0;
+    }
+
+    /* ── S5 PRESENÇA DE PALCO ── */
+    .s5 { background: #0A1628; flex-direction: column; }
+
+    .s5-header { padding: 36px 48px 0; }
+
+    .s5-tag {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s5-title {
+      font-family: var(--font-display); font-size: 26pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s5-title span { color: var(--gold); font-style: italic; }
+
+    .presenca-layout { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; flex: 1; padding: 24px 48px 48px; }
+
+    .presenca-card {
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px 18px;
+      border: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px;
+    }
+
+    .presenca-card.central {
+      background: linear-gradient(160deg, rgba(13,34,64,0.8), rgba(26,74,110,0.6));
+      border-color: rgba(232,200,106,0.25);
+    }
+
+    .presenca-icon { font-size: 24pt; }
+
+    .presenca-title {
+      font-family: var(--font-display); font-size: 13pt; font-weight: 700; color: white;
+    }
+
+    .presenca-card.central .presenca-title { color: var(--gold); }
+
+    .presenca-desc { font-size: 8.5pt; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    .presenca-dica {
+      font-size: 8pt; color: var(--spotlight); font-style: italic;
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; line-height: 1.4;
+    }
+
+    /* ── S6 FEEDBACK COMO DIREÇÃO ── */
+    .s6 { background: var(--cream); flex-direction: column; }
+
+    .s6-header {
+      padding: 36px 48px 20px; display: flex; justify-content: space-between;
+      align-items: flex-start; border-bottom: 1px solid rgba(74,58,82,0.1);
+    }
+
+    .s6-tag {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 6px;
+    }
+
+    .s6-title {
+      font-family: var(--font-display); font-size: 22pt; font-weight: 700;
+      color: var(--curtain); line-height: 1.2;
+    }
+
+    .s6-title span { color: var(--rose); font-style: italic; }
+
+    .s6-insight {
+      background: linear-gradient(135deg, #0D2240, #1A4A6E);
+      border-radius: 10px; padding: 12px 16px; max-width: 260px;
+    }
+
+    .s6-insight-text { font-family: var(--font-display); font-size: 9pt; color: white; font-style: italic; line-height: 1.4; }
+
+    .feedback-flow { display: flex; flex: 1; padding: 24px 48px 36px; gap: 0; align-items: center; }
+
+    .fb-step { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+    .fb-arrow { color: var(--spotlight); font-size: 20pt; padding: 0 8px; }
+
+    .fb-box {
+      background: white; border-radius: 12px; padding: 16px 14px; width: 100%;
+      border-top: 4px solid var(--spotlight); box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    .fb-box:nth-of-type(3) { border-top-color: var(--gold); }
+    .fb-box:nth-of-type(5) { border-top-color: var(--rose); }
+    .fb-box:nth-of-type(7) { border-top-color: #5B8CC4; }
+
+    .fb-icon { font-size: 22pt; margin-bottom: 8px; }
+
+    .fb-name {
+      font-family: var(--font-display); font-size: 11pt; font-weight: 700;
+      color: var(--curtain); margin-bottom: 6px;
+    }
+
+    .fb-desc { font-size: 8pt; color: var(--text-light); line-height: 1.4; }
+
+    .fb-example { font-size: 7.5pt; color: var(--spotlight); font-style: italic; margin-top: 8px; line-height: 1.3; }
+
+    /* ── S7 SEGURANÇA PSICOLÓGICA ── */
+    .s7 { background: #0A1628; position: relative; overflow: hidden; }
+
+    .s7-bg-text {
+      position: absolute; font-family: var(--font-display); font-size: 120pt;
+      font-weight: 700; color: rgba(232,200,106,0.03); top: 50%; left: 50%;
+      transform: translate(-50%, -50%); user-select: none; white-space: nowrap;
+    }
+
+    .s7-content {
+      position: relative; z-index: 1; width: 100%; padding: 44px 56px;
+      display: flex; flex-direction: column;
+    }
+
+    .s7-header { margin-bottom: 28px; }
+
+    .s7-tag {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s7-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; }
+    .s7-title span { color: var(--gold); font-style: italic; }
+
+    .sp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .sp-card {
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 18px 20px;
+      border-left: 4px solid rgba(255,255,255,0.1);
+    }
+
+    .sp-card:nth-child(1) { border-left-color: var(--spotlight); }
+    .sp-card:nth-child(2) { border-left-color: var(--gold); }
+    .sp-card:nth-child(3) { border-left-color: #5B8CC4; }
+    .sp-card:nth-child(4) { border-left-color: #6BAD8E; }
+
+    .sp-num {
+      font-family: var(--font-display); font-size: 28pt; font-weight: 700;
+      color: rgba(232,200,106,0.15); line-height: 1; margin-bottom: 4px;
+    }
+
+    .sp-title { font-size: 11pt; font-weight: 600; color: white; margin-bottom: 6px; }
+
+    .sp-desc { font-size: 8.5pt; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+    /* ── S8 ENCERRAMENTO ── */
+    .s8 { background: var(--cream); }
+
+    .s8-left {
+      flex: 1; padding: 44px 40px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .s8-eyebrow {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s8-title {
+      font-family: var(--font-display); font-size: 22pt; font-weight: 700;
+      color: var(--curtain); line-height: 1.2; margin-bottom: 32px;
+    }
+
+    .s8-title span { color: #1A4A6E; }
+
+    .s8-cards { display: flex; flex-direction: column; gap: 12px; }
+
+    .s8-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: white; border-radius: 10px; padding: 12px 16px;
+    }
+
+    .s8-num {
+      font-family: var(--font-display); font-size: 18pt; font-weight: 700;
+      color: var(--spotlight); width: 28px; flex-shrink: 0; line-height: 1;
+    }
+
+    .s8-text { font-size: 9.5pt; color: var(--text-mid); line-height: 1.4; }
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+
+    .s8-right {
+      width: 300px; background: linear-gradient(160deg, #0A1628, #0D2240, #1A3A60);
+      padding: 44px 32px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0; position: relative; overflow: hidden;
+    }
+
+    .s8-right::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border: 1px solid rgba(232,200,106,0.1); border-radius: 50%;
+    }
+
+    .s8-right::after {
+      content: ''; position: absolute; bottom: -30px; left: -30px;
+      width: 120px; height: 120px; border: 1px solid rgba(212,134,58,0.12); border-radius: 50%;
+    }
+
+    .s8-quote-block { position: relative; z-index: 1; }
+
+    .s8-quote-mark {
+      font-family: var(--font-display); font-size: 48pt;
+      color: rgba(232,200,106,0.25); line-height: 0.8; margin-bottom: 8px;
+    }
+
+    .s8-quote-text {
+      font-family: var(--font-display); font-size: 13pt; color: white;
+      font-style: italic; line-height: 1.4;
+    }
+
+    .s8-quote-text span { color: var(--gold); }
+
+    .s8-brand { position: relative; z-index: 1; }
+
+    .s8-brand-name {
+      font-family: var(--font-display); font-size: 18pt; font-weight: 700;
+      color: white; margin-bottom: 4px;
+    }
+
+    .s8-brand-tag { font-size: 7.5pt; color: rgba(255,255,255,0.35); line-height: 1.4; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .nav { display: none; }
+      .slide { display: block !important; page-break-after: always; margin: 0; border-radius: 0; box-shadow: none; width: 100%; height: 100vh; }
+    }
+
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SLIDE 1 — ABERTURA ══════════════ -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-circles">
+    <div class="s1-circle s1-c1"></div>
+    <div class="s1-circle s1-c2"></div>
+    <div class="s1-circle s1-c3"></div>
+  </div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title">Lide-<br><span>rança</span></div>
+    <div class="s1-subtitle">Liderar é criar o palco para que outros brilhem.</div>
+    <div class="s1-pills">
+      <div class="pill">🎭 Presença</div>
+      <div class="pill">🧭 Direção</div>
+      <div class="pill">🤝 Confiança</div>
+      <div class="pill">🌱 Desenvolvimento</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- ══════════════ SLIDE 2 — CHECK-IN ══════════════ -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">Um líder<br>que te<br><span>transformou</span></div>
+    </div>
+    <div class="s2-timer">
+      <div class="timer-icon">⏱</div>
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Uma pessoa de cada vez</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">
+      <strong>Todos nós carregamos referências de liderança.</strong> Começamos reativando a melhor — para entender o que fez aquela liderança diferente.
+    </div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"Um momento em que me senti liderado de verdade foi <span>_______</span> porque <span>_______</span>."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Quando meu gestor defendeu minha ideia em público — senti que tinha um aliado"</div>
+      <div class="exemplo">"Quando alguém me deu autonomia e confiou no meu julgamento"</div>
+      <div class="exemplo">"Quando recebi um feedback que mudou minha perspectiva — sem julgamento"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 3 — CONCEITO ══════════════ -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-bg">DIRIGIR</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Liderança no trabalho</div>
+    <div class="s3-quote">Liderança não é cargo.<br>É influência que <span>liberta</span> — não que prende.</div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">No teatro, o diretor não atua — cria as condições para que os atores deem o melhor. O líder eficaz não é o mais brilhante em cena: é quem faz os outros brilharem. Liderança é um conjunto de comportamentos que qualquer pessoa pode aprender — não um talento inato de poucos.</div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 4 — 4 PILARES ══════════════ -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Estrutura da Aula</div>
+    <div class="s4-title">Os 4<br>Pilares<br>da Lide-<br>rança</div>
+    <div class="s4-desc">"Liderança não é um estado — é um conjunto de práticas que você escolhe exercer."</div>
+  </div>
+  <div class="s4-right">
+    <div class="pilar">
+      <div class="pilar-icon">🪞</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Autoconhecimento</div>
+        <div class="pilar-sub">Conhecer seus pontos cegos, gatilhos e como você afeta o time</div>
+      </div>
+      <div class="pilar-num">1</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-icon">🧭</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Visão e Direção</div>
+        <div class="pilar-sub">Saber para onde vai e comunicar isso com clareza e convicção</div>
+      </div>
+      <div class="pilar-num">2</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-icon">🤝</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Segurança Psicológica</div>
+        <div class="pilar-sub">Criar ambiente onde o time arrisca, erra e aprende sem medo</div>
+      </div>
+      <div class="pilar-num">3</div>
+    </div>
+    <div class="pilar">
+      <div class="pilar-icon">🌱</div>
+      <div class="pilar-info">
+        <div class="pilar-name">Desenvolvimento de Pessoas</div>
+        <div class="pilar-sub">Fazer a equipe crescer além de você — o maior legado de um líder</div>
+      </div>
+      <div class="pilar-num">4</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 5 — PRESENÇA DE PALCO ══════════════ -->
+<div class="slide s5" id="slide-5" style="flex-direction:column;">
+  <div class="s5-header">
+    <div class="s5-tag">Exercício Central · Técnica Teatral</div>
+    <div class="s5-title">O Líder como <span>Diretor</span> — Presença sem Centralizar</div>
+  </div>
+  <div class="presenca-layout">
+    <div class="presenca-card">
+      <div class="presenca-icon">🎭</div>
+      <div class="presenca-title">O Ator que Preenche</div>
+      <div class="presenca-desc">Domina a cena com sua presença. Atrai todos os olhares. É necessário — mas impossibilita os outros de brilhar.</div>
+      <div class="presenca-dica">Equivalente: o gestor que resolve tudo ele mesmo, que não delega, que precisa ser insubstituível.</div>
+    </div>
+    <div class="presenca-card central">
+      <div class="presenca-icon">🎬</div>
+      <div class="presenca-title">O Diretor que Libera</div>
+      <div class="presenca-desc">Está presente — mas para criar espaço. Vê o todo. Orienta cada ator a ser a melhor versão do seu personagem.</div>
+      <div class="presenca-dica">Equivalente: o líder que faz as perguntas certas, que dá autonomia com clareza, que celebra o sucesso da equipe.</div>
+    </div>
+    <div class="presenca-card">
+      <div class="presenca-icon">🌫</div>
+      <div class="presenca-title">O Ausente</div>
+      <div class="presenca-desc">Não está presente. Os atores ficam perdidos sem direção. A cena vira caos — ou alguém assume o papel sem preparo.</div>
+      <div class="presenca-dica">Equivalente: o gestor que delega sem clareza, que some nos momentos críticos, que deixa o time à deriva.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 6 — FEEDBACK COMO DIREÇÃO ══════════════ -->
+<div class="slide s6" id="slide-6" style="display:flex;flex-direction:column;">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Ferramenta · Feedback de Desenvolvimento</div>
+      <div class="s6-title">Feedback como<br><span>Direção de Cena</span></div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"O diretor não critica o ator — orienta a performance. Feedback é direção, não julgamento."</div>
+    </div>
+  </div>
+  <div class="feedback-flow">
+    <div class="fb-step">
+      <div class="fb-box">
+        <div class="fb-icon">📍</div>
+        <div class="fb-name">Situação</div>
+        <div class="fb-desc">Contextualize — quando e onde aconteceu</div>
+        <div class="fb-example">"Na reunião de ontem, quando você apresentou o projeto..."</div>
+      </div>
+    </div>
+    <div class="fb-arrow">→</div>
+    <div class="fb-step">
+      <div class="fb-box">
+        <div class="fb-icon">🔍</div>
+        <div class="fb-name">Comportamento</div>
+        <div class="fb-desc">Descreva o que observou — não o que julgou</div>
+        <div class="fb-example">"...você respondeu com monossilábicos às perguntas..."</div>
+      </div>
+    </div>
+    <div class="fb-arrow">→</div>
+    <div class="fb-step">
+      <div class="fb-box">
+        <div class="fb-icon">🌊</div>
+        <div class="fb-name">Impacto</div>
+        <div class="fb-desc">Qual foi o efeito no time ou no resultado</div>
+        <div class="fb-example">"...o time ficou inseguro sobre o caminho a seguir..."</div>
+      </div>
+    </div>
+    <div class="fb-arrow">→</div>
+    <div class="fb-step">
+      <div class="fb-box">
+        <div class="fb-icon">🚀</div>
+        <div class="fb-name">Próximo Passo</div>
+        <div class="fb-desc">Peça ou sugira — não imponha</div>
+        <div class="fb-example">"...o que te impedia de desenvolver mais as respostas?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 7 — SEGURANÇA PSICOLÓGICA ══════════════ -->
+<div class="slide s7" id="slide-7">
+  <div class="s7-bg-text">CONFIAR</div>
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Pilar 3 · Segurança Psicológica — Amy Edmondson</div>
+      <div class="s7-title">Os 4 Comportamentos do Líder que <span>Cria Confiança</span></div>
+    </div>
+    <div class="sp-grid">
+      <div class="sp-card">
+        <div class="sp-num">1</div>
+        <div class="sp-title">Erre na frente deles</div>
+        <div class="sp-desc">Compartilhe seus próprios erros e aprendizados. Quando o líder é vulnerável, o time se sente seguro para sê-lo também.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-num">2</div>
+        <div class="sp-title">Faça perguntas — não dê respostas</div>
+        <div class="sp-desc">"O que você acha?" cria mais engajamento do que "Aqui está a solução". O líder que pergunta mais do que fala constrói equipes pensantes.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-num">3</div>
+        <div class="sp-title">Celebre tentativas, não só resultados</div>
+        <div class="sp-desc">Se você só celebra o sucesso, o time para de arriscar. Celebre iniciativas corajosas — mesmo as que não funcionaram.</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-num">4</div>
+        <div class="sp-title">Dê crédito — publicamente</div>
+        <div class="sp-desc">Quando a equipe acerta, o crédito é da equipe. Quando erra, o líder está junto. Essa inversão cria lealdade inabalável.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 8 — ENCERRAMENTO ══════════════ -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Hoje eu descobri sobre meu estilo de liderança que...</strong> — escreva na Ficha de Encerramento</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>A pessoa da equipe que precisa de mais de mim</strong> — e o que vou fazer diferente com ela</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Um comportamento que vou adotar</strong> para criar mais segurança psicológica no meu time</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div class="s8-quote-block">
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">O maior sinal de <span>grandeza</span> de um líder é quando os outros prosperam em sua ausência.</div>
+    </div>
+    <div class="s8-brand">
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NAVEGAÇÃO ══════════════ -->
+<nav class="nav" id="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+
+<script>
+  let current = 1;
+  const total = 8;
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.getElementById('btn-' + current).classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.getElementById('btn-' + current).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function changeSlide(dir) {
+    let next = current + dir;
+    if (next < 1) next = total;
+    if (next > total) next = 1;
+    goTo(next);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>

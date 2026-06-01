@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Proatividade | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --curtain: #1E0A3C;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --warm-white: #FDFAF6;
+      --rose: #7A2B4A;
+      --green: #1A5C3A;
+      --green-light: #2A8A58;
+      --text-dark: #1C1018;
+      --text-mid: #4A3A52;
+      --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { font-family: var(--font-body); background: #1a1a2e; padding: 40px 20px; }
+
+    .nav {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 100;
+      background: rgba(15,10,26,0.85); backdrop-filter: blur(10px);
+      padding: 10px 20px; border-radius: 40px;
+      border: 1px solid rgba(232,200,106,0.2);
+    }
+
+    .nav button {
+      background: none; border: none; color: rgba(255,255,255,0.5);
+      font-family: var(--font-body); font-size: 9pt; font-weight: 500;
+      cursor: pointer; padding: 4px 10px; border-radius: 20px; transition: all 0.2s;
+    }
+
+    .nav button:hover, .nav button.active { background: var(--spotlight); color: white; }
+
+    .nav-arrow {
+      background: none !important; border: 1px solid rgba(255,255,255,0.2) !important;
+      color: white !important; width: 28px; height: 28px;
+      border-radius: 50% !important; cursor: pointer; font-size: 12pt;
+      display: flex !important; align-items: center; justify-content: center; padding: 0 !important;
+    }
+
+    .slide {
+      display: none; width: 100%; max-width: 960px; height: 540px;
+      margin: 0 auto 100px; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5); position: relative;
+    }
+
+    .slide.active { display: flex; }
+
+    /* ── S1 ABERTURA ── */
+    .s1 {
+      background: linear-gradient(135deg, #0A1E10 0%, var(--green) 40%, var(--green-light) 70%, #0F1A0E 100%);
+      flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 60px;
+    }
+
+    .s1-circles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .s1-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(232,200,106,0.08); }
+    .s1-c1 { width: 500px; height: 500px; top: -150px; right: -150px; }
+    .s1-c2 { width: 300px; height: 300px; bottom: -80px; left: -80px; border-color: rgba(42,138,88,0.15); }
+    .s1-c3 { width: 200px; height: 200px; top: 30%; left: 10%; border-color: rgba(255,255,255,0.03); }
+
+    .s1-content { position: relative; z-index: 1; }
+
+    .s1-eyebrow {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 3px; font-weight: 600; margin-bottom: 20px;
+    }
+
+    .s1-title {
+      font-family: var(--font-display); font-size: 52pt; font-weight: 700;
+      color: white; line-height: 1.0; margin-bottom: 16px;
+    }
+
+    .s1-title span { color: var(--gold); font-style: italic; }
+
+    .s1-subtitle {
+      font-size: 12pt; color: rgba(255,255,255,0.55); font-weight: 300;
+      margin-bottom: 32px; font-style: italic;
+    }
+
+    .s1-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .pill {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(42,138,88,0.3);
+      color: rgba(255,255,255,0.8); font-size: 9pt; font-weight: 500;
+      padding: 6px 16px; border-radius: 20px;
+    }
+
+    .s1-brand {
+      position: absolute; bottom: 24px; right: 32px;
+      font-family: var(--font-display); font-size: 13pt; font-weight: 700;
+      color: rgba(255,255,255,0.2); z-index: 1;
+    }
+
+    .s1-brand span { color: var(--spotlight); }
+
+    /* ── S2 CHECK-IN ── */
+    .s2 { background: var(--cream); }
+
+    .s2-left {
+      width: 260px; background: linear-gradient(160deg, var(--green), var(--green-light));
+      padding: 44px 32px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0;
+    }
+
+    .s2-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;
+    }
+
+    .s2-title {
+      font-family: var(--font-display); font-size: 24pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s2-title span { color: var(--gold); font-style: italic; }
+
+    .s2-timer {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px;
+    }
+
+    .timer-num { font-family: var(--font-display); font-size: 14pt; color: var(--gold); font-weight: 700; }
+    .timer-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.3; }
+
+    .s2-right { flex: 1; padding: 44px 44px; display: flex; flex-direction: column; justify-content: center; }
+
+    .s2-instruction { font-size: 11pt; color: var(--text-mid); line-height: 1.6; margin-bottom: 28px; }
+    .s2-instruction strong { color: var(--curtain); font-weight: 600; }
+
+    .s2-frase-box {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;
+    }
+
+    .s2-frase {
+      font-family: var(--font-display); font-size: 15pt; color: white;
+      font-style: italic; line-height: 1.3;
+    }
+
+    .s2-frase span { color: var(--gold); }
+
+    .s2-exemplos { display: flex; flex-direction: column; gap: 6px; }
+
+    .exemplo {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 9pt; color: var(--text-mid); font-style: italic; line-height: 1.4;
+    }
+
+    .exemplo::before { content: '→'; color: var(--spotlight); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+    /* ── S3 CONCEITO ── */
+    .s3 {
+      background: #0A1E10; flex-direction: column; align-items: center;
+      justify-content: center; padding: 56px 80px; text-align: center; position: relative;
+    }
+
+    .s3::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(26,92,58,0.5) 0%, transparent 70%);
+    }
+
+    .s3-content { position: relative; z-index: 1; }
+
+    .s3-bg {
+      font-family: var(--font-display); font-size: 80pt; font-weight: 700;
+      color: rgba(42,138,88,0.08); position: absolute; top: -20px; left: 50%;
+      transform: translateX(-50%); user-select: none; line-height: 1; white-space: nowrap;
+    }
+
+    .s3-eyebrow {
+      font-size: 8pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 3px; font-weight: 600; margin-bottom: 20px;
+    }
+
+    .s3-quote {
+      font-family: var(--font-display); font-size: 26pt; font-weight: 600;
+      color: white; line-height: 1.3; margin-bottom: 24px;
+    }
+
+    .s3-quote span { color: var(--gold); font-style: italic; }
+
+    .s3-divider { width: 48px; height: 2px; background: var(--green-light); margin: 0 auto 20px; border-radius: 2px; }
+
+    .s3-desc { font-size: 11pt; color: rgba(255,255,255,0.5); max-width: 580px; line-height: 1.6; font-weight: 300; }
+
+    /* ── S4 4 NÍVEIS ── */
+    .s4 { background: var(--cream); }
+
+    .s4-left {
+      width: 260px;
+      background: linear-gradient(160deg, var(--green), #1A4A2A);
+      padding: 44px 28px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0;
+    }
+
+    .s4-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 12px;
+    }
+
+    .s4-title {
+      font-family: var(--font-display); font-size: 26pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s4-desc { font-size: 8.5pt; color: rgba(255,255,255,0.5); line-height: 1.5; font-style: italic; }
+
+    .s4-right {
+      flex: 1; padding: 36px 40px; display: flex; flex-direction: column;
+      gap: 12px; justify-content: center;
+    }
+
+    .nivel {
+      display: flex; align-items: center; gap: 16px;
+      background: white; border-radius: 10px; padding: 13px 18px;
+    }
+
+    .nivel-num {
+      width: 32px; height: 32px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-weight: 700;
+      font-size: 11pt; color: white; flex-shrink: 0;
+    }
+
+    .nivel:nth-child(1) .nivel-num { background: #CCC; color: #666; }
+    .nivel:nth-child(2) .nivel-num { background: var(--spotlight); }
+    .nivel:nth-child(3) .nivel-num { background: var(--green-light); }
+    .nivel:nth-child(4) .nivel-num { background: var(--gold); color: #1A1A1A; }
+
+    .nivel-info { flex: 1; }
+    .nivel-name { font-size: 10.5pt; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+    .nivel-sub { font-size: 8.5pt; color: var(--text-light); line-height: 1.3; }
+
+    .nivel-badge {
+      font-size: 7.5pt; font-weight: 700; padding: 3px 10px; border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .nivel:nth-child(1) .nivel-badge { background: #F0F0F0; color: #999; }
+    .nivel:nth-child(2) .nivel-badge { background: rgba(212,134,58,0.15); color: var(--spotlight); }
+    .nivel:nth-child(3) .nivel-badge { background: rgba(42,138,88,0.15); color: var(--green-light); }
+    .nivel:nth-child(4) .nivel-badge { background: rgba(232,200,106,0.2); color: #8A7020; }
+
+    /* ── S5 IMPROVISO ANTECIPAÇÃO ── */
+    .s5 { background: #0A1E10; flex-direction: column; }
+
+    .s5-header { padding: 36px 48px 20px; }
+
+    .s5-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s5-title {
+      font-family: var(--font-display); font-size: 26pt; font-weight: 700;
+      color: white; line-height: 1.1;
+    }
+
+    .s5-title span { color: var(--gold); font-style: italic; }
+
+    .impro-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; padding: 0 48px 48px; }
+
+    .impro-card {
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px 20px;
+      border: 1px solid rgba(42,138,88,0.2); display: flex; flex-direction: column; gap: 12px;
+    }
+
+    .impro-card.destaque {
+      background: linear-gradient(160deg, rgba(26,92,58,0.4), rgba(42,138,88,0.2));
+      border-color: rgba(42,138,88,0.4);
+    }
+
+    .impro-label {
+      font-size: 7.5pt; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .impro-card:first-child .impro-label { color: rgba(255,255,255,0.4); }
+    .impro-card.destaque .impro-label { color: var(--gold); }
+
+    .impro-title {
+      font-family: var(--font-display); font-size: 15pt; font-weight: 700; color: white;
+    }
+
+    .impro-desc { font-size: 9pt; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    .impro-steps { display: flex; flex-direction: column; gap: 8px; }
+
+    .impro-step {
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+
+    .impro-step-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--green-light);
+      flex-shrink: 0; margin-top: 6px;
+    }
+
+    .impro-step-text { font-size: 8.5pt; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    /* ── S6 MATRIZ DE AÇÃO ── */
+    .s6 { background: var(--cream); flex-direction: column; }
+
+    .s6-header {
+      padding: 32px 48px 16px; display: flex; justify-content: space-between;
+      align-items: flex-start; border-bottom: 1px solid rgba(74,58,82,0.1);
+    }
+
+    .s6-tag {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 6px;
+    }
+
+    .s6-title {
+      font-family: var(--font-display); font-size: 22pt; font-weight: 700;
+      color: var(--curtain); line-height: 1.2;
+    }
+
+    .s6-title span { color: var(--green); font-style: italic; }
+
+    .s6-insight {
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 10px; padding: 12px 16px; max-width: 260px;
+    }
+
+    .s6-insight-text { font-family: var(--font-display); font-size: 9pt; color: white; font-style: italic; line-height: 1.4; }
+
+    .matriz { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; padding: 20px 48px 32px; }
+
+    .quadrante {
+      border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;
+    }
+
+    .q-urgente-importante { background: rgba(122,43,74,0.08); border: 1.5px solid rgba(122,43,74,0.2); }
+    .q-nao-urgente-importante { background: rgba(26,92,58,0.08); border: 1.5px solid rgba(26,92,58,0.3); }
+    .q-urgente-nao-importante { background: rgba(212,134,58,0.08); border: 1.5px solid rgba(212,134,58,0.2); }
+    .q-nao-urgente-nao-importante { background: rgba(138,122,146,0.06); border: 1.5px solid rgba(138,122,146,0.15); }
+
+    .q-label {
+      font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .q-urgente-importante .q-label { color: var(--rose); }
+    .q-nao-urgente-importante .q-label { color: var(--green); }
+    .q-urgente-nao-importante .q-label { color: var(--spotlight); }
+    .q-nao-urgente-nao-importante .q-label { color: var(--text-light); }
+
+    .q-title {
+      font-family: var(--font-display); font-size: 12pt; font-weight: 700; color: var(--text-dark);
+    }
+
+    .q-desc { font-size: 8pt; color: var(--text-mid); line-height: 1.4; }
+
+    .q-acao {
+      font-size: 7.5pt; font-style: italic; padding: 6px 10px; border-radius: 6px;
+      margin-top: 2px;
+    }
+
+    .q-urgente-importante .q-acao { background: rgba(122,43,74,0.1); color: var(--rose); }
+    .q-nao-urgente-importante .q-acao { background: rgba(26,92,58,0.1); color: var(--green); font-style: normal; font-weight: 600; }
+    .q-urgente-nao-importante .q-acao { background: rgba(212,134,58,0.1); color: var(--spotlight); }
+    .q-nao-urgente-nao-importante .q-acao { background: rgba(138,122,146,0.08); color: var(--text-light); }
+
+    /* ── S7 TÉCNICA 2 MINUTOS ── */
+    .s7 { background: #0A1E10; position: relative; overflow: hidden; }
+
+    .s7-bg-text {
+      position: absolute; font-family: var(--font-display); font-size: 100pt;
+      font-weight: 700; color: rgba(42,138,88,0.06); top: 50%; left: 50%;
+      transform: translate(-50%, -50%); user-select: none; white-space: nowrap;
+    }
+
+    .s7-content {
+      position: relative; z-index: 1; width: 100%; padding: 44px 56px;
+      display: flex; flex-direction: column;
+    }
+
+    .s7-header { margin-bottom: 28px; }
+
+    .s7-tag {
+      font-size: 7.5pt; color: var(--gold); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s7-title { font-family: var(--font-display); font-size: 26pt; font-weight: 700; color: white; }
+    .s7-title span { color: var(--gold); font-style: italic; }
+
+    .tecnica-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+    .tec-card {
+      background: rgba(255,255,255,0.05); border-radius: 12px; padding: 18px 16px;
+      border-top: 4px solid rgba(42,138,88,0.4);
+    }
+
+    .tec-card:first-child { border-top-color: var(--green-light); }
+    .tec-card:nth-child(2) { border-top-color: var(--gold); background: rgba(232,200,106,0.06); }
+    .tec-card:nth-child(3) { border-top-color: var(--spotlight); }
+
+    .tec-icon { font-size: 24pt; margin-bottom: 10px; }
+
+    .tec-title {
+      font-family: var(--font-display); font-size: 14pt; font-weight: 700;
+      color: white; margin-bottom: 8px;
+    }
+
+    .tec-card:nth-child(2) .tec-title { color: var(--gold); }
+
+    .tec-desc { font-size: 9pt; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    .tec-regra {
+      margin-top: 10px; font-size: 8.5pt; font-weight: 600;
+      color: var(--green-light); font-style: italic; line-height: 1.3;
+    }
+
+    .tec-card:nth-child(2) .tec-regra { color: var(--gold); }
+
+    /* ── S8 ENCERRAMENTO ── */
+    .s8 { background: var(--cream); }
+
+    .s8-left {
+      flex: 1; padding: 44px 40px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .s8-eyebrow {
+      font-size: 7.5pt; color: var(--spotlight); text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;
+    }
+
+    .s8-title {
+      font-family: var(--font-display); font-size: 22pt; font-weight: 700;
+      color: var(--curtain); line-height: 1.2; margin-bottom: 32px;
+    }
+
+    .s8-title span { color: var(--green); }
+
+    .s8-cards { display: flex; flex-direction: column; gap: 12px; }
+
+    .s8-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: white; border-radius: 10px; padding: 12px 16px;
+    }
+
+    .s8-num {
+      font-family: var(--font-display); font-size: 18pt; font-weight: 700;
+      color: var(--spotlight); width: 28px; flex-shrink: 0; line-height: 1;
+    }
+
+    .s8-text { font-size: 9.5pt; color: var(--text-mid); line-height: 1.4; }
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+
+    .s8-right {
+      width: 300px; background: linear-gradient(160deg, #0A1E10, var(--green), #1A4A2A);
+      padding: 44px 32px; display: flex; flex-direction: column;
+      justify-content: space-between; flex-shrink: 0; position: relative; overflow: hidden;
+    }
+
+    .s8-right::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border: 1px solid rgba(42,138,88,0.2); border-radius: 50%;
+    }
+
+    .s8-right::after {
+      content: ''; position: absolute; bottom: -30px; left: -30px;
+      width: 120px; height: 120px; border: 1px solid rgba(232,200,106,0.15); border-radius: 50%;
+    }
+
+    .s8-quote-block { position: relative; z-index: 1; }
+
+    .s8-quote-mark {
+      font-family: var(--font-display); font-size: 48pt;
+      color: rgba(232,200,106,0.25); line-height: 0.8; margin-bottom: 8px;
+    }
+
+    .s8-quote-text {
+      font-family: var(--font-display); font-size: 13pt; color: white;
+      font-style: italic; line-height: 1.4;
+    }
+
+    .s8-quote-text span { color: var(--gold); }
+
+    .s8-brand { position: relative; z-index: 1; }
+
+    .s8-brand-name {
+      font-family: var(--font-display); font-size: 18pt; font-weight: 700;
+      color: white; margin-bottom: 4px;
+    }
+
+    .s8-brand-tag { font-size: 7.5pt; color: rgba(255,255,255,0.35); line-height: 1.4; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .nav { display: none; }
+      .slide { display: block !important; page-break-after: always; margin: 0; border-radius: 0; box-shadow: none; width: 100%; height: 100vh; }
+    }
+
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SLIDE 1 — ABERTURA ══════════════ -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-circles">
+    <div class="s1-circle s1-c1"></div>
+    <div class="s1-circle s1-c2"></div>
+    <div class="s1-circle s1-c3"></div>
+  </div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title">Proativi-<br><span>dade</span></div>
+    <div class="s1-subtitle">Quem age antes de ser chamado não espera o roteiro — escreve o próprio.</div>
+    <div class="s1-pills">
+      <div class="pill">⚡ Iniciativa</div>
+      <div class="pill">🔭 Antecipação</div>
+      <div class="pill">🎯 Foco</div>
+      <div class="pill">🔄 Ação</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- ══════════════ SLIDE 2 — CHECK-IN ══════════════ -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">A ação<br>que você<br><span>adiou</span></div>
+    </div>
+    <div class="s2-timer">
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Uma pessoa de cada vez</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">
+      <strong>Proatividade começa onde a espera termina.</strong> Vamos começar identificando o que estamos esperando alguém nos pedir para fazer — que já poderíamos ter feito.
+    </div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"Eu podia ter <span>_______</span> mas fiquei esperando <span>_______</span>."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Eu podia ter resolvido o bug antes — mas fiquei esperando alguém reclamar"</div>
+      <div class="exemplo">"Eu podia ter sugerido a melhoria — mas fiquei esperando a reunião certa"</div>
+      <div class="exemplo">"Eu podia ter entrado em contato — mas fiquei esperando o retorno"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 3 — CONCEITO ══════════════ -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-bg">AGIR</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Proatividade no trabalho</div>
+    <div class="s3-quote">Proatividade não é fazer mais.<br>É agir antes que o problema <span>vire crise.</span></div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">No teatro de improvisação, o ator não espera a cena entrar em colapso para intervir. Ele lê o ambiente, antecipa, toma iniciativa. No trabalho, pessoas proativas não são as que trabalham mais — são as que olham além do que está na frente e agem antes de serem solicitadas.</div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 4 — 4 NÍVEIS ══════════════ -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Estrutura da Aula</div>
+    <div class="s4-title">Os 4<br>Níveis de<br>Proativi-<br>dade</div>
+    <div class="s4-desc">"Não é sobre fazer mais — é sobre agir com mais intenção e visão."</div>
+  </div>
+  <div class="s4-right">
+    <div class="nivel">
+      <div class="nivel-num">1</div>
+      <div class="nivel-info">
+        <div class="nivel-name">Reativo</div>
+        <div class="nivel-sub">Age quando solicitado — espera o problema aparecer para resolver</div>
+      </div>
+      <div class="nivel-badge">Padrão mínimo</div>
+    </div>
+    <div class="nivel">
+      <div class="nivel-num">2</div>
+      <div class="nivel-info">
+        <div class="nivel-name">Responsivo</div>
+        <div class="nivel-sub">Age ao perceber a necessidade — sem precisar ser solicitado</div>
+      </div>
+      <div class="nivel-badge">Ativo</div>
+    </div>
+    <div class="nivel">
+      <div class="nivel-num">3</div>
+      <div class="nivel-info">
+        <div class="nivel-name">Preventivo</div>
+        <div class="nivel-sub">Age antes do problema surgir — antecipa riscos e oportunidades</div>
+      </div>
+      <div class="nivel-badge">Proativo</div>
+    </div>
+    <div class="nivel">
+      <div class="nivel-num">4</div>
+      <div class="nivel-info">
+        <div class="nivel-name">Generativo</div>
+        <div class="nivel-sub">Cria oportunidades onde ninguém viu — transforma o ambiente ao redor</div>
+      </div>
+      <div class="nivel-badge">✦ Protagonista</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 5 — IMPROVISO ANTECIPAÇÃO ══════════════ -->
+<div class="slide s5" id="slide-5" style="flex-direction:column;">
+  <div class="s5-header">
+    <div class="s5-tag">Exercício Central · Improviso Teatral</div>
+    <div class="s5-title">A Cena que <span>Antecipa</span> — Leitura de Ambiente</div>
+  </div>
+  <div class="impro-layout">
+    <div class="impro-card">
+      <div class="impro-label">❌ Ator que espera</div>
+      <div class="impro-title">Aguardando o Roteiro</div>
+      <div class="impro-desc">Precisa que alguém lhe diga o que fazer. Fica parado esperando a cena "acontecer". Reativo ao que os outros trazem.</div>
+      <div class="impro-steps">
+        <div class="impro-step">
+          <div class="impro-step-dot" style="background:rgba(122,43,74,0.6)"></div>
+          <div class="impro-step-text">No trabalho: espera o cliente reclamar para agir</div>
+        </div>
+        <div class="impro-step">
+          <div class="impro-step-dot" style="background:rgba(122,43,74,0.6)"></div>
+          <div class="impro-step-text">Espera a reunião para levantar um problema que já viu</div>
+        </div>
+        <div class="impro-step">
+          <div class="impro-step-dot" style="background:rgba(122,43,74,0.6)"></div>
+          <div class="impro-step-text">Faz apenas o que está descrito no escopo — nada mais</div>
+        </div>
+      </div>
+    </div>
+    <div class="impro-card destaque">
+      <div class="impro-label">✦ Ator que antecipa</div>
+      <div class="impro-title">Lendo o Palco</div>
+      <div class="impro-desc">Escaneia o ambiente. Percebe o que está faltando. Age antes da cena precisar da intervenção.</div>
+      <div class="impro-steps">
+        <div class="impro-step">
+          <div class="impro-step-dot"></div>
+          <div class="impro-step-text"><strong style="color:white">Passo 1:</strong> Observe — o que está acontecendo ao redor que não está sendo dito?</div>
+        </div>
+        <div class="impro-step">
+          <div class="impro-step-dot"></div>
+          <div class="impro-step-text"><strong style="color:white">Passo 2:</strong> Antecipe — se isso continuar, o que vai acontecer nos próximos dias?</div>
+        </div>
+        <div class="impro-step">
+          <div class="impro-step-dot"></div>
+          <div class="impro-step-text"><strong style="color:white">Passo 3:</strong> Aja — qual a menor ação agora que previne o problema maior depois?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 6 — MATRIZ DE AÇÃO ══════════════ -->
+<div class="slide s6" id="slide-6" style="display:flex;flex-direction:column;">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Ferramenta · Gestão de Energia e Foco</div>
+      <div class="s6-title">Onde está<br>sua <span>zona proativa</span>?</div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"Proatividade vive no Quadrante 2 — onde ninguém está olhando até ser tarde demais."<br>— Stephen Covey</div>
+    </div>
+  </div>
+  <div class="matriz">
+    <div class="quadrante q-urgente-importante">
+      <div class="q-label">Urgente + Importante</div>
+      <div class="q-title">🔥 Apagando Incêndio</div>
+      <div class="q-desc">Crises, deadlines, problemas urgentes. Importante — mas se você vive aqui, está sempre no modo reativo.</div>
+      <div class="q-acao">Ação: Resolver — e investigar por que virou crise</div>
+    </div>
+    <div class="quadrante q-nao-urgente-importante">
+      <div class="q-label">Não Urgente + Importante</div>
+      <div class="q-title">✦ Zona Proativa</div>
+      <div class="q-desc">Planejamento, prevenção, desenvolvimento, relacionamento. Aqui vivem as pessoas que nunca parecem apagando incêndio.</div>
+      <div class="q-acao">Ação: Investir tempo aqui — reduz o quadrante 1</div>
+    </div>
+    <div class="quadrante q-urgente-nao-importante">
+      <div class="q-label">Urgente + Não Importante</div>
+      <div class="q-title">📬 Interrupções</div>
+      <div class="q-desc">Reuniões desnecessárias, e-mails urgentes sem impacto real, pedidos de terceiros que parecem urgentes.</div>
+      <div class="q-acao">Ação: Delegar ou reduzir — não deixar sugar seu tempo</div>
+    </div>
+    <div class="quadrante q-nao-urgente-nao-importante">
+      <div class="q-label">Não Urgente + Não Importante</div>
+      <div class="q-title">🌀 Distrações</div>
+      <div class="q-desc">Redes sociais, reuniões sem pauta, tarefas que parecem produtivas mas não geram resultado.</div>
+      <div class="q-acao">Ação: Eliminar — tempo desperdiçado aqui sai do Q2</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 7 — TÉCNICAS ══════════════ -->
+<div class="slide s7" id="slide-7">
+  <div class="s7-bg-text">AGIR</div>
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Prática · 3 Técnicas de Ativação</div>
+      <div class="s7-title">Ferramentas para <span>Sair do Lugar</span></div>
+    </div>
+    <div class="tecnica-grid">
+      <div class="tec-card">
+        <div class="tec-icon">⏱</div>
+        <div class="tec-title">Regra dos 2 Minutos</div>
+        <div class="tec-desc">Se uma ação leva menos de 2 minutos para ser feita — faça agora. Não anote, não agende, não adie.</div>
+        <div class="tec-regra">"O custo de decidir é maior do que o custo de fazer."</div>
+      </div>
+      <div class="tec-card">
+        <div class="tec-icon">🔭</div>
+        <div class="tec-title">Antecipação de 48h</div>
+        <div class="tec-desc">Todo domingo (ou segunda): olhe para os próximos 2 dias e pergunte "O que pode dar errado? O que posso fazer antes que aconteça?"</div>
+        <div class="tec-regra">"Proatividade é o hábito de olhar 48h à frente todo dia."</div>
+      </div>
+      <div class="tec-card">
+        <div class="tec-icon">🎯</div>
+        <div class="tec-title">Uma Ação Fora do Script</div>
+        <div class="tec-desc">Toda semana: identifique uma ação que ninguém pediu, que você sabe que seria valiosa, e execute. Sem esperar autorização.</div>
+        <div class="tec-regra">"Protagonistas não esperam a deixa — criam a cena."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 8 — ENCERRAMENTO ══════════════ -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Hoje eu descobri que minha maior barreira para agir é...</strong> — escreva na Ficha de Encerramento</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>Uma situação onde posso ser mais proativo essa semana</strong> — e a ação mínima para começar</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Uma ação que farei sem esperar ser solicitado</strong> — a maior prova de que saiu do script</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div class="s8-quote-block">
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">Pessoas proativas não esperam o <span>roteiro perfeito</span> — constroem a cena com o que têm.</div>
+    </div>
+    <div class="s8-brand">
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NAVEGAÇÃO ══════════════ -->
+<nav class="nav" id="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+
+<script>
+  let current = 1;
+  const total = 8;
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.getElementById('btn-' + current).classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.getElementById('btn-' + current).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function changeSlide(dir) {
+    let next = current + dir;
+    if (next < 1) next = total;
+    if (next > total) next = 1;
+    goTo(next);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>

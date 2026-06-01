@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Slides — Comunicação | Somos Cênica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0F0A1A;
+      --curtain: #1E0A3C;
+      --spotlight: #D4863A;
+      --gold: #E8C86A;
+      --cream: #F5EFE6;
+      --warm-white: #FDFAF6;
+      --rose: #7A2B4A;
+      --text-dark: #1C1018;
+      --text-mid: #4A3A52;
+      --text-light: #8A7A92;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: #1a1a2e;
+      padding: 40px 20px;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+      background: rgba(15,10,26,0.85);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(232,200,106,0.2);
+    }
+
+    .nav button {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-body);
+      font-size: 9pt;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav button:hover, .nav button.active {
+      background: var(--spotlight);
+      color: white;
+    }
+
+    .nav-arrow {
+      background: none !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      color: white !important;
+      width: 28px;
+      height: 28px;
+      border-radius: 50% !important;
+      cursor: pointer;
+      font-size: 12pt;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 0 !important;
+    }
+
+    /* ── Slides ── */
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 960px;
+      height: 540px;
+      margin: 0 auto 100px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .slide.active { display: flex; }
+
+    /* ── SLIDE 1 — ABERTURA ── */
+    .s1 {
+      background: linear-gradient(135deg, var(--void) 0%, var(--curtain) 40%, #2A0A50 70%, var(--rose) 100%);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px;
+    }
+
+    .s1-circles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .s1-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(232,200,106,0.1); }
+    .s1-c1 { width: 500px; height: 500px; top: -150px; right: -150px; }
+    .s1-c2 { width: 300px; height: 300px; bottom: -80px; left: -80px; border-color: rgba(212,134,58,0.12); }
+    .s1-c3 { width: 200px; height: 200px; top: 30%; left: 10%; border-color: rgba(255,255,255,0.04); }
+
+    .s1-content { position: relative; z-index: 1; }
+
+    .s1-eyebrow {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .s1-title {
+      font-family: var(--font-display);
+      font-size: 56pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.0;
+      margin-bottom: 16px;
+    }
+
+    .s1-title span { color: var(--gold); font-style: italic; }
+
+    .s1-subtitle {
+      font-size: 12pt;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .s1-pills { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(232,200,106,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 9pt;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .s1-brand {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      font-family: var(--font-display);
+      font-size: 13pt;
+      font-weight: 700;
+      color: rgba(255,255,255,0.25);
+      z-index: 1;
+    }
+
+    .s1-brand span { color: var(--spotlight); }
+
+    /* ── SLIDE 2 — CHECK-IN ── */
+    .s2 { background: var(--cream); }
+
+    .s2-left {
+      width: 260px;
+      background: var(--curtain);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .s2-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .s2-title {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .s2-title span { color: var(--gold); font-style: italic; }
+
+    .s2-timer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 10px 14px;
+    }
+
+    .timer-icon { font-size: 16pt; }
+    .timer-text { font-size: 9pt; color: rgba(255,255,255,0.7); line-height: 1.3; }
+    .timer-num { font-family: var(--font-display); font-size: 14pt; color: var(--gold); font-weight: 700; }
+
+    .s2-right {
+      flex: 1;
+      padding: 44px 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s2-instruction {
+      font-size: 11pt;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .s2-instruction strong { color: var(--curtain); font-weight: 600; }
+
+    .s2-frase-box {
+      background: linear-gradient(135deg, var(--curtain) 0%, var(--rose) 100%);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .s2-frase {
+      font-family: var(--font-display);
+      font-size: 17pt;
+      color: white;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .s2-frase span { color: var(--gold); }
+
+    .s2-exemplos { display: flex; flex-direction: column; gap: 6px; }
+
+    .exemplo {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 9pt;
+      color: var(--text-mid);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .exemplo::before { content: '→'; color: var(--spotlight); font-style: normal; font-weight: 600; flex-shrink: 0; }
+
+    /* ── SLIDE 3 — CONCEITO ── */
+    .s3 {
+      background: var(--void);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .s3::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(61,16,96,0.5) 0%, transparent 70%);
+    }
+
+    .s3-content { position: relative; z-index: 1; }
+
+    .s3-bg {
+      font-family: var(--font-display);
+      font-size: 80pt;
+      font-weight: 700;
+      color: rgba(232,200,106,0.06);
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .s3-eyebrow {
+      font-size: 8pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .s3-quote {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .s3-quote span { color: var(--gold); font-style: italic; }
+
+    .s3-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--spotlight);
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+
+    .s3-desc {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.55);
+      max-width: 560px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── SLIDE 4 — 4 CAMADAS ── */
+    .s4 { background: var(--cream); }
+
+    .s4-left {
+      width: 260px;
+      background: linear-gradient(160deg, var(--curtain), var(--rose));
+      padding: 44px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .s4-tag {
+      font-size: 7.5pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .s4-title {
+      font-family: var(--font-display);
+      font-size: 28pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+    }
+
+    .s4-desc {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .s4-right {
+      flex: 1;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .camada {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      border-radius: 10px;
+      padding: 14px 18px;
+      border-left: 4px solid var(--spotlight);
+    }
+
+    .camada:nth-child(2) { border-left-color: var(--gold); }
+    .camada:nth-child(3) { border-left-color: var(--rose); }
+    .camada:nth-child(4) { border-left-color: #7B5EA7; }
+
+    .camada-num {
+      font-family: var(--font-display);
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--spotlight);
+      width: 28px;
+      flex-shrink: 0;
+    }
+
+    .camada:nth-child(2) .camada-num { color: var(--gold); }
+    .camada:nth-child(3) .camada-num { color: var(--rose); }
+    .camada:nth-child(4) .camada-num { color: #7B5EA7; }
+
+    .camada-info { flex: 1; }
+
+    .camada-name {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .camada-sub {
+      font-size: 8.5pt;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+
+    .camada-pct {
+      font-family: var(--font-display);
+      font-size: 13pt;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    /* ── SLIDE 5 — ESCUTA ATIVA ── */
+    .s5 { background: var(--void); flex-direction: column; }
+
+    .s5-header {
+      padding: 36px 48px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .s5-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    .s5-title {
+      font-family: var(--font-display);
+      font-size: 28pt;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+
+    .s5-title span { color: var(--gold); font-style: italic; }
+
+    .eco-layout {
+      display: flex;
+      gap: 0;
+      flex: 1;
+      padding: 24px 48px 48px;
+    }
+
+    .eco-col { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+    .eco-col:first-child { padding-right: 24px; border-right: 1px solid rgba(255,255,255,0.1); margin-right: 24px; }
+
+    .eco-rule {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .eco-rule-label {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .eco-rule-text {
+      font-family: var(--font-display);
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .eco-rule-desc {
+      font-size: 9pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    .eco-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .eco-step-num {
+      width: 24px;
+      height: 24px;
+      background: var(--spotlight);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9pt;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .eco-step-text {
+      font-size: 9pt;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+      padding-top: 3px;
+    }
+
+    .eco-how-label {
+      font-size: 7.5pt;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* ── SLIDE 6 — CNV ── */
+    .s6 { background: var(--cream); flex-direction: column; }
+
+    .s6-header {
+      padding: 36px 48px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(74,58,82,0.1);
+    }
+
+    .s6-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .s6-title {
+      font-family: var(--font-display);
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--curtain);
+      line-height: 1.2;
+    }
+
+    .s6-title span { color: var(--rose); font-style: italic; }
+
+    .s6-insight {
+      background: linear-gradient(135deg, var(--curtain), var(--rose));
+      border-radius: 10px;
+      padding: 12px 16px;
+      max-width: 280px;
+    }
+
+    .s6-insight-text {
+      font-family: var(--font-display);
+      font-size: 9pt;
+      color: white;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .cnv-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      flex: 1;
+      padding: 24px 48px 36px;
+    }
+
+    .cnv-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .cnv-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--spotlight);
+      font-size: 18pt;
+      font-weight: 300;
+      padding-top: 40px;
+    }
+
+    .cnv-box {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 14px;
+      width: 100%;
+      border-top: 4px solid var(--spotlight);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cnv-box:nth-of-type(3) { border-top-color: var(--gold); }
+    .cnv-box:nth-of-type(5) { border-top-color: var(--rose); }
+    .cnv-box:nth-of-type(7) { border-top-color: #7B5EA7; }
+
+    .cnv-icon { font-size: 22pt; margin-bottom: 8px; }
+
+    .cnv-name {
+      font-family: var(--font-display);
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--curtain);
+      margin-bottom: 6px;
+    }
+
+    .cnv-desc {
+      font-size: 8pt;
+      color: var(--text-light);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .cnv-example {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      font-style: italic;
+      margin-top: 8px;
+      line-height: 1.3;
+    }
+
+    /* ── SLIDE 7 — ASSERTIVIDADE ── */
+    .s7 {
+      background: var(--void);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s7-bg-text {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 120pt;
+      font-weight: 700;
+      color: rgba(232,200,106,0.04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .s7-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 44px 56px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .s7-header { margin-bottom: 32px; }
+
+    .s7-tag {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .s7-title {
+      font-family: var(--font-display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: white;
+    }
+
+    .s7-title span { color: var(--gold); font-style: italic; }
+
+    .assert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .assert-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .assert-card.destaque {
+      background: linear-gradient(135deg, rgba(212,134,58,0.2), rgba(232,200,106,0.1));
+      border-color: rgba(212,134,58,0.4);
+    }
+
+    .assert-badge {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .assert-card:nth-child(1) .assert-badge { background: rgba(122,43,74,0.3); color: #C47; }
+    .assert-card.destaque .assert-badge { background: rgba(212,134,58,0.3); color: var(--spotlight); }
+    .assert-card:nth-child(3) .assert-badge { background: rgba(123,94,167,0.3); color: #9B7ECF; }
+
+    .assert-style {
+      font-family: var(--font-display);
+      font-size: 16pt;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .assert-desc {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .assert-example {
+      font-size: 8pt;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      line-height: 1.4;
+      border-left: 2px solid rgba(255,255,255,0.15);
+      padding-left: 10px;
+    }
+
+    .assert-card.destaque .assert-example { border-left-color: var(--spotlight); color: rgba(255,255,255,0.6); }
+
+    /* ── SLIDE 8 — ENCERRAMENTO ── */
+    .s8 { background: var(--cream); }
+
+    .s8-left {
+      flex: 1;
+      padding: 44px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .s8-eyebrow {
+      font-size: 7.5pt;
+      color: var(--spotlight);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .s8-title {
+      font-family: var(--font-display);
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--curtain);
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+
+    .s8-title span { color: var(--rose); }
+
+    .s8-cards { display: flex; flex-direction: column; gap: 12px; }
+
+    .s8-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: white;
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .s8-num {
+      font-family: var(--font-display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--spotlight);
+      width: 28px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .s8-text { font-size: 9.5pt; color: var(--text-mid); line-height: 1.4; }
+    .s8-text strong { color: var(--text-dark); font-weight: 600; }
+
+    .s8-right {
+      width: 300px;
+      background: linear-gradient(160deg, var(--curtain), #3D1060, var(--rose));
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s8-right::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border: 1px solid rgba(232,200,106,0.12);
+      border-radius: 50%;
+    }
+
+    .s8-right::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 120px; height: 120px;
+      border: 1px solid rgba(212,134,58,0.15);
+      border-radius: 50%;
+    }
+
+    .s8-quote-block { position: relative; z-index: 1; }
+
+    .s8-quote-mark {
+      font-family: var(--font-display);
+      font-size: 48pt;
+      color: rgba(232,200,106,0.3);
+      line-height: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .s8-quote-text {
+      font-family: var(--font-display);
+      font-size: 13pt;
+      color: white;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .s8-quote-text span { color: var(--gold); }
+
+    .s8-brand { position: relative; z-index: 1; }
+
+    .s8-brand-name {
+      font-family: var(--font-display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .s8-brand-tag { font-size: 7.5pt; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .nav { display: none; }
+      .slide {
+        display: block !important;
+        page-break-after: always;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+        height: 100vh;
+      }
+    }
+
+    @page { size: landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ SLIDE 1 — ABERTURA ══════════════ -->
+<div class="slide s1 active" id="slide-1">
+  <div class="s1-circles">
+    <div class="s1-circle s1-c1"></div>
+    <div class="s1-circle s1-c2"></div>
+    <div class="s1-circle s1-c3"></div>
+  </div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Somos Cênica · Soft Skills com Técnicas Teatrais</div>
+    <div class="s1-title">Comuni-<br><span>cação</span></div>
+    <div class="s1-subtitle">Quem comunica bem não fala mais — ouve melhor.</div>
+    <div class="s1-pills">
+      <div class="pill">🎭 Corpo</div>
+      <div class="pill">🔊 Voz</div>
+      <div class="pill">👂 Escuta</div>
+      <div class="pill">💬 Assertividade</div>
+    </div>
+  </div>
+  <div class="s1-brand">Somos <span>Cênica</span></div>
+</div>
+
+<!-- ══════════════ SLIDE 2 — CHECK-IN ══════════════ -->
+<div class="slide s2" id="slide-2">
+  <div class="s2-left">
+    <div>
+      <div class="s2-tag">Abertura · Check-in</div>
+      <div class="s2-title">Uma conversa<br>que você<br><span>evitou</span></div>
+    </div>
+    <div class="s2-timer">
+      <div class="timer-icon">⏱</div>
+      <div>
+        <div class="timer-num">10 min</div>
+        <div class="timer-text">Uma pessoa de cada vez</div>
+      </div>
+    </div>
+  </div>
+  <div class="s2-right">
+    <div class="s2-instruction">
+      <strong>Toda semana evitamos uma comunicação.</strong> Começamos identificando qual foi essa — para entender o que nos impede de nos expressar.
+    </div>
+    <div class="s2-frase-box">
+      <div class="s2-frase">"Uma comunicação que eu evitei essa semana foi <span>_______</span> porque <span>_______</span>."</div>
+    </div>
+    <div class="s2-exemplos">
+      <div class="exemplo">"Evitei dar feedback para um colega — porque não sabia como dizer sem magoar"</div>
+      <div class="exemplo">"Não falei o que pensava na reunião — porque achei que não era o momento"</div>
+      <div class="exemplo">"Deixei passar uma situação — porque preferi não criar conflito"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 3 — CONCEITO ══════════════ -->
+<div class="slide s3" id="slide-3">
+  <div class="s3-bg">FALAR</div>
+  <div class="s3-content">
+    <div class="s3-eyebrow">O que é Comunicação no trabalho</div>
+    <div class="s3-quote">Comunicar não é transferir informação.<br>É criar <span>conexão</span>.</div>
+    <div class="s3-divider"></div>
+    <div class="s3-desc">No teatro, o ator nunca fala para o vazio — fala para alguém. Toda fala tem intenção. Toda pausa é mensagem. Comunicação eficaz não começa pela voz: começa pela escuta de quem está na sua frente. O que vamos treinar hoje é a habilidade de presença — estar inteiro na conversa.</div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 4 — 4 CAMADAS ══════════════ -->
+<div class="slide s4" id="slide-4">
+  <div class="s4-left">
+    <div class="s4-tag">Estrutura da Aula</div>
+    <div class="s4-title">As 4<br>Camadas<br>da Comu-<br>nicação</div>
+    <div class="s4-desc">"A maioria das pessoas só treina a última camada — e se esquece das três primeiras."</div>
+  </div>
+  <div class="s4-right">
+    <div class="camada">
+      <div class="camada-num">1</div>
+      <div class="camada-info">
+        <div class="camada-name">Corpo</div>
+        <div class="camada-sub">Postura, gesto, expressão facial, movimento · O que você comunica antes de falar</div>
+      </div>
+      <div class="camada-pct">55%</div>
+    </div>
+    <div class="camada">
+      <div class="camada-num">2</div>
+      <div class="camada-info">
+        <div class="camada-name">Voz</div>
+        <div class="camada-sub">Tom, ritmo, volume, pausa · Como você diz o que diz</div>
+      </div>
+      <div class="camada-pct">38%</div>
+    </div>
+    <div class="camada">
+      <div class="camada-num">3</div>
+      <div class="camada-info">
+        <div class="camada-name">Palavras</div>
+        <div class="camada-sub">Vocabulário, estrutura, clareza · O conteúdo da mensagem</div>
+      </div>
+      <div class="camada-pct">7%</div>
+    </div>
+    <div class="camada">
+      <div class="camada-num">4</div>
+      <div class="camada-info">
+        <div class="camada-name">Escuta</div>
+        <div class="camada-sub">Presença, atenção, silêncio · O que você recebe do outro</div>
+      </div>
+      <div class="camada-pct">∞</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 5 — ESCUTA ATIVA ══════════════ -->
+<div class="slide s5" id="slide-5" style="flex-direction:column;">
+  <div class="s5-header">
+    <div>
+      <div class="s5-tag">Exercício Central · Técnica Teatral</div>
+      <div class="s5-title">O <span>Eco</span> — Escuta em 3 Níveis</div>
+    </div>
+  </div>
+  <div class="eco-layout">
+    <div class="eco-col">
+      <div class="eco-rule">
+        <div class="eco-rule-label">A técnica do ator que escuta</div>
+        <div class="eco-rule-text">Eco em 3 camadas</div>
+        <div class="eco-rule-desc">Antes de responder, o ator passa por três filtros: o que foi dito, o que foi entendido e o que foi sentido. Só então fala.</div>
+      </div>
+      <div style="background:rgba(122,43,74,0.15);border-radius:10px;padding:14px 16px;border:1px solid rgba(122,43,74,0.2);">
+        <div style="font-size:8pt;color:#C47;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">🚫 Escuta reativa</div>
+        <div style="font-size:8.5pt;color:rgba(255,255,255,0.5);line-height:1.4;">"Está formulando a resposta enquanto o outro ainda fala."</div>
+      </div>
+      <div style="background:rgba(212,134,58,0.15);border-radius:10px;padding:14px 16px;border:1px solid rgba(212,134,58,0.2);">
+        <div style="font-size:8pt;color:var(--spotlight);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">✅ Escuta ativa</div>
+        <div style="font-size:8.5pt;color:rgba(255,255,255,0.6);line-height:1.4;">"Está inteiro na fala do outro — sem julgamento, sem antecipação."</div>
+      </div>
+    </div>
+    <div class="eco-col">
+      <div class="eco-how-label">Como praticar ao vivo — duplas</div>
+      <div class="eco-step">
+        <div class="eco-step-num">1</div>
+        <div class="eco-step-text">Pessoa A fala por 2 minutos sobre algo do trabalho</div>
+      </div>
+      <div class="eco-step">
+        <div class="eco-step-num">2</div>
+        <div class="eco-step-text">Pessoa B repete <strong style="color:var(--gold)">exatamente o que ouviu</strong> (palavras, não resumo)</div>
+      </div>
+      <div class="eco-step">
+        <div class="eco-step-num">3</div>
+        <div class="eco-step-text">Pessoa B diz <strong style="color:var(--gold)">o que entendeu</strong> como mensagem central</div>
+      </div>
+      <div class="eco-step">
+        <div class="eco-step-num">4</div>
+        <div class="eco-step-text">Pessoa B compartilha <strong style="color:var(--gold)">o que percebeu no tom</strong> — emoção por trás das palavras</div>
+      </div>
+      <div class="eco-step">
+        <div class="eco-step-num">5</div>
+        <div class="eco-step-text">Pessoa A valida: "Você me ouviu? Faltou algo?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 6 — CNV ══════════════ -->
+<div class="slide s6" id="slide-6" style="display:flex;flex-direction:column;">
+  <div class="s6-header">
+    <div>
+      <div class="s6-tag">Ferramenta · Comunicação Não Violenta</div>
+      <div class="s6-title">Os 4 Passos<br>da <span>CNV</span></div>
+    </div>
+    <div class="s6-insight">
+      <div class="s6-insight-text">"A maioria dos conflitos acontece quando misturamos fatos com interpretações."<br>— Marshall Rosenberg</div>
+    </div>
+  </div>
+  <div class="cnv-flow">
+    <div class="cnv-step">
+      <div class="cnv-box">
+        <div class="cnv-icon">📍</div>
+        <div class="cnv-name">Observação</div>
+        <div class="cnv-desc">Descreva os fatos sem julgamento. O que aconteceu objetivamente?</div>
+        <div class="cnv-example">"Quando você chega 15 minutos após o horário combinado..."</div>
+      </div>
+    </div>
+    <div class="cnv-arrow">→</div>
+    <div class="cnv-step">
+      <div class="cnv-box">
+        <div class="cnv-icon">🫀</div>
+        <div class="cnv-name">Sentimento</div>
+        <div class="cnv-desc">Como você se sente? Assuma suas emoções sem culpar o outro.</div>
+        <div class="cnv-example">"...eu me sinto frustrado e desrespeitado..."</div>
+      </div>
+    </div>
+    <div class="cnv-arrow">→</div>
+    <div class="cnv-step">
+      <div class="cnv-box">
+        <div class="cnv-icon">💡</div>
+        <div class="cnv-name">Necessidade</div>
+        <div class="cnv-desc">Qual valor ou necessidade está por trás do que você sente?</div>
+        <div class="cnv-example">"...porque preciso de pontualidade para me organizar..."</div>
+      </div>
+    </div>
+    <div class="cnv-arrow">→</div>
+    <div class="cnv-step">
+      <div class="cnv-box">
+        <div class="cnv-icon">🙏</div>
+        <div class="cnv-name">Pedido</div>
+        <div class="cnv-desc">Faça um pedido claro, positivo e concreto — não uma exigência.</div>
+        <div class="cnv-example">"...você pode me avisar com 10 min de antecedência?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 7 — ASSERTIVIDADE ══════════════ -->
+<div class="slide s7" id="slide-7">
+  <div class="s7-bg-text">VOZ</div>
+  <div class="s7-content">
+    <div class="s7-header">
+      <div class="s7-tag">Prática · Os 3 Estilos de Comunicação</div>
+      <div class="s7-title">Passivo, <span>Assertivo</span> ou Agressivo?</div>
+    </div>
+    <div class="assert-grid">
+      <div class="assert-card">
+        <div class="assert-badge">Passivo</div>
+        <div class="assert-style">Silêncio que machuca</div>
+        <div class="assert-desc">Evita conflito a qualquer custo. Engole opinião. Acumula ressentimento.</div>
+        <div class="assert-example">"Tudo bem... pode ser... como você quiser."</div>
+      </div>
+      <div class="assert-card destaque">
+        <div class="assert-badge">✦ Assertivo</div>
+        <div class="assert-style">Clareza com respeito</div>
+        <div class="assert-desc">Expressa opinião, necessidade e limite com firmeza — sem atacar. Preserva a relação e a verdade.</div>
+        <div class="assert-example">"Entendo sua perspectiva. Para mim, a situação foi assim — podemos conversar?"</div>
+      </div>
+      <div class="assert-card">
+        <div class="assert-badge">Agressivo</div>
+        <div class="assert-style">Fala que afasta</div>
+        <div class="assert-desc">Impõe ponto de vista. Invalida o outro. Vence o argumento, perde a relação.</div>
+        <div class="assert-example">"Você sempre faz isso. O problema é você, claramente."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SLIDE 8 — ENCERRAMENTO ══════════════ -->
+<div class="slide s8" id="slide-8">
+  <div class="s8-left">
+    <div class="s8-eyebrow">Encerramento</div>
+    <div class="s8-title">O que você<br>leva para o<br><span>palco real</span></div>
+    <div class="s8-cards">
+      <div class="s8-card">
+        <div class="s8-num">1</div>
+        <div class="s8-text"><strong>Hoje eu descobri sobre minha comunicação que...</strong> — escreva na Ficha de Encerramento</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">2</div>
+        <div class="s8-text"><strong>A conversa difícil que vou ter</strong> — usando os 4 passos da CNV como guia</div>
+      </div>
+      <div class="s8-card">
+        <div class="s8-num">3</div>
+        <div class="s8-text"><strong>Uma prática de escuta</strong> — ouvir 100% em pelo menos uma conversa hoje</div>
+      </div>
+    </div>
+  </div>
+  <div class="s8-right">
+    <div class="s8-quote-block">
+      <div class="s8-quote-mark">"</div>
+      <div class="s8-quote-text">A palavra mais poderosa<br>de qualquer conversa<br>é o <span>silêncio de quem ouve.</span></div>
+    </div>
+    <div class="s8-brand">
+      <div class="s8-brand-name">Somos Cênica</div>
+      <div class="s8-brand-tag">somoscênica.com.br<br>Escola de Soft Skills com Técnicas Teatrais</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NAVEGAÇÃO ══════════════ -->
+<nav class="nav" id="nav">
+  <button class="nav-arrow" onclick="changeSlide(-1)">←</button>
+  <button onclick="goTo(1)" class="active" id="btn-1">1</button>
+  <button onclick="goTo(2)" id="btn-2">2</button>
+  <button onclick="goTo(3)" id="btn-3">3</button>
+  <button onclick="goTo(4)" id="btn-4">4</button>
+  <button onclick="goTo(5)" id="btn-5">5</button>
+  <button onclick="goTo(6)" id="btn-6">6</button>
+  <button onclick="goTo(7)" id="btn-7">7</button>
+  <button onclick="goTo(8)" id="btn-8">8</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">→</button>
+</nav>
+
+<script>
+  let current = 1;
+  const total = 8;
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.getElementById('btn-' + current).classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.getElementById('btn-' + current).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function changeSlide(dir) {
+    let next = current + dir;
+    if (next < 1) next = total;
+    if (next > total) next = 1;
+    goTo(next);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+</script>
+
+</body>
+</html>
