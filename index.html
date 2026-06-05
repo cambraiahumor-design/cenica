@@ -851,6 +851,29 @@
   .text-center { text-align: center; }
   .bg-white { background: #fff; }
 
+  /* VIDEO EMBEDS */
+  .video-embed-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .video-embed-item { border-radius: 14px; overflow: hidden; background: #000; }
+
+  .video-embed-item.short { aspect-ratio: 9/16; }
+
+  .video-embed-item.landscape {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+
+  .video-embed-item iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
   /* NAV TOGGLE (desktop: oculto) */
   .nav-toggle {
     display: none;
@@ -980,6 +1003,8 @@
     /* VIDEOS & BLOG */
     .video-grid { grid-template-columns: 1fr; }
     .blog-grid { grid-template-columns: 1fr; }
+    .video-embed-grid { grid-template-columns: 1fr; }
+    .video-embed-item.landscape { grid-column: 1; }
 
     /* PROMOS */
     .promos-hero { padding: 48px 24px; }
@@ -1373,16 +1398,51 @@
   <section style="padding-bottom:0">
     <div class="section-tag">Conteúdo Audiovisual</div>
     <h2 class="section-title">Vídeos</h2>
-    <p class="section-sub">Aprenda, reflita e se inspire com nossos conteúdos gratuitos sobre teatro, comunicação e desenvolvimento humano.</p>
+    <p class="section-sub">Conteúdos sobre teatro, comunicação e desenvolvimento humano.</p>
   </section>
   <section style="padding-top:32px;">
-    <div class="video-grid">
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#2D4A3E,#1a2f28)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">O que é presença cênica e por que todo mundo precisa dela</div><div class="video-meta">João Cambraia · 8 min</div></div></div>
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#C8522A,#8a3218)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">Escuta ativa: a habilidade mais subestimada de qualquer líder</div><div class="video-meta">João Cambraia · 11 min</div></div></div>
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#E8B84B,#c49a30)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">Improvisação como ferramenta de adaptabilidade nas empresas</div><div class="video-meta">João Cambraia · 14 min</div></div></div>
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#3a6657,#2D4A3E)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">Voz e corpo: como sua linguagem não-verbal te entrega</div><div class="video-meta">João Cambraia · 9 min</div></div></div>
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#C8522A,#2D4A3E)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">Como lidar com conflitos sem perder a si mesmo</div><div class="video-meta">João Cambraia · 12 min</div></div></div>
-      <div class="video-card"><div class="video-thumb" style="background:linear-gradient(135deg,#1a2f28,#C8522A)"><div class="play-btn">▶</div></div><div class="video-body"><div class="video-title">Por que líderes precisam de inteligência emocional cênica</div><div class="video-meta">João Cambraia · 10 min</div></div></div>
+    <div class="video-embed-grid">
+
+      <!-- Short 1 -->
+      <div class="video-embed-item short">
+        <iframe
+          src="https://www.youtube.com/embed/ykilxSNkuyQ"
+          title="Vídeo Somos Cênica"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Short 2 -->
+      <div class="video-embed-item short">
+        <iframe
+          src="https://www.youtube.com/embed/SiuFFA1uob8"
+          title="Vídeo Somos Cênica"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Vídeo longo 1 -->
+      <div class="video-embed-item landscape">
+        <iframe
+          src="https://www.youtube.com/embed/BPeiIQBQM7c?start=107"
+          title="Vídeo Somos Cênica"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Vídeo longo 2 -->
+      <div class="video-embed-item landscape">
+        <iframe
+          src="https://www.youtube.com/embed/gDp-Exxgtpw"
+          title="Vídeo Somos Cênica"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
     </div>
   </section>
   <footer>
