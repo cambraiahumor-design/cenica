@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Por que você fala mas não é ouvido — Somos Cênica</title>
+<meta name="description" content="Comunicar não é só emitir palavras. É criar ressonância — e isso começa muito antes de abrir a boca.">
+<style>
+  :root {
+    --primary: #C8522A;
+    --secondary: #2D4A3E;
+    --accent: #E8B84B;
+    --light: #F8F5F0;
+    --gray: #666;
+    --border: #E0DDD8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, serif; background: #fff; color: #222; }
+
+  nav {
+    background: var(--secondary);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { color: #fff; font-size: 1.1rem; font-weight: bold; text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-back { color: rgba(255,255,255,0.75); font-family: Arial, sans-serif; font-size: 0.82rem; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .nav-back:hover { color: #fff; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--secondary) 0%, #1a2f28 100%);
+    color: #fff;
+    padding: 64px 40px 56px;
+    text-align: center;
+  }
+  .hero-category {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    line-height: 1.3;
+    max-width: 760px;
+    margin: 0 auto 16px;
+  }
+  .hero-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+  }
+
+  article {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+  article p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #2a2a2a;
+    margin-bottom: 24px;
+  }
+  article h2 {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin: 40px 0 16px;
+    line-height: 1.4;
+  }
+  article blockquote {
+    border-left: 4px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 32px 0;
+  }
+  article blockquote p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  .cta-box {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin: 48px 0 0;
+    border-top: 3px solid var(--primary);
+  }
+  .cta-box h3 { color: var(--secondary); font-size: 1.2rem; margin-bottom: 10px; }
+  .cta-box p { font-family: Arial, sans-serif; font-size: 0.9rem; color: var(--gray); margin-bottom: 20px; line-height: 1.6; }
+  .btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 4px;
+  }
+  .btn-outline {
+    display: inline-block;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 12px 26px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 4px;
+  }
+
+  .related { background: var(--light); padding: 48px 24px; }
+  .related-inner { max-width: 860px; margin: 0 auto; }
+  .related h4 { color: var(--secondary); font-size: 1rem; margin-bottom: 24px; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+  .related-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .related-card { background: #fff; border-radius: 10px; padding: 20px; border-left: 3px solid var(--primary); text-decoration: none; display: block; }
+  .related-card .cat { font-family: Arial, sans-serif; font-size: 0.7rem; color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .related-card h5 { color: var(--secondary); font-size: 0.92rem; line-height: 1.4; }
+
+  footer {
+    background: var(--secondary);
+    color: rgba(255,255,255,0.65);
+    padding: 32px 40px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+  }
+  footer strong { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Somos <span>Cênica</span></a>
+  <a class="nav-back" href="../index.html">← Voltar ao site</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-category">Comunicação</div>
+  <h1>Por que você fala mas não é ouvido: o problema de presença nas conversas difíceis</h1>
+  <div class="hero-meta">João Cambraia &nbsp;·&nbsp; 5 min de leitura</div>
+</div>
+
+<article>
+  <p>Você terminou de falar e percebeu que a pessoa do outro lado estava olhando para você, mas não estava lá. Acenou com a cabeça no momento certo, disse "entendo" duas vezes, e mesmo assim você saiu da conversa com aquela sensação de ter falado para uma parede. O problema não era o que você disse. Era como você estava quando disse.</p>
+
+  <p>Existe uma diferença enorme entre falar e comunicar. Falar é mecânico — qualquer pessoa com aparelho fonador funcional consegue fazer isso. Comunicar exige outra coisa: exige que você esteja presente de verdade no momento em que as palavras saem.</p>
+
+  <p>No teatro, a gente chama isso de presença. E não é metáfora.</p>
+
+  <p>Quando um ator entra em cena sem presença, o público sente. Não consegue dizer exatamente o quê, mas há uma distância. As palavras chegam, mas não pousam. É como receber uma carta dentro de outra carta — você precisa abrir duas vezes para chegar no conteúdo, e a maioria das pessoas não tem paciência para isso. No dia a dia, as pessoas simplesmente param de ouvir.</p>
+
+  <blockquote><p>A presença é construída, não é dom. E ela começa no corpo.</p></blockquote>
+
+  <p>Quando você está ansioso para dar uma resposta, seu corpo já foi para o próximo momento. Ombros levemente para frente, olhos calculando, respiração superficial. Você ainda está fisicamente na conversa, mas energeticamente já saiu. E o outro lado percebe isso antes de qualquer palavra ser dita.</p>
+
+  <p>Pense na última vez que alguém te ouviu de verdade. Não alguém que esperou sua vez de falar — alguém que realmente recebeu o que você disse. Como era o corpo dessa pessoa? Provavelmente relaxado, virado para você, com um silêncio que não era vazio. Era receptivo.</p>
+
+  <p>Isso é presença vocal e corporal aplicada à conversa real.</p>
+
+  <h2>O aquecimento que ninguém faz</h2>
+
+  <p>No teatro, antes de qualquer ensaio, existe aquecimento. Não só de voz — de estado. Os atores precisam chegar ao presente antes de entrar em cena. Exercícios de respiração, de percepção do espaço, de contato com o próprio corpo. Tudo isso para desarmar o piloto automático e habitar o momento de verdade.</p>
+
+  <p>Você não vai fazer aquecimento antes de toda reunião difícil. Mas pode fazer algo parecido: trinta segundos antes de entrar numa conversa que importa, respira fundo, percebe seus pés no chão, e se pergunta — eu estou aqui agora? Não no que vou dizer. Não no que aconteceu antes. Aqui.</p>
+
+  <p>Essa simples pausa muda o estado. E o estado muda tudo.</p>
+
+  <p>Tem outro fator que sabota a presença nas conversas difíceis: a voz que não sustenta o que está sendo dito. Quando alguém fala algo importante num volume quase inaudível, com a frase caindo no final, o conteúdo perde peso. Não porque seja fraco — mas porque o canal de transmissão não sustenta a carga. A voz é postura. Voz que cai no final da frase diz: não tenho certeza. Voz que some no momento de tensão diz: não confio no que estou falando.</p>
+
+  <p>Isso não tem nada a ver com ser extrovertido ou introvertido. Tem a ver com enraizamento. Quando você está enraizado no que diz — quando acredita no que está dizendo e ocupa o espaço que aquela frase merece — a voz carrega isso naturalmente.</p>
+
+  <blockquote><p>Não se trata de falar mais alto. Trata-se de falar de dentro.</p></blockquote>
+
+  <h2>O silêncio que comunica</h2>
+
+  <p>Nas conversas difíceis, a tentação é se proteger. Falar rápido para não dar brecha. Usar palavras técnicas para parecer seguro. Encher o silêncio com ruído porque o silêncio parece perigoso. Mas é exatamente aí que a presença desaparece — e com ela, a possibilidade de ser ouvido.</p>
+
+  <p>O teatro ensina isso de um jeito brutal e preciso: o palco não mente. Se você não está presente, a plateia sabe. E na vida, as pessoas também sabem — só não te dizem.</p>
+
+  <p>A boa notícia é que presença se treina. Não em dois dias, mas se treina. Começa por prestar atenção no seu estado antes de abrir a boca. Depois, no ritmo com que você fala — a pressa costuma ser medo disfarçado. Depois, no espaço que você dá para o outro depois de terminar de falar. Um segundo de silêncio real diz mais sobre presença do que dez minutos de discurso bem elaborado.</p>
+
+  <p>Da próxima vez que você sair de uma conversa com a sensação de que não foi ouvido, vale se perguntar: eu estava presente, ou estava ensaiando enquanto falava?</p>
+
+  <p>A resposta costuma ser reveladora.</p>
+
+  <div class="cta-box">
+    <h3>Presença se aprende. Na prática.</h3>
+    <p>A Técnica Humana trabalha comunicação, presença e escuta em 8 encontros presenciais. Sem slides. Com o corpo, a voz e o grupo.</p>
+    <a class="btn" href="https://wa.me/5585997041061?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20T%C3%A9cnica%20Humana." target="_blank">Quero saber mais →</a>
+    <a class="btn-outline" href="../index.html">Ver o curso</a>
+  </div>
+</article>
+
+<div class="related">
+  <div class="related-inner">
+    <h4>Continue lendo</h4>
+    <div class="related-grid">
+      <a class="related-card" href="escuta-ativa-lideranca.html">
+        <div class="cat">Liderança</div>
+        <h5>O líder que aprendeu a ouvir: como a escuta ativa transforma equipes</h5>
+      </a>
+      <a class="related-card" href="o-que-e-presenca.html">
+        <div class="cat">Presença</div>
+        <h5>O que é presença de verdade — e como desenvolvê-la fora do teatro</h5>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Somos Cênica</strong> — Escola de Desenvolvimento Humano com Metodologia Cênica<br>
+  <span style="margin-top:6px;display:block">© 2026 Somos Cênica · Teresina & Fortaleza</span>
+</footer>
+
+</body>
+</html>
