@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação de Desenvolvimento Humano — Somos Cênica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #0F0A1A;
+    --curtain: #1E0A3C;
+    --spotlight: #D4863A;
+    --gold: #E8C86A;
+    --cream: #F5EFE6;
+    --warm-white: #FDFAF6;
+    --rose: #7A2B4A;
+    --text-dark: #1C1018;
+    --text-mid: #4A3A52;
+    --text-light: #8A7A92;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --shadow-soft: 0 4px 24px rgba(15,10,26,0.12);
+    --shadow-strong: 0 16px 64px rgba(15,10,26,0.24);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-white);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--curtain);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  .logo span { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--curtain) 0%, var(--rose) 100%);
+    padding: 64px 40px;
+    text-align: center;
+    color: #fff;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(232,200,106,0.2);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 99px;
+    border: 1px solid rgba(232,200,106,0.4);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .pillars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .pillar-tag {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 6px 16px;
+    border-radius: 99px;
+    font-size: 0.82rem;
+  }
+  .btn-start {
+    background: var(--spotlight);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 99px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(212,134,58,0.4);
+  }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(212,134,58,0.5); }
+
+  /* ── QUIZ CONTAINER ── */
+  .quiz-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+
+  /* Progress */
+  .progress-bar-wrap {
+    margin-bottom: 32px;
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .progress-track {
+    background: var(--cream);
+    height: 6px;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--spotlight), var(--gold));
+    border-radius: 99px;
+    transition: width 0.5s ease;
+  }
+
+  /* Section header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--curtain);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .section-meta {
+    font-size: 0.78rem;
+    color: var(--spotlight);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--text-dark);
+  }
+
+  /* Question card */
+  .question-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(15,10,26,0.06);
+  }
+  .question-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .question-text {
+    font-size: 1.02rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1.5px solid var(--cream);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--warm-white);
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    text-align: left;
+  }
+  .option:hover { border-color: var(--spotlight); background: #fff; color: var(--text-dark); }
+  .option.selected { border-color: var(--spotlight); background: rgba(212,134,58,0.08); color: var(--text-dark); }
+  .option.correct  { border-color: #2D8A4E; background: rgba(45,138,78,0.08); color: #1A5C32; }
+  .option.wrong    { border-color: #C0392B; background: rgba(192,57,43,0.08); color: #7D2015; }
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .option.selected .option-letter { background: var(--spotlight); color: #fff; }
+  .option.correct  .option-letter { background: #2D8A4E; color: #fff; }
+  .option.wrong    .option-letter { background: #C0392B; color: #fff; }
+
+  /* Feedback */
+  .feedback {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .feedback.show { display: block; }
+  .feedback.ok   { background: rgba(45,138,78,0.08); color: #1A5C32; border-left: 3px solid #2D8A4E; }
+  .feedback.err  { background: rgba(192,57,43,0.08); color: #7D2015; border-left: 3px solid #C0392B; }
+
+  /* Nav buttons */
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 12px;
+  }
+  .btn-nav {
+    padding: 13px 30px;
+    border-radius: 99px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-prev {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1.5px solid var(--cream);
+  }
+  .btn-prev:hover { border-color: var(--text-mid); }
+  .btn-next {
+    background: var(--curtain);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(30,10,60,0.25);
+  }
+  .btn-next:hover { background: var(--spotlight); }
+  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-next:disabled:hover { background: var(--curtain); }
+
+  /* ── RESULTADO ── */
+  #screen-result { display: none; }
+  .result-hero {
+    background: linear-gradient(135deg, var(--curtain) 0%, var(--rose) 100%);
+    padding: 64px 40px;
+    text-align: center;
+    color: #fff;
+  }
+  .result-score {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .result-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .result-msg {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  .result-sub {
+    font-size: 0.98rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .result-grid {
+    max-width: 760px;
+    margin: 48px auto;
+    padding: 0 20px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .pillar-score-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(15,10,26,0.06);
+  }
+  .ps-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .ps-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ps-bar-track {
+    background: var(--cream);
+    height: 6px;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .ps-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--spotlight), var(--gold));
+  }
+  .ps-pct {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-family: var(--font-display);
+  }
+  .btn-retry {
+    display: block;
+    margin: 0 auto 80px;
+    background: var(--spotlight);
+    color: #fff;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 99px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(212,134,58,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-retry:hover { transform: translateY(-2px); }
+
+  /* Screens */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  @media (max-width: 600px) {
+    header { padding: 14px 20px; }
+    .hero { padding: 48px 20px; }
+    .question-card { padding: 20px 18px; }
+    .quiz-nav { flex-direction: column-reverse; }
+    .btn-nav { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Somos <span>Cênica</span></div>
+</header>
+
+<!-- TELA: INÍCIO -->
+<div id="screen-intro" class="screen active">
+  <div class="hero">
+    <div class="hero-tag">Curso de Desenvolvimento Humano</div>
+    <h1>Avaliação de<br>Conhecimentos</h1>
+    <p>Teste seus conhecimentos nas 6 competências essenciais do desenvolvimento humano com a metodologia cênica.</p>
+    <div class="pillars">
+      <span class="pillar-tag">🤝 Empatia</span>
+      <span class="pillar-tag">💬 Comunicação</span>
+      <span class="pillar-tag">❤️ Inteligência Emocional</span>
+      <span class="pillar-tag">🌀 Trabalho em Equipe</span>
+      <span class="pillar-tag">💡 Criatividade</span>
+      <span class="pillar-tag">🚀 Proatividade</span>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Iniciar Avaliação</button>
+  </div>
+</div>
+
+<!-- TELA: QUIZ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-wrap">
+    <div class="progress-bar-wrap">
+      <div class="progress-info">
+        <span id="progress-label">Questão 1 de 18</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="section-header">
+      <div class="section-icon" id="section-icon">🤝</div>
+      <div>
+        <div class="section-meta" id="section-meta">Competência 1 de 6</div>
+        <div class="section-title" id="section-title">Empatia</div>
+      </div>
+    </div>
+    <div id="questions-container"></div>
+    <div class="quiz-nav">
+      <button class="btn-nav btn-prev" id="btn-prev" onclick="prevQuestion()" style="display:none">← Anterior</button>
+      <button class="btn-nav btn-next" id="btn-next" onclick="nextQuestion()" disabled>Próxima →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TELA: RESULTADO -->
+<div id="screen-result" class="screen">
+  <div class="result-hero">
+    <div class="result-label">Seu resultado</div>
+    <div class="result-score" id="result-score">0%</div>
+    <div class="result-msg" id="result-msg">Parabéns!</div>
+    <div class="result-sub" id="result-sub"></div>
+  </div>
+  <div class="result-grid" id="result-grid"></div>
+  <button class="btn-retry" onclick="resetQuiz()">Refazer Avaliação</button>
+</div>
+
+<script>
+const QUIZ = [
+  // ─── EMPATIA ───
+  {
+    pillar: "Empatia", icon: "🤝", pillarIndex: 0,
+    q: "O que significa praticar empatia em uma conversa difícil?",
+    options: [
+      "Concordar com tudo que a outra pessoa diz para evitar conflito",
+      "Tentar compreender o ponto de vista e os sentimentos do outro, mesmo sem concordar",
+      "Guardar seus sentimentos e apenas ouvir sem reagir",
+      "Resolver o problema da outra pessoa rapidamente"
+    ],
+    correct: 1,
+    feedback: "Empatia é a capacidade de compreender a perspectiva e os sentimentos do outro. Não exige concordância, mas exige presença e escuta genuína."
+  },
+  {
+    pillar: "Empatia", icon: "🤝", pillarIndex: 0,
+    q: "Qual comportamento demonstra empatia no ambiente de trabalho?",
+    options: [
+      "Ignorar erros de colegas para não criar conflitos",
+      "Perceber que um colega está sobrecarregado e oferecer ajuda voluntariamente",
+      "Dar conselhos não solicitados sobre como a pessoa deveria agir",
+      "Comparar a situação do colega com experiências próprias para consolá-lo"
+    ],
+    correct: 1,
+    feedback: "Empatia no trabalho envolve perceber o estado emocional do outro e agir de forma sensível, oferecendo apoio antes mesmo de ser pedido."
+  },
+  {
+    pillar: "Empatia", icon: "🤝", pillarIndex: 0,
+    q: "Qual é a diferença entre empatia e simpatia?",
+    options: [
+      "Simpatia é mais profunda que empatia",
+      "Empatia envolve sentir com o outro; simpatia é sentir por ele, mantendo distância emocional",
+      "São sinônimos com aplicações diferentes apenas no contexto clínico",
+      "Empatia é exclusiva de profissionais de saúde"
+    ],
+    correct: 1,
+    feedback: "Brené Brown define bem: simpatia mantém a distância ('que pena!'), enquanto empatia se conecta ('eu entendo como você se sente')."
+  },
+
+  // ─── COMUNICAÇÃO ───
+  {
+    pillar: "Comunicação", icon: "💬", pillarIndex: 1,
+    q: "Na comunicação não-violenta (CNV), qual é a sequência correta?",
+    options: [
+      "Julgamento → Pedido → Sentimento → Necessidade",
+      "Observação → Sentimento → Necessidade → Pedido",
+      "Pedido → Observação → Necessidade → Sentimento",
+      "Sentimento → Julgamento → Observação → Pedido"
+    ],
+    correct: 1,
+    feedback: "A CNV de Marshall Rosenberg segue: 1) Observação (o que aconteceu), 2) Sentimento (como me sinto), 3) Necessidade (o que preciso), 4) Pedido (o que solicito)."
+  },
+  {
+    pillar: "Comunicação", icon: "💬", pillarIndex: 1,
+    q: "Qual dos seguintes é um exemplo de escuta ativa?",
+    options: [
+      "Pensar na sua resposta enquanto o outro fala",
+      "Checar o celular mas continuar prestando atenção no tom de voz",
+      "Parafrasear o que foi dito para confirmar a compreensão",
+      "Interromper quando tiver algo importante a acrescentar"
+    ],
+    correct: 2,
+    feedback: "Escuta ativa inclui parafrasear, fazer perguntas de esclarecimento e demonstrar atenção plena. Pensar na resposta enquanto o outro fala é um dos maiores obstáculos à escuta real."
+  },
+  {
+    pillar: "Comunicação", icon: "💬", pillarIndex: 1,
+    q: "Em uma apresentação, o que tem MAIOR impacto na comunicação com a audiência?",
+    options: [
+      "As palavras escolhidas (conteúdo verbal)",
+      "O volume da voz",
+      "A linguagem corporal e o tom de voz combinados",
+      "O número de slides utilizados"
+    ],
+    correct: 2,
+    feedback: "Pesquisas indicam que linguagem corporal e voz (tom, ritmo, volume) respondem por cerca de 93% do impacto da comunicação. O conteúdo verbal, por mais cuidadoso, representa apenas uma fração."
+  },
+
+  // ─── INTELIGÊNCIA EMOCIONAL ───
+  {
+    pillar: "Inteligência Emocional", icon: "❤️", pillarIndex: 2,
+    q: "Segundo Daniel Goleman, qual é o primeiro pilar da inteligência emocional?",
+    options: [
+      "Empatia",
+      "Motivação",
+      "Autoconsciência",
+      "Autocontrole"
+    ],
+    correct: 2,
+    feedback: "Autoconsciência — reconhecer os próprios sentimentos no momento em que ocorrem — é a pedra fundamental da inteligência emocional. Sem ela, os outros pilares ficam comprometidos."
+  },
+  {
+    pillar: "Inteligência Emocional", icon: "❤️", pillarIndex: 2,
+    q: "Qual é a principal diferença entre reagir e responder emocionalmente a uma situação?",
+    options: [
+      "Reagir é mais eficaz porque é imediato",
+      "Responder envolve uma pausa consciente antes de agir, enquanto reagir é automático",
+      "Responder significa nunca expressar emoções negativas",
+      "Reagir demonstra autenticidade e liderança"
+    ],
+    correct: 1,
+    feedback: "Reagir é automático e frequentemente impulsivo. Responder envolve uma pausa — mesmo que de segundos — para processar a emoção antes de agir. Essa pausa é o exercício central da inteligência emocional."
+  },
+  {
+    pillar: "Inteligência Emocional", icon: "❤️", pillarIndex: 2,
+    q: "O que é 'sequestro da amígdala', segundo Goleman?",
+    options: [
+      "Um distúrbio neurológico que impede o aprendizado emocional",
+      "Quando emoções intensas 'sequestram' a capacidade de raciocínio lógico momentaneamente",
+      "A habilidade da amígdala de armazenar memórias positivas",
+      "Um estado de calma profunda usado em meditação"
+    ],
+    correct: 1,
+    feedback: "O 'sequestro da amígdala' ocorre quando a resposta emocional (fight-or-flight) suprime o córtex pré-frontal, comprometendo o raciocínio. Reconhecer quando isso acontece é a primeira etapa para gerenciá-lo."
+  },
+
+  // ─── TRABALHO EM EQUIPE ───
+  {
+    pillar: "Trabalho em Equipe", icon: "🌀", pillarIndex: 3,
+    q: "Qual fator Lencioni aponta como a base da pirâmide de uma equipe disfuncional?",
+    options: [
+      "Falta de responsabilidade",
+      "Ausência de confiança",
+      "Fuga dos resultados",
+      "Evitação de conflito"
+    ],
+    correct: 1,
+    feedback: "No modelo de Lencioni, a ausência de confiança é a disfunção fundamental. Sem ela, as pessoas não se expõem vulneravelmente, o que impede todos os outros níveis de funcionar."
+  },
+  {
+    pillar: "Trabalho em Equipe", icon: "🌀", pillarIndex: 3,
+    q: "Qual é a principal diferença entre um grupo de trabalho e uma equipe de alto desempenho?",
+    options: [
+      "Uma equipe tem mais pessoas do que um grupo",
+      "Uma equipe tem objetivos individuais claros; um grupo tem meta coletiva",
+      "Uma equipe tem interdependência real e responsabilidade mútua pelos resultados",
+      "Um grupo é mais eficiente porque cada um faz sua parte independentemente"
+    ],
+    correct: 2,
+    feedback: "Equipes de alto desempenho são caracterizadas pela interdependência — cada membro depende dos outros e todos são responsáveis pelo resultado coletivo, não apenas pela sua entrega individual."
+  },
+  {
+    pillar: "Trabalho em Equipe", icon: "🌀", pillarIndex: 3,
+    q: "Em um conflito de equipe, qual abordagem é mais construtiva?",
+    options: [
+      "Evitar o conflito para manter a harmonia do grupo",
+      "Tratar o conflito como um problema de personalidade",
+      "Usar o conflito como oportunidade para alinhar perspectivas e fortalecer a equipe",
+      "Escalar imediatamente para a liderança resolver"
+    ],
+    correct: 2,
+    feedback: "Conflito saudável é parte do desenvolvimento de equipes. Quando bem gerenciado, expõe perspectivas diferentes, alinha expectativas e fortalece a confiança entre os membros."
+  },
+
+  // ─── CRIATIVIDADE ───
+  {
+    pillar: "Criatividade", icon: "💡", pillarIndex: 4,
+    q: "O que é pensamento divergente no contexto da criatividade?",
+    options: [
+      "Focar rapidamente na melhor solução para um problema",
+      "Gerar múltiplas possibilidades antes de julgar ou selecionar",
+      "Seguir processos estabelecidos de forma rigorosa",
+      "Questionar as ideias dos colegas para melhorá-las"
+    ],
+    correct: 1,
+    feedback: "Pensamento divergente é a capacidade de gerar muitas ideias em múltiplas direções antes da avaliação. É a fase de expansão — o oposto do pensamento convergente, que seleciona e refina."
+  },
+  {
+    pillar: "Criatividade", icon: "💡", pillarIndex: 4,
+    q: "Qual atitude mais prejudica a criatividade em ambientes de trabalho?",
+    options: [
+      "Fazer muitas perguntas",
+      "Testar ideias rapidamente em pequena escala",
+      "Julgamento prematuro de ideias na fase de geração",
+      "Trabalhar em times multidisciplinares"
+    ],
+    correct: 2,
+    feedback: "O julgamento prematuro — criticar ideias antes de explorá-las — é o maior assassino da criatividade. Ele cria inibição e sinaliza que é 'perigoso' contribuir com ideias não convencionais."
+  },
+  {
+    pillar: "Criatividade", icon: "💡", pillarIndex: 4,
+    q: "No contexto teatral e de desenvolvimento humano, o 'sim, e...' (yes, and) serve para:",
+    options: [
+      "Concordar com tudo que o outro diz sem questionar",
+      "Aceitar a contribuição do outro e construir sobre ela, expandindo a ideia",
+      "Dizer sim para manter a paz e depois fazer do seu jeito",
+      "Apenas validar sentimentos, sem agir sobre eles"
+    ],
+    correct: 1,
+    feedback: "'Sim, e...' é um princípio fundamental da improvisação teatral e da criatividade colaborativa. Aceitar a contribuição do outro e construir sobre ela cria um ambiente de confiança e gera soluções inesperadas."
+  },
+
+  // ─── PROATIVIDADE ───
+  {
+    pillar: "Proatividade", icon: "🚀", pillarIndex: 5,
+    q: "Segundo Stephen Covey, o que diferencia pessoas proativas de reativas?",
+    options: [
+      "Pessoas proativas agem antes de pensar; reativas pensam demais",
+      "Pessoas proativas focam no que está em seu círculo de influência; reativas focam no círculo de preocupação",
+      "Proatividade é uma característica de personalidade inata, não desenvolvível",
+      "Pessoas reativas são mais detalhistas e cuidadosas"
+    ],
+    correct: 1,
+    feedback: "Covey, em '7 Hábitos', distingue o círculo de influência (onde posso agir) do círculo de preocupação (onde não tenho controle). Pessoas proativas expandem seu círculo de influência ao invés de reclamar do que não controlam."
+  },
+  {
+    pillar: "Proatividade", icon: "🚀", pillarIndex: 5,
+    q: "Qual das alternativas representa um comportamento proativo no trabalho?",
+    options: [
+      "Esperar instruções claras antes de iniciar qualquer tarefa",
+      "Identificar um problema recorrente e propor uma solução antes de ser solicitado",
+      "Trabalhar mais horas para compensar a falta de planejamento",
+      "Reportar todos os problemas ao gestor para que ele decida"
+    ],
+    correct: 1,
+    feedback: "Proatividade é antecipar — ver problemas antes que se tornem crises e agir sem esperar permissão. É a diferença entre esperar ordens e criar valor."
+  },
+  {
+    pillar: "Proatividade", icon: "🚀", pillarIndex: 5,
+    q: "Como a proatividade se conecta com a inteligência emocional?",
+    options: [
+      "São competências independentes que não se influenciam",
+      "Inteligência emocional atrapalha a proatividade ao gerar excesso de reflexão",
+      "A autoconsciência emocional ajuda a identificar medos que inibem a ação proativa",
+      "Pessoas proativas não precisam de inteligência emocional"
+    ],
+    correct: 2,
+    feedback: "Muitas vezes, a falta de proatividade é um comportamento emocional — medo de errar, de julgamento, de assumir responsabilidade. A inteligência emocional ajuda a reconhecer e superar esses bloqueios."
+  }
+];
+
+const PILLARS = [
+  { name: "Empatia",                icon: "🤝" },
+  { name: "Comunicação",            icon: "💬" },
+  { name: "Inteligência Emocional", icon: "❤️" },
+  { name: "Trabalho em Equipe",     icon: "🌀" },
+  { name: "Criatividade",           icon: "💡" },
+  { name: "Proatividade",           icon: "🚀" }
+];
+
+let current = 0;
+let answers = new Array(QUIZ.length).fill(null);
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startQuiz() {
+  current = 0;
+  answers = new Array(QUIZ.length).fill(null);
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUIZ[current];
+  const total = QUIZ.length;
+  const pct = Math.round((current / total) * 100);
+
+  document.getElementById('progress-label').textContent = `Questão ${current + 1} de ${total}`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('section-icon').textContent = q.icon;
+  document.getElementById('section-meta').textContent = `Competência ${q.pillarIndex + 1} de ${PILLARS.length}`;
+  document.getElementById('section-title').textContent = q.pillar;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const answered = answers[current] !== null;
+  const userAnswer = answers[current];
+
+  const html = `
+    <div class="question-card">
+      <div class="question-num">Questão ${current + 1}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">
+        ${q.options.map((opt, i) => {
+          let cls = '';
+          if (answered) {
+            if (i === q.correct) cls = 'correct';
+            else if (i === userAnswer) cls = 'wrong';
+          } else if (i === userAnswer) cls = 'selected';
+          return `<button class="option ${cls}" onclick="selectAnswer(${i})" ${answered ? 'disabled' : ''}>
+            <span class="option-letter">${letters[i]}</span>${opt}
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="feedback ${answered ? 'show' : ''} ${answered && userAnswer === q.correct ? 'ok' : 'err'}">
+        ${answered ? (userAnswer === q.correct ? '✓ ' : '✗ ') + q.feedback : ''}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('questions-container').innerHTML = html;
+
+  document.getElementById('btn-prev').style.display = current > 0 ? 'inline-flex' : 'none';
+  const btnNext = document.getElementById('btn-next');
+  btnNext.disabled = !answered;
+  btnNext.textContent = current === total - 1 ? 'Ver Resultado →' : 'Próxima →';
+}
+
+function selectAnswer(index) {
+  if (answers[current] !== null) return;
+  answers[current] = index;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (current < QUIZ.length - 1) {
+    current++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    showResult();
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResult() {
+  const total = QUIZ.length;
+  const correct = answers.filter((a, i) => a === QUIZ[i].correct).length;
+  const pct = Math.round((correct / total) * 100);
+
+  document.getElementById('result-score').textContent = pct + '%';
+
+  let msg, sub;
+  if (pct >= 80) {
+    msg = 'Excelente domínio!';
+    sub = 'Você demonstra sólido conhecimento das competências de desenvolvimento humano. Continue praticando para transformar conhecimento em hábito.';
+  } else if (pct >= 60) {
+    msg = 'Bom progresso!';
+    sub = 'Você tem uma base consistente. Revise os temas em que errou — cada competência tem profundidade que vale explorar com mais atenção.';
+  } else if (pct >= 40) {
+    msg = 'Há espaço para crescer.';
+    sub = 'Desenvolvimento humano é uma jornada contínua. Revise os conteúdos e refaça a avaliação — o crescimento é mais importante do que a nota.';
+  } else {
+    msg = 'O caminho está começando.';
+    sub = 'Este é o ponto de partida. A consciência das lacunas já é um avanço. Mergulhe nos módulos do curso e retorne a esta avaliação.';
+  }
+
+  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('result-sub').textContent = sub;
+
+  // Por pilar
+  const grid = document.getElementById('result-grid');
+  grid.innerHTML = PILLARS.map((p, pi) => {
+    const pQuestions = QUIZ.filter(q => q.pillarIndex === pi);
+    const pCorrect = pQuestions.filter((q, qi) => {
+      const globalIdx = QUIZ.indexOf(q);
+      return answers[globalIdx] === q.correct;
+    }).length;
+    const pPct = Math.round((pCorrect / pQuestions.length) * 100);
+    return `
+      <div class="pillar-score-card">
+        <div class="ps-icon">${p.icon}</div>
+        <div class="ps-name">${p.name}</div>
+        <div class="ps-bar-track"><div class="ps-bar-fill" style="width:${pPct}%"></div></div>
+        <div class="ps-pct">${pPct}%</div>
+      </div>
+    `;
+  }).join('');
+
+  showScreen('screen-result');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetQuiz() {
+  startQuiz();
+}
+</script>
+</body>
+</html>
