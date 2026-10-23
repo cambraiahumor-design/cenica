@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xn--somoscnica-r7a.com.br/sitemap.xml
+Sitemap: https://somoscenica.com.br/sitemap.xml

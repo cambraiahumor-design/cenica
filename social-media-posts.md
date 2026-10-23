@@ -12,7 +12,7 @@ Manual Humano — a palestra que transforma a forma como você se comunica, lide
 📍 Teatro Torquato Neto · Teresina
 🎟 Inteira R$ 100 | Meia R$ 50
 
-Link na bio → somoscênica.com.br
+Link na bio → somoscenica.com.br
 
 #ManualHumano #SomosCênica #PalestraTeresina #SoftSkills #Comunicação #Liderança #DesenvolvimentoHumano #Teresina
 ```
@@ -37,7 +37,7 @@ Manual Humano é uma noite de 1h30 onde você para de assistir e começa a prati
 
 📅 22 de maio · 20h
 📍 Teatro Torquato Neto · Teresina
-🎟 Garante seu ingresso: somoscênica.com.br
+🎟 Garante seu ingresso: somoscenica.com.br
 
 Vagas limitadas ⚡
 
@@ -81,7 +81,7 @@ A Somos Cênica traz para Teresina uma noite de imersão prática usando técnic
 • Inteira: R$ 100
 • Meia-entrada: R$ 50
 
-👉 Garante o seu: somoscênica.com.br
+👉 Garante o seu: somoscenica.com.br
 
 ⚡ Vagas limitadas. Não deixa para a última hora.
 ```
@@ -99,7 +99,7 @@ Palestra com João Cambraia
 Teatro Torquato Neto · Teresina
 
 Inteira R$ 100 | Meia R$ 50
-👉 somoscênica.com.br
+👉 somoscenica.com.br
 
 Vagas limitadas ⚡
 ```
@@ -121,7 +121,7 @@ Uma noite de imersão prática com técnicas teatrais para desenvolver comunica�
 • Inteira: R$ 100
 • Meia-entrada: R$ 50
 
-🔗 Acesse e garanta o seu: *somoscênica.com.br*
+🔗 Acesse e garanta o seu: *somoscenica.com.br*
 
 ⚡ As vagas são limitadas!
 ```
@@ -142,7 +142,7 @@ O teatro ensina isso há séculos. E eu aprendi a traduzir isso para o mundo do 
 No dia 22 de maio, estarei no Teatro Torquato Neto, em Teresina, com a palestra Manual Humano — 1h30 de conteúdo e prática para quem quer ser ouvido de verdade.
 
 🎟 Inteira: R$ 100 | Meia: R$ 50
-👉 somoscênica.com.br
+👉 somoscenica.com.br
 
 Se você está em Teresina (ou conhece alguém que está), compartilha. Pode ser o convite que alguém precisava receber.
 
